@@ -110,9 +110,7 @@ function validateType(form)
 		<form:errors path="prize" cssClass="validationErrorText" />
 		<br />
 		
-		
-
-<table style="width: 80%">
+		<table style="width: 80%">
 			<tr>
 				<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
 				<td><label for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>
@@ -160,7 +158,7 @@ function validateType(form)
 			<tr>
 				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
 			</tr>
-</table>
+		</table>
 	
 		
 		

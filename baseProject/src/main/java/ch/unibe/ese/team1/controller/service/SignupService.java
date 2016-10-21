@@ -1,5 +1,9 @@
 package ch.unibe.ese.team1.controller.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,9 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ch.unibe.ese.team1.controller.pojos.forms.SignupForm;
+import ch.unibe.ese.team1.model.Message;
+import ch.unibe.ese.team1.model.MessageState;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.UserRole;
 import ch.unibe.ese.team1.model.dao.UserDao;
+//
+import ch.unibe.ese.team1.model.dao.MessageDao;
 
 /** Handles the persisting of new users */
 @Service
@@ -20,6 +28,10 @@ public class SignupService {
 	
 	@Autowired
 	private UserDao userDao;
+	
+	//
+	@Autowired
+	private MessageDao messageDao;
 
 	/** Handles persisting a new user to the database. */
 	@Transactional
@@ -42,6 +54,24 @@ public class SignupService {
 		user.setUserRoles(userRoles);
 		
 		userDao.save(user);
+		
+		//
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+		Message message;
+		message = new Message();
+		message.setSubject("Welcome " + signupForm.getFirstName() + " " + signupForm.getLastName());
+		message.setText("Hello new User");
+		message.setSender(user);
+		message.setRecipient(user);
+		message.setState(MessageState.UNREAD);
+		Calendar calendar = Calendar.getInstance();
+		// java.util.Calendar uses a month range of 0-11 instead of the
+		// XMLGregorianCalendar which uses 1-12
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		message.setDateSent(calendar.getTime());
+
+		messageDao.save(message);
+		
 	}
 	
 	/**

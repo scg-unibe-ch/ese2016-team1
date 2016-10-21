@@ -297,7 +297,7 @@ public class AdService {
 				.collect(Collectors.toList());
 
 		
-		// filtering for the rest
+		// filtering for the special needs
 					// smokers
 					if (searchForm.getSmokers()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
@@ -390,7 +390,7 @@ public class AdService {
 		
 		
 		// filter for additional criteria
-		if (searchForm.getFiltered()) {
+		//if (searchForm.getFiltered()) {
 			// prepare date filtering - by far the most difficult filter
 			Date earliestInDate = null;
 			Date latestInDate = null;
@@ -427,7 +427,7 @@ public class AdService {
 					earliestOutDate, latestOutDate);
 
 			
-		}
+		//}
 		return locatedResults;
 	}
 
