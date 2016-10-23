@@ -81,6 +81,8 @@ public class AdTestDataSaver {
 		adBern.setCreationDate(creationDate1);
 		adBern.setMoveOutDate(moveOutDate1);
 		adBern.setPrizePerMonth(400);
+		adBern.setRetailPrice(1000000);
+		adBern.setAuctionPossible(true);
 		adBern.setSquareFootage(50);
 		adBern.setStudio(false);
 		adBern.setSmokers(false);
@@ -127,6 +129,8 @@ public class AdTestDataSaver {
 		adBern2.setCreationDate(creationDate2);
 		adBern2.setMoveOutDate(moveOutDate4);
 		adBern2.setPrizePerMonth(700);
+		adBern2.setRetailPrice(2000000);
+		adBern2.setAuctionPossible(false);
 		adBern2.setSquareFootage(60);
 		adBern2.setStudio(true);
 		adBern2.setSmokers(false);
@@ -170,6 +174,8 @@ public class AdTestDataSaver {
 		adBasel.setMoveOutDate(moveOutDate2);
 		adBasel.setCreationDate(creationDate3);
 		adBasel.setPrizePerMonth(480);
+		adBasel.setRetailPrice(3000000);
+		adBasel.setAuctionPossible(true);
 		adBasel.setSquareFootage(10);
 		adBasel.setStudio(true);
 		adBasel.setSmokers(true);
@@ -209,6 +215,8 @@ public class AdTestDataSaver {
 		adOlten.setMoveInDate(moveInDate4);
 		adOlten.setCreationDate(creationDate4);
 		adOlten.setPrizePerMonth(430);
+		adOlten.setRetailPrice(4300);
+		adOlten.setAuctionPossible(false);
 		adOlten.setSquareFootage(60);
 		adOlten.setStudio(false);
 		adOlten.setSmokers(true);
@@ -247,6 +255,8 @@ public class AdTestDataSaver {
 		adNeuchâtel.setMoveOutDate(moveOutDate3);
 		adNeuchâtel.setCreationDate(creationDate5);
 		adNeuchâtel.setPrizePerMonth(410);
+		adNeuchâtel.setRetailPrice(4100);
+		adNeuchâtel.setAuctionPossible(true);
 		adNeuchâtel.setSquareFootage(40);
 		adNeuchâtel.setStudio(true);
 		adNeuchâtel.setSmokers(true);
@@ -283,6 +293,8 @@ public class AdTestDataSaver {
 		adBiel.setMoveOutDate(moveOutDate5);
 		adBiel.setCreationDate(creationDate6);
 		adBiel.setPrizePerMonth(480);
+		adBiel.setRetailPrice(4800);
+		adBiel.setAuctionPossible(false);
 		adBiel.setSquareFootage(10);
 		adBiel.setStudio(true);
 		adBiel.setSmokers(true);
@@ -326,6 +338,8 @@ public class AdTestDataSaver {
 		adZurich.setCreationDate(creationDate7);
 		adZurich.setMoveOutDate(moveOutDate5);
 		adZurich.setPrizePerMonth(480);
+		adZurich.setRetailPrice(4800);
+		adZurich.setAuctionPossible(true);
 		adZurich.setSquareFootage(32);
 		adZurich.setStudio(false);
 		adZurich.setSmokers(false);
@@ -371,6 +385,8 @@ public class AdTestDataSaver {
 		adLuzern.setMoveInDate(moveInDate8);
 		adLuzern.setCreationDate(creationDate2);
 		adLuzern.setPrizePerMonth(700);
+		adLuzern.setRetailPrice(7000);
+		adLuzern.setAuctionPossible(false);
 		adLuzern.setSquareFootage(60);
 		adLuzern.setStudio(true);
 		adLuzern.setSmokers(false);
@@ -414,6 +430,8 @@ public class AdTestDataSaver {
 		adAarau.setMoveOutDate(moveOutDate4);
 		adAarau.setCreationDate(creationDate8);
 		adAarau.setPrizePerMonth(800);
+		adAarau.setRetailPrice(8000);
+		adAarau.setAuctionPossible(true);
 		adAarau.setSquareFootage(26);
 		adAarau.setStudio(true);
 		adAarau.setSmokers(true);
@@ -456,6 +474,8 @@ public class AdTestDataSaver {
 		adDavos.setMoveInDate(moveInDate2);
 		adDavos.setCreationDate(creationDate4);
 		adDavos.setPrizePerMonth(1100);
+		adDavos.setRetailPrice(11000);
+		adDavos.setAuctionPossible(false);
 		adDavos.setSquareFootage(74);
 		adDavos.setStudio(false);
 		adDavos.setSmokers(true);
@@ -494,6 +514,8 @@ public class AdTestDataSaver {
 		adLausanne.setMoveOutDate(moveOutDate3);
 		adLausanne.setCreationDate(creationDate5);
 		adLausanne.setPrizePerMonth(360);
+		adLausanne.setRetailPrice(3600);
+		adLausanne.setAuctionPossible(true);
 		adLausanne.setSquareFootage(8);
 		adLausanne.setStudio(false);
 		adLausanne.setSmokers(true);
@@ -530,6 +552,8 @@ public class AdTestDataSaver {
 		adLocarno.setMoveOutDate(moveOutDate5);
 		adLocarno.setCreationDate(creationDate6);
 		adLocarno.setPrizePerMonth(960);
+		adLocarno.setRetailPrice(9600);
+		adLocarno.setAuctionPossible(true);
 		adLocarno.setSquareFootage(42);
 		adLocarno.setStudio(false);
 		adLocarno.setSmokers(true);

@@ -53,6 +53,12 @@ public class Ad {
 
 	@Column(nullable = false)
 	private int prizePerMonth;
+	
+	@Column(nullable = false)
+	private int retailPrice;
+	
+	@Column(nullable = false)
+	private boolean auctionPossible;
 
 	@Column(nullable = false)
 	private int squareFootage;
@@ -235,6 +241,22 @@ public class Ad {
 
 	public void setPrizePerMonth(int prizePerMonth) {
 		this.prizePerMonth = prizePerMonth;
+	}
+	
+	public int getRetailPrice() {
+		return retailPrice;
+	}
+
+	public void setRetailPrice(int retailPrice) {
+		this.retailPrice = retailPrice;
+	}
+	
+	public boolean getAuctionPossible() {
+		return auctionPossible;
+	}
+
+	public void setAuctionPossible(boolean auctionPossible) {
+		this.auctionPossible = auctionPossible;
 	}
 
 	public int getSquareFootage() {

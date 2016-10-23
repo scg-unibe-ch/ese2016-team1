@@ -189,6 +189,18 @@
 			<td><h2>Monthly Rent</h2></td>
 			<td>${shownAd.prizePerMonth}&#32;CHF</td>
 		</tr>
+		
+		<tr>
+			<td><h2>Retail Price</h2></td>
+			<td>${shownAd.retailPrice}&#32;CHF 
+				<c:if test="${shownAd.auctionPossible}">
+					or 
+					<a href="/auction?id=${shownAd.id}" class="link">
+						<button class="thinInactiveButton" type="button">start auction now</button>
+					</a>
+				</c:if>
+			</td>
+		</tr>
 
 		<tr>
 			<td><h2>Square Meters</h2></td>
