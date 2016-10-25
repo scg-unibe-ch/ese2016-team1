@@ -54,7 +54,7 @@ public class Ad {
 	@Column(nullable = false)
 	private int prizePerMonth;
 	
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private int retailPrice;
 	
 	@Column(nullable = false)

@@ -213,16 +213,16 @@
 						
 					<c:choose>
 						<c:when test="${ad.auctionPossible == 'true'}">
-							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
+							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="0"
 							checked="checked"/>Yes 
-							<form:radiobutton id="auction-possible" path="auctionPossible" value="0" />No
+							<form:radiobutton id="auction-not-possible" path="auctionPossible" value="1" />No
 							</td>
 						</c:when>
 						<c:otherwise>
 							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
-							/>Yes 
-							<form:radiobutton id="auction-possible" path="auctionPossible" value="0" 
-							checked="checked"/>No</td>
+							/>Ja 
+							<form:radiobutton id="auction-not-possible" path="auctionPossible" value="0" 
+							checked="checked"/>Nein</td>
 						</c:otherwise>
 					</c:choose>		
 			</tr>
