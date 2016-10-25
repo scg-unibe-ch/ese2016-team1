@@ -167,6 +167,19 @@
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
 			</tr>
+			
+			<tr>
+				<td><label for="retailPrice">Retail Price</label></td>
+				<td><label for="auction-possible">Auction Possible?</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="retailPrice" type="number" path="retailPrice"
+						placeholder="Retail Price" step="50" /> <form:errors
+						path="retailPrice" cssClass="validationErrorText" /></td>
+				<td><form:radiobutton id="auction-possible" path="auctionPossible" value="0"
+						checked="checked" />Yes <form:radiobutton id="auction-possible"
+						path="auctionPossible" value="1" />No</td>
+			</tr>
 		</table>
 	</fieldset>
 

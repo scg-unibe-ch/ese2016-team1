@@ -29,6 +29,9 @@ public class PlaceAdForm {
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int squareFootage;
+	
+	@Min(value = 1, message = "Has to be equal to 1 or more")
+	private int retailPrice;
 
 	@NotBlank(message = "Required")
 	private String roomDescription;
@@ -47,6 +50,9 @@ public class PlaceAdForm {
 	
 	//true if studio, false if room
 	private boolean studio;
+	
+	//true if auction possible, false if not
+	private boolean auctionPossible;
 	
 	private boolean smokers;
 	private boolean animals;
@@ -74,6 +80,14 @@ public class PlaceAdForm {
 
 	public void setPrize(int prize) {
 		this.prize = prize;
+	}
+	
+	public int getRetailPrice() {
+		return retailPrice;
+	}
+
+	public void setRetailPrice(int retailPrice) {
+		this.retailPrice = retailPrice;
 	}
 
 	public String getRoomDescription() {
@@ -242,5 +256,13 @@ public class PlaceAdForm {
 
 	public void setVisits(List<String> visits) {
 		this.visits = visits;
+	}
+	
+	public boolean getAuctionPossible() {
+		return auctionPossible;
+	}
+	
+	public void setAuctionPossible(boolean auctionPossible) {
+		this.auctionPossible = auctionPossible;
 	}
 }
