@@ -212,9 +212,9 @@
 						path="retailPrice" cssClass="validationErrorText"/></td>
 						
 					<c:choose>
-						<c:when test="${ad.auctionPossible}">
+						<c:when test="${ad.auctionPossible == 'true'}">
 							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
-							checked="checked" />Yes 
+							checked="checked"/>Yes 
 							<form:radiobutton id="auction-possible" path="auctionPossible" value="0" />No
 							</td>
 						</c:when>

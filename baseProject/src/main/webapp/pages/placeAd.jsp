@@ -176,9 +176,9 @@
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" /> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
-				<td><form:radiobutton id="auction-possible" path="auctionPossible" value="0"
+				<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
 						checked="checked" />Yes <form:radiobutton id="auction-possible"
-						path="auctionPossible" value="1" />No</td>
+						path="auctionPossible" value="0" />No</td>
 			</tr>
 		</table>
 	</fieldset>
