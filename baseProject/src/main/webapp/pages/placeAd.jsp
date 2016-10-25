@@ -125,11 +125,11 @@
 			</tr>
 
 			<tr>
-				<td><form:input id="field-title" path="title"
-						placeholder="Ad Title" /></td>
-				<td><form:radiobutton id="type-room" path="studio" value="0"
-						checked="checked" />Room <form:radiobutton id="type-studio"
-						path="studio" value="1" />Studio</td>
+				<td><form:input id="field-title" path="title" placeholder="Ad Title" /></td>
+				<td><form:radiobutton id="type-room" path="roomType" value="room" checked="checked" />Room
+				 <form:radiobutton id="type-studio"	path="roomType" value="studio" />Studio
+				 <form:radiobutton id="type-flat"	path="roomType" value="flat" />Flat
+				 <form:radiobutton id="type-house"	path="roomType" value="house" />House</td>
 			</tr>
 
 			<tr>

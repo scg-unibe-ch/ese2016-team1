@@ -48,8 +48,7 @@ public class PlaceAdForm {
 	// optional for input
 	private String roomFriends;
 	
-	//true if studio, false if room
-	private boolean studio;
+	private String roomType;
 	
 	//true if auction possible, false if not
 	private boolean auctionPossible;
@@ -233,13 +232,13 @@ public class PlaceAdForm {
 	public void setRoomFriends(String roomFriends) {
 		this.roomFriends = roomFriends;
 	}
-	
-	public boolean getStudio() {
-		return studio;
+
+	public String getRoomType() {
+		return roomType;
 	}
-	
-	public void setStudio(boolean studio) {
-		this.studio = studio;
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 
 	public List<String> getRegisteredRoommateEmails() {

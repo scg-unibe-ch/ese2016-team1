@@ -107,7 +107,7 @@ public class Ad {
 
 	// true if studio, false if room
 	@Column(nullable = false)
-	private boolean studio;
+	private String roomType;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -127,12 +127,12 @@ public class Ad {
 		this.creationDate = creationDate;
 	}
 
-	public boolean getStudio() {
-		return studio;
+	public String getRoomType() {
+		return roomType;
 	}
 
-	public void setStudio(boolean studio) {
-		this.studio = studio;
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 
 	public boolean getSmokers() {

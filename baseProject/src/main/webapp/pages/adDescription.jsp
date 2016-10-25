@@ -159,12 +159,7 @@
 	<table id="adDescTable" class="adDescDiv">
 		<tr>
 			<td><h2>Type</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.studio}">Studio</c:when>
-					<c:otherwise>Room</c:otherwise>
-				</c:choose>
-			</td>
+			<td>${shownAd.roomType}</td>
 		</tr>
 
 		<tr>

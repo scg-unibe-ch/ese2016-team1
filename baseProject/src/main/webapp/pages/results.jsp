@@ -14,23 +14,23 @@ function validateType(form)
 {
 	var room = document.getElementById('room');
 	var studio = document.getElementById('studio');
+	var flat = document.getElementById('flat');
+	var house = document.getElementById('house');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
-	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
 	
 	if(room.checked && studio.checked) {
 		both.checked = true;
 		neither.checked = false;
 	}
-	else if(!room.checked && !studio.checked) {
+	else if(!room.checked && !studio.checked && !flat.checked && !house.checked) {
 		both.checked = false;
 		neither.checked = true;
 	}
 	else {
 		both.checked = false;
 		neither.checked = false;
-		type.checked = studio.checked;
 	}
 	filtered.checked = true;
 }
@@ -152,11 +152,7 @@ function sort_div_attribute() {
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
 						<p>
-							<i><c:choose>
-									<c:when test="${ad.studio}">Studio</c:when>
-									<c:otherwise>Room</c:otherwise>
-								</c:choose></i>
-						</p>
+							<i>${ad.roomType}</i></p>
 					</div>
 					<div class="resultRight">
 						<h2>CHF ${ad.prizePerMonth }</h2>
@@ -180,10 +176,11 @@ function sort_div_attribute() {
 		<h2>Filter results:</h2>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
+		<form:checkbox name="flat" id="flat" path="flatHelper" /><label>Flat</label>
+		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
 	
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:checkbox style="display:none" name="type" id="type" path="studio" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /> <br />
 	

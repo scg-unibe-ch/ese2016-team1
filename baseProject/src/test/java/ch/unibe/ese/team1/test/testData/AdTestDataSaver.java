@@ -84,7 +84,7 @@ public class AdTestDataSaver {
 		adBern.setRetailPrice(1000000);
 		adBern.setAuctionPossible(true);
 		adBern.setSquareFootage(50);
-		adBern.setStudio(false);
+		adBern.setRoomType("Room");
 		adBern.setSmokers(false);
 		adBern.setAnimals(true);
 		adBern.setRoomDescription(roomDescription1);
@@ -132,7 +132,7 @@ public class AdTestDataSaver {
 		adBern2.setRetailPrice(2000000);
 		adBern2.setAuctionPossible(false);
 		adBern2.setSquareFootage(60);
-		adBern2.setStudio(true);
+		adBern2.setRoomType("Studio");
 		adBern2.setSmokers(false);
 		adBern2.setAnimals(true);
 		adBern2.setRoomDescription(studioDescription2);
@@ -177,7 +177,7 @@ public class AdTestDataSaver {
 		adBasel.setRetailPrice(3000000);
 		adBasel.setAuctionPossible(true);
 		adBasel.setSquareFootage(10);
-		adBasel.setStudio(true);
+		adBasel.setRoomType("Studio");
 		adBasel.setSmokers(true);
 		adBasel.setAnimals(false);
 		adBasel.setRoomDescription(studioDescription3);
@@ -218,7 +218,7 @@ public class AdTestDataSaver {
 		adOlten.setRetailPrice(4300);
 		adOlten.setAuctionPossible(false);
 		adOlten.setSquareFootage(60);
-		adOlten.setStudio(false);
+		adOlten.setRoomType("Room");
 		adOlten.setSmokers(true);
 		adOlten.setAnimals(false);
 		adOlten.setRoomDescription(studioDescription4);
@@ -258,7 +258,7 @@ public class AdTestDataSaver {
 		adNeuchâtel.setRetailPrice(4100);
 		adNeuchâtel.setAuctionPossible(true);
 		adNeuchâtel.setSquareFootage(40);
-		adNeuchâtel.setStudio(true);
+		adNeuchâtel.setRoomType("Studio");
 		adNeuchâtel.setSmokers(true);
 		adNeuchâtel.setAnimals(false);
 		adNeuchâtel.setRoomDescription(studioDescription5);
@@ -296,7 +296,7 @@ public class AdTestDataSaver {
 		adBiel.setRetailPrice(4800);
 		adBiel.setAuctionPossible(false);
 		adBiel.setSquareFootage(10);
-		adBiel.setStudio(true);
+		adBiel.setRoomType("Studio");
 		adBiel.setSmokers(true);
 		adBiel.setAnimals(false);
 		adBiel.setRoomDescription(studioDescription6);
@@ -341,7 +341,7 @@ public class AdTestDataSaver {
 		adZurich.setRetailPrice(4800);
 		adZurich.setAuctionPossible(true);
 		adZurich.setSquareFootage(32);
-		adZurich.setStudio(false);
+		adZurich.setRoomType("Room");
 		adZurich.setSmokers(false);
 		adZurich.setAnimals(false);
 		adZurich.setRoomDescription(roomDescription7);
@@ -388,7 +388,7 @@ public class AdTestDataSaver {
 		adLuzern.setRetailPrice(7000);
 		adLuzern.setAuctionPossible(false);
 		adLuzern.setSquareFootage(60);
-		adLuzern.setStudio(true);
+		adLuzern.setRoomType("Studio");
 		adLuzern.setSmokers(false);
 		adLuzern.setAnimals(false);
 		adLuzern.setRoomDescription(studioDescription8);
@@ -433,7 +433,7 @@ public class AdTestDataSaver {
 		adAarau.setRetailPrice(8000);
 		adAarau.setAuctionPossible(true);
 		adAarau.setSquareFootage(26);
-		adAarau.setStudio(true);
+		adAarau.setRoomType("Studio");
 		adAarau.setSmokers(true);
 		adAarau.setAnimals(false);
 		adAarau.setRoomDescription(studioDescription9);
@@ -477,7 +477,7 @@ public class AdTestDataSaver {
 		adDavos.setRetailPrice(11000);
 		adDavos.setAuctionPossible(false);
 		adDavos.setSquareFootage(74);
-		adDavos.setStudio(false);
+		adDavos.setRoomType("Room");
 		adDavos.setSmokers(true);
 		adDavos.setAnimals(false);
 		adDavos.setRoomDescription(studioDescription10);
@@ -517,7 +517,7 @@ public class AdTestDataSaver {
 		adLausanne.setRetailPrice(3600);
 		adLausanne.setAuctionPossible(true);
 		adLausanne.setSquareFootage(8);
-		adLausanne.setStudio(false);
+		adLausanne.setRoomType("Room");
 		adLausanne.setSmokers(true);
 		adLausanne.setAnimals(false);
 		adLausanne.setRoomDescription(studioDescription11);
@@ -555,7 +555,7 @@ public class AdTestDataSaver {
 		adLocarno.setRetailPrice(9600);
 		adLocarno.setAuctionPossible(true);
 		adLocarno.setSquareFootage(42);
-		adLocarno.setStudio(false);
+		adLocarno.setRoomType("Room");
 		adLocarno.setSmokers(true);
 		adLocarno.setAnimals(false);
 		adLocarno.setRoomDescription(studioDescription12);
