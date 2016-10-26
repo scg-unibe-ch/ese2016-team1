@@ -90,6 +90,11 @@ public class MessageService {
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		message.setDateSent(calendar.getTime());
 
+		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+		MailService mail = new MailService();
+		mail.sendEmail(userDao.findByUsername(messageForm.getRecipient()).getEmail());
+		
+		
 		messageDao.save(message);
 
 		return message;
@@ -111,9 +116,6 @@ public class MessageService {
 		message.setSubject(subject);
 		message.setText(text);
 		message.setState(MessageState.UNREAD);
-		
-		MailService mail = new MailService();
-		mail.sendEmail(recipient.getEmail());
 		
 		messageDao.save(message);
 	}
