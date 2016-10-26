@@ -40,10 +40,7 @@
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
 						<p>
-							<i><c:choose>
-									<c:when test="${ad.studio}">Studio</c:when>
-									<c:otherwise>Room</c:otherwise>
-								</c:choose></i>
+							<i>${ad.roomType}</i>
 						</p>
 					</div>
 					<div class="resultRight">
@@ -82,10 +79,7 @@
 						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
 						<p>
-							<i><c:choose>
-									<c:when test="${ad.studio}">Studio</c:when>
-									<c:otherwise>Room</c:otherwise>
-								</c:choose></i>
+							<i>${ad.roomType}</i>
 						</p>
 					</div>
 					<div class="resultRight">

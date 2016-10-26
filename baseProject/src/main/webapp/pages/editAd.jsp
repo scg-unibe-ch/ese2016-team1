@@ -143,15 +143,29 @@
 				<td><form:input id="field-title" path="title" value="${ad.title}" /></td>
 				<td>
 					<c:choose>
-						<c:when test="${ad.studio == 'true'}">
-							<form:radiobutton id="type-room" path="studio" value="1"
-								checked="checked" />Room <form:radiobutton id="type-studio"
-								path="studio" value="0" />Studio
+						<c:when test="${ad.roomType == 'Room'}">
+							<form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />house
+						</c:when>
+						<c:when test="${ad.roomType == 'Studio'}">
+							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" checked="checked" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />house
+						</c:when>
+						<c:when test="${ad.roomType == 'Flat'}">
+							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" checked="checked" />flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />house
 						</c:when>
 						<c:otherwise>
-							<form:radiobutton id="type-room" path="studio" value="0"
-								checked="checked" />Room <form:radiobutton id="type-studio"
-								path="studio" value="1" />Studio
+							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" checked="checked" />house
 						</c:otherwise>
 					</c:choose>
 			</tr>
@@ -201,6 +215,30 @@
 						value="${ad.squareFootage }"/> <form:errors
 						path="squareFootage" cssClass="validationErrorText" />
 				</td>
+			</tr>
+						<tr>
+				<td><label for="retailPrice">Retail Price</label></td>
+				<td><label for="auction-possible">Auction Possible?</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="retailPrice" type="number" path="retailPrice"
+						placeholder="Retail Price" step="50" value="${ad.retailPrice }"/> <form:errors
+						path="retailPrice" cssClass="validationErrorText"/></td>
+						
+					<c:choose>
+						<c:when test="${ad.auctionPossible == 'true'}">
+							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="0"
+							checked="checked"/>Yes 
+							<form:radiobutton id="auction-not-possible" path="auctionPossible" value="1" />No
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
+							/>Ja 
+							<form:radiobutton id="auction-not-possible" path="auctionPossible" value="0" 
+							checked="checked"/>Nein</td>
+						</c:otherwise>
+					</c:choose>		
 			</tr>
 		</table>
 	</fieldset>

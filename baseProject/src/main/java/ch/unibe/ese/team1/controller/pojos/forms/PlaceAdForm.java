@@ -24,11 +24,14 @@ public class PlaceAdForm {
 	
 	private String moveOutDate;
 
-	@Min(value = 1, message = "Has to be equal to 1 or more")
+	@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int prize;
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int squareFootage;
+	
+	@Min(value = 0, message = "Has to be equal to 0 or more")
+	private int retailPrice;
 
 	@NotBlank(message = "Required")
 	private String roomDescription;
@@ -45,8 +48,10 @@ public class PlaceAdForm {
 	// optional for input
 	private String roomFriends;
 	
-	//true if studio, false if room
-	private boolean studio;
+	private String roomType;
+	
+	//true if auction possible, false if not
+	private boolean auctionPossible;
 	
 	private boolean smokers;
 	private boolean animals;
@@ -74,6 +79,14 @@ public class PlaceAdForm {
 
 	public void setPrize(int prize) {
 		this.prize = prize;
+	}
+	
+	public int getRetailPrice() {
+		return retailPrice;
+	}
+
+	public void setRetailPrice(int retailPrice) {
+		this.retailPrice = retailPrice;
 	}
 
 	public String getRoomDescription() {
@@ -219,13 +232,13 @@ public class PlaceAdForm {
 	public void setRoomFriends(String roomFriends) {
 		this.roomFriends = roomFriends;
 	}
-	
-	public boolean getStudio() {
-		return studio;
+
+	public String getRoomType() {
+		return roomType;
 	}
-	
-	public void setStudio(boolean studio) {
-		this.studio = studio;
+
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
 
 	public List<String> getRegisteredRoommateEmails() {
@@ -242,5 +255,13 @@ public class PlaceAdForm {
 
 	public void setVisits(List<String> visits) {
 		this.visits = visits;
+	}
+	
+	public boolean getAuctionPossible() {
+		return auctionPossible;
+	}
+	
+	public void setAuctionPossible(boolean auctionPossible) {
+		this.auctionPossible = auctionPossible;
 	}
 }

@@ -159,12 +159,7 @@
 	<table id="adDescTable" class="adDescDiv">
 		<tr>
 			<td><h2>Type</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.studio}">Studio</c:when>
-					<c:otherwise>Room</c:otherwise>
-				</c:choose>
-			</td>
+			<td>${shownAd.roomType}</td>
 		</tr>
 
 		<tr>
@@ -187,7 +182,40 @@
 
 		<tr>
 			<td><h2>Monthly Rent</h2></td>
-			<td>${shownAd.prizePerMonth}&#32;CHF</td>
+			<c:choose>
+			<c:when test="${shownAd.prizePerMonth == 0}">
+				<td>No price per month given</td>	
+			</c:when>
+			<c:otherwise>
+				<td>${shownAd.prizePerMonth}&#32;CHF</td>
+			</c:otherwise>
+			</c:choose>
+		</tr>
+		
+		<tr>
+			<td><h2>Retail Price</h2></td>
+			<c:choose>	
+				<c:when test="${shownAd.retailPrice == 0}">
+					<td>No retail price given 
+						<c:if test="${shownAd.auctionPossible}">
+							but 
+							<a href="/auction?id=${shownAd.id}" class="link">
+								<button class="thinInactiveButton" type="button">start auction now</button>
+							</a>
+						</c:if>
+					</td>
+				</c:when>
+				<c:otherwise>
+					<td>${shownAd.retailPrice}&#32;CHF 
+						<c:if test="${shownAd.auctionPossible}">
+							or 
+							<a href="/auction?id=${shownAd.id}" class="link">
+								<button class="thinInactiveButton" type="button">start auction now</button>
+							</a>
+						</c:if>
+					</td>
+				</c:otherwise>
+			</c:choose>
 		</tr>
 
 		<tr>

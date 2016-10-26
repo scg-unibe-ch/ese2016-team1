@@ -22,6 +22,8 @@ function validateType(form)
 {
 	var room = document.getElementById('room');
 	var studio = document.getElementById('studio');
+	var flat = document.getElementById('flat');
+	var house = document.getElementById('house');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	
@@ -45,9 +47,7 @@ function typeOfAlert(alert) {
 	if(alert.getBothRoomAndStudio())
 		return "Both"
 	else if(alert.getStudio())
-		return "Studio"
-	else
-		return "Room"
+		return alsert.getRoomType()
 }	
 </script>
 	
@@ -84,6 +84,8 @@ function typeOfAlert(alert) {
 	<fieldset>
 		<form:checkbox name="room" id="room" path="room" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studio" /><label>Studio</label>
+		<form:checkbox name="flat" id="flat" path="flat" /><label>Studio</label>
+		<form:checkbox name="house" id="house" path="house" /><label>Studio</label>
 		
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />

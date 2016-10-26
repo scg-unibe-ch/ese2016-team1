@@ -38,6 +38,12 @@ public class Alert {
 
 	@Column
 	private boolean room;
+	
+	@Column
+	private boolean flat;
+	
+	@Column
+	private boolean house;
 
 	@Column
 	private boolean bothRoomAndStudio;
@@ -104,6 +110,44 @@ public class Alert {
 
 	public void setRoom(boolean room) {
 		this.room = room;
+	}
+	
+	public boolean getRoomType(String roomType) {
+		boolean answer;
+		switch(roomType) {
+		case "Room":
+			answer = getRoom();
+			break;
+		case "Studio":
+			answer = getStudio();
+			break;
+		case "Flat":
+			answer = getFlat();
+			break;
+		case "House":
+			answer = getHouse();
+			break;
+		default:
+			answer = false;
+			break;
+		}		
+		return answer;
+	}
+	
+	public boolean getFlat() {
+		return flat;
+	}
+	
+	public void setFlat(boolean flat) {
+		this.flat = flat;
+	}
+	
+	public boolean getHouse() {
+		return house;
+	}
+	
+	public void setHouse(boolean house) {
+		this.house = house;
 	}
 
 	public boolean getBothRoomAndStudio() {
