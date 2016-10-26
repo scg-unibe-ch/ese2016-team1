@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ch.unibe.ese.team1.controller.pojos.MailService;
 import ch.unibe.ese.team1.controller.pojos.forms.SignupForm;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
@@ -56,7 +57,7 @@ public class SignupService {
 		userDao.save(user);
 		
 		//
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+		//DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
 		Message message;
 		message = new Message();
 		message.setSubject("Welcome " + signupForm.getFirstName() + " " + signupForm.getLastName());
@@ -70,6 +71,10 @@ public class SignupService {
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		message.setDateSent(calendar.getTime());
 
+		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+		MailService mail = new MailService();
+		mail.sendEmail(signupForm.getEmail());
+		
 		messageDao.save(message);
 		
 	}

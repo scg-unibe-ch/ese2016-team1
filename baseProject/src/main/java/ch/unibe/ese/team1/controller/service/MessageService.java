@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import ch.unibe.ese.team1.controller.pojos.MailService;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
@@ -110,6 +111,9 @@ public class MessageService {
 		message.setSubject(subject);
 		message.setText(text);
 		message.setState(MessageState.UNREAD);
+		
+		MailService mail = new MailService();
+		mail.sendEmail(recipient.getEmail());
 		
 		messageDao.save(message);
 	}
