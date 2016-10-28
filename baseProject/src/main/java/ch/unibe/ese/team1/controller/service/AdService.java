@@ -240,18 +240,6 @@ public class AdService {
 	 */
 	@Transactional
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
-		Iterable<Ad> results = null;
-
-		// we use this method if we are looking for rooms AND studios
-		if (searchForm.getBothRoomAndStudio()) {
-			results = adDao
-					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
-		}
-		// we use this method if we are looking EITHER for rooms OR for studios
-		else {
-			results = adDao.findByRoomTypeAndPrizePerMonthLessThan(
-					searchForm.getRoomType(), searchForm.getPrize() + 1);
-		}
 
 		// filter out zipcode
 		String city = searchForm.getCity().substring(7);
@@ -260,12 +248,17 @@ public class AdService {
 		// lowest zip code
 		Location searchedLocation = geoDataService.getLocationsByCity(city)
 				.get(0);
-
-		// create a list of the results and of their locations
+		
 		List<Ad> locatedResults = new ArrayList<>();
-		for (Ad ad : results) {
-			locatedResults.add(ad);
-		}
+		int maxPrize = searchForm.getPrize() + 1;
+		if(searchForm.getRoomHelper())
+			locatedResults = addResultsFromRoomType(locatedResults, "Room", maxPrize);
+		if(searchForm.getStudioHelper()) 
+			locatedResults = addResultsFromRoomType(locatedResults, "Studio", maxPrize);
+		if(searchForm.getFlatHelper())
+			locatedResults = addResultsFromRoomType(locatedResults, "Flat", maxPrize);
+		if(searchForm.getHouseHelper()) 
+			locatedResults = addResultsFromRoomType(locatedResults, "House", maxPrize);
 
 		final int earthRadiusKm = 6380;
 		List<Location> locations = geoDataService.getAllLocations();
@@ -501,5 +494,13 @@ public class AdService {
 			}
 		}
 		return false;
+	}
+
+	private List<Ad> addResultsFromRoomType(List<Ad> filtredResults, String string, int maxPrize) {
+		Iterable<Ad> results = adDao.findByRoomTypeAndPrizePerMonthLessThan(string, maxPrize);
+		for(Ad ad : results) {
+			filtredResults.add(ad);
+		}
+		return filtredResults;
 	}
 }

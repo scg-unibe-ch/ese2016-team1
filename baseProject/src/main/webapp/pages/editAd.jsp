@@ -146,26 +146,26 @@
 						<c:when test="${ad.roomType == 'Room'}">
 							<form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room 
 							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
-							<form:radiobutton id="type-studio" path="roomType" value="Flat" />flat 
-							<form:radiobutton id="type-studio" path="roomType" value="House" />house
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />House
 						</c:when>
 						<c:when test="${ad.roomType == 'Studio'}">
 							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
 							<form:radiobutton id="type-studio" path="roomType" value="Studio" checked="checked" />Studio 
-							<form:radiobutton id="type-studio" path="roomType" value="Flat" />flat 
-							<form:radiobutton id="type-studio" path="roomType" value="House" />house
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />House
 						</c:when>
 						<c:when test="${ad.roomType == 'Flat'}">
 							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
 							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
-							<form:radiobutton id="type-studio" path="roomType" value="Flat" checked="checked" />flat 
-							<form:radiobutton id="type-studio" path="roomType" value="House" />house
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" checked="checked" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />House
 						</c:when>
 						<c:otherwise>
 							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
 							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
-							<form:radiobutton id="type-studio" path="roomType" value="Flat" />flat 
-							<form:radiobutton id="type-studio" path="roomType" value="House" checked="checked" />house
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" checked="checked" />House
 						</c:otherwise>
 					</c:choose>
 			</tr>

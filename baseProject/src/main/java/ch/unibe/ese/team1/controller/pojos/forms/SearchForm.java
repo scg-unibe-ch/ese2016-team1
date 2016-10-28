@@ -12,9 +12,6 @@ public class SearchForm {
 
 	private boolean filtered;
 
-	// studio: true, room: false
-	private String roomType;
-
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
 	private String city;
@@ -29,8 +26,6 @@ public class SearchForm {
 
 	@AssertFalse(message = "Please select either or both types")
 	private boolean noRoomNoStudio;
-
-	private boolean bothRoomAndStudio;
 
 	public String getCity() {
 		return city;
@@ -56,28 +51,12 @@ public class SearchForm {
 		this.prize = prize;
 	}
 
-	public String getRoomType() {
-		return roomType;
-	}
-
-	public void setRoomType(String roomType) {
-		this.roomType = roomType;
-	}
-
 	public boolean getNoRoomNoStudio() {
 		return noRoomNoStudio;
 	}
 
 	public void setNoRoomNoStudio(boolean noRoomNoStudio) {
 		this.noRoomNoStudio = noRoomNoStudio;
-	}
-
-	public boolean getBothRoomAndStudio() {
-		return bothRoomAndStudio;
-	}
-
-	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
-		this.bothRoomAndStudio = bothRoomAndStudio;
 	}
 
 	// //////////////////

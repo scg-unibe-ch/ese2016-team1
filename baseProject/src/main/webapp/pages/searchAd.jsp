@@ -58,19 +58,12 @@ function validateType(form)
 	var both = document.getElementById('both');
 	var filtered = document.getElementById('filtered');
 	
-	if(room.checked && studio.checked) {
-		both.checked = true;
-		neither.checked = false;
-	}
-	else if(!room.checked && !studio.checked && !flat.checked && !house.checked) {
-		both.checked = false;
+	if(!room.checked && !studio.checked && !flat.checked && !house.checked)
 		neither.checked = true;
-	}
-	else {
-		both.checked = false;
+	else
 		neither.checked = false;
-	}
-	filtered.checked = false;
+	
+	filtered.checked = true;
 }
 </script>
 
@@ -79,7 +72,6 @@ function validateType(form)
 
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="searchForm" autocomplete="off">
-
 	<fieldset>
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
@@ -87,10 +79,8 @@ function validateType(form)
 		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
 		
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" />
-		
 		<br />
 		
 		<label for="city">City / zip code:</label>
@@ -159,10 +149,7 @@ function validateType(form)
 			<tr>
 				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
 			</tr>
-		</table>
-	
-		
-		
+		</table>	
 
 		<button type="submit" tabindex="7" onClick="validateType(this.form)">Search</button>
 		<button type="reset" tabindex="8">Cancel</button>
