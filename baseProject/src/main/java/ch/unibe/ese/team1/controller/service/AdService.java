@@ -249,6 +249,8 @@ public class AdService {
 		Location searchedLocation = geoDataService.getLocationsByCity(city)
 				.get(0);
 		
+		// Sucht alle Resultate, die auf die Suchkriterien zutreffen anhand der Raumart
+		// (roomType) und des Maximalpreises.
 		List<Ad> locatedResults = new ArrayList<>();
 		int maxPrize = searchForm.getPrize() + 1;
 		if(searchForm.getRoomHelper())
@@ -496,6 +498,14 @@ public class AdService {
 		return false;
 	}
 
+	/**
+	 * Sucht Einträge/Ads für eine bestimmte Raumart und fügt sie einer Liste hinzu. Wählt
+	 * nur Einträge, die unter einem gewisen Preis liegen.
+	 * @param filtredResults Liste, welcher die gefundenen Ads hinzugefügt werden soll.
+	 * @param string Art des Raumes ("Room", "Studio", "Flat" oder "House").
+	 * @param maxPrize Maximaler Preis, den eine Raumart haben darf.
+	 * @return Selbe Liste, wie filtredResults mit hinzugefügten Einträgen.
+	 */
 	private List<Ad> addResultsFromRoomType(List<Ad> filtredResults, String string, int maxPrize) {
 		Iterable<Ad> results = adDao.findByRoomTypeAndPrizePerMonthLessThan(string, maxPrize);
 		for(Ad ad : results) {
