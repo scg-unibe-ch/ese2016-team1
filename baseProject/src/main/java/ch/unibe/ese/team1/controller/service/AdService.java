@@ -450,8 +450,13 @@ public class AdService {
 					Iterator<Ad> iterator = ads.iterator();
 					while (iterator.hasNext()) {
 						Ad ad = iterator.next();
+						Date test = ad.getDate(inOrOut);
+						try{
 						if (ad.getDate(inOrOut).compareTo(earliestDate) < 0)
 							iterator.remove();
+						} catch (NullPointerException e) {
+							iterator.remove();
+						}
 					}
 				}
 			}

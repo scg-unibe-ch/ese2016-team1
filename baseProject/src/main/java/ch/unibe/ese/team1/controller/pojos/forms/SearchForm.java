@@ -174,7 +174,7 @@ public class SearchForm {
 	}
 
 	public String getLatestMoveInDate() {
-		return latestMoveInDate;
+		return this.latestMoveInDate;
 	}
 
 	public void setLatestMoveInDate(String latestMoveInDate) {
