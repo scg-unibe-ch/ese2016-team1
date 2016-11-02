@@ -59,6 +59,12 @@ public class Ad {
 	
 	@Column(nullable = false)
 	private boolean auctionPossible;
+	
+	@Column(nullable = true)
+	private Date endOfAuction;
+	
+	@Column(nullable = true)
+	private int currentBidding;
 
 	@Column(nullable = false)
 	private int squareFootage;
@@ -118,6 +124,8 @@ public class Ad {
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Visit> visits;
+	
+	////////////////////////////////////////////////////////////////////////////////////////////
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -234,6 +242,14 @@ public class Ad {
 	public void setMoveOutDate(Date moveOutDate) {
 		this.moveOutDate = moveOutDate;
 	}
+	
+	public void setEndOfAuction(Date endOfAuction) {
+		this.endOfAuction = endOfAuction;
+	}
+	
+	public Date getEndOfAuction(){
+		return endOfAuction;
+	}
 
 	public int getPrizePerMonth() {
 		return prizePerMonth;
@@ -249,6 +265,14 @@ public class Ad {
 
 	public void setRetailPrice(int retailPrice) {
 		this.retailPrice = retailPrice;
+	}
+	
+	public int getCurrentBidding() {
+		return currentBidding;
+	}
+
+	public void setCurrentBidding(int currentBidding) {
+		this.currentBidding = currentBidding;
 	}
 	
 	public boolean getAuctionPossible() {

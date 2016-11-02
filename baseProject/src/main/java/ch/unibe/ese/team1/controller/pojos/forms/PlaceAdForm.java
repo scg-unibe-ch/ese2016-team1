@@ -22,6 +22,9 @@ public class PlaceAdForm {
 	@NotBlank(message = "Required")
 	private String moveInDate;
 	
+	//@NotBlank(message = "Required")
+	private String endOfAuction;
+	
 	private String moveOutDate;
 
 	@Min(value = 0, message = "Has to be equal to 0 or more")
@@ -32,6 +35,9 @@ public class PlaceAdForm {
 	
 	@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int retailPrice;
+	
+	@Min(value = 0, message = "Has to be equal to 0 or more")
+	private int currentBidding;
 
 	@NotBlank(message = "Required")
 	private String roomDescription;
@@ -49,6 +55,8 @@ public class PlaceAdForm {
 	private String roomFriends;
 	
 	private String roomType;
+	
+	private String currentBuyer;
 	
 	//true if auction possible, false if not
 	private boolean auctionPossible;
@@ -263,5 +271,29 @@ public class PlaceAdForm {
 	
 	public void setAuctionPossible(boolean auctionPossible) {
 		this.auctionPossible = auctionPossible;
+	}
+	
+	public int getCurrentBidding() {
+		return currentBidding;
+	}
+
+	public void setCurrentBidding(int currentBidding) {
+		this.currentBidding = currentBidding;
+	}
+	
+	public String getEndOfAuction() {
+		return endOfAuction;
+	}
+
+	public void setEndOfAuction(String endOfAuction) {
+		this.endOfAuction = endOfAuction;
+	}
+	
+	public String getCurrentBuyer(){
+		return currentBuyer;
+	}
+	
+	public void setCurrentBuyer(String currentBuyer){
+		this.currentBuyer = currentBuyer;
 	}
 }

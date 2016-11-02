@@ -98,6 +98,8 @@ public class EditAdService {
 		ad.setPrizePerMonth(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRetailPrice(placeAdForm.getRetailPrice());
+		ad.setCurrentBidding(placeAdForm.getCurrentBidding());
+		//ad.setEndOfAuction(placeAdForm.getEndOfAuction());
 		ad.setAuctionPossible(placeAdForm.getAuctionPossible());
 		
 
@@ -183,7 +185,12 @@ public class EditAdService {
 			ad.setVisits(visits);
 		}
 
-		ad.setUser(user);
+		if(user!=null){
+			ad.setUser(user);
+		}
+		else{
+			ad.setUser(ad.getUser());
+		}
 
 		adDao.save(ad);
 

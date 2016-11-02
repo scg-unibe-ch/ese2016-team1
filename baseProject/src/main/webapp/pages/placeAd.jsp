@@ -41,6 +41,9 @@
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
+		$("#field-endOfAuction").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
 		
 
 		$("#addbutton").click(function() {
@@ -120,6 +123,15 @@
 		<legend>General info</legend>
 		<table class="placeAdTable">
 			<tr>
+			
+			<td><c:choose>
+				<c:when test="${loggedIn}">
+			
+				<form:input id="field-buyer" path="currentBuyer"
+						value="${loggedInUserEmail}"/>
+				</c:when>	
+			</c:choose></td>
+			
 				<td><label for="field-title">Ad Title</label></td>
 				<td><label for="type-room">Type:</label></td>
 			</tr>
@@ -170,15 +182,31 @@
 			
 			<tr>
 				<td><label for="retailPrice">Retail Price</label></td>
-				<td><label for="auction-possible">Auction Possible?</label></td>
 			</tr>
 			<tr>
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" /> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
+				
+			</tr>
+			<tr>
+				<td><label for="auction-possible">Auction Possible?</label></td>
+			</tr>
+			<tr>
 				<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
 						checked="checked" />Yes <form:radiobutton id="auction-possible"
-						path="auctionPossible" value="0" />No</td>
+						path="auctionPossible" value="0" />No</td>		
+			</tr>
+			<tr>
+				<td><label for="currentBidding">Start Bidding</label></td>
+				<td><label for="endOfAuction">End Of Auction</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="currentBidding" type="number" path="currentBidding"
+						placeholder="Start Bidding" step="50" /> <form:errors
+						path="currentBidding" cssClass="validationErrorText" /></td>
+				<td><form:input type="text" id="field-endOfAuction"
+						path="endOfAuction" /></td>
 			</tr>
 		</table>
 	</fieldset>

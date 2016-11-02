@@ -97,6 +97,7 @@
 			$("#content").children().animate({opacity: 1}, 300);
 		});
 		
+
 		$("#messageSend").click(function (){
 			if($("#msgSubject").val() != "" && $("#msgTextarea").val() != ""){
 				var subject = $("#msgSubject").val();
@@ -181,13 +182,26 @@
 		</tr>
 
 		<tr>
-			<td><h2>Monthly Rent</h2></td>
+		<td><h2>Current Bidding</h2></td>
+				<td>${shownAd.auctionPossible}</td>
+				<td>${shownAd.currentBidding}&#32;CHF</td>
+		</tr>
+		<tr>
 			<c:choose>
-			<c:when test="${shownAd.prizePerMonth == 0}">
-				<td>No price per month given</td>	
+			<c:when test="${shownAd.auctionPossible}">
+				<td><h2>Current Bidding</h2></td>
+				<td>${shownAd.currentBidding}&#32;CHF</td>
 			</c:when>
 			<c:otherwise>
-				<td>${shownAd.prizePerMonth}&#32;CHF</td>
+				<td><h2>Monthly Rent</h2></td>
+				<c:choose>
+				<c:when test="${shownAd.prizePerMonth == 0}">
+					<td>No price per month given</td>	
+				</c:when>
+				<c:otherwise>
+					<td>${shownAd.prizePerMonth}&#32;CHF</td>
+				</c:otherwise>
+				</c:choose>
 			</c:otherwise>
 			</c:choose>
 		</tr>
@@ -199,7 +213,7 @@
 					<td>No retail price given 
 						<c:if test="${shownAd.auctionPossible}">
 							but 
-							<a href="/auction?id=${shownAd.id}" class="link">
+							<a href="/makeAuction?id=${shownAd.id}" class="link">
 								<button class="thinInactiveButton" type="button">start auction now</button>
 							</a>
 						</c:if>
@@ -209,14 +223,17 @@
 					<td>${shownAd.retailPrice}&#32;CHF 
 						<c:if test="${shownAd.auctionPossible}">
 							or 
-							<a href="/auction?id=${shownAd.id}" class="link">
+							<a href="/makeAuction?id=${shownAd.id}" class="link">
 								<button class="thinInactiveButton" type="button">start auction now</button>
 							</a>
+							
 						</c:if>
 					</td>
 				</c:otherwise>
 			</c:choose>
 		</tr>
+		
+		
 
 		<tr>
 			<td><h2>Square Meters</h2></td>

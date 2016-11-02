@@ -106,6 +106,21 @@ public class AdService {
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
+			
+			if(placeAdForm.getAuctionPossible()){
+			if (placeAdForm.getEndOfAuction().length() >= 1) {
+				int dayEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
+						.substring(0, 2));
+				int monthEnd = Integer.parseInt(placeAdForm
+						.getEndOfAuction().substring(3, 5));
+				int yearEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
+						.substring(6, 10));
+				calendar.set(yearEnd, monthEnd - 1, dayEnd);
+				ad.setMoveOutDate(calendar.getTime());
+			}
+			ad.setCurrentBidding(placeAdForm.getCurrentBidding());
+			}
+			
 		} catch (NumberFormatException e) {
 		}
 
