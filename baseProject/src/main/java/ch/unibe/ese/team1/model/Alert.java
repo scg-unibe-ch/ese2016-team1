@@ -45,9 +45,6 @@ public class Alert {
 	@Column
 	private boolean house;
 
-	@Column
-	private boolean bothRoomAndStudio;
-
 	public long getId() {
 		return id;
 	}
@@ -148,13 +145,5 @@ public class Alert {
 	
 	public void setHouse(boolean house) {
 		this.house = house;
-	}
-
-	public boolean getBothRoomAndStudio() {
-		return bothRoomAndStudio;
-	}
-
-	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
-		this.bothRoomAndStudio = bothRoomAndStudio;
 	}
 }

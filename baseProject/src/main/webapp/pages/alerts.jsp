@@ -84,11 +84,10 @@ function typeOfAlert(alert) {
 	<fieldset>
 		<form:checkbox name="room" id="room" path="room" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studio" /><label>Studio</label>
-		<form:checkbox name="flat" id="flat" path="flat" /><label>Studio</label>
-		<form:checkbox name="house" id="house" path="house" /><label>Studio</label>
+		<form:checkbox name="flat" id="flat" path="flat" /><label>Flat</label>
+		<form:checkbox name="house" id="house" path="house" /><label>House</label>
 		
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /><br />
 		
 		<label for="city">City / zip code:</label>

@@ -36,8 +36,6 @@ public class AlertForm {
 	@AssertFalse(message = "Please select either or both types")
 	private boolean noRoomNoStudio;
 
-	private boolean bothRoomAndStudio;
-
 	public String getCity() {
 		return city;
 	}
@@ -107,14 +105,6 @@ public class AlertForm {
 
 	public void setNoRoomNoStudio(boolean noRoomNoStudio) {
 		this.noRoomNoStudio = noRoomNoStudio;
-	}
-
-	public boolean getBothRoomAndStudio() {
-		return bothRoomAndStudio;
-	}
-
-	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
-		this.bothRoomAndStudio = bothRoomAndStudio;
 	}
 	
 	public User getUser() {
