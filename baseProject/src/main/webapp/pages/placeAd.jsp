@@ -176,9 +176,9 @@
 				<td><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
-				<td><form:radiobutton id="saleType-Rent" path="stype" value="Rent" checked="checked" />Room
-				 <form:radiobutton id="saleType-Buy"	path="stype" value="Buy" />Studio
-				 <form:radiobutton id="saleType-Auction"	path="stype" value="Auction" />Flat
+				<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" />Room
+				 <form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" />Studio
+				 <form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" />Flat
 			</tr>
 			
 			<tr>
