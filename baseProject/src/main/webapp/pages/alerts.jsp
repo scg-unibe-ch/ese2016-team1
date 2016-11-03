@@ -27,28 +27,11 @@ function validateType(form)
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	
-	if(room.checked && studio.checked) {
-		both.checked = true;
-		neither.checked = false;
-	}
-	else if(!room.checked && !studio.checked) {
-		both.checked = false;
+	if(!room.checked && !studio.checked && !flat.checked && !house.checked)
 		neither.checked = true;
-	}
-	else {
-		both.checked = false;
+	else 
 		neither.checked = false;
-	}
 }
-</script>
-
-<script>
-function typeOfAlert(alert) {
-	if(alert.getBothRoomAndStudio())
-		return "Both"
-	else if(alert.getStudio())
-		return alsert.getRoomType()
-}	
 </script>
 	
 <script>
@@ -133,17 +116,7 @@ function typeOfAlert(alert) {
 		<c:forEach var="alert" items="${alerts}">
 			<tr>
 				<td>
-				<c:choose>
-					<c:when test="${alert.bothRoomAndStudio}">
-						Both
-					</c:when>
-					<c:when test="${alert.studio}">
-						Studio
-					</c:when>
-					<c:otherwise>
-						Room
-					</c:otherwise>
-				</c:choose>
+					${alert.roomTypeString}
 				</td>
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>

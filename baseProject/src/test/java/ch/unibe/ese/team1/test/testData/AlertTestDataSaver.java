@@ -32,6 +32,8 @@ public class AlertTestDataSaver {
 		alert.setUser(ese);
 		alert.setRoom(true);
 		alert.setStudio(true);
+		alert.setFlat(false);
+		alert.setHouse(false);
 		alert.setCity("Bern");
 		alert.setZipcode(3000);
 		alert.setPrice(1500);
@@ -42,6 +44,8 @@ public class AlertTestDataSaver {
 		alert.setUser(ese);
 		alert.setRoom(true);
 		alert.setStudio(false);
+		alert.setFlat(true);
+		alert.setHouse(false);
 		alert.setCity("Zürich");
 		alert.setZipcode(8000);
 		alert.setPrice(1000);
@@ -54,6 +58,8 @@ public class AlertTestDataSaver {
 		alert.setUser(jane);
 		alert.setRoom(false);
 		alert.setStudio(true);
+		alert.setFlat(false);
+		alert.setHouse(false);
 		alert.setCity("Luzern");
 		alert.setZipcode(6003);
 		alert.setPrice(900);

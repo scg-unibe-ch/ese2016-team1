@@ -18,6 +18,8 @@ public class AlertForm {
 	private boolean room;
 	private boolean flat;
 	private boolean house;
+	
+	private String roomTypeString;
 
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
@@ -73,6 +75,7 @@ public class AlertForm {
 
 	public void setStudio(boolean studio) {
 		this.studio = studio;
+		roomTypeToString();
 	}
 
 	public boolean getRoom() {
@@ -81,6 +84,7 @@ public class AlertForm {
 
 	public void setRoom(boolean room) {
 		this.room = room;
+		roomTypeToString();
 	}
 	
 	public boolean getFlat() {
@@ -89,6 +93,7 @@ public class AlertForm {
 	
 	public void setFlat(boolean flat) {
 		this.flat = flat;
+		roomTypeToString();
 	}
 	
 	public boolean getHouse() {
@@ -97,6 +102,7 @@ public class AlertForm {
 	
 	public void setHouse(boolean house) {
 		this.house = house;
+		roomTypeToString();
 	}
 
 	public boolean getNoRoomNoStudio() {
@@ -113,5 +119,41 @@ public class AlertForm {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	/**
+	 * Speichert die Stringrepresentation für die Alerttabelle
+	 */
+	public void roomTypeToString() {
+		String roomTypeString = "void";
+		if(room)
+			roomTypeString = "Room";
+		if(studio) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "Studio";
+			else
+				roomTypeString += ", Studio";
+		}
+		if(flat) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "Flat";
+			else
+				roomTypeString += ", Flat";
+		}
+		if(house) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "House";
+			else
+				roomTypeString += ", House";
+		}
+		setRoomTypeString(roomTypeString);
+	}
+	
+	public void setRoomTypeString(String string) {
+		this.roomTypeString = string;
+	}
+	
+	public String getRoomTypeString() {
+		return roomTypeString;
 	}
 }

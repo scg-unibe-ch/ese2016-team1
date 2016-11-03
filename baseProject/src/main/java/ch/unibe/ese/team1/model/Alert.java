@@ -44,6 +44,9 @@ public class Alert {
 	
 	@Column
 	private boolean house;
+	
+	@Column	
+	private String roomTypeString;
 
 	public long getId() {
 		return id;
@@ -99,6 +102,7 @@ public class Alert {
 
 	public void setStudio(boolean studio) {
 		this.studio = studio;
+		roomTypeToString();
 	}
 
 	public boolean getRoom() {
@@ -107,6 +111,25 @@ public class Alert {
 
 	public void setRoom(boolean room) {
 		this.room = room;
+		roomTypeToString();
+	}
+	
+	public boolean getFlat() {
+		return flat;
+	}
+	
+	public void setFlat(boolean flat) {
+		this.flat = flat;
+		roomTypeToString();
+	}
+	
+	public boolean getHouse() {
+		return house;
+	}
+	
+	public void setHouse(boolean house) {
+		this.house = house;
+		roomTypeToString();
 	}
 	
 	public boolean getRoomType(String roomType) {
@@ -131,19 +154,39 @@ public class Alert {
 		return answer;
 	}
 	
-	public boolean getFlat() {
-		return flat;
+	/**
+	 * Speichert die Stringrepresentation für die Alerttabelle
+	 */
+	private void roomTypeToString() {
+		String roomTypeString = "void";
+		if(room)
+			roomTypeString = "Room";
+		if(studio) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "Studio";
+			else
+				roomTypeString += ", Studio";
+		}
+		if(flat) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "Flat";
+			else
+				roomTypeString += ", Flat";
+		}
+		if(house) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "House";
+			else
+				roomTypeString += ", House";
+		}
+		setRoomTypeString(roomTypeString);
 	}
 	
-	public void setFlat(boolean flat) {
-		this.flat = flat;
+	public void setRoomTypeString(String string) {
+		this.roomTypeString = string;
 	}
 	
-	public boolean getHouse() {
-		return house;
-	}
-	
-	public void setHouse(boolean house) {
-		this.house = house;
+	public String getRoomTypeString() {
+		return roomTypeString;
 	}
 }
