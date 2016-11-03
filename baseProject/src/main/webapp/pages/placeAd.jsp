@@ -168,16 +168,17 @@
 			</tr>
 
 			<tr>
-				<td><label for="field-Prize">Prize per month</label></td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
+				<td><label for="field-SaleType">Sale Type</label>
 			</tr>
 			<tr>
-				<td><form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" /> <form:errors
-						path="prize" cssClass="validationErrorText" /></td>
+				
 				<td><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
+				<td><form:radiobutton id="saleType-Rent" path="stype" value="Rent" checked="checked" />Room
+				 <form:radiobutton id="saleType-Buy"	path="stype" value="Buy" />Studio
+				 <form:radiobutton id="saleType-Auction"	path="stype" value="Auction" />Flat
 			</tr>
 			
 			<tr>
@@ -187,7 +188,6 @@
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" /> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
-				
 			</tr>
 			<tr>
 				<td><label for="auction-possible">Auction Possible?</label></td>

@@ -80,6 +80,7 @@ public class AdTestDataSaver {
 		adBern.setMoveInDate(moveInDate1);
 		adBern.setCreationDate(creationDate1);
 		adBern.setMoveOutDate(moveOutDate1);
+		adBern.setSaleType("Buy");
 		adBern.setPrizePerMonth(400);
 		adBern.setRetailPrice(1000000);
 		adBern.setAuctionPossible(true);
@@ -128,6 +129,7 @@ public class AdTestDataSaver {
 		adBern2.setMoveInDate(moveInDate2);
 		adBern2.setCreationDate(creationDate2);
 		adBern2.setMoveOutDate(moveOutDate4);
+		adBern2.setSaleType("Rent");
 		adBern2.setPrizePerMonth(700);
 		adBern2.setRetailPrice(2000000);
 		adBern2.setAuctionPossible(false);
@@ -173,6 +175,7 @@ public class AdTestDataSaver {
 		adBasel.setMoveInDate(moveInDate3);
 		adBasel.setMoveOutDate(moveOutDate2);
 		adBasel.setCreationDate(creationDate3);
+		adBasel.setSaleType("Auction");
 		adBasel.setPrizePerMonth(480);
 		adBasel.setRetailPrice(3000000);
 		adBasel.setAuctionPossible(true);
@@ -214,6 +217,7 @@ public class AdTestDataSaver {
 		adOlten.setZipcode(4600);
 		adOlten.setMoveInDate(moveInDate4);
 		adOlten.setCreationDate(creationDate4);
+		adOlten.setSaleType("Buy");
 		adOlten.setPrizePerMonth(430);
 		adOlten.setRetailPrice(4300);
 		adOlten.setAuctionPossible(false);
@@ -254,6 +258,7 @@ public class AdTestDataSaver {
 		adNeuchâtel.setMoveInDate(moveInDate5);
 		adNeuchâtel.setMoveOutDate(moveOutDate3);
 		adNeuchâtel.setCreationDate(creationDate5);
+		adNeuchâtel.setSaleType("Buy");
 		adNeuchâtel.setPrizePerMonth(410);
 		adNeuchâtel.setRetailPrice(4100);
 		adNeuchâtel.setAuctionPossible(true);
@@ -292,6 +297,7 @@ public class AdTestDataSaver {
 		adBiel.setMoveInDate(moveInDate6);
 		adBiel.setMoveOutDate(moveOutDate5);
 		adBiel.setCreationDate(creationDate6);
+		adBiel.setSaleType("Auction");
 		adBiel.setPrizePerMonth(480);
 		adBiel.setRetailPrice(4800);
 		adBiel.setAuctionPossible(false);
@@ -337,6 +343,7 @@ public class AdTestDataSaver {
 		adZurich.setMoveInDate(moveInDate7);
 		adZurich.setCreationDate(creationDate7);
 		adZurich.setMoveOutDate(moveOutDate5);
+		adZurich.setSaleType("Rent");
 		adZurich.setPrizePerMonth(480);
 		adZurich.setRetailPrice(4800);
 		adZurich.setAuctionPossible(true);
@@ -384,6 +391,7 @@ public class AdTestDataSaver {
 		adLuzern.setZipcode(6000);
 		adLuzern.setMoveInDate(moveInDate8);
 		adLuzern.setCreationDate(creationDate2);
+		adLuzern.setSaleType("Buy");
 		adLuzern.setPrizePerMonth(700);
 		adLuzern.setRetailPrice(7000);
 		adLuzern.setAuctionPossible(false);
@@ -429,6 +437,7 @@ public class AdTestDataSaver {
 		adAarau.setMoveInDate(moveInDate3);
 		adAarau.setMoveOutDate(moveOutDate4);
 		adAarau.setCreationDate(creationDate8);
+		adAarau.setSaleType("Auction");
 		adAarau.setPrizePerMonth(800);
 		adAarau.setRetailPrice(8000);
 		adAarau.setAuctionPossible(true);
@@ -473,6 +482,7 @@ public class AdTestDataSaver {
 		adDavos.setZipcode(7260);
 		adDavos.setMoveInDate(moveInDate2);
 		adDavos.setCreationDate(creationDate4);
+		adDavos.setSaleType("Rent");
 		adDavos.setPrizePerMonth(1100);
 		adDavos.setRetailPrice(11000);
 		adDavos.setAuctionPossible(false);
@@ -513,6 +523,7 @@ public class AdTestDataSaver {
 		adLausanne.setMoveInDate(moveInDate5);
 		adLausanne.setMoveOutDate(moveOutDate3);
 		adLausanne.setCreationDate(creationDate5);
+		adLausanne.setSaleType("Buy");
 		adLausanne.setPrizePerMonth(360);
 		adLausanne.setRetailPrice(3600);
 		adLausanne.setAuctionPossible(true);
@@ -551,6 +562,7 @@ public class AdTestDataSaver {
 		adLocarno.setMoveInDate(moveInDate6);
 		adLocarno.setMoveOutDate(moveOutDate5);
 		adLocarno.setCreationDate(creationDate6);
+		adLocarno.setSaleType("Auction");
 		adLocarno.setPrizePerMonth(960);
 		adLocarno.setRetailPrice(9600);
 		adLocarno.setAuctionPossible(true);
