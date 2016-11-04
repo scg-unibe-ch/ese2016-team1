@@ -447,8 +447,8 @@ footer nav ul li {
 /* -------------------------------------------------------------------- */
 /* placeAd.jsp */
 #placeAdForm {
-	width: 900px;
-	margin: auto;
+ 	width: 900px;
+	margin: auto; 
 }
 
 #uploaded-pictures {
@@ -618,6 +618,11 @@ footer nav ul li {
 
 #adDescTable td {
 	margin: 10px;
+}
+
+#adDescTable .tableSpaceBoarder td {
+	border-top: 3px dotted;
+	border-color: #2dc16d;
 }
 
 #checkBoxTable {

@@ -124,9 +124,14 @@ public class MakeAuctionController {
 		String strid=requestParams.get("id");
 		String strprice=requestParams.get("price");
 		long id = Long.parseLong(strid);
+		int price = Integer.parseInt(strprice);
 		Ad ad = adService.getAdById(id);
-		ad.setCurrentBidding((int)ad.getNextPossibleBid());
-		adService.saveAd(ad);
+		
+		if (price >= ad.getNextPossibleBid()) {
+			ad.setCurrentBidding(price);
+			adService.saveAd(ad);
+		}
+		
 		return "redirect:/ad?id="+id;
 	}	
 

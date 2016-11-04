@@ -65,6 +65,8 @@ public class Ad {
 	
 	@Column(nullable = false)
 	private int currentBidding;
+	
+	public static final int DEFAULT_MIN_BID = 1000;
 
 	@Column(nullable = false)
 	private int squareFootage;
@@ -282,8 +284,8 @@ public class Ad {
 		this.currentBidding = currentBidding;
 	}
 	
-	public double getNextPossibleBid() {
-		return (currentBidding * 1.05);
+	public int getNextPossibleBid() {
+		return (int) Math.round(Math.max((currentBidding * 1.05), Ad.DEFAULT_MIN_BID));
 	}
 
 	public int getSquareFootage() {
