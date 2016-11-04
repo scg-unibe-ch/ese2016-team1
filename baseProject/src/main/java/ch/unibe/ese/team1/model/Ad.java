@@ -50,6 +50,9 @@ public class Ad {
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = true)
 	private Date moveOutDate;
+	
+	@Column(nullable = false)
+	private String saleType;
 
 	@Column(nullable = false)
 	private int prizePerMonth;
@@ -111,7 +114,6 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean internet;
 
-	// true if studio, false if room
 	@Column(nullable = false)
 	private String roomType;
 
@@ -249,6 +251,14 @@ public class Ad {
 	
 	public Date getEndOfAuction(){
 		return endOfAuction;
+	}
+	
+	public String getSaleType() {
+		return saleType;
+	}
+
+	public void setSaleType(String saleType) {
+		this.saleType = saleType;
 	}
 
 	public int getPrizePerMonth() {

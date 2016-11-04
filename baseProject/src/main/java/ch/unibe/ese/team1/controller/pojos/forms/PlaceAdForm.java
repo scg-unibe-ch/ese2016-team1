@@ -2,6 +2,7 @@ package ch.unibe.ese.team1.controller.pojos.forms;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
@@ -54,7 +55,9 @@ public class PlaceAdForm {
 	// optional for input
 	private String roomFriends;
 	
-	private String roomType;
+	private String roomType;	 
+	
+	private String saleType;
 	
 	private String currentBuyer;
 	
@@ -247,6 +250,14 @@ public class PlaceAdForm {
 
 	public void setRoomType(String roomType) {
 		this.roomType = roomType;
+	}
+	
+	public String getSaleType() {
+		return saleType;
+	}
+
+	public void setSaleType(String saleType) {
+		this.saleType = saleType;
 	}
 
 	public List<String> getRegisteredRoommateEmails() {

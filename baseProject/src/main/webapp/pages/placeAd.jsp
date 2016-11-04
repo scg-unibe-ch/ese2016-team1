@@ -107,6 +107,23 @@
 			$("#addedVisits").append(label + input);
 		});
 	});
+	
+	function showSettings(saleType) {
+		
+		if (saleType.localeCompare("Buy") == 0) {
+			$("#rentalPriceSettings").hide();
+			$("#retailPriceSettings").show();
+			$("#auctionSettings").hide();
+		} else if (saleType.localeCompare("Rent") == 0) {
+			$("#rentalPriceSettings").show();
+			$("#retailPriceSettings").hide();
+			$("#auctionSettings").hide();
+		} else if (saleType.localeCompare("Auction") == 0) {
+			$("#rentalPriceSettings").hide();
+			$("#retailPriceSettings").hide();
+			$("#auctionSettings").show();
+		} 
+	}
 </script>
 
 <pre>
@@ -168,18 +185,44 @@
 			</tr>
 
 			<tr>
-				<td><label for="field-Prize">Prize per month</label></td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
+				<td><label for="field-SaleType">Sale Type</label>
 			</tr>
 			<tr>
-				<td><form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" /> <form:errors
-						path="prize" cssClass="validationErrorText" /></td>
+				
 				<td><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
+				<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
+				 <form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Buy
+				 <form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
 			</tr>
-			
+		</table>
+	</fieldset>
+	
+	<br />
+	<fieldset id="rentalPriceSettings">
+		
+		<legend>Rental Price</legend> 
+		<table class="placeAdTable">
+			<tr>
+				<td><label for="field-Prize">Prize per month</label></td>
+			</tr>
+			<tr>
+				<td>
+					<form:input id="field-Prize" type="number" path="prize"
+						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }"/> <form:errors
+						path="prize" cssClass="validationErrorText" />
+				</td>
+			</tr>
+
+		</table>
+	</fieldset>
+	
+	<fieldset id="retailPriceSettings" style="display:none">
+		
+		<legend>Retail Price</legend> 
+		<table class="placeAdTable">
 			<tr>
 				<td><label for="retailPrice">Retail Price</label></td>
 			</tr>
@@ -187,8 +230,15 @@
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" /> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
-				
 			</tr>
+
+		</table>
+	</fieldset>
+	
+	<fieldset id="auctionSettings" style="display:none">
+		
+		<legend>Auction Settings</legend> 
+		<table class="placeAdTable">
 			<tr>
 				<td><label for="auction-possible">Auction Possible?</label></td>
 			</tr>
@@ -208,6 +258,7 @@
 				<td><form:input type="text" id="field-endOfAuction"
 						path="endOfAuction" /></td>
 			</tr>
+
 		</table>
 	</fieldset>
 
