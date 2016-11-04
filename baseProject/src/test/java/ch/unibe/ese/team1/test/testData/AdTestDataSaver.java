@@ -64,6 +64,11 @@ public class AdTestDataSaver {
 		Date moveOutDate4 = formatter.parse("01.07.2015");
 		Date moveOutDate5 = formatter.parse("30.09.2016");
 		
+		Date auctionEndDate1 = formatter.parse("30.09.2016");
+		Date auctionEndDate2 = formatter.parse("30.09.2017");
+		
+		
+		
 		String roomDescription1 = "The room is a part of 3.5 rooms apartment completely renovated"
 				+ "in 2010 at Kramgasse, Bern. The apartment is about 50 m2 on 1st floor."
 				+ "Apt is equipped modern kitchen, hall and balcony. Near to shops and public"
@@ -174,6 +179,7 @@ public class AdTestDataSaver {
 		adBasel.setMoveOutDate(moveOutDate2);
 		adBasel.setCreationDate(creationDate3);
 		adBasel.setSaleType("Auction");
+		adBasel.setEndOfAuction(auctionEndDate1);
 		adBasel.setPrizePerMonth(480);
 		adBasel.setRetailPrice(3000000);
 		adBasel.setSquareFootage(10);
@@ -293,6 +299,7 @@ public class AdTestDataSaver {
 		adBiel.setMoveOutDate(moveOutDate5);
 		adBiel.setCreationDate(creationDate6);
 		adBiel.setSaleType("Auction");
+		adBiel.setEndOfAuction(auctionEndDate1);
 		adBiel.setPrizePerMonth(480);
 		adBiel.setRetailPrice(4800);
 		adBiel.setSquareFootage(10);
@@ -430,6 +437,7 @@ public class AdTestDataSaver {
 		adAarau.setMoveOutDate(moveOutDate4);
 		adAarau.setCreationDate(creationDate8);
 		adAarau.setSaleType("Auction");
+		adAarau.setEndOfAuction(auctionEndDate2);
 		adAarau.setPrizePerMonth(800);
 		adAarau.setRetailPrice(8000);
 		adAarau.setSquareFootage(26);
@@ -552,6 +560,7 @@ public class AdTestDataSaver {
 		adLocarno.setMoveOutDate(moveOutDate5);
 		adLocarno.setCreationDate(creationDate6);
 		adLocarno.setSaleType("Auction");
+		adLocarno.setEndOfAuction(auctionEndDate2);
 		adLocarno.setPrizePerMonth(960);
 		adLocarno.setCurrentBidding(1500);
 		adLocarno.setRetailPrice(9600);

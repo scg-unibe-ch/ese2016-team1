@@ -67,6 +67,8 @@ public class Ad {
 	private int currentBidding;
 	
 	public static final int DEFAULT_MIN_BID = 1000;
+	
+	private boolean auctionEnded;
 
 	@Column(nullable = false)
 	private int squareFootage;
@@ -287,7 +289,14 @@ public class Ad {
 	public int getNextPossibleBid() {
 		return (int) Math.round(Math.max((currentBidding * 1.05), Ad.DEFAULT_MIN_BID));
 	}
-
+	
+	public boolean getAuctionEnded() {
+		Date today = new Date();
+		this.auctionEnded = ((this.currentBidding >= this.retailPrice) &&
+				this.retailPrice != 0) || this.endOfAuction.before(today);
+		return auctionEnded;
+	}
+	
 	public int getSquareFootage() {
 		return squareFootage;
 	}

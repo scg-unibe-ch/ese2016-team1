@@ -162,8 +162,7 @@
 			<c:choose>
 				<c:when test="${shownAd.saleType == \"Auction\"}">
 					<c:choose>
-						<c:when test="${(shownAd.currentBidding >= shownAd.retailPrice) &&
-						shownAd.retailPrice != 0}">
+						<c:when test="${shownAd.auctionEnded}">
 							<tr>
 								<td><h2>Status</h2></td>
 								<td>Auction ended already</td>
@@ -174,33 +173,49 @@
 									<td><h2>Current Bidding</h2></td>
 									<td>${shownAd.currentBidding}&#32;CHF</td>
 								</tr>
-								<tr>
-									<form:form name="form1" method="post" modelAttribute="placeAdForm"
-										id="biddingForm" action="/makeAuction" autocomplete="off"
-										enctype="multipart/form-data">
-										<td><h2>Your Bid</h2></td>
-										<td><input type="number" name="price" placeholder="Your Bid" 
-										step="5" min="${shownAd.nextPossibleBid }" value="${shownAd.nextPossibleBid }"/></td>
-				 						<td>
-											<button type="submit" class="thinInactiveButton">Bid</button>
-											<input type="hidden" name="id" value="${shownAd.id}" />
-										</td> 
-									</form:form>
-								</tr>
+									<c:choose>
+										<c:when test="${loggedIn}">
+											<c:if test="${loggedInUserEmail != shownAd.user.username }">
+												<tr>
+													<form:form name="form1" method="post" modelAttribute="placeAdForm"
+														id="biddingForm" action="/makeAuction" autocomplete="off"
+														enctype="multipart/form-data">
+														<td><h2>Your Bid</h2></td>
+														<td><input type="number" name="price" placeholder="Your Bid" 
+														step="5" min="${shownAd.nextPossibleBid }" value="${shownAd.nextPossibleBid }"/></td>
+																	<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">
+																		<td>
+																			<button type="submit" class="thinInactiveButton">Bid</button>
+																			<input type="hidden" name="id" value="${shownAd.id}" />
+																		</td> 
+																	</a>
+												</form:form>
+											</tr>
+										</c:if>
+									</c:when>
+								</c:choose>
 								<c:choose>
 									<c:when test="${shownAd.retailPrice > 0 }">
 										<tr>
 											<td><h2>Buy Out Price</h2></td>
 											<td>${shownAd.retailPrice}&#32;CHF</td>
-											<td>
 					 						<form:form name="form1" method="post" modelAttribute="placeAdForm"
 												action="/makeAuction" autocomplete="off" id="biddingFormBuyOut"
 												enctype="multipart/form-data">
-												<button type="submit" class="thinInactiveButton">Buy Out</button>
-												<input type="hidden" name="id" value="${shownAd.id }" />
-												<input type="hidden" name="price" value="${shownAd.retailPrice}" />
+												<c:choose>
+													<c:when test="${loggedIn}">
+														<c:if test="${loggedInUserEmail != shownAd.user.username }">
+															<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">
+																<td>
+																	<button type="submit" class="thinInactiveButton">Buy Out</button>
+																	<input type="hidden" name="id" value="${shownAd.id }" />
+																	<input type="hidden" name="price" value="${shownAd.retailPrice}" />
+																</td> 
+															</a>
+														</c:if>
+													</c:when>
+												</c:choose>
 											</form:form> 
-											</td>
 										</tr>
 									</c:when>
 								</c:choose>
