@@ -208,9 +208,6 @@
 						value="${ad.squareFootage }"/> <form:errors
 						path="squareFootage" cssClass="validationErrorText" />		
 				
-				<form:input type="hidden" id="field-auctionPossible"
-							path="auctionPossible" value="${ad.auctionPossible }"/>
-				
 				<form:input type="hidden" id="field-smokers"
 							path="smokers" value="${ad.smokers }"/>
 				<form:input type="hidden" id="field-animals"

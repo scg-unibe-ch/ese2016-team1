@@ -35,6 +35,10 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
+		$("#field-endOfAuction").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
@@ -111,6 +115,32 @@
 		
 		});
 	});
+	
+	function showSettings() {
+		
+		if (document.getElementById('saleType-Buy').checked) {
+			$("#rentalPriceSettings").hide();
+			$("#retailPriceSettings").show();
+			$("#auctionSettings").hide();
+		} else if (document.getElementById('saleType-Rent').checked) {
+			$("#rentalPriceSettings").show();
+			$("#retailPriceSettings").hide();
+			$("#auctionSettings").hide();
+		} else if (document.getElementById('saleType-Auction').checked) {
+			$("#rentalPriceSettings").hide();
+			$("#retailPriceSettings").hide();
+			$("#auctionSettings").show();
+		} 
+	}
+	
+	$(document).ready(function() {
+		showSettings();
+	});
+	
+	function cloneRetailPrice(price) {
+		$("#buyOutPrice").val(price);
+		$("#retailPrice").val(price);
+	}
 </script>
 
 <!-- format the dates -->
@@ -198,48 +228,95 @@
 						path="moveOutDate" value="${formattedMoveOutDate }"/>
 				</td>
 			</tr>
+			<tr>
+				<td><label for="field-SquareFootage">Square Meters</label></td>
+				<td><label for="field-SaleType">Sale Type</label>
+			</tr>
+			<tr>
+				<td><form:input id="field-SquareFootage" type="number"
+						path="squareFootage" value="${ad.squareFootage}" placeholder="Prize per month" step="5" /> <form:errors
+						path="squareFootage" cssClass="validationErrorText" /></td>
+						
+				<c:choose>
+					<c:when test="${ad.saleType == 'Rent'}">
+						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+					</c:when>
+					<c:when test="${ad.saleType == 'Buy'}">
+						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+					</c:when>
+					<c:when test="${ad.saleType == 'Auction'}">
+						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
+					</c:when>
+				</c:choose>
+			</tr>
+		</table>
+	</fieldset>
 
+<fieldset id="rentalPriceSettings">
+		
+		<legend>Rental Price</legend> 
+		<table class="placeAdTable">
 			<tr>
 				<td><label for="field-Prize">Prize per month</label></td>
-				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>
 				<td>
-					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }"/> <form:errors
+					<form:input id="field-Prize" type="number" path="prize" 
+						placeholder="Prize per month" step="50"/> <form:errors
 						path="prize" cssClass="validationErrorText" />
 				</td>
-				<td>
-					<form:input id="field-SquareFootage" type="number"
-						path="squareFootage" placeholder="Prize per month" step="5" 
-						value="${ad.squareFootage }"/> <form:errors
-						path="squareFootage" cssClass="validationErrorText" />
-				</td>
 			</tr>
-						<tr>
+
+		</table>
+	</fieldset>
+	
+	<fieldset id="retailPriceSettings" style="display:none">
+		
+		<legend>Retail Price</legend> 
+		<table class="placeAdTable">
+			<tr>
 				<td><label for="retailPrice">Retail Price</label></td>
-				<td><label for="auction-possible">Auction Possible?</label></td>
 			</tr>
 			<tr>
-				<td><form:input id="retailPrice" type="number" path="retailPrice"
-						placeholder="Retail Price" step="50" value="${ad.retailPrice }"/> <form:errors
-						path="retailPrice" cssClass="validationErrorText"/></td>
-						
-					<c:choose>
-						<c:when test="${ad.auctionPossible == 'true'}">
-							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="0"
-							checked="checked"/>Yes 
-							<form:radiobutton id="auction-not-possible" path="auctionPossible" value="1" />No
-							</td>
-						</c:when>
-						<c:otherwise>
-							<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
-							/>Ja 
-							<form:radiobutton id="auction-not-possible" path="auctionPossible" value="0" 
-							checked="checked"/>Nein</td>
-						</c:otherwise>
-					</c:choose>		
+				<td><form:input id="retailPrice" type="number" path="retailPrice" value="${ad.retailPrice}"
+						placeholder="Retail Price" step="50" onchange="cloneRetailPrice(this.value)"/> <form:errors
+						path="retailPrice" cssClass="validationErrorText" /></td>
 			</tr>
+
+		</table>
+	</fieldset>
+	
+	<fieldset id="auctionSettings" style="display:none">
+		
+		<legend>Auction Settings</legend> 
+		<table class="placeAdTable">
+			<tr>
+				<td><label for="currentBidding">Start Bidding</label></td>
+				<td><label for="endOfAuction">End Of Auction</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${ad.currentBidding}"
+						placeholder="Start Bidding" step="50" /> <form:errors
+						path="currentBidding" cssClass="validationErrorText" /></td>
+				<td><form:input type="text" id="field-endOfAuction" value="${ad.endOfAuction}"
+						path="endOfAuction" /></td>
+			</tr>
+			<tr>
+				<td><label for="buyOutPrice">Buy Out Price</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
+						placeholder="Buy Out Price" step="50" value="${ad.retailPrice }"
+						onchange="cloneRetailPrice(this.value)"/> <form:errors
+						path="retailPrice" cssClass="validationErrorText" /></td>
+			</tr>
+
 		</table>
 	</fieldset>
 

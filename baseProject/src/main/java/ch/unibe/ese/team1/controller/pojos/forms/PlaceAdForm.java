@@ -61,9 +61,6 @@ public class PlaceAdForm {
 	
 	private String currentBuyer;
 	
-	//true if auction possible, false if not
-	private boolean auctionPossible;
-	
 	private boolean smokers;
 	private boolean animals;
 	private boolean garden;
@@ -274,14 +271,6 @@ public class PlaceAdForm {
 
 	public void setVisits(List<String> visits) {
 		this.visits = visits;
-	}
-	
-	public boolean getAuctionPossible() {
-		return auctionPossible;
-	}
-	
-	public void setAuctionPossible(boolean auctionPossible) {
-		this.auctionPossible = auctionPossible;
 	}
 	
 	public int getCurrentBidding() {

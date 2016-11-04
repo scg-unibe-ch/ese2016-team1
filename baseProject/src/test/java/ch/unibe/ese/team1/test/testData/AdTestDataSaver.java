@@ -83,7 +83,6 @@ public class AdTestDataSaver {
 		adBern.setSaleType("Buy");
 		adBern.setPrizePerMonth(400);
 		adBern.setRetailPrice(1000000);
-		adBern.setAuctionPossible(true);
 		adBern.setSquareFootage(50);
 		adBern.setRoomType("Room");
 		adBern.setSmokers(false);
@@ -132,7 +131,6 @@ public class AdTestDataSaver {
 		adBern2.setSaleType("Rent");
 		adBern2.setPrizePerMonth(700);
 		adBern2.setRetailPrice(2000000);
-		adBern2.setAuctionPossible(false);
 		adBern2.setSquareFootage(60);
 		adBern2.setRoomType("Studio");
 		adBern2.setSmokers(false);
@@ -178,7 +176,6 @@ public class AdTestDataSaver {
 		adBasel.setSaleType("Auction");
 		adBasel.setPrizePerMonth(480);
 		adBasel.setRetailPrice(3000000);
-		adBasel.setAuctionPossible(true);
 		adBasel.setSquareFootage(10);
 		adBasel.setRoomType("Studio");
 		adBasel.setSmokers(true);
@@ -220,7 +217,6 @@ public class AdTestDataSaver {
 		adOlten.setSaleType("Buy");
 		adOlten.setPrizePerMonth(430);
 		adOlten.setRetailPrice(4300);
-		adOlten.setAuctionPossible(false);
 		adOlten.setSquareFootage(60);
 		adOlten.setRoomType("Room");
 		adOlten.setSmokers(true);
@@ -261,7 +257,6 @@ public class AdTestDataSaver {
 		adNeuchâtel.setSaleType("Buy");
 		adNeuchâtel.setPrizePerMonth(410);
 		adNeuchâtel.setRetailPrice(4100);
-		adNeuchâtel.setAuctionPossible(true);
 		adNeuchâtel.setSquareFootage(40);
 		adNeuchâtel.setRoomType("Studio");
 		adNeuchâtel.setSmokers(true);
@@ -300,7 +295,6 @@ public class AdTestDataSaver {
 		adBiel.setSaleType("Auction");
 		adBiel.setPrizePerMonth(480);
 		adBiel.setRetailPrice(4800);
-		adBiel.setAuctionPossible(false);
 		adBiel.setSquareFootage(10);
 		adBiel.setRoomType("Studio");
 		adBiel.setSmokers(true);
@@ -346,7 +340,6 @@ public class AdTestDataSaver {
 		adZurich.setSaleType("Rent");
 		adZurich.setPrizePerMonth(480);
 		adZurich.setRetailPrice(4800);
-		adZurich.setAuctionPossible(true);
 		adZurich.setSquareFootage(32);
 		adZurich.setRoomType("Room");
 		adZurich.setSmokers(false);
@@ -394,7 +387,6 @@ public class AdTestDataSaver {
 		adLuzern.setSaleType("Buy");
 		adLuzern.setPrizePerMonth(700);
 		adLuzern.setRetailPrice(7000);
-		adLuzern.setAuctionPossible(false);
 		adLuzern.setSquareFootage(60);
 		adLuzern.setRoomType("Studio");
 		adLuzern.setSmokers(false);
@@ -440,7 +432,6 @@ public class AdTestDataSaver {
 		adAarau.setSaleType("Auction");
 		adAarau.setPrizePerMonth(800);
 		adAarau.setRetailPrice(8000);
-		adAarau.setAuctionPossible(true);
 		adAarau.setSquareFootage(26);
 		adAarau.setRoomType("Studio");
 		adAarau.setSmokers(true);
@@ -485,7 +476,6 @@ public class AdTestDataSaver {
 		adDavos.setSaleType("Rent");
 		adDavos.setPrizePerMonth(1100);
 		adDavos.setRetailPrice(11000);
-		adDavos.setAuctionPossible(false);
 		adDavos.setSquareFootage(74);
 		adDavos.setRoomType("Room");
 		adDavos.setSmokers(true);
@@ -526,7 +516,6 @@ public class AdTestDataSaver {
 		adLausanne.setSaleType("Buy");
 		adLausanne.setPrizePerMonth(360);
 		adLausanne.setRetailPrice(3600);
-		adLausanne.setAuctionPossible(true);
 		adLausanne.setSquareFootage(8);
 		adLausanne.setRoomType("Room");
 		adLausanne.setSmokers(true);
@@ -564,8 +553,8 @@ public class AdTestDataSaver {
 		adLocarno.setCreationDate(creationDate6);
 		adLocarno.setSaleType("Auction");
 		adLocarno.setPrizePerMonth(960);
+		adLocarno.setCurrentBidding(1500);
 		adLocarno.setRetailPrice(9600);
-		adLocarno.setAuctionPossible(true);
 		adLocarno.setSquareFootage(42);
 		adLocarno.setRoomType("Room");
 		adLocarno.setSmokers(true);

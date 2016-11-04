@@ -75,6 +75,7 @@ public class AdService {
 		ad.setStreet(placeAdForm.getStreet());
 
 		ad.setRoomType(placeAdForm.getRoomType());
+		ad.setSaleType(placeAdForm.getSaleType());
 
 		// take the zipcode - first four digits
 		String zip = placeAdForm.getCity().substring(0, 4);
@@ -107,17 +108,17 @@ public class AdService {
 				ad.setMoveOutDate(calendar.getTime());
 			}
 			
-			if(placeAdForm.getAuctionPossible()){
-			if (placeAdForm.getEndOfAuction().length() >= 1) {
-				int dayEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
-						.substring(0, 2));
-				int monthEnd = Integer.parseInt(placeAdForm
-						.getEndOfAuction().substring(3, 5));
-				int yearEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
-						.substring(6, 10));
-				calendar.set(yearEnd, monthEnd - 1, dayEnd);
-				ad.setMoveOutDate(calendar.getTime());
-			}
+			if(placeAdForm.getSaleType().equals("Auction")){
+				if (placeAdForm.getEndOfAuction().length() >= 1) {
+					int dayEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
+							.substring(0, 2));
+					int monthEnd = Integer.parseInt(placeAdForm
+							.getEndOfAuction().substring(3, 5));
+					int yearEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
+							.substring(6, 10));
+					calendar.set(yearEnd, monthEnd - 1, dayEnd);
+					ad.setEndOfAuction(calendar.getTime());
+				}
 			ad.setCurrentBidding(placeAdForm.getCurrentBidding());
 			}
 			
@@ -126,9 +127,7 @@ public class AdService {
 
 		ad.setPrizePerMonth(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
-		ad.setRetailPrice(placeAdForm.getRetailPrice());
-		ad.setAuctionPossible(placeAdForm.getAuctionPossible());
-		
+		ad.setRetailPrice(placeAdForm.getRetailPrice());		
 
 		ad.setRoomDescription(placeAdForm.getRoomDescription());
 		ad.setPreferences(placeAdForm.getPreferences());
@@ -216,6 +215,10 @@ public class AdService {
 	@Transactional
 	public Ad getAdById(long id) {
 		return adDao.findOne(id);
+	}
+	
+	public void saveAd(Ad ad) {
+		adDao.save(ad);
 	}
 
 	/** Returns all ads in the database */

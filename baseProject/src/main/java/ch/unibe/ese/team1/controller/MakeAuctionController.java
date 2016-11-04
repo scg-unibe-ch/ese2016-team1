@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
@@ -32,6 +33,8 @@ import ch.unibe.ese.team1.model.User;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import ch.unibe.ese.team1.model.dao.AdDao;
+
 
 /**
  * This controller handles all requests concerning editing ads.
@@ -86,35 +89,46 @@ public class MakeAuctionController {
 	 * 
 	 * Principal principal
 	 */
+//	@RequestMapping(value = "/makeAuction", method = RequestMethod.POST)
+//	public ModelAndView editAdPageWithForm(@Valid PlaceAdForm placeAdForm,
+//			BindingResult result, Principal principal,
+//			RedirectAttributes redirectAttributes, @RequestParam long adId) {
+//		ModelAndView model = new ModelAndView("placeAd");
+//		if (!result.hasErrors()) {
+//			//String username = principal.getName();
+//			//User user = userService.findUserByUsername(username);
+//
+//			String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
+//			if (pictureUploader == null) {
+//				pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+//			}
+//			List<String> fileNames = pictureUploader.getFileNames();
+//			Ad ad = editAdService.saveFrom(placeAdForm, fileNames, null, adId);
+//
+//			// triggers all alerts that match the placed ad
+//			alertService.triggerAlerts(ad);
+//
+//			// reset the picture uploader
+//			this.pictureUploader = null;
+//
+//			model = new ModelAndView("redirect:/");
+//			redirectAttributes.addFlashAttribute("confirmationMessage",
+//					"You have placed your Auction sucessfully.");
+//		}
+//
+//		return model;
+//	}
+	
 	@RequestMapping(value = "/makeAuction", method = RequestMethod.POST)
-	public ModelAndView editAdPageWithForm(@Valid PlaceAdForm placeAdForm,
-			BindingResult result, Principal principal,
-			RedirectAttributes redirectAttributes, @RequestParam long adId) {
-		ModelAndView model = new ModelAndView("placeAd");
-		if (!result.hasErrors()) {
-			//String username = principal.getName();
-			//User user = userService.findUserByUsername(username);
-
-			String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-			if (pictureUploader == null) {
-				pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
-			}
-			List<String> fileNames = pictureUploader.getFileNames();
-			Ad ad = editAdService.saveFrom(placeAdForm, fileNames, null, adId);
-
-			// triggers all alerts that match the placed ad
-			alertService.triggerAlerts(ad);
-
-			// reset the picture uploader
-			this.pictureUploader = null;
-
-			model = new ModelAndView("redirect:/");
-			redirectAttributes.addFlashAttribute("confirmationMessage",
-					"You have placed your Auction sucessfully.");
-		}
-
-		return model;
-	}
+	public String bid(@RequestParam Map<String,String> requestParams, Principal principal) {
+		String strid=requestParams.get("id");
+		String strprice=requestParams.get("price");
+		long id = Long.parseLong(strid);
+		Ad ad = adService.getAdById(id);
+		ad.setCurrentBidding((int)ad.getNextPossibleBid());
+		adService.saveAd(ad);
+		return "redirect:/ad?id="+id;
+	}	
 
 	
 }

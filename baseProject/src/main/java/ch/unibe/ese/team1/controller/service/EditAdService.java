@@ -100,7 +100,7 @@ public class EditAdService {
 		ad.setRetailPrice(placeAdForm.getRetailPrice());
 		ad.setCurrentBidding(placeAdForm.getCurrentBidding());
 		//ad.setEndOfAuction(placeAdForm.getEndOfAuction());
-		ad.setAuctionPossible(placeAdForm.getAuctionPossible());
+		ad.setSaleType(placeAdForm.getSaleType());
 		
 
 		ad.setRoomDescription(placeAdForm.getRoomDescription());

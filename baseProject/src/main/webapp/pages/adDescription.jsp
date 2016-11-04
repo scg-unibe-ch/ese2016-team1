@@ -182,53 +182,78 @@
 		</tr>
 
 		<tr>
-<%-- 		<td><h2>Current Bidding</h2></td>
-				<td>${shownAd.auctionPossible}</td>
-				<td>${shownAd.currentBidding}&#32;CHF</td>
-		</tr> --%>
-		<c:choose>
-			<c:when test="${shownAd.auctionPossible}">
-				<tr>
-					<td><h2>Current Bidding</h2></td>
-					<td>${shownAd.currentBidding}&#32;CHF</td>
-				</tr>
-				<tr>
-					<td><h2>Next Possible Bid</h2></td>
-					<td>${shownAd.currentBidding * 1.05}&#32;CHF</td>
-				</tr>
-			</c:when>
-			<c:otherwise>
-				<tr>
-					<td><h2>Monthly Rent</h2></td>
-					<c:choose>
-					<c:when test="${shownAd.prizePerMonth == 0}">
-						<td>No price per month given</td>	
-					</c:when>
-					<c:otherwise>
+			<c:choose>
+				<c:when test="${shownAd.saleType == \"Auction\"}">
+					<tr>
+						<td><h2>Current Bidding</h2></td>
+						<td>${shownAd.currentBidding}&#32;CHF</td>
+					</tr>
+					<tr>
+						<td><h2>Next Possible Bid</h2></td>
+						<td>${shownAd.nextPossibleBid}&#32;CHF</td>
+ 						<td>
+							<form:form name="form1" method="post" modelAttribute="placeAdForm"
+								action="/makeAuction" autocomplete="off"
+								enctype="multipart/form-data">
+							<button type="submit" class="thinInactiveButton">Bid</button>
+							<input type="hidden" name="id" value="${shownAd.id}" />
+							<input type="hidden" name="id" value="${shownAd.nextPossibleBid}" />
+							</form:form>
+						</td> 
+					</tr>
+					<tr>
+						<td><h2>Buy Out Price</h2></td>
+						<td>${shownAd.retailPrice}&#32;CHF</td>
+						<td>
+ 						<form:form name="form1" method="post" modelAttribute="placeAdForm"
+							action="/makeAuction" autocomplete="off"
+							enctype="multipart/form-data">
+							<button type="submit" class="thinInactiveButton">Buy Out</button>
+							<input type="hidden" name="id" value="${shownAd.id }" />
+							<input type="hidden" name="price" value="${shownAd.retailPrice}" />
+						</form:form> 
+						</td>
+					</tr>
+					<tr>
+						<td><h2>End of Auction</h2></td>
+						<td>${shownAd.endOfAuction}</td>
+					</tr>
+				</c:when>
+				
+				<c:when test="${shownAd.saleType == \"Rent\"}">
+					<tr>
+						<td><h2>Monthly Rent</h2></td>
 						<td>${shownAd.prizePerMonth}&#32;CHF</td>
-					</c:otherwise>
-					</c:choose>
-				</tr>
-			</c:otherwise>
+					</tr>
+				</c:when>
+				
+				<c:when test="${shownAd.saleType == \"Buy\"}">
+					<tr>
+						<td><h2>Retail Price</h2></td>
+						<td>${shownAd.retailPrice}&#32;CHF</td>
+					</tr>
+				</c:when>
 			</c:choose>
 		</tr>
 		
 		<tr>
-			<td><h2>Retail Price</h2></td>
+			<td><h2>Test Retail Price</h2></td>
 			<c:choose>	
 				<c:when test="${shownAd.retailPrice == 0}">
 					<td>No retail price given 
-						<c:if test="${shownAd.auctionPossible}">
+						<c:if test="${shownAd.saleType == \"Auction\"}">
 							but 
+							<td>
 							<a href="/makeAuction?id=${shownAd.id}" class="link">
 								<button class="thinInactiveButton" type="button">start auction now</button>
 							</a>
+							</td>
 						</c:if>
 					</td>
 				</c:when>
 				<c:otherwise>
 					<td>${shownAd.retailPrice}&#32;CHF 
-						<c:if test="${shownAd.auctionPossible}">
+						<c:if test="${shownAd.saleType == \"Auction\"}">
 							or 
 							<a href="/makeAuction?id=${shownAd.id}" class="link">
 								<button class="thinInactiveButton" type="button">start auction now</button>

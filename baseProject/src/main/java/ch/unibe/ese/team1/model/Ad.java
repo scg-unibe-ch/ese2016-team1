@@ -60,13 +60,10 @@ public class Ad {
 	@Column(nullable = true)
 	private int retailPrice;
 	
-	@Column(nullable = false)
-	private boolean auctionPossible;
-	
 	@Column(nullable = true)
 	private Date endOfAuction;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private int currentBidding;
 
 	@Column(nullable = false)
@@ -285,12 +282,8 @@ public class Ad {
 		this.currentBidding = currentBidding;
 	}
 	
-	public boolean getAuctionPossible() {
-		return auctionPossible;
-	}
-
-	public void setAuctionPossible(boolean auctionPossible) {
-		this.auctionPossible = auctionPossible;
+	public double getNextPossibleBid() {
+		return (currentBidding * 1.05);
 	}
 
 	public int getSquareFootage() {

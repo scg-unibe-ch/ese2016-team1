@@ -38,6 +38,10 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
+		$("#field-endOfAuction").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
@@ -108,21 +112,30 @@
 		});
 	});
 	
-	function showSettings(saleType) {
+	function showSettings() {
 		
-		if (saleType.localeCompare("Buy") == 0) {
+		if (document.getElementById('saleType-Buy').checked) {
 			$("#rentalPriceSettings").hide();
 			$("#retailPriceSettings").show();
 			$("#auctionSettings").hide();
-		} else if (saleType.localeCompare("Rent") == 0) {
+		} else if (document.getElementById('saleType-Rent').checked) {
 			$("#rentalPriceSettings").show();
 			$("#retailPriceSettings").hide();
 			$("#auctionSettings").hide();
-		} else if (saleType.localeCompare("Auction") == 0) {
+		} else if (document.getElementById('saleType-Auction').checked) {
 			$("#rentalPriceSettings").hide();
 			$("#retailPriceSettings").hide();
 			$("#auctionSettings").show();
 		} 
+	}
+	
+	$(document).ready(function() {
+		showSettings();
+	});
+	
+	function cloneRetailPrice(price) {
+		$("#buyOutPrice").val(price);
+		$("#retailPrice").val(price);
 	}
 </script>
 
@@ -139,16 +152,14 @@
 	<fieldset>
 		<legend>General info</legend>
 		<table class="placeAdTable">
-			<tr>
-			
-			<td><c:choose>
+			<c:choose>
 				<c:when test="${loggedIn}">
 			
 				<form:input id="field-buyer" path="currentBuyer"
 						value="${loggedInUserEmail}"/>
 				</c:when>	
-			</c:choose></td>
-			
+			</c:choose>
+			<tr>
 				<td><label for="field-title">Ad Title</label></td>
 				<td><label for="type-room">Type:</label></td>
 			</tr>
@@ -228,7 +239,8 @@
 			</tr>
 			<tr>
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
-						placeholder="Retail Price" step="50" /> <form:errors
+						placeholder="Retail Price" step="50" 
+						onchange="cloneRetailPrice(this.value)"/> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
 			</tr>
 
@@ -240,23 +252,24 @@
 		<legend>Auction Settings</legend> 
 		<table class="placeAdTable">
 			<tr>
-				<td><label for="auction-possible">Auction Possible?</label></td>
-			</tr>
-			<tr>
-				<td><form:radiobutton id="auction-possible" path="auctionPossible" value="1"
-						checked="checked" />Yes <form:radiobutton id="auction-possible"
-						path="auctionPossible" value="0" />No</td>		
-			</tr>
-			<tr>
 				<td><label for="currentBidding">Start Bidding</label></td>
 				<td><label for="endOfAuction">End Of Auction</label></td>
 			</tr>
 			<tr>
 				<td><form:input id="currentBidding" type="number" path="currentBidding"
-						placeholder="Start Bidding" step="50" /> <form:errors
+						placeholder="Start Bidding" step="50" 
+						onchange="cloneRetailPrice(this.value)"/> <form:errors
 						path="currentBidding" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" id="field-endOfAuction"
-						path="endOfAuction" /></td>
+						path="endOfAuction"/></td>
+			</tr>
+			<tr>
+				<td><label for="retailPrice">Buy Out Price</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
+						placeholder="Buy Out Price" step="50" /> <form:errors
+						path="retailPrice" cssClass="validationErrorText" /></td>
 			</tr>
 
 		</table>
