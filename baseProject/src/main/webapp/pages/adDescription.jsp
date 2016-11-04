@@ -182,26 +182,33 @@
 		</tr>
 
 		<tr>
-		<td><h2>Current Bidding</h2></td>
+<%-- 		<td><h2>Current Bidding</h2></td>
 				<td>${shownAd.auctionPossible}</td>
 				<td>${shownAd.currentBidding}&#32;CHF</td>
-		</tr>
-		<tr>
-			<c:choose>
+		</tr> --%>
+		<c:choose>
 			<c:when test="${shownAd.auctionPossible}">
-				<td><h2>Current Bidding</h2></td>
-				<td>${shownAd.currentBidding}&#32;CHF</td>
+				<tr>
+					<td><h2>Current Bidding</h2></td>
+					<td>${shownAd.currentBidding}&#32;CHF</td>
+				</tr>
+				<tr>
+					<td><h2>Next Possible Bid</h2></td>
+					<td>${shownAd.currentBidding * 1.05}&#32;CHF</td>
+				</tr>
 			</c:when>
 			<c:otherwise>
-				<td><h2>Monthly Rent</h2></td>
-				<c:choose>
-				<c:when test="${shownAd.prizePerMonth == 0}">
-					<td>No price per month given</td>	
-				</c:when>
-				<c:otherwise>
-					<td>${shownAd.prizePerMonth}&#32;CHF</td>
-				</c:otherwise>
-				</c:choose>
+				<tr>
+					<td><h2>Monthly Rent</h2></td>
+					<c:choose>
+					<c:when test="${shownAd.prizePerMonth == 0}">
+						<td>No price per month given</td>	
+					</c:when>
+					<c:otherwise>
+						<td>${shownAd.prizePerMonth}&#32;CHF</td>
+					</c:otherwise>
+					</c:choose>
+				</tr>
 			</c:otherwise>
 			</c:choose>
 		</tr>
