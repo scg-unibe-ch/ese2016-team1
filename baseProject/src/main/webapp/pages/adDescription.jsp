@@ -175,31 +175,35 @@
 									<td>${shownAd.currentBidding}&#32;CHF</td>
 								</tr>
 								<tr>
-									<td><h2>Next Possible Bid</h2></td>
-									<td>${shownAd.nextPossibleBid}&#32;CHF</td>
-			 						<td>
-										<form:form name="form1" method="post" modelAttribute="placeAdForm"
-											id="biddingForm" action="/makeAuction" autocomplete="off"
-											enctype="multipart/form-data">
-										<button type="submit" class="thinInactiveButton">Bid</button>
-										<input type="hidden" name="id" value="${shownAd.id}" />
-										<input type="hidden" name="price" value="${shownAd.nextPossibleBid}" />
-										</form:form>
-									</td> 
-								</tr>
-								<tr>
-									<td><h2>Buy Out Price</h2></td>
-									<td>${shownAd.retailPrice}&#32;CHF</td>
-									<td>
-			 						<form:form name="form1" method="post" modelAttribute="placeAdForm"
-										action="/makeAuction" autocomplete="off" id="biddingFormBuyOut"
+									<form:form name="form1" method="post" modelAttribute="placeAdForm"
+										id="biddingForm" action="/makeAuction" autocomplete="off"
 										enctype="multipart/form-data">
-										<button type="submit" class="thinInactiveButton">Buy Out</button>
-										<input type="hidden" name="id" value="${shownAd.id }" />
-										<input type="hidden" name="price" value="${shownAd.retailPrice}" />
-									</form:form> 
-									</td>
+										<td><h2>Your Bid</h2></td>
+										<td><input type="number" name="price" placeholder="Your Bid" 
+										step="5" min="${shownAd.nextPossibleBid }" value="${shownAd.nextPossibleBid }"/></td>
+				 						<td>
+											<button type="submit" class="thinInactiveButton">Bid</button>
+											<input type="hidden" name="id" value="${shownAd.id}" />
+										</td> 
+									</form:form>
 								</tr>
+								<c:choose>
+									<c:when test="${shownAd.retailPrice > 0 }">
+										<tr>
+											<td><h2>Buy Out Price</h2></td>
+											<td>${shownAd.retailPrice}&#32;CHF</td>
+											<td>
+					 						<form:form name="form1" method="post" modelAttribute="placeAdForm"
+												action="/makeAuction" autocomplete="off" id="biddingFormBuyOut"
+												enctype="multipart/form-data">
+												<button type="submit" class="thinInactiveButton">Buy Out</button>
+												<input type="hidden" name="id" value="${shownAd.id }" />
+												<input type="hidden" name="price" value="${shownAd.retailPrice}" />
+											</form:form> 
+											</td>
+										</tr>
+									</c:when>
+								</c:choose>
 								<tr>
 									<td><h2>End of Auction</h2></td>
 									<td>${shownAd.endOfAuction}</td>
