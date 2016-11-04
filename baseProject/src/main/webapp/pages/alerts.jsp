@@ -33,6 +33,73 @@ function validateType(form)
 		neither.checked = false;
 }
 </script>
+
+<script>
+function use(form, alert)
+{
+	if(alert.earliestMoveInDate == null)
+		var earliestMoveInDate = "";
+	else
+		var earliestMoveInDate = alert.earliestMoveInDate;
+	
+	if(alert.latestMoveInDate == null)
+			var latestMoveInDate = "";
+	else
+		var latestMoveInDate = alert.latestMoveInDate;
+
+	if(alert.earliestMoveOutDate == null)
+		var earliestMoveOutDate = "";
+	else
+		var earliestMoveOutDate = alert.earliestMoveOutDate;
+
+	if(alert.latestMoveOutDate == null)
+		var latestMoveOutDate = "";
+	else
+		var latestMoveOutDate = alert.latestMoveOutDate;
+	
+	var city = alert.city;
+	var price = alert.price;
+	var radius = alert.radius;
+	
+	var room = alert.room;
+	var studio = alert.studio;
+	var flat = alert.flat;
+	var house = alert.house;
+	var smokers = alert.smokers;
+	var garden = alert.garden;
+	var cellar = alert.cellar;
+	var cable = alert.cable;
+	var internet = alert.internet;
+	var animals = alert.animals;
+	var balcony = alert.balcony;
+	var furnished = alert.furnished;
+	var garage = alert.garage;
+	
+	
+	document.getElementById("city").value = city;	
+	document.getElementById("priceInput").value = price;	
+	document.getElementById("radiusInput").value = radius;
+	
+	document.getElementById("field-room").checked = room;
+	document.getElementById("field-studio").checked = studio;
+	document.getElementById("field-flat").checked = flat;
+	document.getElementById("field-house").checked = house;
+	
+	document.getElementById("field-earliestMoveInDate").value = "earliestMoveInDate";	
+	document.getElementById("field-latestMoveInDate").value = latestMoveInDate;	
+	document.getElementById("field-earliestMoveOutDate").value = earliestMoveOutDate;	
+	document.getElementById("field-latestMoveOutDate").value = latestMoveOutDate;
+	document.getElementById("field-smokers").checked = smokers;
+	document.getElementById("field-garden").checked = garden;
+	document.getElementById("field-cellar").checked = cellar;
+	document.getElementById("field-cable").checked = cable;
+	document.getElementById("field-internet").checked = internet;
+	document.getElementById("field-animals").checked = animals;
+	document.getElementById("field-balcony").checked = balcony;
+	document.getElementById("field-furnished").checked = furnished;
+	document.getElementById("field-garage").checked = garage;
+}
+</script>
 	
 <script>
 	$(document).ready(function() {
@@ -65,10 +132,10 @@ function validateType(form)
 	id="alertForm" autocomplete="off">
 
 	<fieldset>
-		<form:checkbox name="room" id="room" path="room" /><label>Room</label>
-		<form:checkbox name="studio" id="studio" path="studio" /><label>Studio</label>
-		<form:checkbox name="flat" id="flat" path="flat" /><label>Flat</label>
-		<form:checkbox name="house" id="house" path="house" /><label>House</label>
+		<form:checkbox name="room" id="field-room" path="room" /><label>Room</label>
+		<form:checkbox name="studio" id="field-studio" path="studio" /><label>Studio</label>
+		<form:checkbox name="flat" id="field-flat" path="flat" /><label>Flat</label>
+		<form:checkbox name="house" id="field-house" path="house" /><label>House</label>
 		
 		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
 		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /><br />
@@ -89,6 +156,56 @@ function validateType(form)
 		CHF
 		<form:errors path="price" cssClass="validationErrorText" />
 		<br />
+		
+		<table style="width: 80%">
+			<tr>
+				<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
+				<td><label for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>
+			</tr>
+			<tr>
+				<td><form:input type="text" id="field-earliestMoveInDate"
+						path="earliestMoveInDate" /></td>
+				<td><form:input type="text" id="field-earliestMoveOutDate"
+						path="earliestMoveOutDate" /></td>
+			</tr>
+			<tr>
+				<td><label for="latestMoveInDate">Latest move-in date</label></td>
+				<td><label for="latestMoveOutDate">Latest move-out date (optional)</label></td>
+			</tr>
+			<tr>
+				<td><form:input type="text" id="field-latestMoveInDate"
+						path="latestMoveInDate" /></td>
+				<td><form:input type="text" id="field-latestMoveOutDate"
+						path="latestMoveOutDate" /></td>
+			</tr>
+			<tr>
+				<td><form:checkbox id="field-smokers" path="smokers" value="1" /><label>Smoking inside
+						allowed</label></td>
+				<td><form:checkbox id="field-animals" path="animals" value="1" /><label>Animals
+						inside allowed</label></td>
+			</tr>
+			<tr>
+				<td><form:checkbox id="field-garden" path="garden" value="1" /><label>Garden
+						(co-use)</label></td>
+				<td><form:checkbox id="field-balcony" path="balcony" value="1" /><label>Balcony
+						or Patio</label></td>
+			</tr>
+			<tr>
+				<td><form:checkbox id="field-cellar" path="cellar" value="1" /><label>Cellar
+						or Attic</label></td>
+				<td><form:checkbox id="field-furnished" path="furnished"
+						value="1" /><label>Furnished</label></td>
+			</tr>
+			<tr>
+				<td><form:checkbox id="field-cable" path="cable" value="1" /><label>Cable
+						TV</label></td>
+				<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>
+				</td>
+			</tr>
+			<tr>
+				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
+			</tr>
+		</table>	
 
 		<button type="submit" tabindex="7" onClick="validateType(this.form)">Subscribe</button>
 		<button type="reset" tabindex="8">Cancel</button>
@@ -110,6 +227,19 @@ function validateType(form)
 				<th>City</th>
 				<th>Radius</th>
 				<th>max. Price</th>
+				<th>Earliest move-in</th>
+				<th>Latest move-in</th>
+				<th>Earliest move-out</th>
+				<th>Latest move-out</th>
+				<th>Smoking</th>
+				<th>Garden</th>
+				<th>Cellar or Attic</th>
+				<th>Cable TV</th>
+				<th>WiFi</th>
+				<th>Animals</th>
+				<th>Balcony/Patio</th>
+				<th>Furnished</th>
+				<th>Garage</th>
 				<th>Action</th>
 			</tr>
 			</thead>
@@ -120,7 +250,21 @@ function validateType(form)
 				</td>
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>
-				<td>${alert.price} Chf</td>
+				<td>${alert.price} CHF</td>
+				<td>${alert.earliestMoveInDate}</td>
+				<td>${alert.latestMoveInDate}</td>
+				<td>${alert.earliestMoveOutDate}</td>
+				<td>${alert.latestMoveOutDate}</td>
+				<td>${alert.smokers}</td>
+				<td>${alert.garden}</td>
+				<td>${alert.cellar}</td>
+				<td>${alert.cable}</td>
+				<td>${alert.internet}</td>
+				<td>${alert.animals}</td>
+				<td>${alert.balcony}</td>
+				<td>${alert.furnished}</td>
+				<td>${alert.garage}</td>
+				<td><button class="useButton" data-id="${alert.id}" onClick="use(this.form, alert)">Use</button></td>
 				<td><button class="deleteButton" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
 			</tr>
 		</c:forEach>
