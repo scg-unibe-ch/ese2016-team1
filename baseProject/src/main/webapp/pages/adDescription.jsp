@@ -12,14 +12,20 @@
 
 <c:import url="template/header.jsp" />
 
-<pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   Ad Description</pre>
+<pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>  &gt;   Ad Description</pre>
 
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
 
+<script src="/js/jquery.ui.widget.js"></script>
+<script src="/js/jquery.iframe-transport.js"></script>
+<script src="/js/jquery.fileupload.js"></script>
+
+
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
+	
 	
 	function attachBookmarkClickHandler(){
 		$("#bookmarkButton").click(function() {
@@ -69,8 +75,13 @@
 			});
 		});
 	}
+	
+	
 
 	$(document).ready(function() {
+		
+
+		
 		attachBookmarkClickHandler();
 		attachBookmarkedClickHandler();
 		
@@ -144,6 +155,7 @@
 
 <hr />
 
+
 <section>
 	<c:choose>
 		<c:when test="${loggedIn}">
@@ -160,7 +172,7 @@
 	<table id="adDescTable" class="adDescDiv">
 		<tr>
 			<td><h2>Type</h2></td>
-			<td>${shownAd.roomType}</td>
+			<td>${shownAd.roomType}</td>	
 		</tr>
 
 		<tr>
@@ -191,6 +203,8 @@
 			<c:when test="${shownAd.auctionPossible}">
 				<td><h2>Current Bidding</h2></td>
 				<td>${shownAd.currentBidding}&#32;CHF</td>
+				
+				
 			</c:when>
 			<c:otherwise>
 				<td><h2>Monthly Rent</h2></td>
@@ -199,9 +213,9 @@
 					<td>No price per month given</td>	
 				</c:when>
 				<c:otherwise>
-					<td>${shownAd.prizePerMonth}&#32;CHF</td>
+					<td>${shownAd.prizePerMonth}&#32;CHF</td>	
 				</c:otherwise>
-				</c:choose>
+				</c:choose>	
 			</c:otherwise>
 			</c:choose>
 		</tr>
@@ -243,8 +257,65 @@
 			<td><h2>Ad created on</h2></td>
 			<td>${formattedCreationDate}</td>
 		</tr>
+		
+
 	</table>
 </section>
+
+<hr />
+
+<section>
+	<c:choose>
+		<c:when test="${loggedIn}">
+		<c:if test="${shownAd.auctionPossible}">
+
+<form:form method="post" modelAttribute="placeAdForm"
+	action="/ad2" id="placeAdForm2" autocomplete="off"
+	enctype="multipart/form-data">
+
+	<input type="hidden" name="adId" value="${shownAd.id }" />
+	<input type="hidden" name="oldBidding" value="${shownAd.currentBidding }" />
+	<input type="hidden" name="newBidding" value="${shownAd.retailPrice }" />
+	<form:input id="newBidding" name="newBidding" type="number" path="currentBidding"
+						placeholder="Current Bidding" step="50" value="${ad.currentBidding }"/> <form:errors
+						path="currentBidding" cssClass="validationErrorText"/>
+				
+	<div>
+		<button type="submit">Place Bidding</button>
+	</div>	
+	
+</form:form>
+
+
+		<c:if test="${shownAd.retailPrice != 0}">
+
+<form:form method="post" modelAttribute="placeAdForm"
+	action="/ad3" id="placeAdForm" autocomplete="off"
+	enctype="multipart/form-data">
+
+	<input type="hidden" name="adId" value="${shownAd.id }" />
+	<input type="hidden" name="oldBidding" value="${shownAd.currentBidding }" />
+	<input type="hidden" name="newBidding" value="${shownAd.retailPrice }" />
+
+	<div>
+		<button type="submit">Buy Out</button>
+		<a href="<c:url value='/' />"> 
+			<button type="button">Cancel</button>
+		</a>
+	</div>	
+	
+</form:form>
+
+		</c:if>
+		</c:if>
+		</c:when>
+	</c:choose>
+
+
+</section>
+
+
+
 
 <div id="image-slider">
 	<div id="left-arrow">

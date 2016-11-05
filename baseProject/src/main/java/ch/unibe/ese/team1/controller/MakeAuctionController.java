@@ -65,7 +65,7 @@ public class MakeAuctionController {
 	 */
 	@RequestMapping(value = "/makeAuction", method = RequestMethod.GET)
 	public ModelAndView editAdPage(@RequestParam long id, Principal principal) {
-		ModelAndView model = new ModelAndView("makeAuction");
+		ModelAndView model = new ModelAndView("adDescription");
 		Ad ad = adService.getAdById(id);
 		model.addObject("ad", ad);
 

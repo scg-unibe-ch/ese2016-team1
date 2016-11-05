@@ -76,6 +76,10 @@ public class Ad {
 	@Column(nullable = false)
 	@Lob
 	private String preferences;
+	
+	@Column(nullable = true)
+	@Lob
+	private String currentBuyer;
 
 	@Column(nullable = false)
 	private String roommates;
@@ -297,6 +301,14 @@ public class Ad {
 
 	public void setRoomDescription(String roomDescription) {
 		this.roomDescription = roomDescription;
+	}
+	
+	public String getCurrentBuyer() {
+		return currentBuyer;
+	}
+
+	public void setCurrentBuyer(String currentBuyer) {
+		this.currentBuyer = currentBuyer;
 	}
 
 	public String getPreferences() {

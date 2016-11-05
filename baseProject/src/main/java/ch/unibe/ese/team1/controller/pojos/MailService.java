@@ -19,7 +19,7 @@ public class MailService {
     /**
      * Send the email via SMTP using StartTLS and SSL
      */
-    public void sendEmail(String address) {
+    public void sendEmail(String address, int textId) {
   
         // Create all the needed properties
         Properties connectionProperties = new Properties();
@@ -42,7 +42,7 @@ public class MailService {
         Session session = Session.getDefaultInstance(connectionProperties,
                 new javax.mail.Authenticator() {    // Define the authenticator
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("flatfindr@gmail.com","Team1Team1");
+                        return new PasswordAuthentication("gretar.geiser@gmail.com","Team1Team1");
                     }
                 });
          
@@ -53,13 +53,30 @@ public class MailService {
             // Create the message 
             Message message = new MimeMessage(session);
             // Set sender
-            message.setFrom(new InternetAddress("flatfindr@gmail.com"));
+            message.setFrom(new InternetAddress("gretar.geiser@gmail.com"));
             // Set the recipients
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(address));
             // Set message subject
-            message.setSubject("new message");
+            message.setSubject("Flatfindr news");
             // Set message text
-            message.setText("You have recieved a new message on your Flatfindr account.");
+            if(textId==0){
+            	message.setText("Welcome on Flatfindr. We want to thank you for creating a new Flatfindr-account.");
+            }
+            if(textId==1){
+            	message.setText("You have recieved a new message on your Flatfindr account.");
+            }
+            if(textId==2){
+            	message.setText("You have been outbidden on Flatfindr.");
+            }
+            if(textId==3){
+            	message.setText("Your Flatfindr-auction has a new highest Bidder, Congratulations!");
+            }
+            if(textId==4){
+            	message.setText("Your Flatfindr-auction been bought out, Congratulations!");
+            }
+            if(textId==5){
+            	message.setText("The Flatfindr-auction you were leading has been bought out, I'm sorry!");
+            }
              
             System.out.print("Sending message...");
             // Send the message
