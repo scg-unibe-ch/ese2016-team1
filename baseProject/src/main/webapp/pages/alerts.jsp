@@ -35,60 +35,49 @@ function validateType(form)
 </script>
 
 <script>
-function use(form, alert)
+function use(form, self)
 {
-	if(alert.earliestMoveInDate == null)
-		var earliestMoveInDate = "";
-	else
-		var earliestMoveInDate = alert.earliestMoveInDate;
+	parent = $(self).parent().parent();
 	
-	if(alert.latestMoveInDate == null)
-			var latestMoveInDate = "";
-	else
-		var latestMoveInDate = alert.latestMoveInDate;
-
-	if(alert.earliestMoveOutDate == null)
-		var earliestMoveOutDate = "";
-	else
-		var earliestMoveOutDate = alert.earliestMoveOutDate;
-
-	if(alert.latestMoveOutDate == null)
-		var latestMoveOutDate = "";
-	else
-		var latestMoveOutDate = alert.latestMoveOutDate;
+	var city = parent.find(".table_city").text();
+	var price = parent.find(".table_price").text();
+	price = parseInt(price.substring(0, price.length - 4));
+	var radius = parent.find(".table_radius").text();
+	radius = parseInt(radius.substring(0, radius.length - 3));
 	
-	var city = alert.city;
-	var price = alert.price;
-	var radius = alert.radius;
+	var earliestMoveInDate = parent.find(".table_earliestMoveInDate").text();
+	var latestMoveInDate = parent.find(".table_latestMoveInDate").text();
+	var earliestMoveOutDate = parent.find(".table_earliestMoveOutDate").text();
+	var latestMoveOutDate = parent.find(".table_latestMoveOutDate").text();
 	
-	var room = alert.room;
-	var studio = alert.studio;
-	var flat = alert.flat;
-	var house = alert.house;
-	var smokers = alert.smokers;
-	var garden = alert.garden;
-	var cellar = alert.cellar;
-	var cable = alert.cable;
-	var internet = alert.internet;
-	var animals = alert.animals;
-	var balcony = alert.balcony;
-	var furnished = alert.furnished;
-	var garage = alert.garage;
+ 	var room = parent.find(".table_roomType").text().indexOf("Room") >= 0;
+	var studio = parent.find(".table_roomType").text().indexOf("Studio") >= 0;
+	var flat = parent.find(".table_roomType").text().indexOf("Flat") >= 0;
+	var house = parent.find(".table_roomType").text().indexOf("House") >= 0;
+	var smokers = parent.find(".table_smokers").text().localeCompare("true") == 0;
+	var garden = parent.find(".table_garden").text().localeCompare("true") == 0;
+	var cellar = parent.find(".table_cellar").text().localeCompare("true") == 0;
+	var cable = parent.find(".table_cable").text().localeCompare("true") == 0;
+	var internet = parent.find(".table_internet").text().localeCompare("true") == 0;
+	var animals = parent.find(".table_animals").text().localeCompare("true") == 0;
+	var balcony = parent.find(".table_balcony").text().localeCompare("true") == 0;
+	var furnished = parent.find(".table_furnished").text().localeCompare("true") == 0;
+	var garage = parent.find(".table_garage").text().localeCompare("true") == 0;
 	
 	
 	document.getElementById("city").value = city;	
 	document.getElementById("priceInput").value = price;	
 	document.getElementById("radiusInput").value = radius;
 	
-	document.getElementById("field-room").checked = room;
+ 	document.getElementById("field-room").checked = room;
 	document.getElementById("field-studio").checked = studio;
 	document.getElementById("field-flat").checked = flat;
 	document.getElementById("field-house").checked = house;
 	
-	document.getElementById("field-earliestMoveInDate").value = "earliestMoveInDate";	
+	document.getElementById("field-earliestMoveInDate").value = earliestMoveInDate;	
 	document.getElementById("field-latestMoveInDate").value = latestMoveInDate;	
 	document.getElementById("field-earliestMoveOutDate").value = earliestMoveOutDate;	
-	document.getElementById("field-latestMoveOutDate").value = latestMoveOutDate;
+	document.getElementById("field-latestMoveOutDate").value = latestMoveOutDate; 
 	document.getElementById("field-smokers").checked = smokers;
 	document.getElementById("field-garden").checked = garden;
 	document.getElementById("field-cellar").checked = cellar;
@@ -245,26 +234,26 @@ function use(form, alert)
 			</thead>
 		<c:forEach var="alert" items="${alerts}">
 			<tr>
-				<td>
+				<td class="table_roomType">
 					${alert.roomTypeString}
 				</td>
-				<td>${alert.city}</td>
-				<td>${alert.radius} km</td>
-				<td>${alert.price} CHF</td>
-				<td>${alert.earliestMoveInDate}</td>
-				<td>${alert.latestMoveInDate}</td>
-				<td>${alert.earliestMoveOutDate}</td>
-				<td>${alert.latestMoveOutDate}</td>
-				<td>${alert.smokers}</td>
-				<td>${alert.garden}</td>
-				<td>${alert.cellar}</td>
-				<td>${alert.cable}</td>
-				<td>${alert.internet}</td>
-				<td>${alert.animals}</td>
-				<td>${alert.balcony}</td>
-				<td>${alert.furnished}</td>
-				<td>${alert.garage}</td>
-				<td><button class="useButton" data-id="${alert.id}" onClick="use(this.form, alert)">Use</button></td>
+				<td class="table_city">${alert.city}</td>
+				<td class="table_radius">${alert.radius} km</td>
+				<td class="table_price">${alert.price} CHF</td>
+				<td class="table_earliestMoveInDate">${alert.earliestMoveInDate}</td>
+				<td class="table_latestMoveInDate">${alert.latestMoveInDate}</td>
+				<td class="table_earliestMoveOutDate">${alert.earliestMoveOutDate}</td>
+				<td class="table_latestMoveOutDate">${alert.latestMoveOutDate}</td>
+				<td class="table_smokers">${alert.smokers}</td>
+				<td class="table_garden">${alert.garden}</td>
+				<td class="table_cellar">${alert.cellar}</td>
+				<td class="table_cable">${alert.cable}</td>
+				<td class="table_internet">${alert.internet}</td>
+				<td class="table_animals">${alert.animals}</td>
+				<td class="table_balcony">${alert.balcony}</td>
+				<td class="table_furnished">${alert.furnished}</td>
+				<td class="table_garage">${alert.garage}</td>
+				<td><button class="useButton" data-id="${alert.id}" onClick="use(this.form, this)">Use</button></td>
 				<td><button class="deleteButton" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
 			</tr>
 		</c:forEach>
