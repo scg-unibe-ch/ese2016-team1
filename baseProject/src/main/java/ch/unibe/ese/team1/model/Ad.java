@@ -66,6 +66,9 @@ public class Ad {
 	@Column(nullable = false)
 	private int currentBidding;
 	
+	@Column(nullable = true)
+	private String currentBuyer;
+	
 	public static final int DEFAULT_MIN_BID = 1000;
 	
 	private boolean auctionEnded;
@@ -284,6 +287,14 @@ public class Ad {
 
 	public void setCurrentBidding(int currentBidding) {
 		this.currentBidding = currentBidding;
+	}
+	
+	public String getCurrentBuyer() {
+		return currentBuyer;
+	}
+
+	public void setCurrentBuyer(String currentBuyer) {
+		this.currentBuyer = currentBuyer;
 	}
 	
 	public int getNextPossibleBid() {

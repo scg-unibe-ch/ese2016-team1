@@ -21,11 +21,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ch.unibe.ese.team1.controller.pojos.MailService;
 import ch.unibe.ese.team1.controller.pojos.PictureUploader;
+import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.AlertService;
 import ch.unibe.ese.team1.controller.service.EditAdService;
+import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.PictureMeta;
@@ -80,6 +83,7 @@ public class MakeAuctionController {
 		if (pictureUploader == null) {
 			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
 		}
+		
 
 		return model;
 	}
@@ -120,7 +124,7 @@ public class MakeAuctionController {
 //	}
 	
 	@RequestMapping(value = "/makeAuction", method = RequestMethod.POST)
-	public String bid(@RequestParam Map<String,String> requestParams, Principal principal) {
+	public String bid(@RequestParam Map<String,String> requestParams, Principal principal, RedirectAttributes redirectAttributes) {
 		String strid=requestParams.get("id");
 		String strprice=requestParams.get("price");
 		long id = Long.parseLong(strid);
@@ -129,7 +133,50 @@ public class MakeAuctionController {
 		
 		if (price >= ad.getNextPossibleBid()) {
 			ad.setCurrentBidding(price);
+			
+			//UserService userService = new UserService();
+			//userService.findUserByUsername(ad.getUser().getEmail());
+			//MessageController mesSer = new MessageController();
+			//mesSer.sendMessage("Auction " + ad.getTitle(), "Take a new look at the Auction", ad.getUser().getEmail(), principal);
+			//MessageForm messageForm = new MessageForm();
+			//messageForm.setRecipient(ad.getUser().getUsername());
+			//messageForm.setSubject("Auction " + ad.getTitle());
+			//messageForm.setText("Take a new look at the Auction");
+			
+			//MessageService messageService = new MessageService();
+			//messageService.saveFrom(messageForm);//(ad.getUser(), "Auction " + ad.getTitle(), "Take a new look at the Auction");
+			
+			if(ad.getCurrentBuyer()!=null){
+				System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+				MailService mail = new MailService();
+				if (price >= ad.getRetailPrice()) {
+					mail.sendEmail(ad.getCurrentBuyer(),5);
+				}
+				else{
+					mail.sendEmail(ad.getCurrentBuyer(),2);
+				}
+			}
+			String loggedInUserEmail = (principal == null) ? "" : principal
+					.getName();		
+			ad.setCurrentBuyer(loggedInUserEmail);
+			
+			System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+			MailService mail = new MailService();
+			if (price >= ad.getRetailPrice()) {
+				mail.sendEmail(ad.getUser().getEmail(),4);
+				redirectAttributes.addFlashAttribute("confirmationMessage",
+						"Congratulations, you just have bought out this auction!");
+				
+			}
+			else{
+				mail.sendEmail(ad.getUser().getEmail(),3);
+				redirectAttributes.addFlashAttribute("confirmationMessage",
+						"Your Bidding has been placed. You are now the current highest Bidder!");
+				
+			}
+			
 			adService.saveAd(ad);
+			
 		}
 		
 		return "redirect:/ad?id="+id;

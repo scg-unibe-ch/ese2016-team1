@@ -92,7 +92,7 @@ public class MessageService {
 
 		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		MailService mail = new MailService();
-		mail.sendEmail(userDao.findByUsername(messageForm.getRecipient()).getEmail());
+		mail.sendEmail(userDao.findByUsername(messageForm.getRecipient()).getEmail(),1);
 		
 		
 		messageDao.save(message);
