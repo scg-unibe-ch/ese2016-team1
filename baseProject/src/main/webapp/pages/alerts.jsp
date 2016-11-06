@@ -78,6 +78,8 @@ function use(form, self)
 	parent = $(self).parent().parent();
 	
 	var city = parent.find(".table_city").text();
+	var zipcode = parent.find(".table_zipcode").text();
+	city = zipcode.concat(" - ", city);
 	var price = parent.find(".table_price").text();
 	price = parseInt(price.substring(0, price.length - 4));
 	var radius = parent.find(".table_radius").text();
@@ -191,7 +193,7 @@ function use(form, self)
 		<table style="width: 80%">
 			<tr>
 				<td><label for="earliestMoveInDate">Earliest move-in date</label></td>
-				<td><label for="earliestMoveOutDate">Earliest move-out date (optional)</label></td>
+				<td><label for="earliestMoveOutDate">Earliest move-out date</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-earliestMoveInDate"
@@ -201,7 +203,7 @@ function use(form, self)
 			</tr>
 			<tr>
 				<td><label for="latestMoveInDate">Latest move-in date</label></td>
-				<td><label for="latestMoveOutDate">Latest move-out date (optional)</label></td>
+				<td><label for="latestMoveOutDate">Latest move-out date</label></td>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-latestMoveInDate"
@@ -295,6 +297,7 @@ function use(form, self)
 				<td class="table_balcony">${alert.balcony}</td>
 				<td class="table_furnished">${alert.furnished}</td>
 				<td class="table_garage">${alert.garage}</td>
+				<td class="table_zipcode" style="display:none">${alert.zipcode}</td>
 				<td><button class="useButton" data-id="${alert.id}" onClick="use(this.form, this)">Use</button></td>
 				<td><button class="deleteButton" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
 			</tr>
