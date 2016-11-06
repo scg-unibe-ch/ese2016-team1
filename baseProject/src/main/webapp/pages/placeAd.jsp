@@ -137,6 +137,39 @@
 		$("#buyOutPrice").val(price);
 		$("#retailPrice").val(price);
 	}
+	
+	function validateNonTrivialRules() {
+		if (document.getElementById("saleType-Rent").checked && $("#field-Prize").val() == 0) {
+			$("#field-Prize_Error").show();
+			return false;
+		} else if (document.getElementById("saleType-Buy").checked && $("#retailPrice").val() == 0) {
+			$("#retailPrice_Error").show();
+			return false;
+		} else if (document.getElementById("saleType-Auction").checked) {
+			var invalid = false;
+			if ($("#currentBidding").val() == 0) {
+				invalid = true;
+				$("#currentBidding_Error").show();
+			} else {
+				$("#currentBidding_Error").hide();
+			}
+			if (typeof($("#endOfAuction").val()) == 'undefined') {
+				invalid = true;
+				$("#field-endOfAuction_Error").show();
+			} else {
+				$("#field-endOfAuction_Error").hide();
+			}
+			if ($("#buyOutPrice").val() <= $("#currentBidding").val()) {
+				invalid = true;
+				$("#buyOutPrice_Error").show();
+			} else {
+				$("#buyOutPrice_Error").hide();
+			}
+			if (invalid)
+				return false;
+		}
+		return true;
+	}
 </script>
 
 <pre>
@@ -147,7 +180,7 @@
 
 <form:form method="post" modelAttribute="placeAdForm"
 	action="/profile/placeAd" id="placeAdForm" autocomplete="off"
-	enctype="multipart/form-data">
+	enctype="multipart/form-data" onsubmit="return validateNonTrivialRules()">
 
 	<fieldset>
 		<legend>General info</legend>
@@ -222,8 +255,8 @@
 			<tr>
 				<td>
 					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }"/> <form:errors
-						path="prize" cssClass="validationErrorText" />
+						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }"/> 
+						<span id="field-Prize_Error" class="validationErrorText" style="display:none">Should not be null</span>
 				</td>
 			</tr>
 
@@ -240,8 +273,8 @@
 			<tr>
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" 
-						onchange="cloneRetailPrice(this.value)"/> <form:errors
-						path="retailPrice" cssClass="validationErrorText" /></td>
+						onchange="cloneRetailPrice(this.value)"/>
+						<span id="retailPrice_Error" class="validationErrorText" style="display:none">Should not be null</span> </td>
 			</tr>
 
 		</table>
@@ -258,18 +291,19 @@
 			<tr>
 				<td><form:input id="currentBidding" type="number" path="currentBidding"
 						placeholder="Start Bidding" step="50" 
-						onchange="cloneRetailPrice(this.value)"/> <form:errors
-						path="currentBidding" cssClass="validationErrorText" /></td>
+						onchange="cloneRetailPrice(this.value)"/><span id="currentBidding_Error" class="validationErrorText" 
+						style="display:none">Should not be null</span></td>
 				<td><form:input type="text" id="field-endOfAuction"
-						path="endOfAuction"/></td>
+						path="endOfAuction"/><span id="field-endOfAuction_Error" class="validationErrorText" 
+						style="display:none">Should not be null</span></td>
 			</tr>
 			<tr>
 				<td><label for="retailPrice">Buy Out Price</label></td>
 			</tr>
 			<tr>
 				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
-						placeholder="Buy Out Price" step="50" /> <form:errors
-						path="retailPrice" cssClass="validationErrorText" /></td>
+						placeholder="Buy Out Price" step="50" /><span id="buyOutPrice_Error" class="validationErrorText" 
+						style="display:none">Must be bigger than start bidding</span></td>
 			</tr>
 
 		</table>
