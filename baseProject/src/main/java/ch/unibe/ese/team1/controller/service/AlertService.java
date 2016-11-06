@@ -62,6 +62,19 @@ public class AlertService {
 		alert.setStudio(alertForm.getStudio());
 		alert.setFlat(alertForm.getFlat());
 		alert.setHouse(alertForm.getHouse());
+		alert.setSmokers(alertForm.getSmokers());
+		alert.setGarden(alertForm.getGarden());
+		alert.setCellar(alertForm.getCellar());
+		alert.setCable(alertForm.getCable());
+		alert.setInternet(alertForm.getInternet());
+		alert.setAnimals(alertForm.getAnimals());
+		alert.setBalcony(alertForm.getBalcony());
+		alert.setFurnished(alertForm.getFurnished());
+		alert.setGarage(alertForm.getGarage());
+		alert.setEarliestMoveInDate(alertForm.getEarliestMoveInDate());
+		alert.setLatestMoveInDate(alertForm.getLatestMoveInDate());
+		alert.setEarliestMoveOutDate(alertForm.getEarliestMoveOutDate());
+		alert.setLatestMoveOutDate(alertForm.getLatestMoveOutDate());
 		alert.setUser(user);
 		alertDao.save(alert);
 	}

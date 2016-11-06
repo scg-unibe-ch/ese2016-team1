@@ -35,6 +35,44 @@ function validateType(form)
 </script>
 
 <script>
+	$(document).ready(function() {
+		$("#city").autocomplete({
+			minLength : 2
+		});
+		$("#city").autocomplete({
+			source : <c:import url="getzipcodes.jsp" />
+		});
+		$("#city").autocomplete("option", {
+			enabled : true,
+			autoFocus : true
+		});
+		
+		
+		$("#field-earliestMoveInDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		$("#field-latestMoveInDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		$("#field-earliestMoveOutDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		$("#field-latestMoveOutDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		
+		
+		var price = document.getElementById('priceInput');
+		var radius = document.getElementById('radiusInput');
+		
+		if(price.value == null || price.value == "" || price.value == "0")
+			price.value = "500";
+		if(radius.value == null || radius.value == "" || radius.value == "0")
+			radius.value = "5";
+	});
+</script>
+
+<script>
 function use(form, alert)
 {
 	if(alert.earliestMoveInDate == null)
@@ -57,9 +95,11 @@ function use(form, alert)
 	else
 		var latestMoveOutDate = alert.latestMoveOutDate;
 	
+	//var parent = $(alert).parent().parent();
+	//var radius = parent.find(".table_radius").html();
+	
 	var city = alert.city;
 	var price = alert.price;
-	var radius = alert.radius;
 	
 	var room = alert.room;
 	var studio = alert.studio;
@@ -74,18 +114,18 @@ function use(form, alert)
 	var balcony = alert.balcony;
 	var furnished = alert.furnished;
 	var garage = alert.garage;
-	
-	
-	document.getElementById("city").value = city;	
-	document.getElementById("priceInput").value = price;	
-	document.getElementById("radiusInput").value = radius;
+
 	
 	document.getElementById("field-room").checked = room;
 	document.getElementById("field-studio").checked = studio;
 	document.getElementById("field-flat").checked = flat;
 	document.getElementById("field-house").checked = house;
+
+	document.getElementById("city").value = city;	
+	document.getElementById("priceInput").value = price;	
+	document.getElementById("radiusInput").value = radius;
 	
-	document.getElementById("field-earliestMoveInDate").value = "earliestMoveInDate";	
+	document.getElementById("field-earliestMoveInDate").value = earliestMoveInDate;	
 	document.getElementById("field-latestMoveInDate").value = latestMoveInDate;	
 	document.getElementById("field-earliestMoveOutDate").value = earliestMoveOutDate;	
 	document.getElementById("field-latestMoveOutDate").value = latestMoveOutDate;
@@ -248,8 +288,8 @@ function use(form, alert)
 				<td>
 					${alert.roomTypeString}
 				</td>
-				<td>${alert.city}</td>
-				<td>${alert.radius} km</td>
+				<td class="table_city" value='${alert.city}'>${alert.city}</td>
+				<td class="table_radius" value='${alert.radius}'>${alert.radius} km</td>
 				<td>${alert.price} CHF</td>
 				<td>${alert.earliestMoveInDate}</td>
 				<td>${alert.latestMoveInDate}</td>
