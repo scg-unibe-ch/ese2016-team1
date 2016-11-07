@@ -60,10 +60,11 @@ public class AdService {
 	 *            list of the file paths the pictures are saved under
 	 * @param the
 	 *            currently logged in user
+	 * @throws ParseException 
 	 */
 	@Transactional
 	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
-			User user) {
+			User user) throws ParseException {
 		
 		Ad ad = new Ad();
 
@@ -110,17 +111,13 @@ public class AdService {
 			
 			if(placeAdForm.getSaleType().equals("Auction")){
 				if (placeAdForm.getEndOfAuction().length() >= 1) {
-					int dayEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
-							.substring(0, 2));
-					int monthEnd = Integer.parseInt(placeAdForm
-							.getEndOfAuction().substring(3, 5));
-					int yearEnd = Integer.parseInt(placeAdForm.getEndOfAuction()
-							.substring(6, 10));
-					calendar.set(yearEnd, monthEnd - 1, dayEnd);
-					ad.setEndOfAuction(calendar.getTime());
+					SimpleDateFormat format = 
+				            new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					Date time = format.parse(placeAdForm.getEndOfAuction());
+					ad.setEndOfAuction(time);
 				}
 			ad.setCurrentBidding(placeAdForm.getCurrentBidding());
-			}
+			} 
 			
 		} catch (NumberFormatException e) {
 		}

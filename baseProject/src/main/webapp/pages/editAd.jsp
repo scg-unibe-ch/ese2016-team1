@@ -10,6 +10,8 @@
 <script src="/js/jquery.ui.widget.js"></script>
 <script src="/js/jquery.iframe-transport.js"></script>
 <script src="/js/jquery.fileupload.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+<script src="https://unpkg.com/flatpickr"></script>
 
 <script src="/js/pictureUploadEditAd.js"></script>
 
@@ -35,12 +37,12 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
-		$("#field-endOfAuction").datepicker({
+		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 		
-		$("#field-visitDay").datepicker({
-			dateFormat : 'dd-mm-yy'
+		flatpickr(".flatpickr", {
+		    enableTime: true
 		});
 		
 		$("#addbutton").click(function() {
@@ -304,7 +306,7 @@
 				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${ad.currentBidding}"
 						placeholder="Start Bidding" step="50" /> <form:errors
 						path="currentBidding" cssClass="validationErrorText" /></td>
-				<td><form:input type="text" id="field-endOfAuction" value="${ad.endOfAuction}"
+				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" value="${ad.endOfAuction}"
 						path="endOfAuction" /></td>
 			</tr>
 			<tr>
