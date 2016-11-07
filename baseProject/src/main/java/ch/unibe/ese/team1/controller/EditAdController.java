@@ -1,6 +1,7 @@
 package ch.unibe.ese.team1.controller;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,11 +84,12 @@ public class EditAdController {
 
 	/**
 	 * Processes the edit ad form and displays the result page to the user.
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.POST)
 	public ModelAndView editAdPageWithForm(@Valid PlaceAdForm placeAdForm,
 			BindingResult result, Principal principal,
-			RedirectAttributes redirectAttributes, @RequestParam long adId) {
+			RedirectAttributes redirectAttributes, @RequestParam long adId) throws ParseException {
 		ModelAndView model = new ModelAndView("placeAd");
 		if (!result.hasErrors()) {
 			String username = principal.getName();

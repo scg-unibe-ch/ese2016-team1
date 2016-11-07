@@ -161,9 +161,11 @@
 			<tr>
 			<c:choose>
 				<c:when test="${shownAd.saleType == \"Auction\"}">
-					<c:if test="${loggedInUserEmail == shownAd.currentBuyer }">
-						<tr><td>You are currently the highest Bidder</td></tr>
-					</c:if>
+					<c:choose>
+						<c:when test="${loggedInUserEmail == shownAd.currentBuyer }">
+							<tr><td>You are currently the highest Bidder</td></tr>
+						</c:when>
+					</c:choose>
 					<c:choose>
 						<c:when test="${shownAd.auctionEnded}">
 							<tr>
