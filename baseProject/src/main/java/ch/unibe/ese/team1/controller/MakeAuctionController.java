@@ -1,6 +1,7 @@
 package ch.unibe.ese.team1.controller;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,12 +32,15 @@ import ch.unibe.ese.team1.controller.service.EditAdService;
 import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.Message;
+import ch.unibe.ese.team1.model.MessageState;
 import ch.unibe.ese.team1.model.PictureMeta;
 import ch.unibe.ese.team1.model.User;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.unibe.ese.team1.model.dao.AdDao;
+import ch.unibe.ese.team1.model.dao.MessageDao;
 
 
 /**
@@ -65,6 +69,9 @@ public class MakeAuctionController {
 	private PictureUploader pictureUploader;
 
 	private ObjectMapper objectMapper;
+	
+	@Autowired
+	private MessageDao messageDao;
 
 	/**
 	 * Serves the page that allows the user to edit the ad with the given id.
@@ -134,46 +141,71 @@ public class MakeAuctionController {
 		if (price >= ad.getNextPossibleBid()) {
 			ad.setCurrentBidding(price);
 			
-			//UserService userService = new UserService();
-			//userService.findUserByUsername(ad.getUser().getEmail());
-			//MessageController mesSer = new MessageController();
-			//mesSer.sendMessage("Auction " + ad.getTitle(), "Take a new look at the Auction", ad.getUser().getEmail(), principal);
-			//MessageForm messageForm = new MessageForm();
-			//messageForm.setRecipient(ad.getUser().getUsername());
-			//messageForm.setSubject("Auction " + ad.getTitle());
-			//messageForm.setText("Take a new look at the Auction");
+			String loggedInUserEmail = (principal == null) ? "" : principal.getName();		
 			
-			//MessageService messageService = new MessageService();
-			//messageService.saveFrom(messageForm);//(ad.getUser(), "Auction " + ad.getTitle(), "Take a new look at the Auction");
+			Message message;
+			message = new Message();
+			message.setSubject("Auction: " + ad.getTitle());
+			message.setSender(ad.getUser());
+			message.setRecipient(ad.getUser());
+			message.setState(MessageState.UNREAD);
+			
+			Calendar calendar = Calendar.getInstance();
+			// java.util.Calendar uses a month range of 0-11 instead of the
+			// XMLGregorianCalendar which uses 1-12
+			calendar.setTimeInMillis(System.currentTimeMillis());
+			message.setDateSent(calendar.getTime());
+			
 			
 			if(ad.getCurrentBuyer()!=null){
+				Message message2;
+				message2 = new Message();
+				message2.setSubject("Auction " + ad.getTitle());
+				message2.setSender(userService.findUserByUsername(ad.getCurrentBuyer()));
+				message2.setRecipient(userService.findUserByUsername(ad.getCurrentBuyer()));
+				message2.setState(MessageState.UNREAD);
+				message2.setDateSent(calendar.getTime());
+
+				
+
+				
 				System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 				MailService mail = new MailService();
 				if (price >= ad.getRetailPrice()) {
 					mail.sendEmail(ad.getCurrentBuyer(),5);
+					message2.setText("We are sorry to anounce, someone just bought out the Auction you were leading.");
+
 				}
 				else{
 					mail.sendEmail(ad.getCurrentBuyer(),2);
+					message2.setText("Someone just replaced you as current highest Bidder on this Auction." );
+
 				}
+
+				messageDao.save(message2);
+				
 			}
-			String loggedInUserEmail = (principal == null) ? "" : principal
-					.getName();		
+			
 			ad.setCurrentBuyer(loggedInUserEmail);
 			
 			System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 			MailService mail = new MailService();
 			if (price >= ad.getRetailPrice()) {
+				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations!");
 				mail.sendEmail(ad.getUser().getEmail(),4);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Congratulations, you just have bought out this auction!");
 				
 			}
 			else{
+				message.setText("Someone has bidded on your auction. It has now risen to " + ad.getCurrentBidding() + ".");
 				mail.sendEmail(ad.getUser().getEmail(),3);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Your Bidding has been placed. You are now the current highest Bidder!");
 				
 			}
+			
+			messageDao.save(message);
 			
 			adService.saveAd(ad);
 			

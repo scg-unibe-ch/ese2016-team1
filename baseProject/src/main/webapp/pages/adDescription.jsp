@@ -12,7 +12,7 @@
 
 <c:import url="template/header.jsp" />
 
-<pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   Ad Description</pre>
+<pre><a href="/">Home</a>   &gt;   Ad Description</pre>
 
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
