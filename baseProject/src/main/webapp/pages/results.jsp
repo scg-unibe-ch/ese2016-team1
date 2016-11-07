@@ -148,7 +148,17 @@ function sort_div_attribute() {
 							<i>${ad.roomType}</i></p>
 					</div>
 					<div class="resultRight">
-						<h2>CHF ${ad.prizePerMonth }</h2>
+						<c:choose>
+							<c:when test="${ad.saleType == 'Rent'}">
+								<h2>Rent: CHF ${ad.prizePerMonth }</h2>
+							</c:when>
+							<c:when test="${ad.saleType == 'Buy'}">
+								<h2>Buy: CHF ${ad.retailPrice }</h2>
+							</c:when>
+							<c:when test="${ad.saleType == 'Auction'}">
+								<h2>Auction: CHF ${ad.currentBidding }</h2>
+							</c:when>
+						</c:choose>	
 						<br /> <br />
 
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
