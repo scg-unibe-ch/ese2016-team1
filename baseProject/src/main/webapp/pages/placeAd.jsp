@@ -9,6 +9,10 @@
 <script src="/js/jquery.ui.widget.js"></script>
 <script src="/js/jquery.iframe-transport.js"></script>
 <script src="/js/jquery.fileupload.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+<script src="https://unpkg.com/flatpickr"></script>
+
+
 
 <script src="/js/pictureUpload.js"></script>
 
@@ -38,14 +42,11 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
-		$("#field-endOfAuction").datepicker({
-			dateFormat : 'dd-mm-yy'
+		flatpickr(".flatpickr", {
+		    enableTime: true
 		});
 		
 		$("#field-visitDay").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-		$("#field-endOfAuction").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 		
@@ -153,7 +154,7 @@
 			} else {
 				$("#currentBidding_Error").hide();
 			}
-			if (typeof($("#endOfAuction").val()) == 'undefined') {
+			if (typeof($("#field-endOfAuction").val()) == 'undefined') {
 				invalid = true;
 				$("#field-endOfAuction_Error").show();
 			} else {
@@ -290,10 +291,9 @@
 			</tr>
 			<tr>
 				<td><form:input id="currentBidding" type="number" path="currentBidding"
-						placeholder="Start Bidding" step="50" 
-						onchange="cloneRetailPrice(this.value)"/><span id="currentBidding_Error" class="validationErrorText" 
+						placeholder="Start Bidding" step="50"/><span id="currentBidding_Error" class="validationErrorText" 
 						style="display:none">Should not be null</span></td>
-				<td><form:input type="text" id="field-endOfAuction"
+				<td><form:input type="text" class="flatpickr" id="field-endOfAuction"
 						path="endOfAuction"/><span id="field-endOfAuction_Error" class="validationErrorText" 
 						style="display:none">Should not be null</span></td>
 			</tr>
@@ -302,7 +302,8 @@
 			</tr>
 			<tr>
 				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
-						placeholder="Buy Out Price" step="50" /><span id="buyOutPrice_Error" class="validationErrorText" 
+						placeholder="Buy Out Price" step="50"  onchange="cloneRetailPrice(this.value)"/>
+						<span id="buyOutPrice_Error" class="validationErrorText" 
 						style="display:none">Must be bigger than start bidding</span></td>
 			</tr>
 

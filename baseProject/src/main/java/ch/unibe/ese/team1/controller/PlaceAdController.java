@@ -2,6 +2,7 @@ package ch.unibe.ese.team1.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -137,11 +138,12 @@ public class PlaceAdController {
 	 * success, a redirect to the ad description page of the just created ad is
 	 * issued. If there were validation errors, the place ad form is displayed
 	 * again.
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/profile/placeAd", method = RequestMethod.POST)
 	public ModelAndView create(@Valid PlaceAdForm placeAdForm,
 			BindingResult result, RedirectAttributes redirectAttributes,
-			Principal principal) {
+			Principal principal) throws ParseException {
 		ModelAndView model = new ModelAndView("placeAd");
 		if (!result.hasErrors()) {
 			String username = principal.getName();

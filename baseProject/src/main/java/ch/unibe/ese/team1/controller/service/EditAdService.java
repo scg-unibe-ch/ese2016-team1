@@ -46,10 +46,11 @@ public class EditAdService {
 	 *            list of the file paths the pictures are saved under
 	 * @param the
 	 *            currently logged in user
+	 * @throws ParseException 
 	 */
 	@Transactional
 	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
-			User user, long adId) {
+			User user, long adId) throws ParseException {
 
 		Ad ad = adService.getAdById(adId);
 
@@ -92,6 +93,16 @@ public class EditAdService {
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
+			
+			if(placeAdForm.getSaleType().equals("Auction")){
+				if (placeAdForm.getEndOfAuction().length() >= 1) {
+					SimpleDateFormat format = 
+				            new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					Date time = format.parse(placeAdForm.getEndOfAuction());
+					ad.setEndOfAuction(time);
+				}
+			ad.setCurrentBidding(placeAdForm.getCurrentBidding());
+			}
 		} catch (NumberFormatException e) {
 		}
 
@@ -99,7 +110,6 @@ public class EditAdService {
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRetailPrice(placeAdForm.getRetailPrice());
 		ad.setCurrentBidding(placeAdForm.getCurrentBidding());
-		//ad.setEndOfAuction(placeAdForm.getEndOfAuction());
 		ad.setSaleType(placeAdForm.getSaleType());
 		
 
