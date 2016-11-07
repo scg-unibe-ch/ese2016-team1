@@ -125,7 +125,8 @@
 			</tr>
 
 			<tr>
-				<td><form:input id="field-title" path="title" placeholder="Ad Title" /></td>
+				<td><form:input id="field-title" path="title" placeholder="Ad Title" />
+					<form:errors path="title" cssClass="validationErrorText" /></td>
 				<td><form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room
 				 <form:radiobutton id="type-studio"	path="roomType" value="Studio" />Studio
 				 <form:radiobutton id="type-flat"	path="roomType" value="Flat" />Flat
@@ -139,7 +140,8 @@
 
 			<tr>
 				<td><form:input id="field-street" path="street"
-						placeholder="Street" /></td>
+						placeholder="Street" />
+					<form:errors path="street" cssClass="validationErrorText" /></td>
 				<td><form:input id="field-city" path="city" placeholder="City" />
 					<form:errors path="city" cssClass="validationErrorText" /></td>
 			</tr>
@@ -150,7 +152,8 @@
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
-						path="moveInDate" /></td>
+						path="moveInDate" />
+					<form:errors path="moveInDate" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" /></td>
 			</tr>

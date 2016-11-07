@@ -20,10 +20,10 @@ function deleteAlert(button) {
 <script>
 function validateType(form)
 {
-	var room = document.getElementById('room');
-	var studio = document.getElementById('studio');
-	var flat = document.getElementById('flat');
-	var house = document.getElementById('house');
+	var room = document.getElementById('field-room');
+	var studio = document.getElementById('field-studio');
+	var flat = document.getElementById('field-flat');
+	var house = document.getElementById('field-house');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	
