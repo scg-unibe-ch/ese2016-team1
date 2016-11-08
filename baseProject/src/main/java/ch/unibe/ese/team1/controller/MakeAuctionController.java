@@ -137,6 +137,7 @@ public class MakeAuctionController {
 		long id = Long.parseLong(strid);
 		int price = Integer.parseInt(strprice);
 		Ad ad = adService.getAdById(id);
+		ad.addFifteenMinutesToAuctionEndedIfNecessary();
 		
 		if (price >= ad.getNextPossibleBid()) {
 			ad.setCurrentBidding(price);
