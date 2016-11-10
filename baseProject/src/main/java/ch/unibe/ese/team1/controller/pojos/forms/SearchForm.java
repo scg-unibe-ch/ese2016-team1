@@ -24,7 +24,7 @@ public class SearchForm {
 	@Min(value = 0, message = "In your dreams.")
 	private Integer prize;
 
-	@AssertFalse(message = "Please select either or both types")
+	@AssertFalse(message = "Please select at least one type.")
 	private boolean noRoomNoStudio;
 
 	public String getCity() {
@@ -174,7 +174,7 @@ public class SearchForm {
 	}
 
 	public String getLatestMoveInDate() {
-		return latestMoveInDate;
+		return this.latestMoveInDate;
 	}
 
 	public void setLatestMoveInDate(String latestMoveInDate) {
