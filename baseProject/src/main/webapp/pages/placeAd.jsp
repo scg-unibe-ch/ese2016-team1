@@ -204,6 +204,7 @@
 				 <form:radiobutton id="type-studio"	path="roomType" value="Studio" />Studio
 				 <form:radiobutton id="type-flat"	path="roomType" value="Flat" />Flat
 				 <form:radiobutton id="type-house"	path="roomType" value="House" />House</td>
+				 <form:errors path="roomType" cssClass="validationErrorText" />
 			</tr>
 
 			<tr>
@@ -214,13 +215,16 @@
 			<tr>
 				<td><form:input id="field-street" path="street"
 						placeholder="Street" /></td>
+						<form:errors path="street" cssClass="validationErrorText" />
 				<td><form:input id="field-city" path="city" placeholder="City" />
 					<form:errors path="city" cssClass="validationErrorText" /></td>
 			</tr>
 
 			<tr>
 				<td><label for="moveInDate">Move-in date</label></td>
+				<form:errors path="moveInDate" cssClass="validationErrorText" />
 				<td><label for="moveOutDate">Move-out date (optional)</label></td>
+				<form:errors path="moveOutDate" cssClass="validationErrorText" />
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"

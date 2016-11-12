@@ -310,7 +310,7 @@ public class AdService {
 		
 		// filtering for the special needs
 					// buy
-					if (searchForm.getBuy()) {
+					if (searchForm.getBuy() && !searchForm.getRent()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
 						while (iterator.hasNext()) {
 							Ad ad = iterator.next();
@@ -320,7 +320,7 @@ public class AdService {
 					}
 
 					// rent
-					if (searchForm.getRent()) {
+					if (searchForm.getRent() && !searchForm.getBuy()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
 						while (iterator.hasNext()) {
 							Ad ad = iterator.next();
