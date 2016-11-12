@@ -284,6 +284,14 @@ public class AlertService {
 			mismatch = true;
 		return mismatch;
 	}
+	
+	private boolean buyMismatchWith(Ad ad, Alert alert) {
+		boolean mismatch = false;
+		if(true){
+			
+		}
+		return mismatch;
+	}
 
 	/**
 	 * Checks whether an ad is for a place too far away from the alert.
