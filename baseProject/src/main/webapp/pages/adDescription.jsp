@@ -170,7 +170,14 @@
 						<c:when test="${shownAd.auctionEnded}">
 							<tr>
 								<td><h2>Status</h2></td>
-								<td>Auction ended already</td>
+								<td>Auction ended already: 
+									<c:if test="${shownAd.getAuctionEndTimeBeforeToday()}">
+										Auction end date expired
+									</c:if>
+									<c:if test="${shownAd.getAuctionEndedCurrentBiddingHigherThanRetailPrice()}">
+										Buy out price reached
+									</c:if>
+								</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
