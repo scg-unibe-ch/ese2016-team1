@@ -44,9 +44,9 @@ public class Alert {
 	
 	@Column
 	private boolean house;
-
-	@Column
-	private boolean bothRoomAndStudio;
+	
+	@Column	
+	private String roomTypeString;
 
 	public long getId() {
 		return id;
@@ -102,6 +102,7 @@ public class Alert {
 
 	public void setStudio(boolean studio) {
 		this.studio = studio;
+		roomTypeToString();
 	}
 
 	public boolean getRoom() {
@@ -110,6 +111,25 @@ public class Alert {
 
 	public void setRoom(boolean room) {
 		this.room = room;
+		roomTypeToString();
+	}
+	
+	public boolean getFlat() {
+		return flat;
+	}
+	
+	public void setFlat(boolean flat) {
+		this.flat = flat;
+		roomTypeToString();
+	}
+	
+	public boolean getHouse() {
+		return house;
+	}
+	
+	public void setHouse(boolean house) {
+		this.house = house;
+		roomTypeToString();
 	}
 	
 	public boolean getRoomType(String roomType) {
@@ -134,27 +154,165 @@ public class Alert {
 		return answer;
 	}
 	
-	public boolean getFlat() {
-		return flat;
+	/**
+	 * Speichert die Stringrepresentation für die Alerttabelle
+	 */
+	private void roomTypeToString() {
+		String roomTypeString = "void";
+		if(room)
+			roomTypeString = "Room";
+		if(studio) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "Studio";
+			else
+				roomTypeString += ", Studio";
+		}
+		if(flat) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "Flat";
+			else
+				roomTypeString += ", Flat";
+		}
+		if(house) {
+			if(roomTypeString.equals("void"))
+				roomTypeString = "House";
+			else
+				roomTypeString += ", House";
+		}
+		setRoomTypeString(roomTypeString);
 	}
 	
-	public void setFlat(boolean flat) {
-		this.flat = flat;
+	public void setRoomTypeString(String string) {
+		this.roomTypeString = string;
 	}
 	
-	public boolean getHouse() {
-		return house;
+	public String getRoomTypeString() {
+		return roomTypeString;
 	}
 	
-	public void setHouse(boolean house) {
-		this.house = house;
-	}
+	// //////////////////
+		// Filtered results//
+		// //////////////////
 
-	public boolean getBothRoomAndStudio() {
-		return bothRoomAndStudio;
-	}
+		private String earliestMoveInDate;
+		private String latestMoveInDate;
+		private String earliestMoveOutDate;
+		private String latestMoveOutDate;
 
-	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
-		this.bothRoomAndStudio = bothRoomAndStudio;
-	}
+		private boolean smokers;
+		private boolean animals;
+		private boolean garden;
+		private boolean balcony;
+		private boolean cellar;
+		private boolean furnished;
+		private boolean cable;
+		private boolean garage;
+		private boolean internet;
+		
+		public void defaultFilter() {
+			//earliestMoveInDate = "-";
+		}
+
+		public boolean getSmokers() {
+			return smokers;
+		}
+
+		public void setSmokers(boolean smokers) {
+			this.smokers = smokers;
+		}
+
+		public boolean getAnimals() {
+			return animals;
+		}
+
+		public void setAnimals(boolean animals) {
+			this.animals = animals;
+		}
+
+		public boolean getGarden() {
+			return garden;
+		}
+
+		public void setGarden(boolean garden) {
+			this.garden = garden;
+		}
+
+		public boolean getBalcony() {
+			return balcony;
+		}
+
+		public void setBalcony(boolean balcony) {
+			this.balcony = balcony;
+		}
+
+		public boolean getCellar() {
+			return cellar;
+		}
+
+		public void setCellar(boolean cellar) {
+			this.cellar = cellar;
+		}
+
+		public boolean getFurnished() {
+			return furnished;
+		}
+
+		public void setFurnished(boolean furnished) {
+			this.furnished = furnished;
+		}
+
+		public boolean getCable() {
+			return cable;
+		}
+
+		public void setCable(boolean cable) {
+			this.cable = cable;
+		}
+
+		public boolean getGarage() {
+			return garage;
+		}
+
+		public void setGarage(boolean garage) {
+			this.garage = garage;
+		}
+
+		public boolean getInternet() {
+			return internet;
+		}
+
+		public void setInternet(boolean internet) {
+			this.internet = internet;
+		}
+		public String getEarliestMoveInDate() {
+			return earliestMoveInDate;
+		}
+
+		public void setEarliestMoveInDate(String earliestMoveInDate) {
+			this.earliestMoveInDate = earliestMoveInDate;
+		}
+
+		public String getLatestMoveInDate() {
+			return this.latestMoveInDate;
+		}
+
+		public void setLatestMoveInDate(String latestMoveInDate) {
+			this.latestMoveInDate = latestMoveInDate;
+		}
+
+		public String getEarliestMoveOutDate() {
+			return earliestMoveOutDate;
+		}
+
+		public void setEarliestMoveOutDate(String earliestMoveOutDate) {
+			this.earliestMoveOutDate = earliestMoveOutDate;
+		}
+
+		public String getLatestMoveOutDate() {
+			return latestMoveOutDate;
+		}
+
+		public void setLatestMoveOutDate(String latestMoveOutDate) {
+			this.latestMoveOutDate = latestMoveOutDate;
+		}
 }

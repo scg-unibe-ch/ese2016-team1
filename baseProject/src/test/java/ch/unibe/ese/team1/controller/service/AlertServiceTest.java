@@ -58,7 +58,6 @@ public class AlertServiceTest {
 		// Create 2 alerts for Adolf Ogi
 		Alert alert = new Alert();
 		alert.setUser(adolfOgi);
-		alert.setBothRoomAndStudio(false);
 		alert.setRoom(false);
 		alert.setStudio(true);
 		alert.setCity("Bern");
@@ -69,7 +68,6 @@ public class AlertServiceTest {
 		
 		alert = new Alert();
 		alert.setUser(adolfOgi);
-		alert.setBothRoomAndStudio(true);
 		alert.setRoom(true);
 		alert.setStudio(true);
 		alert.setCity("Bern");
@@ -102,7 +100,6 @@ public class AlertServiceTest {
 		// Create 2 alerts for Thomy F
 		Alert alert = new Alert();
 		alert.setUser(thomyF);
-		alert.setBothRoomAndStudio(false);
 		alert.setRoom(false);
 		alert.setStudio(true);
 		alert.setCity("Bern");
@@ -113,7 +110,6 @@ public class AlertServiceTest {
 		
 		alert = new Alert();
 		alert.setUser(thomyF);
-		alert.setBothRoomAndStudio(true);
 		alert.setRoom(true);
 		alert.setStudio(true);
 		alert.setCity("Bern");

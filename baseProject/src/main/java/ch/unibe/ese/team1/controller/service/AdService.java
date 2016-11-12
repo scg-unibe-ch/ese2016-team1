@@ -398,6 +398,14 @@ public class AdService {
 								iterator.remove();
 						}
 					}
+					
+//					// remove Auctions already ended
+//					Iterator<Ad> iterator = locatedResults.iterator();
+//					while (iterator.hasNext()) {
+//						Ad ad = iterator.next();
+//						if (ad.getAuctionEnded() && ad.getSaleType().equals("Auction"))
+//							iterator.remove();
+//					}
 		
 		
 		// filter for additional criteria

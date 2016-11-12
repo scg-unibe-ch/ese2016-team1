@@ -308,6 +308,16 @@ public class Ad {
 		return auctionEnded;
 	}
 	
+	public void addFifteenMinutesToAuctionEndedIfNecessary() {
+		Date today = new Date();
+		int fifteenMinutesInMilliseconds = 900000;
+		if (this.endOfAuction.getTime() - today.getTime() < fifteenMinutesInMilliseconds) { 
+			long newDateMilliseconds = this.endOfAuction.getTime() + fifteenMinutesInMilliseconds;
+			Date newDate = new Date(newDateMilliseconds);
+			this.setEndOfAuction(newDate);
+		}
+	}
+	
 	public int getSquareFootage() {
 		return squareFootage;
 	}
