@@ -302,10 +302,21 @@ public class Ad {
 	}
 	
 	public boolean getAuctionEnded() {
+		boolean a = this.getAuctionEndTimeBeforeToday();
+		boolean b = this.getAuctionEndedCurrentBiddingHigherThanRetailPrice();
+		this.auctionEnded = this.getAuctionEndTimeBeforeToday() 
+				|| this.getAuctionEndedCurrentBiddingHigherThanRetailPrice();
+		return this.auctionEnded;
+	}
+	
+	public boolean getAuctionEndTimeBeforeToday() {
 		Date today = new Date();
-		this.auctionEnded = ((this.currentBidding >= this.retailPrice) &&
-				this.retailPrice != 0) || this.endOfAuction.before(today);
-		return auctionEnded;
+		return this.endOfAuction.before(today);
+	}
+	
+	public boolean getAuctionEndedCurrentBiddingHigherThanRetailPrice() {
+		return (this.currentBidding >= this.retailPrice) &&
+				this.retailPrice != 0;
 	}
 	
 	public void addFifteenMinutesToAuctionEndedIfNecessary() {

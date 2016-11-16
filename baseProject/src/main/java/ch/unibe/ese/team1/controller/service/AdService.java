@@ -309,6 +309,25 @@ public class AdService {
 
 		
 		// filtering for the special needs
+					// buy
+					if (searchForm.getBuy() && !searchForm.getRent()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getSaleType().equals("Auction") && !ad.getSaleType().equals("Buy"))
+								iterator.remove();
+						}
+					}
+
+					// rent
+					if (searchForm.getRent() && !searchForm.getBuy()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getSaleType().equals("Rent"))
+								iterator.remove();
+						}
+					}
 					// smokers
 					if (searchForm.getSmokers()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
@@ -399,13 +418,13 @@ public class AdService {
 						}
 					}
 					
-//					// remove Auctions already ended
-//					Iterator<Ad> iterator = locatedResults.iterator();
-//					while (iterator.hasNext()) {
-//						Ad ad = iterator.next();
-//						if (ad.getAuctionEnded() && ad.getSaleType().equals("Auction"))
-//							iterator.remove();
-//					}
+					// remove Auctions already ended
+					Iterator<Ad> iterator = locatedResults.iterator();
+					while (iterator.hasNext()) {
+						Ad ad = iterator.next();
+						if (ad.getSaleType().equals("Auction") && ad.getAuctionEnded())
+							iterator.remove();
+					}
 		
 		
 		// filter for additional criteria
