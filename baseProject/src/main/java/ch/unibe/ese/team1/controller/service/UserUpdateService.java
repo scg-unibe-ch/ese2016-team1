@@ -26,14 +26,19 @@ public class UserUpdateService {
 
 	/** Handles updating an existing user in the database. */
 	@Transactional
-	public void updateFrom(EditProfileForm editProfileForm) {
+	public void updateFrom(String username, EditProfileForm editProfileForm) {
 		
-		User currentUser = userService.findUserByUsername(editProfileForm.getUsername());
+		System.out.println(username);
 		
+		User currentUser = userService.findUserByUsername(username);
+		
+		currentUser.setEmail(editProfileForm.getUsername());
 		currentUser.setFirstName(editProfileForm.getFirstName());
 		currentUser.setLastName(editProfileForm.getLastName());
 		currentUser.setPassword(editProfileForm.getPassword());
 		currentUser.setAboutMe(editProfileForm.getAboutMe());
+		
+		currentUser.setUsername(editProfileForm.getUsername());
 
 		userDao.save(currentUser);
 	}

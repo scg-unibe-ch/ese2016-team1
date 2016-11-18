@@ -104,13 +104,15 @@ public class ProfileController {
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
 		if (!bindingResult.hasErrors()) {
-			userUpdateService.updateFrom(editProfileForm);
-			model = new ModelAndView("updatedProfile");
+			userUpdateService.updateFrom(username, editProfileForm);
+			//model = new ModelAndView("updatedProfile");
+			model = new ModelAndView("redirect:/logout");
 			model.addObject("message", "Your Profile has been updated!");
-			model.addObject("currentUser", user);
+			//model.addObject("currentUser", null);// editProfileForm.getUsername());
 			return model;
 		} else {
 			model = new ModelAndView("updatedProfile");
+			
 			model.addObject("message",
 					"Something went wrong, please contact the WebAdmin if the problem persists!");
 			return model;

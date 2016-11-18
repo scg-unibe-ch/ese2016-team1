@@ -135,7 +135,19 @@ public class MakeAuctionController {
 		String strid=requestParams.get("id");
 		String strprice=requestParams.get("price");
 		long id = Long.parseLong(strid);
-		int price = Integer.parseInt(strprice);
+		
+		int price;
+		try{
+			price = Integer.parseInt(strprice);
+		}
+		catch (Exception name) {		
+			System.out.println("QQQQQQ");
+			redirectAttributes.addFlashAttribute("confirmationMessage",
+					"There was an error! Pleas make sure you place a valid bid!");
+			return "redirect:/ad?id="+id;
+		}
+		
+		//int price = Integer.parseInt(strprice);
 		Ad ad = adService.getAdById(id);
 		ad.addFifteenMinutesToAuctionEndedIfNecessary();
 		

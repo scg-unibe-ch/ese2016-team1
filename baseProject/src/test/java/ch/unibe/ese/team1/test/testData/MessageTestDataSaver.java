@@ -29,6 +29,8 @@ public class MessageTestDataSaver {
 	private User testerMuster;
 	private User jane;
 	private User oprah;
+	private User dummy1;
+	private User dummy2;
 
 	@Transactional
 	public void saveTestData() throws Exception {
@@ -37,11 +39,31 @@ public class MessageTestDataSaver {
 		testerMuster = userDao.findByUsername("ese@unibe.ch");
 		jane = userDao.findByUsername("jane@doe.com");
 		oprah = userDao.findByUsername("oprah@winfrey.com");
+		dummy1 = userDao.findByUsername("hans@unibe.ch");
+		dummy2 = userDao.findByUsername("mathilda@unibe.ch");
 
 		Message message;
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
 
 		// Messages for testerMuster
+		message = new Message();
+		message.setSubject("Dummy Text");
+		message.setText("This is just a dummy Text.");
+		message.setSender(jane);
+		message.setRecipient(dummy1);
+		message.setState(MessageState.UNREAD);
+		message.setDateSent(dateFormat.parse("12:02 24.02.2014"));
+		messageDao.save(message);
+		
+		message = new Message();
+		message.setSubject("Dummy Text");
+		message.setText("This is just a dummy Text.");
+		message.setSender(jane);
+		message.setRecipient(dummy2);
+		message.setState(MessageState.UNREAD);
+		message.setDateSent(dateFormat.parse("12:02 24.02.2014"));
+		messageDao.save(message);
+
 		message = new Message();
 		message.setSubject("Cool ad");
 		message.setText("Hello Mr. Wayne\n\n" + getDummyText1());
