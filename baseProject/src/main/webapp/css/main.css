@@ -646,6 +646,15 @@ footer nav ul li {
 	z-index: 0;
 }
 
+#noCoordinates {
+	width: 25%;
+	position: relative;
+	margin-top: 15px;
+	display: table;
+	height: 25px;
+	z-index: 0;
+}
+
 #descriptionTexts {
 	width: 55%;
 	float: left

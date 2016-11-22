@@ -532,6 +532,10 @@
 	<div class="adDescDiv" id="map">
 	</div>
 	
+	<div class="adDescDiv" id="noCoordinates">
+		<p>No Coordinates can be found with city = "${shownAd.city}"<p>
+	</div>
+	
 	<script>
 	
 	    var title = "${shownAd.title}";

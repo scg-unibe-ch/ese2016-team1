@@ -58,10 +58,16 @@ public class AdController {
 		Ad ad = adService.getAdById(id);
 		
 		//add location to add
-		List<Location> test = geoDataService.getLocationsByCity(ad.getCity());
-		Location searchedLocation = geoDataService.getLocationsByCity(ad.getCity()).get(0);
-		ad.setLatitude(searchedLocation.getLatitude());
-		ad.setLongitude(searchedLocation.getLongitude());		
+		//set -1 to lon and -1 to lat if no results exist
+		List<Location> searchedLocations = geoDataService.getLocationsByCity(ad.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(ad.getCity()).get(0);
+			ad.setLatitude(searchedLocation.getLatitude());
+			ad.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			ad.setLatitude(-1);
+			ad.setLongitude(-1);
+		}
 		
 		model.addObject("shownAd", ad);
 		model.addObject("messageForm", new MessageForm());

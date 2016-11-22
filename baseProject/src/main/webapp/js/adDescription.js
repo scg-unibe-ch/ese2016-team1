@@ -49,7 +49,16 @@ $(document).ready(function() {
 });
 
 function drawMap(title, latLon) {
-	console.log(title);
+	
+	// case handling if no coordinates can be found
+	if (latLon[0] == -1 && latLon[1] == -1) {
+		$("#map").hide();
+		$("#noCoordinates").show();
+	} else {
+		$("#map").show();
+		$("#noCoordinates").hide();
+	}
+	
 	var mymap = L.map('map').setView(latLon, 10);
 
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
