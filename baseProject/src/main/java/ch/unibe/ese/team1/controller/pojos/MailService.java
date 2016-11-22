@@ -19,7 +19,7 @@ public class MailService {
     /**
      * Send the email via SMTP using StartTLS and SSL
      */
-    public void sendEmail(String address, int textId) {
+    public void sendEmail(String address, int textId, String link) {
   
         // Create all the needed properties
         Properties connectionProperties = new Properties();
@@ -60,22 +60,22 @@ public class MailService {
             message.setSubject("Flatfindr news");
             // Set message text
             if(textId==0){
-            	message.setText("Welcome on Flatfindr. We want to thank you for creating a new Flatfindr-account.");
+            	message.setText("Welcome on Flatfindr. We want to thank you for creating a new Flatfindr-account.\n " +link);
             }
             if(textId==1){
-            	message.setText("You have recieved a new message on your Flatfindr account.");
+            	message.setText("You have recieved a new message on your Flatfindr account.\n " +link);
             }
             if(textId==2){
-            	message.setText("You have been outbidden on Flatfindr.");
+            	message.setText("You have been outbidden on Flatfindr.\n " +link);
             }
             if(textId==3){
-            	message.setText("Your Flatfindr-auction has a new highest Bidder, Congratulations!");
+            	message.setText("Your Flatfindr-auction has a new highest Bidder, Congratulations!\n " +link);
             }
             if(textId==4){
-            	message.setText("Your Flatfindr-auction been bought out, Congratulations!");
+            	message.setText("Your Flatfindr-auction been bought out, Congratulations!\n " +link);
             }
             if(textId==5){
-            	message.setText("The Flatfindr-auction you were leading has been bought out, I'm sorry!");
+            	message.setText("The Flatfindr-auction you were leading has been bought out, I'm sorry!\n " +link);
             }
              
             System.out.print("Sending message...");

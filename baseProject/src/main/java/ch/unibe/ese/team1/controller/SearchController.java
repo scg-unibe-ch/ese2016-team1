@@ -37,6 +37,21 @@ public class SearchController {
 		return model;
 	}
 
+		
+	
+	/**
+	 * If you try to reload the results without sending the parameters again, 
+	 * you will get set back to the search form.
+	 */
+	@RequestMapping(value = "/results", method = RequestMethod.GET)
+	public ModelAndView backToSearch() {
+
+		return searchAd();
+		
+	}
+		
+	
+	
 	/**
 	 * Gets the results when filtering the ads in the database by the parameters
 	 * in the search form.
@@ -44,6 +59,8 @@ public class SearchController {
 	@RequestMapping(value = "/results", method = RequestMethod.POST)
 	public ModelAndView results(@Valid SearchForm searchForm,
 			BindingResult result) {
+		
+
 		if (!result.hasErrors()) {
 			ModelAndView model = new ModelAndView("results");
 			model.addObject("results", adService.queryResults(searchForm));

@@ -23,7 +23,7 @@ public class PlaceAdForm {
 	@NotBlank(message = "Required")
 	private String moveInDate;
 	
-	@NotBlank(message = "Required")
+	//@NotBlank(message = "Required")
 	private String endOfAuction;
 	
 	private String moveOutDate;

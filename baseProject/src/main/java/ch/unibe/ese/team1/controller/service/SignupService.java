@@ -73,7 +73,7 @@ public class SignupService {
 
 		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		MailService mail = new MailService();
-		mail.sendEmail(signupForm.getEmail(),0);
+		mail.sendEmail(signupForm.getEmail(),0,"");
 		
 		messageDao.save(message);
 		

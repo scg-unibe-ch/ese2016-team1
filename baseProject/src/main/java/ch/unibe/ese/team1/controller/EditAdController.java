@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,6 +83,7 @@ public class EditAdController {
 		return model;
 	}
 
+
 	/**
 	 * Processes the edit ad form and displays the result page to the user.
 	 * @throws ParseException 
@@ -91,7 +93,32 @@ public class EditAdController {
 			BindingResult result, Principal principal,
 			RedirectAttributes redirectAttributes, @RequestParam long adId) throws ParseException {
 		ModelAndView model = new ModelAndView("placeAd");
+		//ModelAndView model = new ModelAndView("editAd");
+		//ModelAndView model;
+		
+		//if(result.hasErrors()){
+		//	editAdPage(adId, principal);
+		//	model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
+		//}
+		
+//EndOfAuction   confirmationMessage
+		
+
+		if (result.hasErrors()) {
+			
+			
+			model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
+			redirectAttributes.addFlashAttribute("errorMessage",
+					"There was an error. Check if your inputs are correct and try again."  );
+			
+		}
+		//model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
+		
+		
+		
 		if (!result.hasErrors()) {
+	
+			try{
 			String username = principal.getName();
 			User user = userService.findUserByUsername(username);
 
@@ -111,7 +138,14 @@ public class EditAdController {
 			model = new ModelAndView("redirect:/ad?id=" + ad.getId());
 			redirectAttributes.addFlashAttribute("confirmationMessage",
 					"Ad edited successfully. You can take a look at it below.");
-		}
+			}
+			catch(Error e){
+				model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
+				redirectAttributes.addFlashAttribute("errorMessage",
+						"There was an error. Check if your inputs are correct and try again."  );
+				
+			}
+		} //else {model=new ModelAndView("editAd");}
 
 		return model;
 	}

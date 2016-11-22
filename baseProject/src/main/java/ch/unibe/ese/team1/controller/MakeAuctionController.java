@@ -185,13 +185,13 @@ public class MakeAuctionController {
 				System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 				MailService mail = new MailService();
 				if (price >= ad.getRetailPrice()) {
-					mail.sendEmail(ad.getCurrentBuyer(),5);
-					message2.setText("We are sorry to anounce, someone just bought out the Auction you were leading.");
+					mail.sendEmail(ad.getCurrentBuyer(),5,"http://localhost:8080/ad?id="+id);
+					message2.setText("We are sorry to anounce, someone just bought out the Auction you were leading: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
 
 				}
 				else{
-					mail.sendEmail(ad.getCurrentBuyer(),2);
-					message2.setText("Someone just replaced you as current highest Bidder on this Auction." );
+					mail.sendEmail(ad.getCurrentBuyer(),2,"http://localhost:8080/ad?id="+id);
+					message2.setText("Someone just replaced you as current highest Bidder on this Auction: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
 
 				}
 
@@ -204,15 +204,15 @@ public class MakeAuctionController {
 			System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 			MailService mail = new MailService();
 			if (price >= ad.getRetailPrice()) {
-				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations!");
-				mail.sendEmail(ad.getUser().getEmail(),4);
+				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
+				mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Congratulations, you just have bought out this auction!");
 				
 			}
 			else{
-				message.setText("Someone has bidded on your auction. It has now risen to " + ad.getCurrentBidding() + ".");
-				mail.sendEmail(ad.getUser().getEmail(),3);
+				message.setText("Someone has bidded on your auction. It has now risen to " + ad.getCurrentBidding() + ": <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
+				mail.sendEmail(ad.getUser().getEmail(),3,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Your Bidding has been placed. You are now the current highest Bidder!");
 				
