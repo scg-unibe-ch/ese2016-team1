@@ -18,6 +18,9 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.unibe.ese.team1.controller.service.GeoDataService;
 
 /** Describes an advertisement that users can place and search for. */
 @Entity
@@ -130,6 +133,10 @@ public class Ad {
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Visit> visits;
+
+	private double latitude;
+
+	private double longitude;
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -399,6 +406,30 @@ public class Ad {
 
 	public String getCity() {
 		return city;
+	}
+	
+	/* public double[] getLonLatFromCityName() {
+		GeoDataService geoDataService = new GeoDataService();
+		Location searchedLocation = geoDataService.getLocationsByCity(city)
+				.get(0);
+		double[] lonLat = {searchedLocation.getLongitude(), searchedLocation.getLatitude()};
+		return lonLat;
+	} */
+	
+	public double getLongitude() {
+		return this.longitude;
+	}
+	
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
+	public double getLatitude() {
+		return this.latitude;
+	}
+	
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 	public void setCity(String city) {

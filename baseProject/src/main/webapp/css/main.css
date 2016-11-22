@@ -637,6 +637,15 @@ footer nav ul li {
 	width: 26px;
 }
 
+#map {
+	width: 25%;
+	position: relative;
+	margin-top: 15px;
+	display: table;
+	height: 255px;
+	z-index: 0;
+}
+
 #descriptionTexts {
 	width: 55%;
 	float: left
@@ -646,8 +655,12 @@ footer nav ul li {
 	width: 80%;
 }
 
+#advertiserDiv {
+	margin-top: 15px;
+}
+
 #advertiserTable {
-	width: 55%;;
+	width: 95%;;
 }
 
 #advertiserTable img {
