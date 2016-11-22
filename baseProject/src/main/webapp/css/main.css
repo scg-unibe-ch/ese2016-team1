@@ -604,6 +604,34 @@ footer nav ul li {
 	padding-right: 5px;
 }
 
+#resultMap {
+	width: 100%;
+	margin-top: 10px;
+	float: left;
+	height: 500px;
+	border-color: #2dc16d;
+	border-width: 3px;
+	border-radius: 10px;
+	border-style: solid;
+	padding: 10px;
+	z-index: 0;
+}
+
+#resultMapContainer {
+	width: 60%;
+	display: none;
+}
+
+.mapSwitch {
+	float: right;
+    text-decoration: underline;
+    margin-right: 15px;
+    font-size: 15px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+
 /* -------------------------------------------------------------------- */
 /* adDescription.jsp */
 

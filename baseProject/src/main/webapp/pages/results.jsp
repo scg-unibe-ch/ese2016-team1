@@ -5,6 +5,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<!-- Include Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 
 <c:import url="template/header.jsp" />
 <pre><a href="/">Home</a>   &gt;   <a href="/searchAd/">Search</a>   &gt;   Results</pre>
@@ -117,6 +120,9 @@ function sort_div_attribute() {
 	});
 </script>
 
+<script src="/js/resultsOnMap.js"></script>
+
+
 <h1>Search results:</h1>
 
 <hr />
@@ -132,6 +138,9 @@ function sort_div_attribute() {
     <option value="dateAge_desc">Date created (oldest to youngest)</option>
 </select>
 
+<span class="mapSwitch" id="mapSwitchResultsOpen" onclick="openMap()"><a>Show on Map</a></span>
+<span class="mapSwitch" id="mapSwitchResultsClose" onclick="closeMap()" style='display:none'><a>Show in List</a></span>
+
 <button onClick="sort_div_attribute()">Sort</button>	
 </div>
 <c:choose>
@@ -139,7 +148,8 @@ function sort_div_attribute() {
 		<p>No results found!
 	</c:when>
 	<c:otherwise>
-		<div id="resultsDiv" class="resultsDiv">			
+		<div id="resultsDiv" class="resultsDiv">
+					
 			<c:forEach var="ad" items="${results}">
 				<div class="resultAd" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
@@ -176,6 +186,20 @@ function sort_div_attribute() {
 				</div>
 			</c:forEach>
 		</div>
+		
+		<div id="resultMapContainer" class="resultsDiv">
+			<div id="resultMap"></div>
+		</div>
+		
+		<c:forEach var="ad" items="${results}">
+			<script type="text/javascript">
+				var longitude = "${ad.longitude}";
+				var latitude = "${ad.latitude}"
+				var title = "${ad.title}"
+				var url = '/ad?id=${ad.id}';
+				addPoint(title, [parseFloat(latitude), parseFloat(longitude)], url);
+			</script>
+		</c:forEach>
 	</c:otherwise>
 </c:choose>
 

@@ -83,6 +83,18 @@ public class AdService {
 		ad.setZipcode(Integer.parseInt(zip));
 		ad.setCity(placeAdForm.getCity().substring(7));
 		
+//		//add location to add
+//				//set -1 to lon and -1 to lat if no results exist
+//				searchedLocations = geoDataService.getLocationsByCity(adNeuchâtel.getCity());
+//				if (searchedLocations.size() > 0) {
+//					Location searchedLocation = geoDataService.getLocationsByCity(adNeuchâtel.getCity()).get(0);
+//					adNeuchâtel.setLatitude(searchedLocation.getLatitude());
+//					adNeuchâtel.setLongitude(searchedLocation.getLongitude());		
+//				} else {
+//					adNeuchâtel.setLatitude(-1);
+//					adNeuchâtel.setLongitude(-1);
+//				}
+		
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
 		// XMLGregorianCalendar which uses 1-12
