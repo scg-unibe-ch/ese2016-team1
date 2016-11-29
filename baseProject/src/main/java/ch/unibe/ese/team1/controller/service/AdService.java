@@ -83,6 +83,18 @@ public class AdService {
 		ad.setZipcode(Integer.parseInt(zip));
 		ad.setCity(placeAdForm.getCity().substring(7));
 		
+//		//add location to add
+//				//set -1 to lon and -1 to lat if no results exist
+//				searchedLocations = geoDataService.getLocationsByCity(adNeuchâtel.getCity());
+//				if (searchedLocations.size() > 0) {
+//					Location searchedLocation = geoDataService.getLocationsByCity(adNeuchâtel.getCity()).get(0);
+//					adNeuchâtel.setLatitude(searchedLocation.getLatitude());
+//					adNeuchâtel.setLongitude(searchedLocation.getLongitude());		
+//				} else {
+//					adNeuchâtel.setLatitude(-1);
+//					adNeuchâtel.setLongitude(-1);
+//				}
+		
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
 		// XMLGregorianCalendar which uses 1-12
@@ -310,7 +322,7 @@ public class AdService {
 		
 		// filtering for the special needs
 					// buy
-					if (searchForm.getBuy()) {
+					if (searchForm.getBuy() && !searchForm.getRent()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
 						while (iterator.hasNext()) {
 							Ad ad = iterator.next();
@@ -320,7 +332,7 @@ public class AdService {
 					}
 
 					// rent
-					if (searchForm.getRent()) {
+					if (searchForm.getRent() && !searchForm.getBuy()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
 						while (iterator.hasNext()) {
 							Ad ad = iterator.next();
@@ -418,13 +430,13 @@ public class AdService {
 						}
 					}
 					
-//					// remove Auctions already ended
-//					Iterator<Ad> iterator = locatedResults.iterator();
-//					while (iterator.hasNext()) {
-//						Ad ad = iterator.next();
-//						if (ad.getAuctionEnded() && ad.getSaleType().equals("Auction"))
-//							iterator.remove();
-//					}
+					// remove Auctions already ended
+					Iterator<Ad> iterator = locatedResults.iterator();
+					while (iterator.hasNext()) {
+						Ad ad = iterator.next();
+						if (ad.getSaleType().equals("Auction") && ad.getAuctionEnded())
+							iterator.remove();
+					}
 		
 		
 		// filter for additional criteria

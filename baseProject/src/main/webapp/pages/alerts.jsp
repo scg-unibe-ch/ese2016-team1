@@ -165,6 +165,11 @@ function use(form, self)
 	id="alertForm" autocomplete="off">
 
 	<fieldset>
+		<form:checkbox name="buy" id="buy" path="buy" /><label>Buy</label>
+		<form:checkbox name="rent" id="rent" path="rent" /><label>Rent</label>
+		<form:errors path="noBuyNoRent" cssClass="validationErrorText" /><br />
+		
+		<form:checkbox style="display:none" name="neitherBuyRent" id="neitherBuyRent" path="noBuyNoRent" />
 		<form:checkbox name="room" id="field-room" path="room" /><label>Room</label>
 		<form:checkbox name="studio" id="field-studio" path="studio" /><label>Studio</label>
 		<form:checkbox name="flat" id="field-flat" path="flat" /><label>Flat</label>

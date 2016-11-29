@@ -17,6 +17,10 @@
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
 
+<!-- Include Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+
 <script>
 	var shownAdvertisementID = "${shownAd.id}";
 	var shownAdvertisement = "${shownAd}";
@@ -170,7 +174,14 @@
 						<c:when test="${shownAd.auctionEnded}">
 							<tr>
 								<td><h2>Status</h2></td>
-								<td>Auction ended already</td>
+								<td>Auction ended already: 
+									<c:if test="${shownAd.getAuctionEndTimeBeforeToday()}">
+										Auction end date expired
+									</c:if>
+									<c:if test="${shownAd.getAuctionEndedCurrentBiddingHigherThanRetailPrice()}">
+										Buy out price reached
+									</c:if>
+								</td>
 							</tr>
 						</c:when>
 						<c:otherwise>
@@ -375,6 +386,53 @@
 				</c:forEach>
 			</table>
 		</div>
+		
+		<div class="adDescDiv" id="advertiserDiv">
+		
+			<table id="advertiserTable">
+				<tr>
+				<td><h2>Advertiser</h2><br /></td>
+				</tr>
+			
+				<tr>
+					<td><c:choose>
+							<c:when test="${shownAd.user.picture.filePath != null}">
+								<img src="${shownAd.user.picture.filePath}">
+							</c:when>
+							<c:otherwise>
+								<img src="/img/avatar.png">
+							</c:otherwise>
+						</c:choose></td>
+					
+					<td>${shownAd.user.username}</td>
+					
+					<td id="advertiserEmail">
+					<c:choose>
+						<c:when test="${loggedIn}">
+							<a href="/user?id=${shownAd.user.id}"><button type="button">Visit profile</button></a>
+						</c:when>
+						<c:otherwise>
+							<a href="/login"><button class="thinInactiveButton" type="button">Login to visit profile</button></a>
+						</c:otherwise>
+					</c:choose>
+			
+					<td>
+						<form>
+							<c:choose>
+								<c:when test="${loggedIn}">
+									<c:if test="${loggedInUserEmail != shownAd.user.username }">
+										<button id="newMsg" type="button">Contact Advertiser</button>
+									</c:if>
+								</c:when>
+								<c:otherwise>
+									<a href="/login"><button class="thinInactiveButton" type="button">Login to contact advertiser</button></a>
+								</c:otherwise>
+							</c:choose>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
 
 	</div>
 
@@ -470,54 +528,29 @@
 		</tr>
 
 	</table>
+	
+	<div class="adDescDiv" id="map">
+	</div>
+	
+	<div class="adDescDiv" id="noCoordinates">
+		<p>No Coordinates can be found with city = "${shownAd.city}"<p>
+	</div>
+	
+	<script>
+	
+	    var title = "${shownAd.title}";
+	    var lon = "${shownAd.longitude}";
+	    var lat = "${shownAd.latitude}";
+		drawMap(title, [parseFloat(lat),parseFloat(lon)]);
+	
+	</script>
+	
+	
 </section>
 
 <div class="clearBoth"></div>
 <br>
 
-<table id="advertiserTable" class="adDescDiv">
-	<tr>
-	<td><h2>Advertiser</h2><br /></td>
-	</tr>
-
-	<tr>
-		<td><c:choose>
-				<c:when test="${shownAd.user.picture.filePath != null}">
-					<img src="${shownAd.user.picture.filePath}">
-				</c:when>
-				<c:otherwise>
-					<img src="/img/avatar.png">
-				</c:otherwise>
-			</c:choose></td>
-		
-		<td>${shownAd.user.username}</td>
-		
-		<td id="advertiserEmail">
-		<c:choose>
-			<c:when test="${loggedIn}">
-				<a href="/user?id=${shownAd.user.id}"><button type="button">Visit profile</button></a>
-			</c:when>
-			<c:otherwise>
-				<a href="/login"><button class="thinInactiveButton" type="button">Login to visit profile</button></a>
-			</c:otherwise>
-		</c:choose>
-
-		<td>
-			<form>
-				<c:choose>
-					<c:when test="${loggedIn}">
-						<c:if test="${loggedInUserEmail != shownAd.user.username }">
-							<button id="newMsg" type="button">Contact Advertiser</button>
-						</c:if>
-					</c:when>
-					<c:otherwise>
-						<a href="/login"><button class="thinInactiveButton" type="button">Login to contact advertiser</button></a>
-					</c:otherwise>
-				</c:choose>
-			</form>
-		</td>
-	</tr>
-</table>
 
 <div id="msgDiv">
 <form class="msgForm">

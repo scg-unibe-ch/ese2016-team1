@@ -138,39 +138,6 @@
 		$("#buyOutPrice").val(price);
 		$("#retailPrice").val(price);
 	}
-	
-	function validateNonTrivialRules() {
-		if (document.getElementById("saleType-Rent").checked && $("#field-Prize").val() == 0) {
-			$("#field-Prize_Error").show();
-			return false;
-		} else if (document.getElementById("saleType-Buy").checked && $("#retailPrice").val() == 0) {
-			$("#retailPrice_Error").show();
-			return false;
-		} else if (document.getElementById("saleType-Auction").checked) {
-			var invalid = false;
-			if ($("#currentBidding").val() == 0) {
-				invalid = true;
-				$("#currentBidding_Error").show();
-			} else {
-				$("#currentBidding_Error").hide();
-			}
-			if (typeof($("#field-endOfAuction").val()) == 'undefined') {
-				invalid = true;
-				$("#field-endOfAuction_Error").show();
-			} else {
-				$("#field-endOfAuction_Error").hide();
-			}
-			if ($("#buyOutPrice").val() <= $("#currentBidding").val()) {
-				invalid = true;
-				$("#buyOutPrice_Error").show();
-			} else {
-				$("#buyOutPrice_Error").hide();
-			}
-			if (invalid)
-				return false;
-		}
-		return true;
-	}
 </script>
 
 <pre>
@@ -181,7 +148,7 @@
 
 <form:form method="post" modelAttribute="placeAdForm"
 	action="/profile/placeAd" id="placeAdForm" autocomplete="off"
-	enctype="multipart/form-data" onsubmit="return validateNonTrivialRules()">
+	enctype="multipart/form-data">
 
 	<fieldset>
 		<legend>General info</legend>
@@ -199,11 +166,13 @@
 			</tr>
 
 			<tr>
-				<td><form:input id="field-title" path="title" placeholder="Ad Title" /></td>
+				<td><form:input id="field-title" path="title" placeholder="Ad Title" />
+					<form:errors path="title" cssClass="validationErrorText" /></td>
 				<td><form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room
 				 <form:radiobutton id="type-studio"	path="roomType" value="Studio" />Studio
 				 <form:radiobutton id="type-flat"	path="roomType" value="Flat" />Flat
-				 <form:radiobutton id="type-house"	path="roomType" value="House" />House</td>
+				 <form:radiobutton id="type-house"	path="roomType" value="House" />House
+				 <form:errors path="roomType" cssClass="validationErrorText" /></td>
 			</tr>
 
 			<tr>
@@ -213,18 +182,20 @@
 
 			<tr>
 				<td><form:input id="field-street" path="street"
-						placeholder="Street" /></td>
+						placeholder="Street" />
+						<form:errors path="street" cssClass="validationErrorText" /></td>
 				<td><form:input id="field-city" path="city" placeholder="City" />
 					<form:errors path="city" cssClass="validationErrorText" /></td>
 			</tr>
 
 			<tr>
 				<td><label for="moveInDate">Move-in date</label></td>
-				<td><label for="moveOutDate">Move-out date (optional)</label></td>
+				<td><label for="moveOutDate">Move-out date (optional)</label>
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
-						path="moveInDate" /></td>
+						path="moveInDate" />
+				<form:errors path="moveInDate" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" /></td>
 			</tr>
@@ -257,7 +228,7 @@
 				<td>
 					<form:input id="field-Prize" type="number" path="prize"
 						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }"/> 
-						<span id="field-Prize_Error" class="validationErrorText" style="display:none">Should not be null</span>
+					<form:errors path="prize" cssClass="validationErrorText" />
 				</td>
 			</tr>
 
@@ -275,7 +246,7 @@
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" 
 						onchange="cloneRetailPrice(this.value)"/>
-						<span id="retailPrice_Error" class="validationErrorText" style="display:none">Should not be null</span> </td>
+					<form:errors path="prize" cssClass="validationErrorText" /></td>
 			</tr>
 
 		</table>

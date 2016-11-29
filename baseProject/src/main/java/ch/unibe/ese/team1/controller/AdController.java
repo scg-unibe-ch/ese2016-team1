@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.BookmarkService;
+import ch.unibe.ese.team1.controller.service.GeoDataService;
 import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.Location;
 import ch.unibe.ese.team1.model.User;
 
 /**
@@ -45,12 +47,16 @@ public class AdController {
 
 	@Autowired
 	private VisitService visitService;
+	
+	@Autowired
+	private GeoDataService geoDataService;
 
 	/** Gets the ad description page for the ad with the given id. */
 	@RequestMapping(value = "/ad", method = RequestMethod.GET)
 	public ModelAndView ad(@RequestParam("id") long id, Principal principal) {
 		ModelAndView model = new ModelAndView("adDescription");
 		Ad ad = adService.getAdById(id);
+		
 		model.addObject("shownAd", ad);
 		model.addObject("messageForm", new MessageForm());
 

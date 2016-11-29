@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.AssertFalse;
 
 /**
  * Describes an alert. An alert can be created by a user. If ads matching the
@@ -47,6 +48,28 @@ public class Alert {
 	
 	@Column	
 	private String roomTypeString;
+	
+	@Column
+	private boolean buy;
+	
+	@Column
+	private boolean rent;
+	
+	public boolean getBuy() {
+		return buy;
+	}
+	
+	public void setBuy(boolean buy) {
+		this.buy = buy;
+	}
+	
+	public boolean getRent() {
+		return rent;
+	}
+	
+	public void setRent(boolean rent) {
+		this.rent = rent;
+	}
 
 	public long getId() {
 		return id;

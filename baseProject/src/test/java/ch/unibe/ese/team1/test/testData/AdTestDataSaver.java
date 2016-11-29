@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ch.unibe.ese.team1.controller.service.GeoDataService;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.AdPicture;
+import ch.unibe.ese.team1.model.Location;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.dao.AdDao;
 import ch.unibe.ese.team1.model.dao.UserDao;
@@ -24,6 +26,8 @@ public class AdTestDataSaver {
 	private AdDao adDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private GeoDataService geoDataService;
 
 	@Transactional
 	public void saveTestData() throws Exception {
@@ -100,6 +104,17 @@ public class AdTestDataSaver {
 		adBern.setTitle("Roommate wanted in Bern");
 		adBern.setStreet("Kramgasse 22");
 		adBern.setCity("Bern");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		List<Location> searchedLocations = geoDataService.getLocationsByCity(adBern.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adBern.getCity()).get(0);
+			adBern.setLatitude(searchedLocation.getLatitude());
+			adBern.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adBern.setLatitude(-1);
+			adBern.setLongitude(-1);
+		}
 		adBern.setGarden(true);
 		adBern.setBalcony(true);
 		adBern.setCellar(true);
@@ -147,6 +162,17 @@ public class AdTestDataSaver {
 		adBern2.setTitle("Cheap studio in Bern!");
 		adBern2.setStreet("Längassstr. 40");
 		adBern2.setCity("Bern");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adBern2.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adBern2.getCity()).get(0);
+			adBern2.setLatitude(searchedLocation.getLatitude());
+			adBern2.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adBern2.setLatitude(-1);
+			adBern2.setLongitude(-1);
+		}
 		adBern2.setGarden(false);
 		adBern2.setBalcony(false);
 		adBern2.setCellar(false);
@@ -193,6 +219,17 @@ public class AdTestDataSaver {
 		adBasel.setTitle("Nice, bright studio in the center of Basel");
 		adBasel.setStreet("Bruderholzstrasse 32");
 		adBasel.setCity("Basel");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adBasel.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adBasel.getCity()).get(0);
+			adBasel.setLatitude(searchedLocation.getLatitude());
+			adBasel.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adBasel.setLatitude(-1);
+			adBasel.setLongitude(-1);
+		}
 		adBasel.setGarden(false);
 		adBasel.setBalcony(false);
 		adBasel.setCellar(false);
@@ -234,6 +271,17 @@ public class AdTestDataSaver {
 		adOlten.setTitle("Roommate wanted in Olten City");
 		adOlten.setStreet("Zehnderweg 5");
 		adOlten.setCity("Olten");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adOlten.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adOlten.getCity()).get(0);
+			adOlten.setLatitude(searchedLocation.getLatitude());
+			adOlten.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adOlten.setLatitude(-1);
+			adOlten.setLongitude(-1);
+		}
 		adOlten.setGarden(false);
 		adOlten.setBalcony(true);
 		adOlten.setCellar(true);
@@ -274,6 +322,17 @@ public class AdTestDataSaver {
 		adNeuchâtel.setTitle("Studio extrèmement bon marché à Neuchâtel");
 		adNeuchâtel.setStreet("Rue de l'Hôpital 11");
 		adNeuchâtel.setCity("Neuchâtel");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adNeuchâtel.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adNeuchâtel.getCity()).get(0);
+			adNeuchâtel.setLatitude(searchedLocation.getLatitude());
+			adNeuchâtel.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adNeuchâtel.setLatitude(-1);
+			adNeuchâtel.setLongitude(-1);
+		}
 		adNeuchâtel.setGarden(true);
 		adNeuchâtel.setBalcony(false);
 		adNeuchâtel.setCellar(true);
@@ -313,6 +372,17 @@ public class AdTestDataSaver {
 		adBiel.setTitle("Direkt am Quai: hübsches Studio");
 		adBiel.setStreet("Oberer Quai 12");
 		adBiel.setCity("Biel/Bienne");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adBiel.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adBiel.getCity()).get(0);
+			adBiel.setLatitude(searchedLocation.getLatitude());
+			adBiel.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adBiel.setLatitude(-1);
+			adBiel.setLongitude(-1);
+		}
 		adBiel.setGarden(false);
 		adBiel.setBalcony(false);
 		adBiel.setCellar(false);
@@ -358,6 +428,17 @@ public class AdTestDataSaver {
 		adZurich.setTitle("Roommate wanted in Zürich");
 		adZurich.setStreet("Hauptstrasse 61");
 		adZurich.setCity("Zürich");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adZurich.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adZurich.getCity()).get(0);
+			adZurich.setLatitude(searchedLocation.getLatitude());
+			adZurich.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adZurich.setLatitude(-1);
+			adZurich.setLongitude(-1);
+		}
 		adZurich.setGarden(false);
 		adZurich.setBalcony(true);
 		adZurich.setCellar(false);
@@ -405,6 +486,17 @@ public class AdTestDataSaver {
 		adLuzern.setTitle("Elegant Studio in Lucerne");
 		adLuzern.setStreet("Schwanenplatz 61");
 		adLuzern.setCity("Luzern");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adLuzern.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adLuzern.getCity()).get(0);
+			adLuzern.setLatitude(searchedLocation.getLatitude());
+			adLuzern.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adLuzern.setLatitude(-1);
+			adLuzern.setLongitude(-1);
+		}
 		adLuzern.setGarden(false);
 		adLuzern.setBalcony(false);
 		adLuzern.setCellar(false);
@@ -451,6 +543,17 @@ public class AdTestDataSaver {
 		adAarau.setTitle("Beautiful studio in Aarau");
 		adAarau.setStreet("Bruderholzstrasse 32");
 		adAarau.setCity("Aarau");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adAarau.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adAarau.getCity()).get(0);
+			adAarau.setLatitude(searchedLocation.getLatitude());
+			adAarau.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adAarau.setLatitude(-1);
+			adAarau.setLongitude(-1);
+		}
 		adAarau.setGarden(false);
 		adAarau.setBalcony(true);
 		adAarau.setCellar(false);
@@ -495,6 +598,17 @@ public class AdTestDataSaver {
 		adDavos.setTitle("Free room in Davos City");
 		adDavos.setStreet("Kathrinerweg 5");
 		adDavos.setCity("Davos");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adDavos.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adDavos.getCity()).get(0);
+			adDavos.setLatitude(searchedLocation.getLatitude());
+			adDavos.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adDavos.setLatitude(-1);
+			adDavos.setLongitude(-1);
+		}
 		adDavos.setGarden(false);
 		adDavos.setBalcony(true);
 		adDavos.setCellar(true);
@@ -535,6 +649,17 @@ public class AdTestDataSaver {
 		adLausanne.setTitle("Studio extrèmement bon marché à Lausanne");
 		adLausanne.setStreet("Rue de l'Eglise 26");
 		adLausanne.setCity("Lausanne");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adLausanne.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adLausanne.getCity()).get(0);
+			adLausanne.setLatitude(searchedLocation.getLatitude());
+			adLausanne.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adLausanne.setLatitude(-1);
+			adLausanne.setLongitude(-1);
+		}
 		adLausanne.setGarden(true);
 		adLausanne.setBalcony(false);
 		adLausanne.setCellar(true);
@@ -575,6 +700,17 @@ public class AdTestDataSaver {
 		adLocarno.setTitle("Malibu-style Beachhouse");
 		adLocarno.setStreet("Kirchweg 12");
 		adLocarno.setCity("Locarno");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adLocarno.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adLocarno.getCity()).get(0);
+			adLocarno.setLatitude(searchedLocation.getLatitude());
+			adLocarno.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adLocarno.setLatitude(-1);
+			adLocarno.setLongitude(-1);
+		}
 		adLocarno.setGarden(false);
 		adLocarno.setBalcony(false);
 		adLocarno.setCellar(false);

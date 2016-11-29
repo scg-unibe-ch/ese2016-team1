@@ -57,6 +57,8 @@ public class AlertService {
 		alert.setZipcode(Integer.parseInt(zip));
 		alert.setCity(alertForm.getCity().substring(7));
 
+		alert.setBuy(alertForm.getBuy());
+		alert.setRent(alertForm.getRent());
 		alert.setPrice(alertForm.getPrice());
 		alert.setRadius(alertForm.getRadius());
 		alert.setRoom(alertForm.getRoom());
@@ -114,7 +116,12 @@ public class AlertService {
 					 || cableMismatchWith(ad, alert) || internetMismatchWith(ad, alert)
 					 || animalsMismatchWith(ad, alert) || balconyMismatchWith(ad, alert)
 					 || furnishedMismatchWith(ad, alert) || garageMismatchWith(ad, alert)
+<<<<<<< HEAD
 					 || moveInDateMismatchWith(ad, alert) || moveOutDateMismatchWith(ad, alert))
+=======
+					 || moveInDateMismatchWith(ad, alert) || moveOutDateMismatchWith(ad, alert)
+					 || buyMismatchWith(ad, alert) || rentMismatchWith(ad, alert))
+>>>>>>> 34637d69e0b2861d46a88e78d16259a7d9fb4805
 				alertIterator.remove();
 		}
 
@@ -287,8 +294,18 @@ public class AlertService {
 	
 	private boolean buyMismatchWith(Ad ad, Alert alert) {
 		boolean mismatch = false;
-		if(true){
-			
+		if(!alert.getBuy() || !alert.getRent()) {
+			if(alert.getBuy() && !ad.getSaleType().equals("Buy") && !ad.getSaleType().equals("Auction"))
+				mismatch = true;
+		}
+		return mismatch;
+	}
+	
+	private boolean rentMismatchWith(Ad ad, Alert alert) {
+		boolean mismatch = false;
+		if(!alert.getBuy() || !alert.getRent()) {
+			if(alert.getRent() && !ad.getSaleType().equals("Rent"))
+				mismatch = true;
 		}
 		return mismatch;
 	}

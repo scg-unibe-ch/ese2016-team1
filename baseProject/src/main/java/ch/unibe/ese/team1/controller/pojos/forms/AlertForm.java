@@ -37,6 +37,36 @@ public class AlertForm {
 	@AssertFalse(message = "Please select at least one type.")
 	private boolean noRoomNoStudio;
 
+	@AssertFalse(message = "Please select at least one type.")
+	private boolean noBuyNoRent;
+	
+	private boolean buy;
+	private boolean rent;
+	
+	public boolean getBuy() {
+		return buy;
+	}
+	
+	public void setBuy(boolean buy) {
+		this.buy = buy;
+	}
+	
+	public boolean getRent() {
+		return rent;
+	}
+	
+	public void setRent(boolean rent) {
+		this.rent = rent;
+	}
+	
+	public boolean getNoBuyNoRent() {
+		return noBuyNoRent;
+	}
+	
+	public void setNoBuyNoRent(boolean noBuyNoRent) {
+		this.noBuyNoRent = noBuyNoRent;
+	}
+
 	public String getCity() {
 		return city;
 	}
