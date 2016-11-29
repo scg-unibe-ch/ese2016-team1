@@ -20,10 +20,10 @@ function deleteAlert(button) {
 <script>
 function validateType(form)
 {
-	var room = document.getElementById('room');
-	var studio = document.getElementById('studio');
-	var flat = document.getElementById('flat');
-	var house = document.getElementById('house');
+	var room = document.getElementById('field-room');
+	var studio = document.getElementById('field-studio');
+	var flat = document.getElementById('field-flat');
+	var house = document.getElementById('field-house');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	
@@ -35,14 +35,6 @@ function validateType(form)
 </script>
 
 <script>
-<<<<<<< HEAD
-function typeOfAlert(alert) {
-	if(alert.getBothRoomAndStudio())
-		return "Both"
-	else if(alert.getStudio())
-		return alsert.getRoomType()
-}	
-=======
 	$(document).ready(function() {
 		$("#city").autocomplete({
 			minLength : 2
@@ -140,7 +132,6 @@ function use(form, self)
 	document.getElementById("field-furnished").checked = furnished;
 	document.getElementById("field-garage").checked = garage;
 }
->>>>>>> 044a36c8afa1c678b3cce84482a8a8d846cc92df
 </script>
 	
 <script>
@@ -198,8 +189,6 @@ function use(form, self)
 		CHF
 		<form:errors path="price" cssClass="validationErrorText" />
 		<br />
-<<<<<<< HEAD
-=======
 		
 		<table style="width: 80%">
 			<tr>
@@ -250,7 +239,6 @@ function use(form, self)
 				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
 			</tr>
 		</table>	
->>>>>>> 044a36c8afa1c678b3cce84482a8a8d846cc92df
 
 		<button type="submit" tabindex="7" onClick="validateType(this.form)">Subscribe</button>
 		<button type="reset" tabindex="8">Cancel</button>
@@ -290,24 +278,6 @@ function use(form, self)
 			</thead>
 		<c:forEach var="alert" items="${alerts}">
 			<tr>
-<<<<<<< HEAD
-				<td>
-				<c:choose>
-					<c:when test="${alert.bothRoomAndStudio}">
-						Both
-					</c:when>
-					<c:when test="${alert.studio}">
-						Studio
-					</c:when>
-					<c:otherwise>
-						Room
-					</c:otherwise>
-				</c:choose>
-				</td>
-				<td>${alert.city}</td>
-				<td>${alert.radius} km</td>
-				<td>${alert.price} Chf</td>
-=======
 				<td class="table_roomType">
 					${alert.roomTypeString}
 				</td>
@@ -329,7 +299,6 @@ function use(form, self)
 				<td class="table_garage">${alert.garage}</td>
 				<td class="table_zipcode" style="display:none">${alert.zipcode}</td>
 				<td><button class="useButton" data-id="${alert.id}" onClick="use(this.form, this)">Use</button></td>
->>>>>>> 044a36c8afa1c678b3cce84482a8a8d846cc92df
 				<td><button class="deleteButton" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
 			</tr>
 		</c:forEach>

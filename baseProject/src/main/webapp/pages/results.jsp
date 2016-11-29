@@ -17,13 +17,20 @@ function validateType(form)
 	var flat = document.getElementById('flat');
 	var house = document.getElementById('house');
 	var neither = document.getElementById('neither');
-	var both = document.getElementById('both');
+	var buy = document.getElementById('buy');
+	var rent = document.getElementById('rent');
+	var neitherBuyRent = document.getElementById('neitherBuyRent');
 	var filtered = document.getElementById('filtered');
 	
 	if(!room.checked && !studio.checked && !flat.checked && !house.checked)
 		neither.checked = true;
 	else
 		neither.checked = false;
+	
+	if(!buy.checked && !rent.checked)
+		neitherBuyRent.checked = true;
+	else
+		neitherBuyRent.checked = false;
 	
 	filtered.checked = true;
 }
@@ -176,7 +183,13 @@ function sort_div_attribute() {
 	id="filterForm" autocomplete="off">
 
 	<div id="filterDiv">
-		<h2>Filter results:</h2>
+		<h2>Filter results:</h2>		
+		<form:checkbox name="buy" id="buy" path="buy" /><label>Buy</label>
+		<form:checkbox name="rent" id="rent" path="rent" /><label>Rent</label>
+		<form:errors path="noBuyNoRent" cssClass="validationErrorText" /><br />
+		
+		<form:checkbox style="display:none" name="neitherBuyRent" id="neitherBuyRent" path="noBuyNoRent" />
+		
 		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
 		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
 		<form:checkbox name="flat" id="flat" path="flatHelper" /><label>Flat</label>

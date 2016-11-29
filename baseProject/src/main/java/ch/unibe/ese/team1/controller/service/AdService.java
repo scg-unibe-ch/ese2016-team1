@@ -309,6 +309,25 @@ public class AdService {
 
 		
 		// filtering for the special needs
+					// buy
+					if (searchForm.getBuy()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getSaleType().equals("Auction") && !ad.getSaleType().equals("Buy"))
+								iterator.remove();
+						}
+					}
+
+					// rent
+					if (searchForm.getRent()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getSaleType().equals("Rent"))
+								iterator.remove();
+						}
+					}
 					// smokers
 					if (searchForm.getSmokers()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
