@@ -63,6 +63,16 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Ad> bookmarkedAds;
 
+	private boolean premium;
+	
+	public boolean getPremium() {
+		return premium;
+	}
+	
+	public void setPremium(boolean premium) {
+		this.premium = premium;
+	}
+	
 	public long getId() {
 		return id;
 	}

@@ -36,8 +36,12 @@ public class MessageService {
 	public Iterable<Message> getInboxForUser(User user) {
 		Iterable<Message> usersMessages = messageDao.findByRecipient(user);
 		List<Message> messages = new ArrayList<Message>();
-		for(Message message: usersMessages)
-			messages.add(message);
+		Date dateNow = new Date();
+		for(Message message: usersMessages) {
+			Date dateShow = message.getDateShow();
+			if(dateNow.compareTo(dateShow) > 0)
+				messages.add(message);
+		}
 		Collections.sort(messages, new Comparator<Message>(){
 			@Override
 			public int compare(Message message1, Message message2) {

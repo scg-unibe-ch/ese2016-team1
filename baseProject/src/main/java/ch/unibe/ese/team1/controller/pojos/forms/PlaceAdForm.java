@@ -23,21 +23,21 @@ public class PlaceAdForm {
 	@NotBlank(message = "Required")
 	private String moveInDate;
 	
-	@NotBlank(message = "Required")
+	//@NotBlank(message = "Required")
 	private String endOfAuction;
 	
 	private String moveOutDate;
 
-	@Min(value = 0, message = "Has to be equal to 0 or more")
+	//@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int prize;
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int squareFootage;
 	
-	@Min(value = 0, message = "Has to be equal to 0 or more")
+	//@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int retailPrice;
 	
-	@Min(value = 0, message = "Has to be equal to 0 or more")
+	//@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int currentBidding;
 
 	@NotBlank(message = "Required")

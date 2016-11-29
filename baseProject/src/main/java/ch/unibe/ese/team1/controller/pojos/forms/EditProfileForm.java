@@ -18,7 +18,18 @@ public class EditProfileForm {
 	private String lastName;
 	
 	private String aboutMe;
-
+	
+	//@NotNull(message = "Requires your credit card number")
+	private String creditCard;
+	
+	public String getCreditCard() {
+		return creditCard;
+	}
+	
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
+		
 	public String getPassword() {
 		return password;
 	}

@@ -68,6 +68,19 @@
 
 </form:form>
 
+<hr class="slim">
+<h2>Upgrade to Premium</h2>Mach-Mal-Premium-Text.
+<form:form method="post" modelAttribute="editProfileForm" id="upgradeProfile" autocomplete="off" enctype="multipart/form-data">
+	<table class="editProfileTable">
+		<tr>
+			<td><label for="creditCard">Credit Card</label><br />
+		<form:input type="text" id="field-creditCard" path="creditCard" /></td>
+		</tr>
+	</table>
+</form:form><br />
+
+<div>
+	<button id="upgradePremium" type="button">Upgrade</button></div>
 
 <c:import url="template/footer.jsp" />
 

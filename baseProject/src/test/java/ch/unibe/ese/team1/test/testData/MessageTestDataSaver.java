@@ -53,6 +53,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(dummy1);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("12:02 24.02.2014"));
+		message.setDateShow(dateFormat.parse("12:02 24.02.2014"));
 		messageDao.save(message);
 		
 		message = new Message();
@@ -62,6 +63,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(dummy2);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("12:02 24.02.2014"));
+		message.setDateShow(dateFormat.parse("12:02 24.02.2014"));
 		messageDao.save(message);
 
 		message = new Message();
@@ -71,6 +73,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(testerMuster);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("12:02 24.02.2014"));
+		message.setDateShow(dateFormat.parse("12:02 24.02.2014"));
 		messageDao.save(message);
 
 		message = new Message();
@@ -80,6 +83,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(testerMuster);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("12:30 24.02.2014"));
 		messageDao.save(message);
 
 		message = new Message();
@@ -89,6 +93,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(testerMuster);
 		message.setState(MessageState.READ);
 		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("11:30 24.02.2014"));
 		messageDao.save(message);
 
 		// Messages for JaneDoe
@@ -99,6 +104,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(jane);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("12:30 24.02.2014"));
 		messageDao.save(message);
 
 		message = new Message();
@@ -108,6 +114,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(jane);
 		message.setState(MessageState.READ);
 		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("11:30 24.02.2014"));
 		messageDao.save(message);
 
 		// Messages for Berner Bär
@@ -118,6 +125,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(bernerBaer);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("12:30 24.02.2014"));
 		messageDao.save(message);
 
 		message = new Message();
@@ -127,6 +135,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(bernerBaer);
 		message.setState(MessageState.READ);
 		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("11:30 24.02.2014"));
 		messageDao.save(message);
 
 		// Messages for Oprah
@@ -137,6 +146,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(oprah);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("12:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("12:30 24.02.2014"));
 		messageDao.save(message);
 
 		message = new Message();
@@ -146,6 +156,7 @@ public class MessageTestDataSaver {
 		message.setRecipient(oprah);
 		message.setState(MessageState.UNREAD);
 		message.setDateSent(dateFormat.parse("11:30 24.02.2014"));
+		message.setDateShow(dateFormat.parse("11:30 24.02.2014"));
 		messageDao.save(message);
 	}
 

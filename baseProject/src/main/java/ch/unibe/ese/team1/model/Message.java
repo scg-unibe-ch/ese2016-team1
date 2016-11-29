@@ -41,6 +41,19 @@ public class Message {
 	@ManyToOne
 	private User recipient;
 
+	// Date and time, when the message should been shown
+	@JsonFormat(pattern = "HH:mm, dd.MM.yyyy", timezone = "CET" )
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateShow;
+	
+	public Date getDateShow() {
+		return dateShow;
+	}
+	
+	public void setDateShow(Date dateShow) {
+		this.dateShow = dateShow;
+	}
+	
 	public long getId() {
 		return id;
 	}

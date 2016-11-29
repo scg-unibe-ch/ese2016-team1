@@ -45,6 +45,7 @@ public class SignupService {
 		user.setPassword(signupForm.getPassword());
 		user.setEnabled(true);
 		user.setGender(signupForm.getGender());
+		user.setPremium(false);
 		
 		Set<UserRole> userRoles = new HashSet<>();
 		UserRole role = new UserRole();
@@ -70,6 +71,7 @@ public class SignupService {
 		// XMLGregorianCalendar which uses 1-12
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		message.setDateSent(calendar.getTime());
+		message.setDateShow(calendar.getTime());
 
 		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		MailService mail = new MailService();
