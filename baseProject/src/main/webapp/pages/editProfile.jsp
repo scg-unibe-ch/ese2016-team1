@@ -84,7 +84,7 @@ function setSubmitTypeUpgrade(form)
 <hr class="slim">
 <c:choose>
 	<c:when test = "${currentUser.premium == false}">
-		<h2>Upgrade to Premium</h2>Mach-Mal-Premium-Text.
+		<h2>Upgrade to Premium</h2>Your Advantages with FlatFinder-Premium:<br /><li>Instant alerts messages.
 		<form:form method="post" modelAttribute="editProfileForm" id="upgradeProfile" autocomplete="off" enctype="multipart/form-data">
 			<table class="editProfileTable">
 				<tr>
@@ -97,7 +97,7 @@ function setSubmitTypeUpgrade(form)
 		</form:form>
 	</c:when>
 	<c:otherwise>
-	<h2>You are using FlatFinder-Premium, congratulation!</h2>Your Advantages:<br /><li>Instant-Alerts.
+	<h2>You are using FlatFinder-Premium, congratulation!</h2>Your Advantages:<br /><li>Instant alert messages.
 	</c:otherwise>
 </c:choose>
 
