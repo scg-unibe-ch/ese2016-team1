@@ -142,8 +142,9 @@ public class MessageService {
 		User user = userDao.findOne(id);
 		Iterable<Message> usersMessages = messageDao.findByRecipient(user);
 		int i = 0;
+		Date dateNow = new Date();
 		for(Message message: usersMessages) {
-			if(message.getState().equals(MessageState.UNREAD))
+			if(message.getState().equals(MessageState.UNREAD) && (user.getPremium() || dateNow.compareTo(message.getDateShow()) > 0))
 				i++;
 		}
 		return i;
