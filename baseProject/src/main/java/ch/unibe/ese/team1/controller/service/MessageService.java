@@ -39,7 +39,8 @@ public class MessageService {
 		Date dateNow = new Date();
 		for(Message message: usersMessages) {
 			Date dateShow = message.getDateShow();
-			if(dateNow.compareTo(dateShow) > 0)
+			//Messages sollen nur angezeigt werden, wenn er Premium ist oder das Datum stimmt.
+			if(user.getPremium() || dateNow.compareTo(dateShow) > 0)
 				messages.add(message);
 		}
 		Collections.sort(messages, new Comparator<Message>(){

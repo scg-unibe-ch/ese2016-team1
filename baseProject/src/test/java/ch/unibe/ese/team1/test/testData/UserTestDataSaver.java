@@ -93,6 +93,7 @@ public class UserTestDataSaver {
 		role.setUser(user);
 		userRoles.add(role);
 		user.setUserRoles(userRoles);
+		user.setPremium(false);
 		return user;
 	}
 
@@ -116,6 +117,7 @@ public class UserTestDataSaver {
 		role.setUser(user);
 		userRoles.add(role);
 		user.setUserRoles(userRoles);
+		user.setPremium(false);
 		return user;
 	}
 

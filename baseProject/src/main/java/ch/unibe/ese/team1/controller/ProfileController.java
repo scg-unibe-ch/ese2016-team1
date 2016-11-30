@@ -103,18 +103,23 @@ public class ProfileController {
 		ModelAndView model;
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
-		if (!bindingResult.hasErrors()) {
+		if (!bindingResult.hasErrors() && editProfileForm.getSubmitType().equals("update")) {
 			userUpdateService.updateFrom(username, editProfileForm);
-			//model = new ModelAndView("updatedProfile");
-			model = new ModelAndView("redirect:/logout");
+			model = new ModelAndView("updatedProfile");
 			model.addObject("message", "Your Profile has been updated!");
-			//model.addObject("currentUser", null);// editProfileForm.getUsername());
+			model.addObject("currentUser", null);editProfileForm.getUsername();
+			return model;
+		} else if (!bindingResult.hasErrors() && editProfileForm.getSubmitType().equals("upgrade")) {
+			userUpdateService.upgradeFrom(username, editProfileForm);
+			model = new ModelAndView("updatedProfile");
+			model.addObject("message", "Your Profile has been upgraded!");
+			model.addObject("currentUser", null);editProfileForm.getUsername();
 			return model;
 		} else {
 			model = new ModelAndView("updatedProfile");
 			
 			model.addObject("message",
-					"Something went wrong, please contact the WebAdmin if the problem persists!");
+					"Something went wrong, please contact the WebAdmin if the problem persists!" + editProfileForm.getSubmitType() );
 			return model;
 		}
 	}
