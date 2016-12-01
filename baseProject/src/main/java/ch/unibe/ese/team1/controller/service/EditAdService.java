@@ -52,7 +52,69 @@ public class EditAdService {
 	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
 			User user, long adId) throws ParseException {
 
-		Ad ad = adService.getAdById(adId);
+
+
+		/**Ad ad = adService.getAdById(adId);
+		
+		
+		if(ad==null){
+		//	ad.setAltId(ad.getId());
+		//	ad.setId((2^63-1));
+		//	ad.setTitle(""+ad.getId());
+			Ad helpAd = null;
+			long i = (2^63-1);
+			while (helpAd==null){
+				helpAd = adService.getAdById(i);
+				
+				i--;
+			}
+			
+			ad = adService.getAdById(helpAd.getAltId());
+			//ad = helpAd;
+			//Ad ha = adService.getAdById(6);//helpAd.getAltId())
+			//adDao.delete(ha);
+			
+			//ad.setStreet(ad.getId() + " "+helpAd.getAltId());
+			//ad.setTitle(ad.getId() + " "+helpAd.getAltId());
+
+			
+			if(helpAd.getId() != helpAd.getAltId()){
+				//adDao.delete(ad);
+			}
+			
+		}**/
+		
+		Ad ad = adService.getAdById(2^63-1);
+				
+		if(ad!=null){
+			ad = adService.getAdById(ad.getAltId());
+			Ad helpAd = adService.getAdById(2^63-1);
+			adDao.delete(helpAd);
+		}
+		
+		if(ad==null){
+			ad = adService.getAdById(adId);
+		}
+		
+		
+		
+		
+		
+		/*Ad ad = null;
+		
+		if(adId==(2^63-1)){
+			Ad adHelper = adService.getAdById(adId);
+			ad = adService.getAdById(adHelper.getAltId());
+			
+			adDao.delete(adHelper);
+		}
+		else{
+			ad = adService.getAdById(adId);
+		}*/
+		
+		
+		
+		
 
 		Date now = new Date();
 		ad.setCreationDate(now);
@@ -207,6 +269,304 @@ public class EditAdService {
 		return ad;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/**
+	 * Makes a fake one so you can correct your mistakes.
+	 * 
+	 * @param placeAdForm
+	 *            the form to take the data from
+	 * @param a
+	 *            list of the file paths the pictures are saved under
+	 * @param the
+	 *            currently logged in user
+	 * @throws ParseException 
+	 */
+	@Transactional
+	public Ad saveFakeFrom(PlaceAdForm placeAdForm, List<String> filePaths,
+			User user, long adId) throws ParseException {
+
+		/*Ad ad = null;
+		
+		if(adId>0){
+			ad = adService.getAdById(adId);
+			ad.setId(-adId);
+		}
+		if(adId<0){
+			ad = adService.getAdById(-adId);
+			
+			Ad ad2 = adService.getAdById(-adId);
+			adDao.delete(ad2);
+		}*/
+		
+		System.out.println(adId);
+		System.out.println(adId);
+		System.out.println(adId);
+
+		
+		/*Ad ad = adService.getAdById(adId);
+		
+		if(ad!=null){
+			ad.setAltId(ad.getId());
+			ad.setId((2^63-1));
+			ad.setTitle(adId+""+ad.getId() +" " +ad.getAltId());
+		}
+		
+		long i = (2^63-1);
+		while (ad==null){
+			ad = adService.getAdById(i);
+			i--;
+		}
+		
+		if(ad.getId()!=(2^63-1)){
+			//ad.setAltId(ad.getId());
+			//ad.setId((2^63-1));
+		}*/
+		
+		
+		Ad ad = adService.getAdById(2^63-1);
+		
+		if(ad==null){
+			ad = adService.getAdById(adId);
+		}
+		
+		if(ad.getAltId()==0){
+			ad.setAltId(adId);
+		}
+		
+		/**Ad ad = adService.getAdById(adId);
+		
+		if(ad!=null){
+			ad.setId(2^63-1);
+			ad.setAltId(adId);
+		}
+		if(ad==null){
+		//	ad.setAltId(ad.getId());
+		//	ad.setId((2^63-1));
+		//	ad.setTitle(""+ad.getId());
+			Ad helpAd = null;
+			long i = (2^63-1);
+			while (helpAd==null){
+				helpAd = adService.getAdById(i);
+				
+				i--;
+			}
+			
+			//ad = adService.getAdById(helpAd.getAltId());
+			ad = helpAd;
+			//Ad ha = adService.getAdById(6);//helpAd.getAltId())
+			//adDao.delete(ha);
+			
+			//ad.setStreet(ad.getId() + " "+helpAd.getAltId());
+			//ad.setTitle(ad.getId() + " "+helpAd.getAltId());
+
+			
+			if(helpAd.getId() != helpAd.getAltId()){
+				//adDao.delete(ad);
+			}
+			
+		}**/
+
+
+		
+		
+		Date now = new Date();
+		ad.setCreationDate(now);
+
+		ad.setTitle(placeAdForm.getTitle());
+
+		ad.setStreet(placeAdForm.getStreet());
+
+		ad.setRoomType(placeAdForm.getRoomType());
+
+		// take the zipcode - first four digits
+		//String zip = placeAdForm.getCity().substring(0, 4);
+		//ad.setZipcode(Integer.parseInt(zip));
+		if(placeAdForm.getCity().length() >= 7){
+			ad.setCity(placeAdForm.getCity().substring(7));
+		}
+		else{
+			ad.setCity("");
+		}
+		
+		Calendar calendar = Calendar.getInstance();
+		// java.util.Calendar uses a month range of 0-11 instead of the
+		// XMLGregorianCalendar which uses 1-12
+		
+		try {
+			if (placeAdForm.getMoveInDate().length() == 10) {
+				int dayMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
+						.substring(0, 2));
+				int monthMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
+						.substring(3, 5));
+				int yearMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
+						.substring(6, 10));
+				calendar.set(yearMoveIn, monthMoveIn - 1, dayMoveIn);
+				ad.setMoveInDate(calendar.getTime());
+			}
+			else{
+				ad.setMoveInDate(null);
+			}
+
+			if (placeAdForm.getMoveOutDate().length() == 10) {
+				int dayMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
+						.substring(0, 2));
+				int monthMoveOut = Integer.parseInt(placeAdForm
+						.getMoveOutDate().substring(3, 5));
+				int yearMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
+						.substring(6, 10));
+				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
+				ad.setMoveOutDate(calendar.getTime());
+			}
+			else{
+				ad.setMoveOutDate(null);
+			}
+			
+			if(placeAdForm.getSaleType().equals("Auction")){
+				if (placeAdForm.getEndOfAuction().length() == 16) {
+					SimpleDateFormat format = 
+				            new SimpleDateFormat("yyyy-MM-dd HH:mm");
+					Date time = format.parse(placeAdForm.getEndOfAuction());
+					ad.setEndOfAuction(time);
+				}
+			ad.setCurrentBidding(placeAdForm.getCurrentBidding());
+			}
+			else{
+				ad.setEndOfAuction(null);
+			}
+		} catch (Error e) {
+			ad.setMoveOutDate(null);
+			ad.setEndOfAuction(null);
+			ad.setMoveInDate(null);
+		}
+
+		ad.setPrizePerMonth(placeAdForm.getPrize());
+		ad.setSquareFootage(placeAdForm.getSquareFootage());
+		ad.setRetailPrice(placeAdForm.getRetailPrice());
+		ad.setCurrentBidding(placeAdForm.getCurrentBidding());
+		ad.setSaleType(placeAdForm.getSaleType());
+		
+
+		ad.setRoomDescription(placeAdForm.getRoomDescription());
+		ad.setPreferences(placeAdForm.getPreferences());
+		ad.setRoommates(placeAdForm.getRoommates());
+
+		// ad description values
+		ad.setSmokers(placeAdForm.isSmokers());
+		ad.setAnimals(placeAdForm.isAnimals());
+		ad.setGarden(placeAdForm.getGarden());
+		ad.setBalcony(placeAdForm.getBalcony());
+		ad.setCellar(placeAdForm.getCellar());
+		ad.setFurnished(placeAdForm.isFurnished());
+		ad.setCable(placeAdForm.getCable());
+		ad.setGarage(placeAdForm.getGarage());
+		ad.setInternet(placeAdForm.getInternet());
+
+		/*
+		 * Save the paths to the picture files, the pictures are assumed to be
+		 * uploaded at this point!
+		 */
+		List<AdPicture> pictures = new ArrayList<>();
+		for (String filePath : filePaths) {
+			AdPicture picture = new AdPicture();
+			picture.setFilePath(filePath);
+			pictures.add(picture);
+		}
+		// add existing pictures
+		for (AdPicture picture : ad.getPictures()) {
+			pictures.add(picture);
+		}
+		ad.setPictures(pictures);
+
+		/*
+		 * Roommates are saved in the form as strings. They need to be converted
+		 * into Users and saved as a List which will be accessible through the
+		 * ad object itself.
+		 */
+		List<User> registeredUserRommates = new LinkedList<>();
+		if (placeAdForm.getRegisteredRoommateEmails() != null) {
+			for (String userEmail : placeAdForm.getRegisteredRoommateEmails()) {
+				User roommateUser = userService.findUserByUsername(userEmail);
+				registeredUserRommates.add(roommateUser);
+			}
+		}
+		// add existing roommates
+		for (User roommates : ad.getRegisteredRoommates()) {
+			registeredUserRommates.add(roommates);
+		}
+		ad.setRegisteredRoommates(registeredUserRommates);
+
+		// visits
+		List<Visit> visits = new LinkedList<>();
+		List<String> visitStrings = placeAdForm.getVisits();
+		if (visitStrings != null) {
+			for (String visitString : visitStrings) {
+				Visit visit = new Visit();
+				// format is 28-02-2014;10:02;13:14
+				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+				String[] parts = visitString.split(";");
+				String startTime = parts[0] + " " + parts[1];
+				String endTime = parts[0] + " " + parts[2];
+				Date startDate = null;
+				Date endDate = null;
+				try {
+					startDate = dateFormat.parse(startTime);
+					endDate = dateFormat.parse(endTime);
+				} catch (ParseException ex) {
+					ex.printStackTrace();
+				}
+
+				visit.setStartTimestamp(startDate);
+				visit.setEndTimestamp(endDate);
+				visit.setAd(ad);
+				visits.add(visit);
+			}
+
+			// add existing visit
+			for (Visit visit : ad.getVisits()) {
+				visits.add(visit);
+			}
+			ad.setVisits(visits);
+		}
+
+		if(user!=null){
+			ad.setUser(user);
+		}
+		else{
+			ad.setUser(ad.getUser());
+		}
+
+		adDao.save(ad);
+
+		return ad;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Removes the picture with the given id from the list of pictures in the ad
 	 * with the given id.

@@ -93,32 +93,12 @@ public class EditAdController {
 			BindingResult result, Principal principal,
 			RedirectAttributes redirectAttributes, @RequestParam long adId) throws ParseException {
 		ModelAndView model = new ModelAndView("placeAd");
-		//ModelAndView model = new ModelAndView("editAd");
-		//ModelAndView model;
-		
-		//if(result.hasErrors()){
-		//	editAdPage(adId, principal);
-		//	model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
-		//}
-		
-//EndOfAuction   confirmationMessage
 		
 
-		if (result.hasErrors()) {
-			
-			
-			model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
-			redirectAttributes.addFlashAttribute("errorMessage",
-					"There was an error. Check if your inputs are correct and try again."  );
-			
-		}
-		//model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
 		
-		
-		
-		if (!result.hasErrors()) {
+		//if (!result.hasErrors()) {
 	
-			try{
+		//	try{
 			String username = principal.getName();
 			User user = userService.findUserByUsername(username);
 
@@ -127,13 +107,26 @@ public class EditAdController {
 				pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
 			}
 			List<String> fileNames = pictureUploader.getFileNames();
-			Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId);
+			
+			
+			
+			
+			
+			if ((!result.hasErrors()) && (placeAdForm.getCity().length() > 7) && (placeAdForm.getMoveInDate().length() == 10) && ((placeAdForm.getEndOfAuction().length() == 16) || (placeAdForm.getEndOfAuction().length() == 0)) && ((placeAdForm.getMoveOutDate().length() == 10) || (placeAdForm.getMoveOutDate().length() == 0))) {
+			try{
+			
+				Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId);
 
+				
 			// triggers all alerts that match the placed ad
 			alertService.triggerAlerts(ad);
-
+			
 			// reset the picture uploader
 			this.pictureUploader = null;
+						
+						
+						
+			
 
 			model = new ModelAndView("redirect:/ad?id=" + ad.getId());
 			redirectAttributes.addFlashAttribute("confirmationMessage",
@@ -145,7 +138,23 @@ public class EditAdController {
 						"There was an error. Check if your inputs are correct and try again."  );
 				
 			}
-		} //else {model=new ModelAndView("editAd");}
+		} 
+		else {
+				model=new ModelAndView("editAd");
+				//Ad ad = adService.getAdById(adId);
+				Ad ad = editAdService.saveFakeFrom(placeAdForm, fileNames, user, adId);
+
+				//String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
+				pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+				
+				adId = (2^63-1);
+				
+				model.addObject("ad", ad);
+				
+				//model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+
+			}
+
 
 		return model;
 	}

@@ -29,6 +29,8 @@ public class Ad {
 	@Id
 	@GeneratedValue
 	private long id;
+	
+	private long altId;
 
 	@Column(nullable = false)
 	private String title;
@@ -46,12 +48,12 @@ public class Ad {
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date moveInDate;
 
 	@Temporal(TemporalType.DATE)
-	@Column(nullable = true)
+	//@Column(nullable = true)
 	private Date moveOutDate;
 	
 	@Column(nullable = false)
@@ -234,6 +236,14 @@ public class Ad {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	public long getAltId() {
+		return altId;
+	}
+
+	public void setAltId(long altId) {
+		this.altId = altId;
 	}
 
 	public int getZipcode() {
