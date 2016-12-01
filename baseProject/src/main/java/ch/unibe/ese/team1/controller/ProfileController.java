@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.unibe.ese.team1.controller.pojos.forms.EditProfileForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
@@ -103,18 +104,36 @@ public class ProfileController {
 		ModelAndView model;
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
-		if (!bindingResult.hasErrors()) {
+		if (!bindingResult.hasErrors() && editProfileForm.getSubmitType().equals("update")) {
 			userUpdateService.updateFrom(username, editProfileForm);
-			//model = new ModelAndView("updatedProfile");
-			model = new ModelAndView("redirect:/logout");
-			model.addObject("message", "Your Profile has been updated!");
-			//model.addObject("currentUser", null);// editProfileForm.getUsername());
+			model = new ModelAndView("updatedProfile");
+			
+			if(!(editProfileForm.getUsername().equals(username))){
+				model = new ModelAndView("redirect:/logout");
+				model.addObject("message", "Your Profile has been updated! Log in with your new name.");
+				
+				//RedirectAttributes redirectAttributes = null;
+				//redirectAttributes.addFlashAttribute("confirmationMessage",
+				//		"Your Profile has been updated! Log in with your new name.");
+			
+				
+				return model;
+			}
+			
+			model.addObject("message", "Your Profile has been updated!" );
+			model.addObject("currentUser", null);editProfileForm.getUsername();
+			return model;
+		} else if (!bindingResult.hasErrors() && editProfileForm.getSubmitType().equals("upgrade")) {
+			userUpdateService.upgradeFrom(username, editProfileForm);
+			model = new ModelAndView("updatedProfile");
+			model.addObject("message", "Your Profile has been upgraded!");
+			model.addObject("currentUser", null);editProfileForm.getUsername();
 			return model;
 		} else {
 			model = new ModelAndView("updatedProfile");
 			
 			model.addObject("message",
-					"Something went wrong, please contact the WebAdmin if the problem persists!");
+					"Something went wrong, please contact the WebAdmin if the problem persists!" + editProfileForm.getSubmitType() );
 			return model;
 		}
 	}

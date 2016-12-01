@@ -42,6 +42,19 @@ public class UserUpdateService {
 
 		userDao.save(currentUser);
 	}
+	
+	/** Handles upgrading an existing account */
+	@Transactional
+	public void upgradeFrom(String username, EditProfileForm editProfileForm) {
+		System.out.println(username);
+		
+		User currentUser = userService.findUserByUsername(username);
+
+		currentUser.setPremium(true);
+		currentUser.setCreditCard(editProfileForm.getCreditCard());
+
+		userDao.save(currentUser);
+	}
 
 	
 	

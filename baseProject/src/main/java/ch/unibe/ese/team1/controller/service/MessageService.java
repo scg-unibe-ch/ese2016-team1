@@ -36,8 +36,13 @@ public class MessageService {
 	public Iterable<Message> getInboxForUser(User user) {
 		Iterable<Message> usersMessages = messageDao.findByRecipient(user);
 		List<Message> messages = new ArrayList<Message>();
-		for(Message message: usersMessages)
-			messages.add(message);
+		Date dateNow = new Date();
+		for(Message message: usersMessages) {
+			Date dateShow = message.getDateShow();
+			//Messages sollen nur angezeigt werden, wenn er Premium ist oder das Datum stimmt.
+			if(user.getPremium() || dateNow.compareTo(dateShow) > 0)
+				messages.add(message);
+		}
 		Collections.sort(messages, new Comparator<Message>(){
 			@Override
 			public int compare(Message message1, Message message2) {
@@ -137,8 +142,9 @@ public class MessageService {
 		User user = userDao.findOne(id);
 		Iterable<Message> usersMessages = messageDao.findByRecipient(user);
 		int i = 0;
+		Date dateNow = new Date();
 		for(Message message: usersMessages) {
-			if(message.getState().equals(MessageState.UNREAD))
+			if(message.getState().equals(MessageState.UNREAD) && (user.getPremium() || dateNow.compareTo(message.getDateShow()) > 0))
 				i++;
 		}
 		return i;

@@ -134,6 +134,9 @@ public class AlertService {
 		// send messages to all users with matching alerts
 		for (User user : users) {
 			Date now = new Date();
+			Date show = new Date();
+			if(!user.getPremium())
+				show = new Date(System.currentTimeMillis()+1*60*1000);
 			Message message = new Message();
 			message.setSubject("It's a match!");
 			message.setText(getAlertText(ad));
@@ -141,6 +144,7 @@ public class AlertService {
 			message.setRecipient(user);
 			message.setState(MessageState.UNREAD);
 			message.setDateSent(now);
+			message.setDateShow(show);
 			messageDao.save(message);
 		}
 	}

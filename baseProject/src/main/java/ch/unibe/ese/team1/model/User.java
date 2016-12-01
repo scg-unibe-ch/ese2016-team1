@@ -62,7 +62,27 @@ public class User {
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Ad> bookmarkedAds;
+	
+	private String creditCard;
+	
+	public String getCreditCard() {
+		return creditCard;
+	}
+	
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
 
+	private boolean premium;
+	
+	public boolean getPremium() {
+		return premium;
+	}
+	
+	public void setPremium(boolean premium) {
+		this.premium = premium;
+	}
+	
 	public long getId() {
 		return id;
 	}

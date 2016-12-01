@@ -5,20 +5,41 @@ import org.hibernate.validator.constraints.NotBlank;
 /** This form is used when a user wants to edit their profile. */
 public class EditProfileForm {
 
-	@NotBlank(message = "Required")
+	//@NotBlank(message = "Required")
 	private String username;
 	
-	@NotBlank(message = "Required")
+	//@NotBlank(message = "Required")
 	private String password;
 
-	@NotBlank(message = "Required")
+	//@NotBlank(message = "Required")
 	private String firstName;
 
-	@NotBlank(message = "Required")
+	//@NotBlank(message = "Required")
 	private String lastName;
 	
 	private String aboutMe;
-
+	
+	//@NotNull(message = "Requires your credit card number")
+	private String creditCard;
+	
+	private String submitType;
+	
+	public String getSubmitType() {
+		return submitType;
+	}
+	
+	public void setSubmitType(String submitType) {
+		this.submitType = submitType;
+	}
+	
+	public String getCreditCard() {
+		return creditCard;
+	}
+	
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
+	}
+		
 	public String getPassword() {
 		return password;
 	}

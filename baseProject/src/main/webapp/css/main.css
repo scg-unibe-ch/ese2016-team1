@@ -669,7 +669,6 @@ footer nav ul li {
 	width: 25%;
 	position: relative;
 	margin-top: 15px;
-	display: table;
 	height: 255px;
 	z-index: 0;
 }
