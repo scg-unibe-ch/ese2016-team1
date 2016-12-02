@@ -256,6 +256,19 @@ public class AdService {
 			fourNewest.add(ads.get(i));
 		return fourNewest;
 	}
+	
+	/**
+	 * Returns adds in given coordinates and radius
+	 */
+	@Transactional
+	public Iterable<Ad> getAdsInRadius(double[] coordinates, double radius) {
+		Iterable<Ad> allAds = adDao.findAll();
+		List<Ad> ads = new ArrayList<Ad>();
+		for (Ad ad : allAds) {
+			ads.add(ad);
+		}
+		return ads;
+	}
 
 	/**
 	 * Returns all ads that match the parameters given by the form. This list
@@ -267,14 +280,6 @@ public class AdService {
 	 */
 	@Transactional
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
-
-		// filter out zipcode
-		String city = searchForm.getCity().substring(7);
-
-		// get the location that the user searched for and take the one with the
-		// lowest zip code
-		Location searchedLocation = geoDataService.getLocationsByCity(city)
-				.get(0);
 		
 		List<Ad> locatedResults = new ArrayList<>();
 		int maxPrize = searchForm.getPrize() + 1;
@@ -287,13 +292,34 @@ public class AdService {
 		if(searchForm.getHouseHelper()) 
 			locatedResults = addResultsFromRoomType(locatedResults, "House", maxPrize);
 
+		//if search from map
+		List<Location> locations;
+		double radSinLat;
+		double radCosLat;
+		double radLong;
 		final int earthRadiusKm = 6380;
-		List<Location> locations = geoDataService.getAllLocations();
-		double radSinLat = Math.sin(Math.toRadians(searchedLocation
-				.getLatitude()));
-		double radCosLat = Math.cos(Math.toRadians(searchedLocation
-				.getLatitude()));
-		double radLong = Math.toRadians(searchedLocation.getLongitude());
+		
+		if (searchForm.getCity().equals("<<from coordinates>>")) {
+			locations = geoDataService.getAllLocations();
+			radSinLat = Math.sin(Math.toRadians(searchForm.getLatitude()));
+			radCosLat = Math.cos(Math.toRadians(searchForm.getLatitude()));
+			radLong = Math.toRadians(searchForm.getLongitude());
+		} else {
+			// filter out zipcode
+			String city = searchForm.getCity().substring(7);
+	
+			// get the location that the user searched for and take the one with the
+			// lowest zip code
+			Location searchedLocation = geoDataService.getLocationsByCity(city)
+					.get(0);
+	
+			locations = geoDataService.getAllLocations();
+			radSinLat = Math.sin(Math.toRadians(searchedLocation
+					.getLatitude()));
+			radCosLat = Math.cos(Math.toRadians(searchedLocation
+					.getLatitude()));
+			radLong = Math.toRadians(searchedLocation.getLongitude());
+		}
 
 		/*
 		 * calculate the distances (Java 8) and collect all matching zipcodes.
