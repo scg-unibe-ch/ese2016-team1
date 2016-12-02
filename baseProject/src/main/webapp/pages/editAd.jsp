@@ -5,7 +5,60 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<c:import url="template/header.jsp" />
+
+
+
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="/css/main.css">
+<link rel="stylesheet" type="text/css"
+	media="only screen and (max-device-width: 480px)"
+	href="/css/smartphone.css" />
+
+<Title>FlatFindr</Title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+
+<script src="/js/unreadMessages.js"></script>
+
+<style>
+/* ensure that autocomplete lists are not too long and have a scrollbar */
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+</style>
+</head>
+
+<header>
+<div class="left">
+		<img src="/img/logo.png">
+	</div>
+	<div class="right">
+	<nav>
+
+	</nav>
+	</div>
+</header>
+<body>
+<div id="content">
+
+		<c:if test="${not empty confirmationMessage }">
+			<div class="confirmation-message">
+				<img src="/img/check-mark.png" />
+				<p>${confirmationMessage }</p>
+			</div>
+		</c:if>
+
+
+
+
+
 
 <script src="/js/jquery.ui.widget.js"></script>
 <script src="/js/jquery.iframe-transport.js"></script>
@@ -150,6 +203,8 @@
 	type="date" pattern="dd-MM-yyyy" />
 <fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
 	type="date" pattern="dd-MM-yyyy" />
+<fmt:formatDate value="${ad.endOfAuction}" var="formattedEndOfAuctionDate"
+	type="date" pattern="yyyy-MM-dd HH:mm" />	
 	
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
 
@@ -306,7 +361,7 @@
 				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${ad.currentBidding}"
 						placeholder="Start Bidding" step="50" /> <form:errors
 						path="currentBidding" cssClass="validationErrorText" /></td>
-				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" value="${ad.endOfAuction}"
+				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" value="${formattedEndOfAuctionDate}"
 						path="endOfAuction" /></td>
 			</tr>
 			<tr>
@@ -604,12 +659,29 @@
 
 	<div>
 		<button type="submit">Submit</button>
-		<a href="<c:url value='/ad?id=${ad.id}' />"> 
-			<button type="button">Cancel</button>
-		</a>
+		<c:choose>
+		<c:when test="${ad.altId != 0}">
+			<a href="<c:url value='/ad?id=${ad.id}' />"> 
+				<button type="button">Cancel</button>
+			</a>
+		</c:when>
+		<c:otherwise>
+		
+	
+						
+		</c:otherwise>
+		</c:choose>
 	</div>
 
 </form:form>
 
 
-<c:import url="template/footer.jsp" />
+
+</div>
+<p class="clearBoth"></p>
+<footer>
+<nav>	
+</nav>
+</footer>
+
+</body> 

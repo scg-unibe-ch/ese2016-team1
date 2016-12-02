@@ -54,65 +54,7 @@ public class EditAdService {
 
 
 
-		/**Ad ad = adService.getAdById(adId);
-		
-		
-		if(ad==null){
-		//	ad.setAltId(ad.getId());
-		//	ad.setId((2^63-1));
-		//	ad.setTitle(""+ad.getId());
-			Ad helpAd = null;
-			long i = (2^63-1);
-			while (helpAd==null){
-				helpAd = adService.getAdById(i);
-				
-				i--;
-			}
-			
-			ad = adService.getAdById(helpAd.getAltId());
-			//ad = helpAd;
-			//Ad ha = adService.getAdById(6);//helpAd.getAltId())
-			//adDao.delete(ha);
-			
-			//ad.setStreet(ad.getId() + " "+helpAd.getAltId());
-			//ad.setTitle(ad.getId() + " "+helpAd.getAltId());
-
-			
-			if(helpAd.getId() != helpAd.getAltId()){
-				//adDao.delete(ad);
-			}
-			
-		}**/
-		
-		Ad ad = adService.getAdById(2^63-1);
-				
-		if(ad!=null){
-			ad = adService.getAdById(ad.getAltId());
-			Ad helpAd = adService.getAdById(2^63-1);
-			adDao.delete(helpAd);
-		}
-		
-		if(ad==null){
-			ad = adService.getAdById(adId);
-		}
-		
-		
-		
-		
-		
-		/*Ad ad = null;
-		
-		if(adId==(2^63-1)){
-			Ad adHelper = adService.getAdById(adId);
-			ad = adService.getAdById(adHelper.getAltId());
-			
-			adDao.delete(adHelper);
-		}
-		else{
-			ad = adService.getAdById(adId);
-		}*/
-		
-		
+		Ad ad = adService.getAdById(adId);
 		
 		
 
@@ -300,89 +242,11 @@ public class EditAdService {
 	public Ad saveFakeFrom(PlaceAdForm placeAdForm, List<String> filePaths,
 			User user, long adId) throws ParseException {
 
-		/*Ad ad = null;
 		
-		if(adId>0){
-			ad = adService.getAdById(adId);
-			ad.setId(-adId);
-		}
-		if(adId<0){
-			ad = adService.getAdById(-adId);
-			
-			Ad ad2 = adService.getAdById(-adId);
-			adDao.delete(ad2);
-		}*/
-		
-		System.out.println(adId);
-		System.out.println(adId);
-		System.out.println(adId);
 
-		
-		/*Ad ad = adService.getAdById(adId);
-		
-		if(ad!=null){
-			ad.setAltId(ad.getId());
-			ad.setId((2^63-1));
-			ad.setTitle(adId+""+ad.getId() +" " +ad.getAltId());
-		}
-		
-		long i = (2^63-1);
-		while (ad==null){
-			ad = adService.getAdById(i);
-			i--;
-		}
-		
-		if(ad.getId()!=(2^63-1)){
-			//ad.setAltId(ad.getId());
-			//ad.setId((2^63-1));
-		}*/
-		
-		
-		Ad ad = adService.getAdById(2^63-1);
-		
-		if(ad==null){
-			ad = adService.getAdById(adId);
-		}
-		
-		if(ad.getAltId()==0){
-			ad.setAltId(adId);
-		}
-		
-		/**Ad ad = adService.getAdById(adId);
-		
-		if(ad!=null){
-			ad.setId(2^63-1);
-			ad.setAltId(adId);
-		}
-		if(ad==null){
-		//	ad.setAltId(ad.getId());
-		//	ad.setId((2^63-1));
-		//	ad.setTitle(""+ad.getId());
-			Ad helpAd = null;
-			long i = (2^63-1);
-			while (helpAd==null){
-				helpAd = adService.getAdById(i);
-				
-				i--;
-			}
-			
-			//ad = adService.getAdById(helpAd.getAltId());
-			ad = helpAd;
-			//Ad ha = adService.getAdById(6);//helpAd.getAltId())
-			//adDao.delete(ha);
-			
-			//ad.setStreet(ad.getId() + " "+helpAd.getAltId());
-			//ad.setTitle(ad.getId() + " "+helpAd.getAltId());
+		Ad ad = adService.getAdById(adId);
 
-			
-			if(helpAd.getId() != helpAd.getAltId()){
-				//adDao.delete(ad);
-			}
-			
-		}**/
-
-
-		
+		ad.setAltId(0);
 		
 		Date now = new Date();
 		ad.setCreationDate(now);
