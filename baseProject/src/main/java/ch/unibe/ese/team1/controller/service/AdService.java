@@ -256,6 +256,19 @@ public class AdService {
 			fourNewest.add(ads.get(i));
 		return fourNewest;
 	}
+	
+	/**
+	 * Returns adds in given coordinates and radius
+	 */
+	@Transactional
+	public Iterable<Ad> getAdsInRadius(double[] coordinates, double radius) {
+		Iterable<Ad> allAds = adDao.findAll();
+		List<Ad> ads = new ArrayList<Ad>();
+		for (Ad ad : allAds) {
+			ads.add(ad);
+		}
+		return ads;
+	}
 
 	/**
 	 * Returns all ads that match the parameters given by the form. This list
