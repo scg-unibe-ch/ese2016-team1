@@ -13,8 +13,11 @@ public class SearchForm {
 	private boolean filtered;
 
 	@NotBlank(message = "Required")
-	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
+	@Pattern(regexp = "(^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*)|(<<from coordinates>>)", message = "Please pick a city from the list")
 	private String city;
+	
+	private double longitude;
+	private double latitude;
 	
 	@NotNull(message = "Requires a number")
 	@Min(value = 0, message = "Please enter a positive distance")
@@ -63,6 +66,22 @@ public class SearchForm {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+	
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+	
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 	public Integer getRadius() {

@@ -63,9 +63,13 @@ var RADIUS = 100;
         d3.select(".hoverCircle").remove()
         clicked = true;
         
+        //update form
+        $("#radiusInput").val(Math.round(calculateRadiusPxInKm(e.latlng)));
+        $("#latitude").val(e.latlng.lat);
+        $("#longitude").val(e.latlng.lng);
+        
         setTimeout(function() {
-        	$.get("/getResultsFromMap?coordinates=" + [e.latlng.lat, e.latlng.lng] + "&radius=" 
-        			+ calculateRadiusPxInKm(e.latlng));
+        	$("#searchFormIndex").submit()
         },500)
 	}
     
@@ -79,5 +83,5 @@ var RADIUS = 100;
         var latLngX = mymap.containerPointToLatLng(pointX);
 
         var distanceX = latLngC.distanceTo(latLngX); // calculate distance between c and x (latitude)
-        return distanceX
+        return distanceX / 1000
     }
