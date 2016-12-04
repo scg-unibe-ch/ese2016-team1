@@ -35,19 +35,21 @@
 			enabled : true,
 			autoFocus : true
 		});
-		$("#field-moveInDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-		$("#field-moveOutDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
 		
 		flatpickr(".flatpickr", {
 		    enableTime: true
 		});
 		
-		$("#field-visitDay").datepicker({
-			dateFormat : 'dd-mm-yy'
+		flatpickr("#field-moveInDate", {
+		    enableTime: false,
+		});
+		
+		flatpickr("#field-moveOutDate", {
+		    enableTime: false
+		});
+		
+		flatpickr("#field-visitDay", {
+		    enableTime: false
 		});
 		
 
@@ -194,10 +196,10 @@
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
-						path="moveInDate" />
+						path="moveInDate" placeholder="Choose a date"/>
 				<form:errors path="moveInDate" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" /></td>
+						path="moveOutDate" placeholder="Choose a date"/></td>
 			</tr>
 
 			<tr>
@@ -265,7 +267,7 @@
 						placeholder="Start Bidding" step="50"/><span id="currentBidding_Error" class="validationErrorText" 
 						style="display:none">Should not be null</span></td>
 				<td><form:input type="text" class="flatpickr" id="field-endOfAuction"
-						path="endOfAuction"/><span id="field-endOfAuction_Error" class="validationErrorText" 
+						path="endOfAuction" placeholder="Choose a date"/><span id="field-endOfAuction_Error" class="validationErrorText" 
 						style="display:none">Should not be null</span></td>
 			</tr>
 			<tr>
@@ -381,7 +383,7 @@
 
 		<table>
 			<tr>
-				<td><input type="text" id="field-visitDay" /> <select
+				<td><input type="text" id="field-visitDay" placeholder="Choose a date"/> <select
 					id="startHour">
 						<%
 							for (int i = 0; i < 24; i++) {

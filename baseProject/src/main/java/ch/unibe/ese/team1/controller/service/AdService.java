@@ -101,22 +101,22 @@ public class AdService {
 		try {
 			if (placeAdForm.getMoveInDate().length() >= 1) {
 				int dayMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
-						.substring(0, 2));
+						.substring(8, 10));
 				int monthMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
-						.substring(3, 5));
+						.substring(5, 7));
 				int yearMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
-						.substring(6, 10));
+						.substring(0, 4));
 				calendar.set(yearMoveIn, monthMoveIn - 1, dayMoveIn);
 				ad.setMoveInDate(calendar.getTime());
 			}
 
 			if (placeAdForm.getMoveOutDate().length() >= 1) {
 				int dayMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
-						.substring(0, 2));
+						.substring(8, 10));
 				int monthMoveOut = Integer.parseInt(placeAdForm
-						.getMoveOutDate().substring(3, 5));
+						.getMoveOutDate().substring(5, 7));
 				int yearMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
-						.substring(6, 10));
+						.substring(0, 4));
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}

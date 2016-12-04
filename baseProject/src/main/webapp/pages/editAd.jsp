@@ -83,19 +83,21 @@
 			enabled : true,
 			autoFocus : true
 		});
-		$("#field-moveInDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-		$("#field-moveOutDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-		
-		$("#field-visitDay").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
 		
 		flatpickr(".flatpickr", {
 		    enableTime: true
+		});
+		
+		flatpickr("#field-moveInDate", {
+		    enableTime: false,
+		});
+		
+		flatpickr("#field-moveOutDate", {
+		    enableTime: false
+		});
+		
+		flatpickr("#field-visitDay", {
+		    enableTime: false
 		});
 		
 		$("#addbutton").click(function() {
@@ -200,9 +202,9 @@
 
 <!-- format the dates -->
 <fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
-	type="date" pattern="dd-MM-yyyy" />
+	type="date" pattern="yyyy-MM-dd" />
 <fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
-	type="date" pattern="dd-MM-yyyy" />
+	type="date" pattern="yyyy-MM-dd" />
 <fmt:formatDate value="${ad.endOfAuction}" var="formattedEndOfAuctionDate"
 	type="date" pattern="yyyy-MM-dd HH:mm" />	
 	
@@ -278,11 +280,11 @@
 			<tr>
 				<td>
 					<form:input type="text" id="field-moveInDate"
-						path="moveInDate" value="${formattedMoveInDate }"/>
+						path="moveInDate" value="${formattedMoveInDate }" placeholder="Choose a date"/>
 				</td>
 				<td>
 					<form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" value="${formattedMoveOutDate }"/>
+						path="moveOutDate" value="${formattedMoveOutDate }" placeholder="Choose a date"/>
 				</td>
 			</tr>
 			<tr>
@@ -361,7 +363,7 @@
 				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${ad.currentBidding}"
 						placeholder="Start Bidding" step="50" /> <form:errors
 						path="currentBidding" cssClass="validationErrorText" /></td>
-				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" value="${formattedEndOfAuctionDate}"
+				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate}"
 						path="endOfAuction" /></td>
 			</tr>
 			<tr>
@@ -572,7 +574,7 @@
 		<table>
 			<tr>
 				<td>
-					<input type="text" id="field-visitDay" />
+					<input type="text" id="field-visitDay" placeholder="Choose a date"/>
 					
 					<select id="startHour">
  					<% 
