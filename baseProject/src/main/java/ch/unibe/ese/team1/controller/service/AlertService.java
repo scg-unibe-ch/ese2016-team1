@@ -116,12 +116,9 @@ public class AlertService {
 					 || cableMismatchWith(ad, alert) || internetMismatchWith(ad, alert)
 					 || animalsMismatchWith(ad, alert) || balconyMismatchWith(ad, alert)
 					 || furnishedMismatchWith(ad, alert) || garageMismatchWith(ad, alert)
-<<<<<<< HEAD
-					 || moveInDateMismatchWith(ad, alert) || moveOutDateMismatchWith(ad, alert))
-=======
+					 || moveInDateMismatchWith(ad, alert) || moveOutDateMismatchWith(ad, alert)
 					 || moveInDateMismatchWith(ad, alert) || moveOutDateMismatchWith(ad, alert)
 					 || buyMismatchWith(ad, alert) || rentMismatchWith(ad, alert))
->>>>>>> 34637d69e0b2861d46a88e78d16259a7d9fb4805
 				alertIterator.remove();
 		}
 

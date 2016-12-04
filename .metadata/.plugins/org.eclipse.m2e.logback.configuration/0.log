@@ -135,3 +135,24 @@
 2016-11-29 17:42:51,712 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
 2016-11-29 17:42:51,714 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2016-11-29 17:42:51,714 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-11-29 18:42:09,576 [Worker-31] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: ch.unibe.ese.team1:team1-room-platform:0.0.1-SNAPSHOT @ C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\pom.xml.
+2016-11-29 18:42:10,762 [Worker-31] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/webjars/leaflet/0.7/leaflet-0.7.pom
+2016-11-29 18:42:10,922 [Worker-31] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/webjars/leaflet/0.7/leaflet-0.7.pom
+2016-11-29 18:42:11,059 [Worker-31] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading https://repo.maven.apache.org/maven2/org/webjars/leaflet/0.7/leaflet-0.7.jar
+2016-11-29 18:42:11,644 [Worker-31] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded https://repo.maven.apache.org/maven2/org/webjars/leaflet/0.7/leaflet-0.7.jar
+2016-11-29 18:42:12,715 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-11-29 18:42:12,715 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-11-29 18:42:12,717 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-11-29 18:42:12,717 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-11-29 18:42:14,775 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-11-29 18:42:14,776 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-11-29 18:42:14,777 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-11-29 18:42:14,777 [Worker-23] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-11-29 20:05:22,015 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-11-29 20:05:22,016 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-11-29 20:05:22,016 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-11-29 20:05:22,016 [Worker-39] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-11-29 20:05:46,839 [main] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache file is out-of-date. Remote download required.
+2016-11-29 20:05:49,731 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2016-11-29 20:05:57,850 [Worker-40] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject
+2016-11-29 20:05:57,851 [Worker-40] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B jetty:stop jetty:run
