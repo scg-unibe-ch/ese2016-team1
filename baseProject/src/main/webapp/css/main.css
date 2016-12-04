@@ -438,6 +438,19 @@ footer nav ul li {
 	cursor: pointer;
 }
 
+#indexDescription {
+	position: absolute;
+    z-index: 1000;
+    margin: auto;
+    background-color: white;
+    border-bottom-left-radius: 15px;
+    padding: 10px;
+    font-size: 20px;
+    right: -1px;
+    color: white;
+    background-color: rgba(46, 85, 69, 0.48);
+}
+
 .hoverCircle {
 	fill: orange;
 	opacity: 0.3;

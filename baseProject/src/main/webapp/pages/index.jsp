@@ -18,7 +18,10 @@
 </head>
 <body>
 
-<div id="indexMap"></div>
+<div id="indexMap"> 
+<p id="indexDescription">Click on the map to quick-search alerts in specified radius</p>
+
+</div>
 
 <script>
 	$(document).ready(function() {

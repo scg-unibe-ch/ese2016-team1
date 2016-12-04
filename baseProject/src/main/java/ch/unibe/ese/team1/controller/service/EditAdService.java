@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.AdPicture;
+import ch.unibe.ese.team1.model.Location;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.Visit;
 import ch.unibe.ese.team1.model.dao.AdDao;
@@ -36,6 +37,9 @@ public class EditAdService {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private GeoDataService geoDataService;
 
 	/**
 	 * Handles persisting an edited ad to the database.
@@ -71,6 +75,17 @@ public class EditAdService {
 		String zip = placeAdForm.getCity().substring(0, 4);
 		ad.setZipcode(Integer.parseInt(zip));
 		ad.setCity(placeAdForm.getCity().substring(7));
+		
+		//add location to add
+		List<Location> searchedLocations = geoDataService.getLocationsByCity(ad.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(ad.getCity()).get(0);
+			ad.setLatitude(searchedLocation.getLatitude());
+			ad.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			ad.setLatitude(-1);
+			ad.setLongitude(-1);
+		}
 
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
