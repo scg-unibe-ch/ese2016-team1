@@ -133,7 +133,7 @@ public class ProfileController {
 			model = new ModelAndView("updatedProfile");
 			
 			model.addObject("message",
-					"Something went wrong, please contact the WebAdmin if the problem persists!" + editProfileForm.getSubmitType() );
+					"Something went wrong, please contact the WebAdmin if the problem persists!");
 			return model;
 		}
 	}

@@ -16,16 +16,34 @@
 <script>
 function setSubmitTypeUpdate(form)
 {
-	var submitType = document.getElementById('submitTypeUpdate');
+	var submitType = document.getElementById('submitType');
+	var creditCard = document.getElementById('field-creditCard');
+
 	submitType.value = "update";
+	creditCard.style.color = "white";
+	creditCard.value = "nil";
 }
 </script>
 
 <script>
 function setSubmitTypeUpgrade(form)
 {
-	var submitType = document.getElementById('submitTypeUpgrade');
+	var submitType = document.getElementById('submitType');
+	var userName = document.getElementById('user-name');
+	var firstName = document.getElementById('first-name');
+	var lastName = document.getElementById('last-name');
+	var password = document.getElementById('password');
+	
+	
 	submitType.value = "upgrade";
+	userName.style.color = "white";
+	firstName.style.color = "white";
+	lastName.style.color = "white";
+	password.style.color = "white";
+	userName.value = "nil";
+	firstName.value = "nil";
+	lastName.value = "nil";
+	password.value = "nil";
 }
 </script>
 
@@ -77,29 +95,27 @@ function setSubmitTypeUpgrade(form)
 		<form:textarea id="about-me" path="aboutMe" rows="10" cols="100" /></td>
 	</tr>
 </table>
-	<form:input style="display:none" name="submitTypeUpdate" id="submitTypeUpdate" path="submitType" />
+	<form:input style="display:none" name="submitType" id="submitType" path="submitType" />
 	<button type="submit" onClick="setSubmitTypeUpdate(this.form)">Update</button>
-</form:form>
 
 <hr class="slim">
 <c:choose>
 	<c:when test = "${currentUser.premium == false}">
 		<h2>Upgrade to Premium</h2>Your Advantages with FlatFinder-Premium:<br /><li>Instant alerts messages.
-		<form:form method="post" modelAttribute="editProfileForm" id="upgradeProfile" autocomplete="off" enctype="multipart/form-data">
 			<table class="editProfileTable">
 				<tr>
 					<td><label for="creditCard">Credit Card</label><br />
 				<form:input type="text" id="field-creditCard" path="creditCard" /></td>
 				</tr>
 			</table>
-			<form:input style="display:none" name="submitTypeUpgrade" id="submitTypeUpgrade" path="submitType" />
 			<button type="submit" onClick="setSubmitTypeUpgrade(this.form)">Upgrade</button>
-		</form:form>
 	</c:when>
 	<c:otherwise>
 	<h2>You are using FlatFinder-Premium, congratulation!</h2>Your Advantages:<br /><li>Instant alert messages.
+	<form:input style="display:none" type="text" id="field-creditCard" path="creditCard" /><
 	</c:otherwise>
 </c:choose>
+</form:form>
 
 <c:import url="template/footer.jsp" />
 
