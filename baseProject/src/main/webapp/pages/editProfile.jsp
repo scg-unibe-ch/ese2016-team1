@@ -112,7 +112,7 @@ function setSubmitTypeUpgrade(form)
 	</c:when>
 	<c:otherwise>
 	<h2>You are using FlatFinder-Premium, congratulation!</h2>Your Advantages:<br /><li>Instant alert messages.
-	<form:input style="display:none" type="text" id="field-creditCard" path="creditCard" /><
+	<form:input style="display:none" type="text" id="field-creditCard" path="creditCard" />
 	</c:otherwise>
 </c:choose>
 </form:form>

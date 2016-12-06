@@ -140,6 +140,37 @@
 		$("#buyOutPrice").val(price);
 		$("#retailPrice").val(price);
 	}
+	
+	//Handles problems by displaying error-messages.
+	function setUpDefaultValues(form)
+	{
+		//Inputs
+		var endOfAuction = document.getElementById('field-endOfAuction');
+		var prize = document.getElementById('field-Prize');
+		var retailPrize = document.getElementById('retailPrice')
+		var currentBidding = document.getElementById('buyOutPrice');
+		
+		//Radiobuttons
+		var rent = document.getElementById('saleType-Rent');
+		var buy = document.getElementById('saleType-Buy');
+		var auction = document.getElementById('saleType-Auction');
+		
+		if(rent.checked == true) {
+			//endOfAuction.value = "nil";
+			retailPrize.value = 0;
+			currentBidding.value = 0;
+		}
+		
+		if(buy.checked == true) {
+			//endOfAuction.value = "nil";
+			prize.value = 0;
+			currentBidding.value = 0;
+		}
+		
+		if(auction.checked == true) {
+			prize.value = 0;
+		}
+	}
 </script>
 
 <pre>
@@ -248,7 +279,7 @@
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" 
 						onchange="cloneRetailPrice(this.value)"/>
-					<form:errors path="prize" cssClass="validationErrorText" /></td>
+					<form:errors path="retailPrice" cssClass="validationErrorText" /></td>
 			</tr>
 
 		</table>
@@ -264,11 +295,11 @@
 			</tr>
 			<tr>
 				<td><form:input id="currentBidding" type="number" path="currentBidding"
-						placeholder="Start Bidding" step="50"/><span id="currentBidding_Error" class="validationErrorText" 
-						style="display:none">Should not be null</span></td>
+						placeholder="Start Bidding" step="50"/>
+						<form:errors path="currentBidding" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" class="flatpickr" id="field-endOfAuction"
-						path="endOfAuction" placeholder="Choose a date"/><span id="field-endOfAuction_Error" class="validationErrorText" 
-						style="display:none">Should not be null</span></td>
+						path="endOfAuction" placeholder="Choose a date"/>
+						<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
 			</tr>
 			<tr>
 				<td><label for="retailPrice">Buy Out Price</label></td>
@@ -276,8 +307,7 @@
 			<tr>
 				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
 						placeholder="Buy Out Price" step="50"  onchange="cloneRetailPrice(this.value)"/>
-						<span id="buyOutPrice_Error" class="validationErrorText" 
-						style="display:none">Must be bigger than start bidding</span></td>
+						<form:errors path="retailPrice" cssClass="validationErrorText" /></td>
 			</tr>
 
 		</table>
@@ -434,7 +464,7 @@
 
 	<br />
 	<div>
-		<button type="submit">Submit</button>
+		<button type="submit" onClick="setUpDefaultValues(this.form)">Submit</button>
 		<a href="/"><button type="button">Cancel</button></a>
 	</div>
 

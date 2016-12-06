@@ -198,6 +198,37 @@
 		$("#buyOutPrice").val(price);
 		$("#retailPrice").val(price);
 	}
+	
+	//Handles problems by displaying error-messages.
+	function setUpDefaultValues(form)
+	{
+		//Inputs
+		var endOfAuction = document.getElementById('field-endOfAuction');
+		var prize = document.getElementById('field-Prize');
+		var retailPrize = document.getElementById('retailPrice')
+		var currentBidding = document.getElementById('buyOutPrice');
+		
+		//Radiobuttons
+		var rent = document.getElementById('saleType-Rent');
+		var buy = document.getElementById('saleType-Buy');
+		var auction = document.getElementById('saleType-Auction');
+		
+		if(rent.checked == true) {
+			endOfAuction.value = "nil";
+			retailPrize.value = 0;
+			currentBidding.value = 0;
+		}
+		
+		if(buy.checked == true) {
+			endOfAuction.value = "nil";
+			prize.value = 0;
+			currentBidding.value = 0;
+		}
+		
+		if(auction.checked == true) {
+			prize.value = 0;
+		}
+	}
 </script>
 
 <!-- format the dates -->
@@ -364,7 +395,8 @@
 						placeholder="Start Bidding" step="50" /> <form:errors
 						path="currentBidding" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate}"
-						path="endOfAuction" /></td>
+						path="endOfAuction" />
+						<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
 			</tr>
 			<tr>
 				<td><label for="buyOutPrice">Buy Out Price</label></td>
@@ -660,7 +692,7 @@
 	</fieldset>
 
 	<div>
-		<button type="submit">Submit</button>
+		<button type="submit" onClick="setUpDefaultValues(this.form)">Submit</button>
 		<c:choose>
 		<c:when test="${ad.altId != 0}">
 			<a href="<c:url value='/ad?id=${ad.id}' />"> 
