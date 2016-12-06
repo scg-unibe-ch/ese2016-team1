@@ -205,14 +205,16 @@ public class MakeAuctionController {
 			MailService mail = new MailService();
 			if (price >= ad.getRetailPrice()) {
 				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
-				mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
+				if(ad.getUser().getPremium())
+					mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Congratulations, you just have bought out this auction!");
 				
 			}
 			else{
 				message.setText("Someone has bidded on your auction. It has now risen to " + ad.getCurrentBidding() + ": <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
-				mail.sendEmail(ad.getUser().getEmail(),3,"http://localhost:8080/ad?id="+id);
+				if(ad.getUser().getPremium())
+					mail.sendEmail(ad.getUser().getEmail(),3,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Your Bidding has been placed. You are now the current highest Bidder!");
 				

@@ -101,7 +101,9 @@ function setSubmitTypeUpgrade(form)
 <hr class="slim">
 <c:choose>
 	<c:when test = "${currentUser.premium == false}">
-		<h2>Upgrade to Premium</h2>Your Advantages with FlatFinder-Premium:<br /><li>Instant alerts messages.
+		<h2>Upgrade to Premium</h2>Your Advantages with FlatFinder-Premium:<br />
+		<li>Instant alerts messages.
+		<li>Get all informations from your ads on your e-mail address.
 			<table class="editProfileTable">
 				<tr>
 					<td><label for="creditCard">Credit Card</label><br />
@@ -111,7 +113,9 @@ function setSubmitTypeUpgrade(form)
 			<button type="submit" onClick="setSubmitTypeUpgrade(this.form)">Upgrade</button>
 	</c:when>
 	<c:otherwise>
-	<h2>You are using FlatFinder-Premium, congratulation!</h2>Your Advantages:<br /><li>Instant alert messages.
+	<h2>You are using FlatFinder-Premium, congratulation!</h2>Your Advantages:<br />
+		<li>Instant alert messages.
+		<li>You get all informations from your ads on your e-mail address.
 	<form:input style="display:none" type="text" id="field-creditCard" path="creditCard" />
 	</c:otherwise>
 </c:choose>
