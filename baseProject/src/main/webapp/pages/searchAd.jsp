@@ -80,7 +80,7 @@ function validateType(form)
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="searchForm" autocomplete="off">
 	<fieldset>
-		<form:checkbox name="buy" id="buy" path="buy" /><label>Buy</label>
+		<form:checkbox name="buy" id="buy" path="buy" /><label>Buy/Auction</label>
 		<form:checkbox name="rent" id="rent" path="rent" /><label>Rent</label>
 		<form:errors path="noBuyNoRent" cssClass="validationErrorText" /><br />
 		

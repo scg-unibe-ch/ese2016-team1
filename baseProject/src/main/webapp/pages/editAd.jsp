@@ -330,17 +330,17 @@
 				<c:choose>
 					<c:when test="${ad.saleType == 'Rent'}">
 						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Sell" onclick="showSettings(this.value)"/>Buy
 				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
 					</c:when>
 					<c:when test="${ad.saleType == 'Buy'}">
 						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Sell" checked="checked" onclick="showSettings(this.value)"/>Buy
 				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
 					</c:when>
 					<c:when test="${ad.saleType == 'Auction'}">
 						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Sell" onclick="showSettings(this.value)"/>Buy
 				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
 					</c:when>
 				</c:choose>

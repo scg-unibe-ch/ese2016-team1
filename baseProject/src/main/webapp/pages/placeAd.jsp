@@ -243,7 +243,7 @@
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
 				<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
-				 <form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Buy
+				 <form:radiobutton id="saleType-Buy"	path="saleType" value="Sell" onclick="showSettings(this.value)"/>Buy
 				 <form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
 			</tr>
 		</table>
@@ -290,7 +290,7 @@
 		<legend>Auction Settings</legend> 
 		<table class="placeAdTable">
 			<tr>
-				<td><label for="currentBidding">Start Bidding</label></td>
+				<td><label for="currentBidding">Start Price</label></td>
 				<td><label for="endOfAuction">End Of Auction</label></td>
 			</tr>
 			<tr>
