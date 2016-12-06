@@ -156,13 +156,13 @@
 		var auction = document.getElementById('saleType-Auction');
 		
 		if(rent.checked == true) {
-			//endOfAuction.value = "nil";
+			endOfAuction.value = "nil";
 			retailPrize.value = 0;
 			currentBidding.value = 0;
 		}
 		
 		if(buy.checked == true) {
-			//endOfAuction.value = "nil";
+			endOfAuction.value = "nil";
 			prize.value = 0;
 			currentBidding.value = 0;
 		}
