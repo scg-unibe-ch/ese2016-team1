@@ -214,19 +214,19 @@
 		var auction = document.getElementById('saleType-Auction');
 		
 		if(rent.checked == true) {
-			//endOfAuction.value = "nil";
+			endOfAuction.value = "nil";
 			retailPrize.value = 0;
 			currentBidding.value = 0;
 		}
 		
 		if(buy.checked == true) {
-			//endOfAuction.value = "nil";
-			prize.value = 0;
+			endOfAuction.value = "nil";
+			//prize.value = 0;
 			currentBidding.value = 0;
 		}
 		
 		if(auction.checked == true) {
-			prize.value = 0;
+			//prize.value = 0;
 		}
 	}
 </script>
@@ -330,17 +330,17 @@
 				<c:choose>
 					<c:when test="${ad.saleType == 'Rent'}">
 						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Sell" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
 				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
 					</c:when>
 					<c:when test="${ad.saleType == 'Buy'}">
 						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Sell" checked="checked" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Sell
 				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
 					</c:when>
 					<c:when test="${ad.saleType == 'Auction'}">
 						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Sell" onclick="showSettings(this.value)"/>Buy
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
 				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
 					</c:when>
 				</c:choose>
@@ -358,8 +358,8 @@
 			<tr>
 				<td>
 					<form:input id="field-Prize" type="number" path="prize" value="${ad.prizePerMonth}"
-						placeholder="Prize per month" step="50"/> <form:errors
-						path="prize" cssClass="validationErrorText" />
+						placeholder="Prize per month" step="50"/>
+						<form:errors path="prize" cssClass="validationErrorText" />
 				</td>
 			</tr>
 

@@ -155,8 +155,6 @@ public class EditAdController {
 					//model = new ModelAndView("redirect:/ad?id=" + ad.getId());
 
 				}
-
-
 			return model;
 		}
 
