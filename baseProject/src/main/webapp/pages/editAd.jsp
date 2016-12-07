@@ -15,6 +15,8 @@
 <link rel="stylesheet" type="text/css"
 	media="only screen and (max-device-width: 480px)"
 	href="/css/smartphone.css" />
+	
+<meta charset="utf-8"> 
 
 <Title>FlatFindr</Title>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
