@@ -503,7 +503,24 @@ public class AdService {
 
 			
 		//}
+		locatedResults = givePriorityToPremium(locatedResults);
 		return locatedResults;
+	}
+	
+	private List<Ad> givePriorityToPremium(List<Ad> ads) {
+		List<Ad> noPremiumAds = new ArrayList<Ad>();
+		Iterator<Ad> iterator = ads.iterator();
+		while(iterator.hasNext()) {
+			Ad ad = iterator.next();
+			User user = ad.getUser();
+			if (!user.getPremium()) {
+				noPremiumAds.add(ad);
+				iterator.remove();
+			}
+		}
+		ads.addAll(noPremiumAds);
+		
+		return ads;
 	}
 
 	private List<Ad> validateDate(List<Ad> ads, boolean inOrOut,
