@@ -43,7 +43,7 @@
 <header>
 	<div class="left">
 		<a href="/"><img src="/img/swisshomes_logo.png"></a>
-		<h1 class="title">SwissHomes</h1>
+		<a href="/"><h1 class="title">SwissHomes</h1></a>
 	</div>
 	<div class="right">
 		<nav>
@@ -78,10 +78,10 @@
 							</ul></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/login">Login</a></li>
+						<li><a href="/login"><img src="/img/login.png" style="width:28px"><span>Login</span></a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a href="<c:url value='/searchAd' />">Search</a></li>
+				<li><a href="<c:url value='/searchAd' />"><img src="/img/search.png" style="width:23px"> <span>Search</span></a></li>
 			</ul>
 		</nav>
 	</div>

@@ -292,7 +292,7 @@ header {
 	min-width: 1100px;
 }
 
-header img {
+header .left img {
 	position: absolute;
 	top: 15px;
 	left: -10px;
@@ -308,6 +308,11 @@ header .title {
 	position: relative;
 	color: #9c3d3d;
 	
+}
+
+header .right {
+	height: 90px;
+    background-color: #9c3d3d;
 }
 
 header a {
@@ -337,6 +342,7 @@ header ul li {
 	line-height: 21px;
 	margin-top: 20px;
 	text-align: center;
+	background-color: #9c3d3d;
 }
 
 #profile_picture {
@@ -384,17 +390,22 @@ header ul li {
 	text-align: left;
 }
 
+header ul li span {
+	position: relative;
+    bottom: 8px;
+    left: 5px;
+}
+
 header ul li a {
 	display: block;
-	padding: 5px 10px;
+	padding: 5px 10px 5px 20px;
 	color: #fff;
-	background: #2dc16d;
 	text-decoration: none;
 }
 
 header ul li a:hover {
-	color: #fff;
-	background: #48db88;
+	color: black;
+	font-weight: bold;
 }
 
 /* it does hide the drop down menu */
@@ -410,7 +421,7 @@ header ul li:hover ul {
 header nav {
 	display: block;
 	float: right;
-	padding: 0px 15px;
+	padding: 10px 0px;
 	font-size: 1.3em;
 }
 
@@ -466,7 +477,6 @@ footer nav ul li {
 	position: absolute;
     z-index: 1000;
     margin: auto;
-    background-color: white;
     border-top-right-radius: 15px;
     padding: 10px;
     font-size: 20px;
