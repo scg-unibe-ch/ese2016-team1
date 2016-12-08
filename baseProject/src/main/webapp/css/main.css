@@ -96,7 +96,10 @@ but not in one String (i.e. in the header) */
 .right {
 	display: inline-block;
 	float: right;
-	padding-right: 8px;
+}
+
+header .right {
+	height: 90px;
 }
 
 .styledTable {
@@ -310,11 +313,6 @@ header .title {
 	
 }
 
-header .right {
-	height: 90px;
-    background-color: #9c3d3d;
-}
-
 header a {
 	text-decoration: none;
 	color: white;
@@ -342,12 +340,16 @@ header ul li {
 	line-height: 21px;
 	margin-top: 20px;
 	text-align: center;
-	background-color: #9c3d3d;
 }
 
 #profile_picture {
 	width: 170px;
 	margin-top: 0px;
+}
+
+#profile_picture ul {
+	background-color: white;
+	
 }
 
 #profile_picture_editPage {
@@ -399,7 +401,7 @@ header ul li span {
 header ul li a {
 	display: block;
 	padding: 5px 10px 5px 20px;
-	color: #fff;
+	color: #9c3d3d;;;
 	text-decoration: none;
 }
 
