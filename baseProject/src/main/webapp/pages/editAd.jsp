@@ -5,62 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
-
-
-<!DOCTYPE html>
-<head>
-<link rel="stylesheet" type="text/css" media="screen"
-	href="/css/main.css">
-<link rel="stylesheet" type="text/css"
-	media="only screen and (max-device-width: 480px)"
-	href="/css/smartphone.css" />
-	
-<meta charset="utf-8"> 
-
-<Title>FlatFindr</Title>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-<link rel="stylesheet"
-	href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
-
-<script src="/js/unreadMessages.js"></script>
-
-<style>
-/* ensure that autocomplete lists are not too long and have a scrollbar */
-.ui-autocomplete {
-	max-height: 200px;
-	overflow-y: auto;
-	overflow-x: hidden;
-}
-</style>
-</head>
-
-<header>
-<div class="left">
-		<img src="/img/logo.png">
-	</div>
-	<div class="right">
-	<nav>
-
-	</nav>
-	</div>
-</header>
-<body>
-<div id="content">
-
-		<c:if test="${not empty confirmationMessage }">
-			<div class="confirmation-message">
-				<img src="/img/check-mark.png" />
-				<p>${confirmationMessage }</p>
-			</div>
-		</c:if>
-
-
-
-
-
+<c:import url="template/header.jsp" />
 
 <script src="/js/jquery.ui.widget.js"></script>
 <script src="/js/jquery.iframe-transport.js"></script>
@@ -71,6 +16,7 @@
 <script src="/js/pictureUploadEditAd.js"></script>
 
 <script src="/js/editAd.js"></script>
+
 
 
 <script>
@@ -216,13 +162,13 @@
 		var auction = document.getElementById('saleType-Auction');
 		
 		if(rent.checked == true) {
-			endOfAuction.value = "nil";
+			endOfAuction.value = "2000-01-01 12:00";
 			retailPrize.value = 0;
 			currentBidding.value = 0;
 		}
 		
 		if(buy.checked == true) {
-			endOfAuction.value = "nil";
+			endOfAuction.value = "2000-01-01 12:00";
 			//prize.value = 0;
 			currentBidding.value = 0;
 		}
@@ -240,6 +186,14 @@
 	type="date" pattern="yyyy-MM-dd" />
 <fmt:formatDate value="${ad.endOfAuction}" var="formattedEndOfAuctionDate"
 	type="date" pattern="yyyy-MM-dd HH:mm" />	
+
+<fmt:formatDate value="${placeFormAd.moveInDate}" var="formattedMoveInDate2"
+	type="date" pattern="yyyy-MM-dd" />
+<fmt:formatDate value="${placeFormAd.moveOutDate}" var="formattedMoveOutDate2"
+	type="date" pattern="yyyy-MM-dd" />
+<fmt:formatDate value="${placeFormAd.endOfAuction}" var="formattedEndOfAuctionDate2"
+	type="date" pattern="yyyy-MM-dd HH:mm" />	
+
 	
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
 
@@ -262,8 +216,15 @@
 			</tr>
 
 			<tr>
+			
+			<c:choose>
+				<c:when test="${ad.altId != 0}">
+				
 				<td><form:input id="field-title" path="title" value="${ad.title}" /></td>
 				<td>
+				
+
+				
 					<c:choose>
 						<c:when test="${ad.roomType == 'Room'}">
 							<form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room 
@@ -290,6 +251,47 @@
 							<form:radiobutton id="type-studio" path="roomType" value="House" checked="checked" />House
 						</c:otherwise>
 					</c:choose>
+					
+					
+					
+				</c:when>
+				<c:otherwise>
+				
+				<td><form:input id="field-title" path="title" value="${placeAdForm.title}" /></td>
+				<td>
+				
+					<c:choose>
+						<c:when test="${placeAdForm.roomType == 'Room'}">
+							<form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />House
+						</c:when>
+						<c:when test="${placeAdForm.roomType == 'Studio'}">
+							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" checked="checked" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />House
+						</c:when>
+						<c:when test="${placeAdForm.roomType == 'Flat'}">
+							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" checked="checked" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" />House
+						</c:when>
+						<c:otherwise>
+							<form:radiobutton id="type-room" path="roomType" value="Room" />Room 
+							<form:radiobutton id="type-studio" path="roomType" value="Studio" />Studio 
+							<form:radiobutton id="type-studio" path="roomType" value="Flat" />Flat 
+							<form:radiobutton id="type-studio" path="roomType" value="House" checked="checked" />House
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>	
+				
+				</c:choose>
+					
+					
+					
 			</tr>
 
 			<tr>
@@ -298,12 +300,30 @@
 			</tr>
 
 			<tr>
+			
+			
+		<c:choose>
+		<c:when test="${ad.altId != 0}">
+			
 				<td><form:input id="field-street" path="street"
 						value="${ad.street}" /></td>
 				<td>
 					<form:input id="field-city" path="city" value="${ad.zipcode} - ${ad.city}" />
 					<form:errors path="city" cssClass="validationErrorText" />
 				</td>
+		
+		</c:when>
+		<c:otherwise>
+				<td><form:input id="field-street" path="street"
+						value="${placeAdForm.getStreet()}" /></td>
+				<td>
+					<form:input id="field-city" path="city" value="${placeAdForm.getCity()}" />
+					<form:errors path="city" cssClass="validationErrorText" />
+				</td>
+		</c:otherwise>		
+		</c:choose>		
+				
+				
 			</tr>
 
 			<tr>
@@ -311,6 +331,10 @@
 				<td><label for="moveOutDate">Move-out date (optional)</label></td>
 			</tr>
 			<tr>
+			
+			<c:choose>
+				<c:when test="${ad.altId != 0}">
+			
 				<td>
 					<form:input type="text" id="field-moveInDate"
 						path="moveInDate" value="${formattedMoveInDate }" placeholder="Choose a date"/>
@@ -319,12 +343,34 @@
 					<form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" value="${formattedMoveOutDate }" placeholder="Choose a date"/>
 				</td>
+				
+				</c:when>
+				<c:otherwise>
+				
+				<td>
+					<form:input type="text" id="field-moveInDate"
+						path="moveInDate" value="${formattedMoveInDate2 }" placeholder="Choose a date"/>
+				</td>
+				<td>
+					<form:input type="text" id="field-moveOutDate"
+						path="moveOutDate" value="${formattedMoveOutDate2 }" placeholder="Choose a date"/>
+				</td>
+				
+				</c:otherwise>
+			</c:choose>	
+				
+				
 			</tr>
 			<tr>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 				<td><label for="field-SaleType">Sale Type</label>
 			</tr>
 			<tr>
+			
+			<c:choose>
+				<c:when test="${ad.altId != 0}">
+			
+			
 				<td><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" value="${ad.squareFootage}" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
@@ -346,6 +392,37 @@
 				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
 					</c:when>
 				</c:choose>
+				
+				
+				</c:when>
+				<c:otherwise>
+				
+				
+				<td><form:input id="field-SquareFootage" type="number"
+						path="squareFootage" value="${placeAdForm.squareFootage}" placeholder="Prize per month" step="5" /> <form:errors
+						path="squareFootage" cssClass="validationErrorText" /></td>
+						
+				<c:choose>
+					<c:when test="${placeAdForm.saleType == 'Rent'}">
+						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
+				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+					</c:when>
+					<c:when test="${placeAdForm.saleType == 'Buy'}">
+						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Sell
+				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+					</c:when>
+					<c:when test="${placeAdForm.saleType == 'Auction'}">
+						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
+				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
+					</c:when>
+				</c:choose>
+				
+				</c:otherwise>
+			</c:choose>	
+				
 			</tr>
 		</table>
 	</fieldset>
@@ -359,9 +436,25 @@
 			</tr>
 			<tr>
 				<td>
+				
+				<c:choose>
+				<c:when test="${ad.altId != 0}">
+				
+				
 					<form:input id="field-Prize" type="number" path="prize" value="${ad.prizePerMonth}"
 						placeholder="Prize per month" step="50"/>
 						<form:errors path="prize" cssClass="validationErrorText" />
+				
+				</c:when>
+				<c:otherwise>
+				<form:input id="field-Prize" type="number" path="prize" value="${placeAdForm.prize}"
+						placeholder="Prize per month" step="50"/>
+						<form:errors path="prize" cssClass="validationErrorText" />
+				
+				</c:otherwise>
+			</c:choose>	
+				
+				
 				</td>
 			</tr>
 
@@ -376,9 +469,24 @@
 				<td><label for="retailPrice">Retail Price</label></td>
 			</tr>
 			<tr>
+			
+			<c:choose>
+				<c:when test="${ad.altId != 0}">
+				
+				
 				<td><form:input id="retailPrice" type="number" path="retailPrice" value="${ad.retailPrice}"
 						placeholder="Retail Price" step="50" onchange="cloneRetailPrice(this.value)"/> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
+			
+				</c:when>
+				<c:otherwise>
+				<td><form:input id="retailPrice" type="number" path="retailPrice" value="${placeAdForm.retailPrice}"
+						placeholder="Retail Price" step="50" onchange="cloneRetailPrice(this.value)"/> <form:errors
+						path="retailPrice" cssClass="validationErrorText" /></td>
+				</c:otherwise>
+			</c:choose>	
+			
+			
 			</tr>
 
 		</table>
@@ -393,21 +501,63 @@
 				<td><label for="endOfAuction">End Of Auction</label></td>
 			</tr>
 			<tr>
+			
+			
+			<c:choose>
+				<c:when test="${ad.altId != 0}">
+				
+			
 				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${ad.currentBidding}"
 						placeholder="Start Bidding" step="50" /> <form:errors
 						path="currentBidding" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate}"
 						path="endOfAuction" />
 						<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
+			
+			
+				</c:when>
+				<c:otherwise>
+			
+				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${placeAdForm.currentBidding}"
+						placeholder="Start Bidding" step="50" /> <form:errors
+						path="currentBidding" cssClass="validationErrorText" /></td>
+				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate2}"
+						path="endOfAuction" />
+						<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
+			
+				</c:otherwise>
+			</c:choose>	
+			
+			
+			
+			
+			
 			</tr>
 			<tr>
 				<td><label for="buyOutPrice">Buy Out Price</label></td>
 			</tr>
 			<tr>
+			
+			<c:choose>
+				<c:when test="${ad.altId != 0}">
+				
+			
 				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
 						placeholder="Buy Out Price" step="50" value="${ad.retailPrice }"
 						onchange="cloneRetailPrice(this.value)"/> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
+			
+				</c:when>
+				<c:otherwise>
+			
+			
+				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
+						placeholder="Buy Out Price" step="50" value="${ad.retailPrice }"
+						onchange="cloneRetailPrice(this.value)"/> <form:errors
+						path="retailPrice" cssClass="validationErrorText" /></td>
+			
+				</c:otherwise>
+			</c:choose>	
 			</tr>
 
 		</table>
@@ -584,6 +734,12 @@
 						<th>Delete</th>
 					</tr>
 					
+					<c:choose>
+					<c:when test="${ad.altId != 0}">
+				
+			
+					
+					
 					<c:forEach var="user" items="${ad.registeredRoommates}">
 							<tr>
 								<td>${user.username}</td>
@@ -591,6 +747,20 @@
 							</tr>
 							<tr>
 					</c:forEach>
+					
+					
+					
+					</c:when>
+					<c:otherwise>
+					
+		
+					
+					</c:otherwise>
+					</c:choose>
+					
+					
+					
+					
 		</table>
 	</fieldset>
 
@@ -694,30 +864,14 @@
 	</fieldset>
 
 	<div>
-		<button type="submit" onClick="setUpDefaultValues(this.form)">Submit</button>
-		<c:choose>
-		<c:when test="${ad.altId != 0}">
-			<a href="<c:url value='/ad?id=${ad.id}' />"> 
-				<button type="button">Cancel</button>
-			</a>
-		</c:when>
-		<c:otherwise>
-		
-	
-						
-		</c:otherwise>
-		</c:choose>
+		<button type="submit">Submit</button>
+		<a href="<c:url value='/ad?id=${ad.id}' />"> 
+			<button type="button">Cancel</button>
+		</a>
 	</div>
 
 </form:form>
 
 
+<c:import url="template/footer.jsp" />
 
-</div>
-<p class="clearBoth"></p>
-<footer>
-<nav>	
-</nav>
-</footer>
-
-</body> 

@@ -1,5 +1,7 @@
 package ch.unibe.ese.team1.controller.pojos.forms;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,9 +9,21 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.unibe.ese.team1.controller.service.UserService;
+import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.dao.UserDao;
 
 /** This form is used when a user wants to place a new ad. */
 public class PlaceAdForm {
+	
+	
+	@Autowired
+	private UserDao userDao;
+	
+	
+	
 	
 	@NotBlank(message = "Required")
 	private String title;
@@ -295,5 +309,20 @@ public class PlaceAdForm {
 	
 	public void setCurrentBuyer(String currentBuyer){
 		this.currentBuyer = currentBuyer;
+	}
+	
+	public List<User> getRoommatesAsUsers(){
+		List<User> roomies = new ArrayList<User>();
+		roomies = null;
+		
+		for (String tempName : registeredRoommateEmails) {
+			//UserDao userDao = null;
+			User tempUser = userDao.findByUsername(tempName);
+			if(tempUser!=null){
+				roomies.add(tempUser);
+			}
+		}
+		
+		return roomies;
 	}
 }

@@ -103,56 +103,55 @@ public class EditAdController {
 				String username = principal.getName();
 				User user = userService.findUserByUsername(username);
 
-				String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-				if (pictureUploader == null) {
-					pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
-				}
-				List<String> fileNames = pictureUploader.getFileNames();
 				
-				
-				
-				
-				
-				if ((!result.hasErrors()) && (placeAdForm.getCity().length() > 7) && (placeAdForm.getMoveInDate().length() == 10) && ((placeAdForm.getEndOfAuction().length() == 16) || (placeAdForm.getEndOfAuction().length() == 0)) && ((placeAdForm.getMoveOutDate().length() == 10) || (placeAdForm.getMoveOutDate().length() == 0))) {
+				if ((!result.hasErrors())     ){// && (placeAdForm.getCity().length() > 7) && (placeAdForm.getMoveInDate().length() == 10) && ((placeAdForm.getEndOfAuction().length() == 16) || (placeAdForm.getEndOfAuction().length() == 0)) && ((placeAdForm.getMoveOutDate().length() == 10) || (placeAdForm.getMoveOutDate().length() == 0))) {
 				try{
 				
+					String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
+					if (pictureUploader == null) {
+						pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+					}
+					List<String> fileNames = pictureUploader.getFileNames();
+					
+					
+					
+					
 					Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId);
 
 					
-				// triggers all alerts that match the placed ad
-				alertService.triggerAlerts(ad);
+					// triggers all alerts that match the placed ad
+					alertService.triggerAlerts(ad);
 				
-				// reset the picture uploader
-				this.pictureUploader = null;
-							
-							
-							
-				
+					// reset the picture uploader
+					this.pictureUploader = null;
 
-				model = new ModelAndView("redirect:/ad?id=" + ad.getId());
-				redirectAttributes.addFlashAttribute("confirmationMessage",
-						"Ad edited successfully. You can take a look at it below.");
-				}
-				catch(Error e){
-					model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
-					redirectAttributes.addFlashAttribute("errorMessage",
+					model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+					redirectAttributes.addFlashAttribute("confirmationMessage",
+							"Ad edited successfully. You can take a look at it below.");
+					}
+					catch(Error e){
+						model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
+						redirectAttributes.addFlashAttribute("errorMessage",
 							"There was an error. Check if your inputs are correct and try again."  );
 					
-				}
-			} 
-			else {
+					}
+				} 
+				else {
 					model=new ModelAndView("editAd");
-					//Ad ad = adService.getAdById(adId);
-					Ad ad = editAdService.saveFakeFrom(placeAdForm, fileNames, user, adId);
 
-					//String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-					pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+					String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
+					if (pictureUploader == null) {
+						pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+					}
 					
-					//adId = (2^63-1);
+					model = new ModelAndView("editAd");
+					Ad ad = adService.getAdById(adId);
+					
+					ad.setAltId(0);
 					
 					model.addObject("ad", ad);
-					
-					//model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+
+					model.addObject("placeAdForm", placeAdForm);
 
 				}
 			return model;
