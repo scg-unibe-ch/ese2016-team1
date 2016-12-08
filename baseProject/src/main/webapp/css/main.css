@@ -74,7 +74,7 @@ pre a {
 we fix the body in the exactly right position*/
 body {
 	color: gray;
-	padding-top: 60px;
+	padding-top: 80px;
 	padding-bottom: 40px;
 	min-width: 1100px;
 }
@@ -280,15 +280,34 @@ button {
 /* -------------------------------------------------------------------- */
 /* Header & Footer */
 header {
-	color: white;
-	background: #2dc16d;
+	color: black;
+	background: white;
+	border-bottom: 3px solid black;
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	right: 0px;
-	height: 70px;
+	height: 90px;
 	z-index: 1;
 	min-width: 1100px;
+}
+
+header img {
+	position: absolute;
+	top: 15px;
+	left: -10px;
+	height: 85px;
+	width: 240px;
+}
+
+header .title {
+	font-size: 4.2em;
+	left: 230px;
+	top: 10px;
+	font-style: italic;
+	position: relative;
+	color: #9c3d3d;
+	
 }
 
 header a {
@@ -396,8 +415,9 @@ header nav {
 }
 
 footer {
-	color: white;
-	background: #2dc16d;
+	color: black;
+	background: white;
+	border-top: 3px solid black;
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
@@ -437,7 +457,7 @@ footer nav ul li {
 
 #indexMap {
 	width: 100%;
-	height: calc(100vh - 110px);
+	height: calc(100vh - 130px);
 	z-index: 0;
 	cursor: pointer;
 }

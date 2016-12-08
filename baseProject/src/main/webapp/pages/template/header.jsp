@@ -42,7 +42,8 @@
 
 <header>
 	<div class="left">
-		<a href="/"><img src="/img/logo.png"></a>
+		<a href="/"><img src="/img/swisshomes_logo.png"></a>
+		<h1 class="title">SwissHomes</h1>
 	</div>
 	<div class="right">
 		<nav>
