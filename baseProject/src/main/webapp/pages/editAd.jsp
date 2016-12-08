@@ -155,11 +155,21 @@
 		var prize = document.getElementById('field-Prize');
 		var retailPrize = document.getElementById('retailPrice')
 		var currentBidding = document.getElementById('buyOutPrice');
+		var squareFootage = document.getElementById('field-SquareFootage');
 		
 		//Radiobuttons
 		var rent = document.getElementById('saleType-Rent');
 		var buy = document.getElementById('saleType-Buy');
 		var auction = document.getElementById('saleType-Auction');
+
+		if(prize.value == null || prize.value == "")
+			prize.value = 0;
+		if(retailPrize.value == null || retailPrize.value == "")
+			retailPrize.value = 0;
+		if(currentBidding.value == null || currentBidding.value == "")
+			currentBidding.value = 0;
+		if(squareFootage.value == null || squareFootage.value == "")
+			squareFootage.value = 0;
 		
 		if(rent.checked == true) {
 			endOfAuction.value = "2000-01-01 12:00";
@@ -169,12 +179,12 @@
 		
 		if(buy.checked == true) {
 			endOfAuction.value = "2000-01-01 12:00";
-			//prize.value = 0;
+			prize.value = 0;
 			currentBidding.value = 0;
 		}
 		
 		if(auction.checked == true) {
-			//prize.value = 0;
+			prize.value = 0;
 		}
 	}
 </script>
@@ -220,7 +230,8 @@
 			<c:choose>
 				<c:when test="${ad.altId != 0}">
 				
-				<td><form:input id="field-title" path="title" value="${ad.title}" /></td>
+				<td><form:input id="field-title" path="title" value="${ad.title}" />				
+					<form:errors path="title" cssClass="validationErrorText" /></td>
 				<td>
 				
 
@@ -257,7 +268,8 @@
 				</c:when>
 				<c:otherwise>
 				
-				<td><form:input id="field-title" path="title" value="${placeAdForm.title}" /></td>
+				<td><form:input id="field-title" path="title" value="${placeAdForm.title}" />				
+					<form:errors path="title" cssClass="validationErrorText" /></td>
 				<td>
 				
 					<c:choose>
@@ -305,8 +317,8 @@
 		<c:choose>
 		<c:when test="${ad.altId != 0}">
 			
-				<td><form:input id="field-street" path="street"
-						value="${ad.street}" /></td>
+				<td><form:input id="field-street" path="street"	value="${ad.street}" />
+					<form:errors path="street" cssClass="validationErrorText" /></td>
 				<td>
 					<form:input id="field-city" path="city" value="${ad.zipcode} - ${ad.city}" />
 					<form:errors path="city" cssClass="validationErrorText" />
@@ -315,7 +327,8 @@
 		</c:when>
 		<c:otherwise>
 				<td><form:input id="field-street" path="street"
-						value="${placeAdForm.getStreet()}" /></td>
+						value="${placeAdForm.getStreet()}" />
+					<form:errors path="street" cssClass="validationErrorText" /></td>
 				<td>
 					<form:input id="field-city" path="city" value="${placeAdForm.getCity()}" />
 					<form:errors path="city" cssClass="validationErrorText" />
@@ -338,6 +351,7 @@
 				<td>
 					<form:input type="text" id="field-moveInDate"
 						path="moveInDate" value="${formattedMoveInDate }" placeholder="Choose a date"/>
+					<form:errors path="moveInDate" cssClass="validationErrorText" />
 				</td>
 				<td>
 					<form:input type="text" id="field-moveOutDate"
@@ -350,6 +364,7 @@
 				<td>
 					<form:input type="text" id="field-moveInDate"
 						path="moveInDate" value="${formattedMoveInDate2 }" placeholder="Choose a date"/>
+					<form:errors path="moveInDate" cssClass="validationErrorText" />
 				</td>
 				<td>
 					<form:input type="text" id="field-moveOutDate"
@@ -864,7 +879,7 @@
 	</fieldset>
 
 	<div>
-		<button type="submit">Submit</button>
+		<button type="submit" onClick="setUpDefaultValues(this.form)">Submit</button>
 		<a href="<c:url value='/ad?id=${ad.id}' />"> 
 			<button type="button">Cancel</button>
 		</a>

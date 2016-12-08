@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -47,10 +48,10 @@ public class PlaceAdForm {
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int squareFootage;
-	
+
 	@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int retailPrice;
-	
+
 	@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int currentBidding;
 

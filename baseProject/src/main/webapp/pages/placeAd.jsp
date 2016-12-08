@@ -149,11 +149,21 @@
 		var prize = document.getElementById('field-Prize');
 		var retailPrize = document.getElementById('retailPrice')
 		var currentBidding = document.getElementById('buyOutPrice');
+		var squareFootage = document.getElementById('field-SquareFootage');
 		
 		//Radiobuttons
 		var rent = document.getElementById('saleType-Rent');
 		var buy = document.getElementById('saleType-Buy');
 		var auction = document.getElementById('saleType-Auction');
+
+		if(prize.value == null || prize.value == "")
+			prize.value = 0;
+		if(retailPrize.value == null || retailPrize.value == "")
+			retailPrize.value = 0;
+		if(currentBidding.value == null || currentBidding.value == "")
+			currentBidding.value = 0;
+		if(squareFootage.value == null || squareFootage.value == "")
+			squareFootage.value = 0;
 		
 		if(rent.checked == true) {
 			endOfAuction.value = "2000-01-01 12:00";
