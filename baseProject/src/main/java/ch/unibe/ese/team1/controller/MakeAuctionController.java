@@ -156,10 +156,12 @@ public class MakeAuctionController {
 			
 			String loggedInUserEmail = (principal == null) ? "" : principal.getName();		
 			
+			User sender = userService.findUserByUsername("System");
+			
 			Message message;
 			message = new Message();
 			message.setSubject("Auction: " + ad.getTitle());
-			message.setSender(ad.getUser());
+			message.setSender(sender);
 			message.setRecipient(ad.getUser());
 			message.setState(MessageState.UNREAD);
 			
@@ -174,7 +176,7 @@ public class MakeAuctionController {
 				Message message2;
 				message2 = new Message();
 				message2.setSubject("Auction " + ad.getTitle());
-				message2.setSender(userService.findUserByUsername(ad.getCurrentBuyer()));
+				message2.setSender(sender);
 				message2.setRecipient(userService.findUserByUsername(ad.getCurrentBuyer()));
 				message2.setState(MessageState.UNREAD);
 				message2.setDateSent(calendar.getTime());
