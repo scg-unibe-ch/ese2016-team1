@@ -170,6 +170,7 @@ public class MakeAuctionController {
 			// XMLGregorianCalendar which uses 1-12
 			calendar.setTimeInMillis(System.currentTimeMillis());
 			message.setDateSent(calendar.getTime());
+			message.setDateShow(calendar.getTime());
 			
 			
 			if(ad.getCurrentBuyer()!=null){
@@ -180,6 +181,7 @@ public class MakeAuctionController {
 				message2.setRecipient(userService.findUserByUsername(ad.getCurrentBuyer()));
 				message2.setState(MessageState.UNREAD);
 				message2.setDateSent(calendar.getTime());
+				message2.setDateShow(calendar.getTime());
 
 				
 

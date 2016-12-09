@@ -73,7 +73,6 @@ public class SignupService {
 		message.setDateSent(calendar.getTime());
 		message.setDateShow(calendar.getTime());
 
-		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		MailService mail = new MailService();
 		mail.sendEmail(signupForm.getEmail(),0,"");
 		
