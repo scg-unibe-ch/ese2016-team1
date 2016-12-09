@@ -17,6 +17,7 @@
 <div class="card" id="loginPage">
 
 <h1>Login</h1>
+<br>
 
 <c:choose>
 	<c:when test="${loggedIn}">

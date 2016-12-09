@@ -156,6 +156,7 @@ function sort_div_attribute() {
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
 							src="${ad.pictures[0].filePath}" /></a>
+						<div class="leftTextRoomDescription">
 						<h2>
 							<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
 						</h2>
@@ -163,6 +164,7 @@ function sort_div_attribute() {
 						<br />
 						<p>
 							<i>${ad.roomType}</i></p>
+						</div>
 					</div>
 					<div class="resultRight">
 						<c:choose>

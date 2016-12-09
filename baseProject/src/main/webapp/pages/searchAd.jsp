@@ -74,12 +74,12 @@ function validateType(form)
 }
 </script>
 
-<h1>Search for an ad</h1>
-<hr />
-
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="searchForm" autocomplete="off">
-	<fieldset>
+	
+	<fieldset class="card">
+		<h1>Search for an ad</h1>
+		<br>
 		<form:checkbox name="buy" id="buy" path="buy" /><label>Buy/Auction</label>
 		<form:checkbox name="rent" id="rent" path="rent" /><label>Rent</label>
 		<form:errors path="noBuyNoRent" cssClass="validationErrorText" /><br />

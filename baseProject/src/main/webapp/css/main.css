@@ -37,6 +37,10 @@ hr {
 	border: 1px solid grey;
 }
 
+.cardPadding {
+	padding: 15px;
+}
+
 .link {
 	color: #9c3d3d;
 	text-decoration: none;
@@ -355,7 +359,8 @@ header ul li {
 
 #profile_picture ul {
 	background-color: white;
-	
+	border: 1px solid grey;
+	margin-top: 10px;
 }
 
 #profile_picture_editPage {
@@ -683,6 +688,11 @@ footer nav ul li {
 #resultsDiv .resultLeft {
 	float: left;
 	width: 75%;
+}
+
+#resultsDiv .resultLeft .leftTextRoomDescription {
+	position: absolute;
+    left: 230px;
 }
 
 #resultsDiv .resultRight {
