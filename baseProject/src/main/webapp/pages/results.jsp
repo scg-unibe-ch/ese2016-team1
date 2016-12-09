@@ -122,13 +122,8 @@ function sort_div_attribute() {
 
 <script src="/js/resultsOnMap.js"></script>
 
-
-<h1>Search results:</h1>
-
-<hr />
-
-<div>
-<select id="modus">
+<div id="sortByWrapper">
+<select id="modus" onchange="sort_div_attribute()">
     <option value="">Sort by:</option>
     <option value="price_asc">Price (ascending)</option>
     <option value="price_desc">Price (descending)</option>
@@ -137,21 +132,26 @@ function sort_div_attribute() {
     <option value="dateAge_asc">Date created (youngest to oldest)</option>
     <option value="dateAge_desc">Date created (oldest to youngest)</option>
 </select>
-
-<span class="mapSwitch" id="mapSwitchResultsOpen" onclick="openMap()"><a>Show on Map</a></span>
-<span class="mapSwitch" id="mapSwitchResultsClose" onclick="closeMap()" style='display:none'><a>Show in List</a></span>
-
-<button onClick="sort_div_attribute()">Sort</button>	
 </div>
+
+
+<div id="indexWrapper">
+
+<div id="mapSwitchWrapper">
+	<span class="mapSwitch" id="mapSwitchResultsOpen" onclick="openMap()"><a>Show on Map</a></span>
+	<span class="mapSwitch" id="mapSwitchResultsClose" onclick="closeMap()" style='display:none'><a>Show in List</a></span>
+</div>
+
+
 <c:choose>
-	<c:when test="${empty results}">
+	<c:when test="${empty results}"> 
 		<p>No results found!
 	</c:when>
 	<c:otherwise>
 		<div id="resultsDiv" class="resultsDiv">
 					
 			<c:forEach var="ad" items="${results}">
-				<div class="resultAd" data-price="${ad.prizePerMonth}" 
+				<div class="resultAd card" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
@@ -188,7 +188,7 @@ function sort_div_attribute() {
 		</div>
 		
 		<div id="resultMapContainer" class="resultsDiv">
-			<div id="resultMap"></div>
+			<div id="resultMap" class="card"></div>
 		</div>
 		
 		<c:forEach var="ad" items="${results}">
@@ -206,7 +206,7 @@ function sort_div_attribute() {
 <form:form method="post" modelAttribute="searchForm" action="/results"
 	id="filterForm" autocomplete="off">
 
-	<div id="filterDiv">
+	<div id="filterDiv" class="card">
 		<h2>Filter results:</h2>		
 		<form:checkbox name="buy" id="buy" path="buy" /><label>Buy</label>
 		<form:checkbox name="rent" id="rent" path="rent" /><label>Rent</label>
@@ -296,5 +296,6 @@ function sort_div_attribute() {
 		<button type="reset">Cancel</button>
 	</div>
 </form:form>
+</div>
 
 <c:import url="template/footer.jsp" />

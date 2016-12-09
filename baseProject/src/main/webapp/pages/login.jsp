@@ -13,6 +13,8 @@
 
 <pre>
 	<a href="/">Home</a>   &gt;   Login</pre>
+	
+<div class="card" id="loginPage">
 
 <h1>Login</h1>
 
@@ -54,5 +56,7 @@
 		
 	</c:otherwise>
 </c:choose>
+
+</div>
 
 <c:import url="template/footer.jsp" />
