@@ -768,7 +768,13 @@
 					</c:when>
 					<c:otherwise>
 					
-		
+						<c:forEach var="user" items="${roomies}">
+								<tr>
+									<td>${user.username}</td>
+									<td><button type="button" data-user-id="${user.id}" data-ad-id="${ad.id}" class="deleteRoommateButton">Delete</button></td>
+								</tr>
+								<tr>
+						</c:forEach>
 					
 					</c:otherwise>
 					</c:choose>
@@ -845,6 +851,7 @@
 		<br>
 	</fieldset>
 
+
 	<br />
 
 	<fieldset>
@@ -852,6 +859,12 @@
 		<h3>Delete existing pictures</h3>
 		<br />
 		<div>
+		
+		
+			<c:choose>
+			<c:when test="${ad.altId != 0}">
+		
+		
 			<c:forEach items="${ad.pictures }" var="picture">
 				<div class="pictureThumbnail">
 					<div>
@@ -860,6 +873,24 @@
 					<button type="button" data-ad-id="${ad.id }" data-picture-id="${picture.id }">Delete</button>
 				</div>
 			</c:forEach>
+			
+			</c:when>
+			<c:otherwise>
+			
+		
+			<c:forEach items="${pics }" var="picture">
+				<div class="pictureThumbnail">
+					<div>
+					<img src="${picture.filePath}" />
+					</div>
+					<button type="button" data-ad-id="${ad.id }" data-picture-id="${picture.id }">Delete</button>
+				</div>
+			</c:forEach>
+			
+			</c:otherwise>
+			</c:choose>
+			
+			
 		</div>
 		<p class="clearBoth"></p>
 		<br /><br />

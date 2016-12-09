@@ -312,18 +312,4 @@ public class PlaceAdForm {
 		this.currentBuyer = currentBuyer;
 	}
 	
-	public List<User> getRoommatesAsUsers(){
-		List<User> roomies = new ArrayList<User>();
-		roomies = null;
-		
-		for (String tempName : registeredRoommateEmails) {
-			//UserDao userDao = null;
-			User tempUser = userDao.findByUsername(tempName);
-			if(tempUser!=null){
-				roomies.add(tempUser);
-			}
-		}
-		
-		return roomies;
-	}
 }
