@@ -22,6 +22,12 @@ public class UserService {
 		return userDao.findByUsername(username);
 	}
 	
+	/** Gets the user with the given email. */
+	@Transactional
+	public User findUserByEmail(String email) {
+		return userDao.findByEmail(email);
+	}
+	
 	/** Gets the user with the given id. */
 	@Transactional
 	public User findUserById(long id) {
