@@ -13,7 +13,7 @@ public class SearchForm {
 	private boolean filtered;
 
 	@NotBlank(message = "Required")
-	@Pattern(regexp = "(^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*)|(<<from coordinates>>)", message = "Please pick a city from the list")
+	@Pattern(regexp = "(^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF\\/]*)|(<<from coordinates>>)", message = "Please pick a city from the list")
 	private String city;
 	
 	private double longitude;
