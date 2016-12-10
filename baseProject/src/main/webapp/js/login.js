@@ -1,16 +1,15 @@
 function onSignIn(googleUser) {
 	
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail());
-  
+  var profile = googleUser.getBasicProfile(); 
+	var auth2 = gapi.auth2.getAuthInstance();
+	auth2.signOut();
   $.ajax({
 	  type: "POST",
 	  url: "/signInWithGoogle",
-	  data: {name: profile.getName(), imageUrl: profile.getImageUrl(), email: profile.getEmail()}
+	  data: {lastName: profile.wea, firstName: profile.ofa, imageUrl: profile.getImageUrl(), email: profile.getEmail()},
+  	  success: function() {
+  		  window.location.replace("http://localhost:8080/")
+  	  }
 	});
-  
   
 }

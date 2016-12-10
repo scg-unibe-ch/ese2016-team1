@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.unibe.ese.team1.controller.pojos.forms.EditProfileForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
+import ch.unibe.ese.team1.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team1.controller.pojos.forms.SignupForm;
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.SignupService;
@@ -30,6 +33,7 @@ import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.controller.service.UserUpdateService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.Visit;
 
@@ -53,6 +57,9 @@ public class ProfileController {
 
 	@Autowired
 	private AdService adService;
+	
+	private SearchForm searchForm;
+
 	
 	@Autowired
 	@Qualifier("org.springframework.security.authenticationManager")
@@ -91,11 +98,17 @@ public class ProfileController {
 	
 	/** Make new google auth account or if exists already, login **/
 	@RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
-	public ModelAndView signInWithGoogle(@RequestParam("name") String name, @RequestParam("imageUrl") String imageUrl,
-			@RequestParam("email") String email) {
+	public ModelAndView signInWithGoogle(@RequestParam("lastName") String lastName, @RequestParam("firstName") String firstName, 
+			@RequestParam("imageUrl") String imageUrl, @RequestParam("email") String email) {
 		User user = userService.findUserByEmail(email);
 		if (user == null) {
-			signupService.saveFromGoogleLogin(name, imageUrl, email);
+			SignupForm signupForm = new SignupForm();
+			signupForm.setEmail(email);
+			signupForm.setFirstName(firstName);
+			signupForm.setLastName(lastName);
+			signupForm.setGender(Gender.UNKNOWN);
+			signupForm.setPassword("test");
+			signupService.saveFrom(signupForm);
 			user = userService.findUserByEmail(email);
 		}
 		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
@@ -219,5 +232,13 @@ public class ProfileController {
 		Ad ad = visit.getAd();
 		model.addObject("ad", ad);
 		return model;
+	}
+	
+	@ModelAttribute
+	public SearchForm getSearchForm() {
+		if (searchForm == null) {
+			searchForm = new SearchForm();
+		}
+		return searchForm;
 	}
 }

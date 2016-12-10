@@ -93,29 +93,4 @@ public class SignupService {
 	public boolean doesUserWithUsernameExist(String username){
 		return userDao.findByUsername(username) != null;
 	}
-
-	public void saveFromGoogleLogin(String name, String imageUrl, String email) {
-		User user = new User();
-		String[] splitName = name.split(" ");
-		user.setUsername(name);
-		user.setEmail(email);
-		user.setGender(Gender.MALE);
-		user.setFirstName(splitName[0]);
-		user.setLastName(splitName[splitName.length - 1]);
-		final SecureRandom rndm = new SecureRandom();
-		String randomPassword = new BigInteger(130, rndm).toString(32);
-		user.setPassword(randomPassword);
-		user.setEnabled(true);
-		user.setPremium(false);
-		
-		Set<UserRole> userRoles = new HashSet<>();
-		UserRole role = new UserRole();
-		role.setRole(DEFAULT_ROLE);
-		role.setUser(user);
-		userRoles.add(role);
-		
-		user.setUserRoles(userRoles);
-		
-		userDao.save(user);	
-	}
 }
