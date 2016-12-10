@@ -1,11 +1,14 @@
 package ch.unibe.ese.team1.controller.service;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ch.unibe.ese.team1.controller.pojos.MailService;
 import ch.unibe.ese.team1.controller.pojos.forms.SignupForm;
+import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
 import ch.unibe.ese.team1.model.User;
@@ -88,5 +92,30 @@ public class SignupService {
 	@Transactional
 	public boolean doesUserWithUsernameExist(String username){
 		return userDao.findByUsername(username) != null;
+	}
+
+	public void saveFromGoogleLogin(String name, String imageUrl, String email) {
+		User user = new User();
+		String[] splitName = name.split(" ");
+		user.setUsername(name);
+		user.setEmail(email);
+		user.setGender(Gender.MALE);
+		user.setFirstName(splitName[0]);
+		user.setLastName(splitName[splitName.length - 1]);
+		final SecureRandom rndm = new SecureRandom();
+		String randomPassword = new BigInteger(130, rndm).toString(32);
+		user.setPassword(randomPassword);
+		user.setEnabled(true);
+		user.setPremium(false);
+		
+		Set<UserRole> userRoles = new HashSet<>();
+		UserRole role = new UserRole();
+		role.setRole(DEFAULT_ROLE);
+		role.setUser(user);
+		userRoles.add(role);
+		
+		user.setUserRoles(userRoles);
+		
+		userDao.save(user);	
 	}
 }

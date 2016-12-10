@@ -6,6 +6,12 @@ import java.util.ArrayList;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +53,10 @@ public class ProfileController {
 
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	@Qualifier("org.springframework.security.authenticationManager")
+	private AuthenticationManager authenticationManager;
 
 	/** Returns the login page. */
 	@RequestMapping(value = "/login")
@@ -78,6 +88,23 @@ public class ProfileController {
 		}
 		return model;
 	}
+	
+	/** Make new google auth account or if exists already, login **/
+	@RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
+	public ModelAndView signInWithGoogle(@RequestParam("name") String name, @RequestParam("imageUrl") String imageUrl,
+			@RequestParam("email") String email) {
+		User user = userService.findUserByEmail(email);
+		if (user == null) {
+			signupService.saveFromGoogleLogin(name, imageUrl, email);
+			user = userService.findUserByEmail(email);
+		}
+		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+		Authentication result = authenticationManager.authenticate(request);
+		SecurityContextHolder.getContext().setAuthentication(result);
+		ModelAndView model = new ModelAndView("index");
+		return model;
+	}
+	
 
 	/** Checks and returns whether a user with the given email already exists. */
 	@RequestMapping(value = "/signup/doesEmailExist", method = RequestMethod.POST)

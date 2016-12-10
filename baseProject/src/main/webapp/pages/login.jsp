@@ -11,6 +11,11 @@
 
 <c:import url="template/header.jsp" />
 
+<!--  import google auth -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script src="/js/login.js"></script>
+
 <pre>
 	<a href="/">Home</a>   &gt;   Login</pre>
 	
@@ -29,6 +34,7 @@
 				and password.</p>
 			<br />
 		</c:if>
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		<form id="login-form" method="post" action="/j_spring_security_check">
 			<label for="field-email">Email:</label> <input name="j_username"
 				id="field-email" /> <label for="field-password">Password:</label> <input
