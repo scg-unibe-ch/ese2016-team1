@@ -41,6 +41,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.unibe.ese.team1.model.dao.AdDao;
 import ch.unibe.ese.team1.model.dao.MessageDao;
+import ch.unibe.ese.team1.model.dao.UserDao;
 
 
 /**
@@ -50,6 +51,9 @@ import ch.unibe.ese.team1.model.dao.MessageDao;
 public class MakeAuctionController {
 
 	private final static String IMAGE_DIRECTORY = PlaceAdController.IMAGE_DIRECTORY;
+	
+	@Autowired
+	private UserDao userDao;
 
 	@Autowired
 	private ServletContext servletContext;
@@ -188,13 +192,16 @@ public class MakeAuctionController {
 				
 				System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 				MailService mail = new MailService();
+				User user = userDao.findByUsername(ad.getCurrentBuyer());
 				if (price >= ad.getRetailPrice()) {
-					mail.sendEmail(ad.getCurrentBuyer(),5,"http://localhost:8080/ad?id="+id);
+					if(user.getPremium())
+						mail.sendEmail(ad.getCurrentBuyer(),5,"http://localhost:8080/ad?id="+id);
 					message2.setText("We are sorry to anounce, someone just bought out the Auction you were leading: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
 
 				}
 				else{
-					mail.sendEmail(ad.getCurrentBuyer(),2,"http://localhost:8080/ad?id="+id);
+					if(user.getPremium())
+						mail.sendEmail(ad.getCurrentBuyer(),2,"http://localhost:8080/ad?id="+id);
 					message2.setText("Someone just replaced you as current highest Bidder on this Auction: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
 
 				}
