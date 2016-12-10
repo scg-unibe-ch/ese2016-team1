@@ -8,18 +8,14 @@
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<security:http auto-config="true" access-denied-page="/access-denied">
-		<security:intercept-url access="ROLE_USER"
-			pattern="/**"/><security:intercept-url
-			pattern="/rent/profile/**" access="ROLE_USER" /><security:intercept-url
-			pattern="/profile/**" access="ROLE_USER" />
-		<security:form-login login-page="/login"
-			authentication-failure-url="/login?error=true" default-target-url="/"
-			always-use-default-target="true" />
-		<security:logout invalidate-session="true" logout-success-url="/" 
+		<security:intercept-url pattern="/profile/**" access="ROLE_USER" />
+		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" 
+			default-target-url="/" />
+		 <security:logout invalidate-session="true" logout-success-url="/" 
 			logout-url="/logout" />
 	</security:http>
 
-	<security:authentication-manager alias="authenticationManager">
+	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service
 				data-source-ref="mainDataSource"
