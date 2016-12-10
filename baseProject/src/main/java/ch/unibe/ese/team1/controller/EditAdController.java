@@ -1,8 +1,11 @@
 package ch.unibe.ese.team1.controller;
 
 import java.security.Principal;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +36,7 @@ import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.AdPicture;
 import ch.unibe.ese.team1.model.PictureMeta;
 import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.Visit;
 import ch.unibe.ese.team1.model.dao.AdPictureDao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -71,6 +75,8 @@ public class EditAdController {
 	private List<User> roomies = new LinkedList<User>();
 	
 	private List<AdPicture> pics = new LinkedList<AdPicture>();
+	
+	private List<Visit> visis = new LinkedList<Visit>();
 
 	/**
 	 * Serves the page that allows the user to edit the ad with the given id.
@@ -82,10 +88,12 @@ public class EditAdController {
 		
 		ad.setAltId(1);
 
+visis = new LinkedList<Visit>();		
 roomies = new LinkedList<User>();
 pics = new LinkedList<AdPicture>();		
 roomies = ad.getRegisteredRoommates();
 pics = ad.getPictures();
+visis = ad.getVisits();
 		
 		model.addObject("ad", ad);
 
@@ -94,9 +102,9 @@ pics = ad.getPictures();
 		model.addObject("placeAdForm", form);
 
 		String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-		if (pictureUploader == null) {
+		//if (pictureUploader == null) {
 			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
-		}
+		//}
 
 		return model;
 	}
@@ -130,11 +138,12 @@ pics = ad.getPictures();
 						
 					
 					
-					Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId, roomies, pics);
+					Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId, roomies, pics, visis);
 
 	
 	roomies = new LinkedList<User>();
 	pics = new LinkedList<AdPicture>();
+	visis = new LinkedList<Visit>();
 					
 					// triggers all alerts that match the placed ad
 					alertService.triggerAlerts(ad);
@@ -163,18 +172,6 @@ pics = ad.getPictures();
 					
 					
 					
-					List<String> fileNames = pictureUploader.getFileNames();
-					//List<AdPicture> pictures = new ArrayList<>();
-					for (String filePath : fileNames) {
-						AdPicture picture = new AdPicture();
-						picture.setFilePath(filePath);
-						//pics.add(picture);
-					}
-
-					
-
-					
-					//roomies = null;
 					
 					if(placeAdForm.getRegisteredRoommateEmails() != null){
 						for (String tempName : placeAdForm.getRegisteredRoommateEmails()) {
@@ -187,7 +184,38 @@ pics = ad.getPictures();
 					}
 					
 					
-					
+					List<String> visitStrings = placeAdForm.getVisits();
+					if(visitStrings != null){
+						for (String tempName : visitStrings) {
+							//UserDao userDao = null;
+							Visit tempVisit = new Visit();
+							
+							
+							// format is 28-02-2014;10:02;13:14
+							DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+							String[] parts = tempName.split(";");
+							String startTime = parts[0] + " " + parts[1];
+							String endTime = parts[0] + " " + parts[2];
+							Date startDate = null;
+							Date endDate = null;
+							try {
+								startDate = dateFormat.parse(startTime);
+								endDate = dateFormat.parse(endTime);
+							} catch (ParseException ex) {
+								ex.printStackTrace();
+							}
+
+							tempVisit.setStartTimestamp(startDate);
+							tempVisit.setEndTimestamp(endDate);
+							tempVisit.setAd(adService.getAdById(adId));
+							
+							
+							
+							//if(tempVisit!=null){
+								visis.add(tempVisit);
+							//}
+						}
+					}
 					
 					
 					
@@ -206,6 +234,7 @@ pics = ad.getPictures();
 					
 					model.addObject("pics", pics);
 					model.addObject("roomies", roomies);
+					model.addObject("visis", visis);
 					
 					
 

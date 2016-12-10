@@ -54,7 +54,7 @@ public class EditAdService {
 	 */
 	@Transactional
 	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
-			User user, long adId, List<User> roomies, List<AdPicture> pics) throws ParseException {
+			User user, long adId, List<User> roomies, List<AdPicture> pics, List<Visit> visis) throws ParseException {
 
 
 
@@ -176,9 +176,6 @@ public class EditAdService {
 			}
 		}
 		// add existing roommates
-		for (User roommates : ad.getRegisteredRoommates()) {
-			//registeredUserRommates.add(roommates);
-		}
 		for (User roommates : roomies) {
 			registeredUserRommates.add(roommates);
 		}
@@ -187,11 +184,16 @@ public class EditAdService {
 		// visits
 		List<Visit> visits = new LinkedList<>();
 		List<String> visitStrings = placeAdForm.getVisits();
+		
+		//for (String tempName : visis) {
+		//	visitStrings.add(tempName);
+		//}
+		
 		if (visitStrings != null) {
 			for (String visitString : visitStrings) {
 				Visit visit = new Visit();
 				// format is 28-02-2014;10:02;13:14
-				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String[] parts = visitString.split(";");
 				String startTime = parts[0] + " " + parts[1];
 				String endTime = parts[0] + " " + parts[2];
@@ -211,9 +213,10 @@ public class EditAdService {
 			}
 
 			// add existing visit
-			for (Visit visit : ad.getVisits()) {
+			for (Visit visit : visis) {
 				visits.add(visit);
 			}
+			
 			ad.setVisits(visits);
 		}
 
