@@ -1,6 +1,7 @@
 package ch.unibe.ese.team1.model;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -467,6 +468,14 @@ public class Ad {
 
 	public void setVisits(List<Visit> visits) {
 		this.visits = visits;
+	}
+	
+	public List<String> getVisitsAsStrings() {
+		List<String> names = new LinkedList<String>();
+		for (Visit tempVisit : visits) {
+			names.add(tempVisit.getStartTimestamp().toString().substring(0, 10) + ";" + tempVisit.getStartTimestamp().toString().substring(11, 16) + ";" + tempVisit.getEndTimestamp().toString().substring(11, 16));
+		}
+		return names;
 	}
 
 	@Override

@@ -71,6 +71,8 @@ public class EditAdController {
 	private List<User> roomies = new LinkedList<User>();
 	
 	private List<AdPicture> pics = new LinkedList<AdPicture>();
+	
+	private List<String> visis = new LinkedList<String>();
 
 	/**
 	 * Serves the page that allows the user to edit the ad with the given id.
@@ -82,12 +84,27 @@ public class EditAdController {
 		
 		ad.setAltId(1);
 
-roomies = new LinkedList<User>();
-pics = new LinkedList<AdPicture>();		
+visis = new LinkedList<String>();
+roomies = new LinkedList<User>();  
+pics = new LinkedList<AdPicture>();	
+if(ad.getRegisteredRoommates()!=null){
 roomies = ad.getRegisteredRoommates();
+}
+if(ad.getPictures()!=null){
 pics = ad.getPictures();
-		
+}
+if(ad.getVisits()!=null){
+//visis = ad.getVisitsAsStrings();
+for (String tempName : ad.getVisitsAsStrings()) {
+	if(!(visis.contains(tempName))){
+		visis.add(tempName);
+	}
+}
+}
+model.addObject("visis", visis);
+
 		model.addObject("ad", ad);
+		
 
 		PlaceAdForm form = editAdService.fillForm(ad);
 
@@ -130,11 +147,12 @@ pics = ad.getPictures();
 						
 					
 					
-					Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId, roomies, pics);
+					Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId, roomies, pics, visis);
 
 	
 	roomies = new LinkedList<User>();
 	pics = new LinkedList<AdPicture>();
+	visis = new LinkedList<String>();
 					
 					// triggers all alerts that match the placed ad
 					alertService.triggerAlerts(ad);
@@ -186,7 +204,16 @@ pics = ad.getPictures();
 						}
 					}
 					
-					
+					if(placeAdForm.getVisits() != null){
+						for (String tempName : placeAdForm.getVisits()) {
+
+							if(!(visis.contains(tempName))){
+								visis.add(tempName);
+							}
+														
+						}
+					}
+					//placeAdForm.setStreet(visis.get(0) + visis.get(1));
 					
 					
 					
@@ -203,7 +230,7 @@ pics = ad.getPictures();
 					
 					
 					
-					
+					model.addObject("visis", visis);
 					model.addObject("pics", pics);
 					model.addObject("roomies", roomies);
 					

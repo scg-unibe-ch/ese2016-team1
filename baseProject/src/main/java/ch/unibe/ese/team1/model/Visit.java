@@ -32,11 +32,11 @@ public class Visit {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<User> searchers;
 	
-	@JsonFormat(pattern = "HH:mm, dd.MM.yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date startTimestamp;
 	
-	@JsonFormat(pattern = "HH:mm, dd.MM.yyyy")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endTimestamp;
 

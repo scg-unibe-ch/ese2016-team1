@@ -848,6 +848,25 @@
 			</tr>
 			
 		</table>
+		
+		
+		
+		<table>
+		<h3>My Visits</h3>
+		
+
+		<c:forEach var="tempVisit" items="${visis}">
+			<tr>
+				<td>${tempVisit}</td>
+			</tr>
+		</c:forEach>
+		
+
+		
+		</table>
+		
+		
+		
 		<br>
 	</fieldset>
 

@@ -54,7 +54,7 @@ public class EditAdService {
 	 */
 	@Transactional
 	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
-			User user, long adId, List<User> roomies, List<AdPicture> pics) throws ParseException {
+			User user, long adId, List<User> roomies, List<AdPicture> pics, List<String> visis) throws ParseException {
 
 
 
@@ -186,12 +186,24 @@ public class EditAdService {
 
 		// visits
 		List<Visit> visits = new LinkedList<>();
-		List<String> visitStrings = placeAdForm.getVisits();
+		List<String> visitStrings = new LinkedList<>();
+		if(placeAdForm.getVisits() != null){
+			visitStrings = placeAdForm.getVisits();
+		}
+		if(visis != null){
+			for (String tempName : visis) {
+				//UserDao userDao = null;
+				if(tempName!= null){
+					visitStrings.add(tempName);
+					//ad.setTitle(ad.getTitle() + tempName);
+				}
+			}
+		}
 		if (visitStrings != null) {
 			for (String visitString : visitStrings) {
 				Visit visit = new Visit();
 				// format is 28-02-2014;10:02;13:14
-				DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 				String[] parts = visitString.split(";");
 				String startTime = parts[0] + " " + parts[1];
 				String endTime = parts[0] + " " + parts[2];
@@ -207,14 +219,17 @@ public class EditAdService {
 				visit.setStartTimestamp(startDate);
 				visit.setEndTimestamp(endDate);
 				visit.setAd(ad);
+				
+				
 				visits.add(visit);
+				
 			}
 
-			// add existing visit
-			for (Visit visit : ad.getVisits()) {
-				visits.add(visit);
-			}
 			ad.setVisits(visits);
+			
+ad.setStreet(""+visits.size());
+ad.setStreet(ad.getStreet()+ad.getVisits().size());
+			
 		}
 
 		if(user!=null){

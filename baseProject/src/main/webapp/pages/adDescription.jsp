@@ -364,7 +364,7 @@
 				<c:forEach items="${visits }" var="visit">
 					<tr>
 						<td>
-							<fmt:formatDate value="${visit.startTimestamp}" pattern="dd-MM-yyyy " />
+							<fmt:formatDate value="${visit.startTimestamp}" pattern="yyyy-MM-dd " />
 							&nbsp; from
 							<fmt:formatDate value="${visit.startTimestamp}" pattern=" HH:mm " />
 							until
