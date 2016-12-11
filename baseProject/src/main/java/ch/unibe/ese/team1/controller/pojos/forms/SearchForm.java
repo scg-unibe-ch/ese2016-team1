@@ -196,7 +196,7 @@ public class SearchForm {
 		return dishwasher;
 	}
 
-	public void setDishWasher(boolean dishwasher) {
+	public void setDishwasher(boolean dishwasher) {
 		this.dishwasher = dishwasher;
 	}
 

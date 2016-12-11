@@ -266,7 +266,7 @@ public class AlertForm {
 		return dishwasher;
 	}
 
-	public void setDishWasher(boolean dishwasher) {
+	public void setDishsasher(boolean dishwasher) {
 		this.dishwasher = dishwasher;
 	}
 

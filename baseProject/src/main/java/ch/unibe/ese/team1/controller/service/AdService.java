@@ -147,6 +147,8 @@ public class AdService {
 		ad.setGarden(placeAdForm.getGarden());
 		ad.setBalcony(placeAdForm.getBalcony());
 		ad.setCellar(placeAdForm.getCellar());
+		ad.setWashingMachine(placeAdForm.getWashingMachine());
+		ad.setDishwasher(placeAdForm.getDishwasher());;
 		ad.setFurnished(placeAdForm.isFurnished());
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
@@ -411,6 +413,26 @@ public class AdService {
 						while (iterator.hasNext()) {
 							Ad ad = iterator.next();
 							if (!ad.getCellar())
+								iterator.remove();
+						}
+					}
+
+					// washingMachine
+					if (searchForm.getWashingMachine()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getWashingMachine())
+								iterator.remove();
+						}
+					}
+
+					// dishwasher
+					if (searchForm.getDishwasher()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getDishwasher())
 								iterator.remove();
 						}
 					}
