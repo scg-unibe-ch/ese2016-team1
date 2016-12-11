@@ -200,6 +200,8 @@ public class AlertForm {
 	private boolean garden;
 	private boolean balcony;
 	private boolean cellar;
+	private boolean washingMachine;
+	private boolean dishwasher;
 	private boolean furnished;
 	private boolean cable;
 	private boolean garage;
@@ -250,6 +252,22 @@ public class AlertForm {
 
 	public void setCellar(boolean cellar) {
 		this.cellar = cellar;
+	}
+
+	public boolean getWashingMachine() {
+		return washingMachine;
+	}
+
+	public void setWashingMachine(boolean washingMachine) {
+		this.washingMachine = washingMachine;
+	}
+
+	public boolean getDishwasher() {
+		return dishwasher;
+	}
+
+	public void setDishWasher(boolean dishwasher) {
+		this.dishwasher = dishwasher;
 	}
 
 	public boolean getFurnished() {
