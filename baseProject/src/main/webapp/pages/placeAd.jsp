@@ -348,6 +348,12 @@
 						value="1" /><label>Furnished</label></td>
 			</tr>
 			<tr>
+				<td><form:checkbox id="field-washingMachine" path="washingMachine" value="1" /><label>Washing Machine
+						</label></td>
+				<td><form:checkbox id="field-dishwasher" path="dishwasher"
+						value="1" /><label>Dishwasher</label></td>
+			</tr>
+			<tr>
 				<td><form:checkbox id="field-cable" path="cable" value="1" /><label>Cable
 						TV</label></td>
 				<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>

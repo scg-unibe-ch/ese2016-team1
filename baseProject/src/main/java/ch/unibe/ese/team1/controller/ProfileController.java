@@ -35,7 +35,9 @@ import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.UserPicture;
 import ch.unibe.ese.team1.model.Visit;
+import ch.unibe.ese.team1.model.dao.UserDao;
 
 /**
  * Handles all requests concerning user accounts and profiles.
@@ -57,6 +59,9 @@ public class ProfileController {
 
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	private SearchForm searchForm;
 
@@ -102,13 +107,7 @@ public class ProfileController {
 			@RequestParam("imageUrl") String imageUrl, @RequestParam("email") String email) {
 		User user = userService.findUserByEmail(email);
 		if (user == null) {
-			SignupForm signupForm = new SignupForm();
-			signupForm.setEmail(email);
-			signupForm.setFirstName(firstName);
-			signupForm.setLastName(lastName);
-			signupForm.setGender(Gender.UNKNOWN);
-			signupForm.setPassword("test");
-			signupService.saveFrom(signupForm);
+			signupService.saveFromGoogle(lastName, firstName, imageUrl, email);
 			user = userService.findUserByEmail(email);
 		}
 		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());

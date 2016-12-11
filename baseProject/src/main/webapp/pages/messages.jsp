@@ -21,7 +21,7 @@
 
 <h1>Messages</h1>
 <hr />
-<div id="folders">
+<div id="folders" class="card">
 	<h2 id="inbox">Inbox</h2>
 	<h2 id="newMessage">New</h2>
 	<h2 id="sent">Sent</h2>
@@ -48,7 +48,7 @@
 		</c:forEach>
 	</table>
 	<hr />
-	<div id="messageDetail">
+	<div id="messageDetail" class="card">
 		<h2>${messages[0].subject }</h2>
 		<h3>
 			<b>To: </b>${messages[0].recipient.email }

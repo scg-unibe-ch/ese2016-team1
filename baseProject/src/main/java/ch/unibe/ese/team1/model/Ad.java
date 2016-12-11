@@ -111,6 +111,12 @@ public class Ad {
 
 	@Column(nullable = false)
 	private boolean cellar;
+	
+	@Column(nullable = false)
+	private boolean washingMachine;
+	
+	@Column(nullable = false)
+	private boolean dishwasher;
 
 	@Column(nullable = false)
 	private boolean furnished;
@@ -197,6 +203,22 @@ public class Ad {
 
 	public void setCellar(boolean hasCellar) {
 		this.cellar = hasCellar;
+	}
+
+	public boolean getWashingMachine() {
+		return washingMachine;
+	}
+
+	public void setWashingMachine(boolean washingMachine) {
+		this.washingMachine = washingMachine;
+	}
+
+	public boolean getDishwasher() {
+		return dishwasher;
+	}
+
+	public void setDishwasher(boolean dishwasher) {
+		this.dishwasher = dishwasher;
 	}
 
 	public boolean getFurnished() {

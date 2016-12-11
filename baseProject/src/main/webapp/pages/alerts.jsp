@@ -97,6 +97,8 @@ function use(form, self)
 	var smokers = parent.find(".table_smokers").text().localeCompare("true") == 0;
 	var garden = parent.find(".table_garden").text().localeCompare("true") == 0;
 	var cellar = parent.find(".table_cellar").text().localeCompare("true") == 0;
+	var washingMachine = parent.find(".table_washingMachine").text().localeCompare("true") == 0;
+	var dishwasher = parent.find(".table_dishwasher").text().localeCompare("true") == 0;
 	var cable = parent.find(".table_cable").text().localeCompare("true") == 0;
 	var internet = parent.find(".table_internet").text().localeCompare("true") == 0;
 	var animals = parent.find(".table_animals").text().localeCompare("true") == 0;
@@ -125,6 +127,8 @@ function use(form, self)
 	document.getElementById("field-smokers").checked = smokers;
 	document.getElementById("field-garden").checked = garden;
 	document.getElementById("field-cellar").checked = cellar;
+	document.getElementById("field-washingMachine").checked = washingMachine;
+	document.getElementById("field-dishwasher").checked = dishwasher;
 	document.getElementById("field-cable").checked = cable;
 	document.getElementById("field-internet").checked = internet;
 	document.getElementById("field-animals").checked = animals;
@@ -164,11 +168,7 @@ function use(form, self)
 <form:form method="post" modelAttribute="alertForm" action="/profile/alerts"
 	id="alertForm" autocomplete="off">
 
-	<fieldset>
-		<form:checkbox name="buy" id="buy" path="buy" /><label>Buy/Auction</label>
-		<form:checkbox name="rent" id="rent" path="rent" /><label>Rent</label>
-		<form:errors path="noBuyNoRent" cssClass="validationErrorText" /><br />
-		
+	<fieldset>		
 		<form:checkbox style="display:none" name="neitherBuyRent" id="neitherBuyRent" path="noBuyNoRent" />
 		<form:checkbox name="room" id="field-room" path="room" /><label>Room</label>
 		<form:checkbox name="studio" id="field-studio" path="studio" /><label>Studio</label>
@@ -235,6 +235,12 @@ function use(form, self)
 						value="1" /><label>Furnished</label></td>
 			</tr>
 			<tr>
+				<td><form:checkbox id="field-washingMachine" path="washingMachine" value="1" /><label>Washing Machine
+						</label></td>
+				<td><form:checkbox id="field-dishwasher" path="dishwasher"
+						value="1" /><label>Dishwasher</label></td>
+			</tr>
+			<tr>
 				<td><form:checkbox id="field-cable" path="cable" value="1" /><label>Cable
 						TV</label></td>
 				<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>
@@ -272,6 +278,8 @@ function use(form, self)
 				<th>Smoking</th>
 				<th>Garden</th>
 				<th>Cellar or Attic</th>
+				<th>Washing Machine</th>
+				<th>Dishwasher</th>
 				<th>Cable TV</th>
 				<th>WiFi</th>
 				<th>Animals</th>
@@ -296,6 +304,8 @@ function use(form, self)
 				<td class="table_smokers">${alert.smokers}</td>
 				<td class="table_garden">${alert.garden}</td>
 				<td class="table_cellar">${alert.cellar}</td>
+				<td class="table_washingMachine">${alert.washingMachine}</td>
+				<td class="table_dishwasher">${alert.dishwasher}</td>
 				<td class="table_cable">${alert.cable}</td>
 				<td class="table_internet">${alert.internet}</td>
 				<td class="table_animals">${alert.animals}</td>

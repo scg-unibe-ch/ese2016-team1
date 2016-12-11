@@ -341,8 +341,11 @@
 							<c:when test="${mate.gender == 'MALE'}">
 								male
 							</c:when>
-							<c:otherwise>
+							<c:when test="${mate.gender == 'FEMALE'}">
 								female
+							</c:when>
+							<c:otherwise>
+								unknown
 							</c:otherwise>
 						</c:choose></td>
 					</tr>

@@ -13,8 +13,10 @@
 <link rel="stylesheet" type="text/css"
 	media="only screen and (max-device-width: 480px)"
 	href="/css/smartphone.css" />
+	
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
-<Title>FlatFindr</Title>
+<Title>SwissHomes</Title>
 
 <meta name="google-signin-client_id" content="644276133344-lihdlm9a03d6qssgdm24qmlqv1saj2d8.apps.googleusercontent.com">
 

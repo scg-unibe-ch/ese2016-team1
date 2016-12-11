@@ -227,9 +227,7 @@ public class EditAdService {
 
 			ad.setVisits(visits);
 			
-ad.setStreet(""+visits.size());
-ad.setStreet(ad.getStreet()+ad.getVisits().size());
-			
+	
 		}
 
 		if(user!=null){

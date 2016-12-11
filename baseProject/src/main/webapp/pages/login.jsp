@@ -34,7 +34,9 @@
 				and password.</p>
 			<br />
 		</c:if>
-		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		<div>
+			<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		</div>
 		<form id="login-form" method="post" action="/j_spring_security_check">
 			<label for="field-email">Email:</label> <input name="j_username"
 				id="field-email" /> <label for="field-password">Password:</label> <input
