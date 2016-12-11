@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\controller\service\AdServiceTest.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\controller\service\EnquiryServiceTest.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\VisitTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\BookmarkTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\AlertTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\VisitEnquiryTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\controller\service\AlertServiceTest.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\AdTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\MessageTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\UserTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\controller\service\GeoDataServiceTest.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\RatingTestDataSaver.java
-C:\Users\Alain\Documents\GitHub\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\TestDataSeeder.java
-=======
 C:\Users\janik\Desktop\baseProject8\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\RatingTestDataSaver.java
 C:\Users\janik\Desktop\baseProject8\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\MessageTestDataSaver.java
 C:\Users\janik\Desktop\baseProject8\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\VisitTestDataSaver.java
@@ -26,4 +11,3 @@ C:\Users\janik\Desktop\baseProject8\ese2016-team1\baseProject\src\test\java\ch\u
 C:\Users\janik\Desktop\baseProject8\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\controller\service\EnquiryServiceTest.java
 C:\Users\janik\Desktop\baseProject8\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\test\testData\UserTestDataSaver.java
 C:\Users\janik\Desktop\baseProject8\ese2016-team1\baseProject\src\test\java\ch\unibe\ese\team1\controller\service\AdServiceTest.java
->>>>>>> workingServerOAuth

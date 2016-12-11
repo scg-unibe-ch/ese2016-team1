@@ -20,6 +20,7 @@ import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
 import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.UserPicture;
 import ch.unibe.ese.team1.model.UserRole;
 import ch.unibe.ese.team1.model.dao.UserDao;
 //
@@ -37,6 +38,9 @@ public class SignupService {
 	//
 	@Autowired
 	private MessageDao messageDao;
+	
+	@Autowired
+	private UserService userService;
 
 	/** Handles persisting a new user to the database. */
 	@Transactional
@@ -82,6 +86,25 @@ public class SignupService {
 		
 		messageDao.save(message);
 		
+	}
+	
+	// save user from google profile
+	public void saveFromGoogle(String lastName, String firstName, String imageUrl, String email) {
+		SignupForm signupForm = new SignupForm();
+		signupForm.setEmail(email);
+		signupForm.setFirstName(firstName);
+		signupForm.setLastName(lastName);
+		signupForm.setGender(Gender.UNKNOWN);
+		SecureRandom random = new SecureRandom();		
+		signupForm.setPassword(new BigInteger(130, random).toString(32));
+		this.saveFrom(signupForm);
+		User user = userService.findUserByEmail(email);
+		// set picture for user
+		UserPicture picture = new UserPicture();
+		picture.setFilePath(imageUrl);
+		picture.setUser(user);
+		user.setPicture(picture);
+		userDao.save(user);	
 	}
 	
 	/**
