@@ -13,6 +13,8 @@
 <link rel="stylesheet" type="text/css"
 	media="only screen and (max-device-width: 480px)"
 	href="/css/smartphone.css" />
+	
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
 <Title>FlatFindr</Title>
 

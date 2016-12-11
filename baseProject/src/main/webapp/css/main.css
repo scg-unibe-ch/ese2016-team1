@@ -952,10 +952,6 @@ footer nav ul li {
 	width: 10%;
 	height: 70%;
 	margin-left: 30px;
-	border-color: #9c3d3d;
-	border-radius: 5px;
-	border-width: 3px;
-	border-style: solid;
 	padding: 15px;
 }
 
@@ -965,16 +961,12 @@ footer nav ul li {
 }
 
 #folders h2:hover {
-	background-color: #9c3d3d;
+	background-color: grey;
 	color: white;
 	cursor: pointer;
 }
 
 #messageDetail {
-	border-color: #9c3d3d;
-	border-radius: 5px;
-	border-width: 3px;
-	border-style: solid;
 	padding: 30px;
 	width: 80%;
 	margin: auto;
