@@ -127,14 +127,17 @@
 			$("#rentalPriceSettings").hide();
 			$("#retailPriceSettings").show();
 			$("#auctionSettings").hide();
+			$("#roommates").hide();
 		} else if (document.getElementById('saleType-Rent').checked) {
 			$("#rentalPriceSettings").show();
 			$("#retailPriceSettings").hide();
 			$("#auctionSettings").hide();
+			$("#roommates").show();
 		} else if (document.getElementById('saleType-Auction').checked) {
 			$("#rentalPriceSettings").hide();
 			$("#retailPriceSettings").hide();
 			$("#auctionSettings").show();
+			$("#roommates").hide();
 		} 
 	}
 	
@@ -736,7 +739,7 @@
 
 
 	<br />
-	<fieldset>
+	<fieldset id = "roommates">
 		<legend>Change roommates</legend>
 		
 		<h3>Add new roommates</h3>
