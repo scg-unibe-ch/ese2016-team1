@@ -16,9 +16,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Welcome to FlatFindr</title>
 </head>
-<body>
+<body id="indexBody">
 
-<div id="indexMap"></div>
+<div id="indexMap"> 
+<p id="indexDescription">Click on the map to quick-search alerts in specified radius</p>
+
+</div>
 
 <script>
 	$(document).ready(function() {
@@ -84,6 +87,12 @@ function validateType(form)
 	
 	filtered.checked = true;
 }
+</script>
+
+<script>
+	//remove padding from content
+	$("#content").css("padding", "0")
+	$("#content").css("padding-top", "10px")
 </script>
 
 

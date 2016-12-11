@@ -161,7 +161,7 @@
 	<br>
 	<br>
 
-	<table id="adDescTable" class="adDescDiv">
+	<table id="adDescTable" class="adDescDiv card">
 			<tr>
 			<c:choose>
 				<c:when test="${shownAd.saleType == \"Auction\"}">
@@ -309,13 +309,13 @@
 
 <section>
 	<div id="descriptionTexts">
-		<div class="adDescDiv">
+		<div class="adDescDiv card">
 			<h2>Room Description</h2>
 			<p>${shownAd.roomDescription}</p>
 		</div>
 		<br />
 
-		<div class="adDescDiv">
+		<div class="adDescDiv card">
 			<h2>Roommates</h2>
 			<p>${shownAd.roommates}</p>
 			<c:forEach var="mate" items="${shownAd.registeredRoommates}">
@@ -341,8 +341,11 @@
 							<c:when test="${mate.gender == 'MALE'}">
 								male
 							</c:when>
-							<c:otherwise>
+							<c:when test="${mate.gender == 'FEMALE'}">
 								female
+							</c:when>
+							<c:otherwise>
+								unknown
 							</c:otherwise>
 						</c:choose></td>
 					</tr>
@@ -352,13 +355,13 @@
 		</div>
 		<br />
 
-		<div class="adDescDiv">
+		<div class="adDescDiv card">
 			<h2>Preferences</h2>
 			<p>${shownAd.preferences}</p>
 		</div>
 		<br />
 
-		<div id="visitList" class="adDescDiv">
+		<div id="visitList" class="adDescDiv card">
 			<h2>Visiting times</h2>
 			<table>
 				<c:forEach items="${visits }" var="visit">
@@ -387,7 +390,7 @@
 			</table>
 		</div>
 		
-		<div class="adDescDiv" id="advertiserDiv">
+		<div class="adDescDiv card" id="advertiserDiv">
 		
 			<table id="advertiserTable">
 				<tr>
@@ -436,7 +439,7 @@
 
 	</div>
 
-	<table id="checkBoxTable" class="adDescDiv">
+	<table id="checkBoxTable" class="adDescDiv card">
 		<tr>
 			<td><h2>Smoking inside allowed</h2></td>
 			<td>
@@ -529,10 +532,10 @@
 
 	</table>
 	
-	<div class="adDescDiv" id="map">
+	<div class="adDescDiv card" id="map">
 	</div>
 	
-	<div class="adDescDiv" id="noCoordinates">
+	<div class="adDescDiv card" id="noCoordinates">
 		<p>No Coordinates can be found with city = "${shownAd.city}"<p>
 	</div>
 	

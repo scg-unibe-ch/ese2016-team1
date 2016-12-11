@@ -1,15 +1,30 @@
 package ch.unibe.ese.team1.controller.pojos.forms;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.unibe.ese.team1.controller.service.UserService;
+import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.dao.UserDao;
 
 /** This form is used when a user wants to place a new ad. */
 public class PlaceAdForm {
+	
+	
+	@Autowired
+	private UserDao userDao;
+	
+	
+	
 	
 	@NotBlank(message = "Required")
 	private String title;
@@ -17,27 +32,27 @@ public class PlaceAdForm {
 	@NotBlank(message = "Required")
 	private String street;
 	
-	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
+	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF\\/]*", message = "Please pick a city from the list")
 	private String city;
 	
 	@NotBlank(message = "Required")
 	private String moveInDate;
 	
-	//@NotBlank(message = "Required")
+	@NotBlank(message = "Required")
 	private String endOfAuction;
 	
 	private String moveOutDate;
 
-	//@Min(value = 0, message = "Has to be equal to 0 or more")
+	@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int prize;
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int squareFootage;
-	
-	//@Min(value = 0, message = "Has to be equal to 0 or more")
+
+	@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int retailPrice;
-	
-	//@Min(value = 0, message = "Has to be equal to 0 or more")
+
+	@Min(value = 0, message = "Has to be equal to 0 or more")
 	private int currentBidding;
 
 	@NotBlank(message = "Required")
@@ -66,6 +81,8 @@ public class PlaceAdForm {
 	private boolean garden;
 	private boolean balcony;
 	private boolean cellar;
+	private boolean washingMachine;
+	private boolean dishwasher;
 	private boolean furnished;
 	private boolean cable;
 	private boolean garage;
@@ -167,6 +184,22 @@ public class PlaceAdForm {
 
 	public void setCellar(boolean cellar) {
 		this.cellar = cellar;
+	}
+
+	public boolean getWashingMachine() {
+		return washingMachine;
+	}
+
+	public void setWashingMachine(boolean washingMachine) {
+		this.washingMachine = washingMachine;
+	}
+
+	public boolean getDishwasher() {
+		return dishwasher;
+	}
+
+	public void setDishwasher(boolean dishwasher) {
+		this.dishwasher = dishwasher;
 	}
 	
 	public boolean isFurnished() {
@@ -296,4 +329,5 @@ public class PlaceAdForm {
 	public void setCurrentBuyer(String currentBuyer){
 		this.currentBuyer = currentBuyer;
 	}
+	
 }

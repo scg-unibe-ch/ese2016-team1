@@ -35,19 +35,21 @@
 			enabled : true,
 			autoFocus : true
 		});
-		$("#field-moveInDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-		$("#field-moveOutDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
 		
 		flatpickr(".flatpickr", {
 		    enableTime: true
 		});
 		
-		$("#field-visitDay").datepicker({
-			dateFormat : 'dd-mm-yy'
+		flatpickr("#field-moveInDate", {
+		    enableTime: false,
+		});
+		
+		flatpickr("#field-moveOutDate", {
+		    enableTime: false
+		});
+		
+		flatpickr("#field-visitDay", {
+		    enableTime: false
 		});
 		
 
@@ -138,6 +140,47 @@
 		$("#buyOutPrice").val(price);
 		$("#retailPrice").val(price);
 	}
+	
+	//Handles problems by displaying error-messages.
+	function setUpDefaultValues(form)
+	{
+		//Inputs
+		var endOfAuction = document.getElementById('field-endOfAuction');
+		var prize = document.getElementById('field-Prize');
+		var retailPrize = document.getElementById('retailPrice')
+		var currentBidding = document.getElementById('buyOutPrice');
+		var squareFootage = document.getElementById('field-SquareFootage');
+		
+		//Radiobuttons
+		var rent = document.getElementById('saleType-Rent');
+		var buy = document.getElementById('saleType-Buy');
+		var auction = document.getElementById('saleType-Auction');
+
+		if(prize.value == null || prize.value == "")
+			prize.value = 0;
+		if(retailPrize.value == null || retailPrize.value == "")
+			retailPrize.value = 0;
+		if(currentBidding.value == null || currentBidding.value == "")
+			currentBidding.value = 0;
+		if(squareFootage.value == null || squareFootage.value == "")
+			squareFootage.value = 0;
+		
+		if(rent.checked == true) {
+			endOfAuction.value = "2000-01-01 12:00";
+			retailPrize.value = 0;
+			currentBidding.value = 0;
+		}
+		
+		if(buy.checked == true) {
+			endOfAuction.value = "2000-01-01 12:00";
+			prize.value = 0;
+			currentBidding.value = 0;
+		}
+		
+		if(auction.checked == true) {
+			prize.value = 0;
+		}
+	}
 </script>
 
 <pre>
@@ -194,10 +237,10 @@
 			</tr>
 			<tr>
 				<td><form:input type="text" id="field-moveInDate"
-						path="moveInDate" />
+						path="moveInDate" placeholder="Choose a date"/>
 				<form:errors path="moveInDate" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" /></td>
+						path="moveOutDate" placeholder="Choose a date"/></td>
 			</tr>
 
 			<tr>
@@ -210,7 +253,7 @@
 						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
 				<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
-				 <form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Buy
+				 <form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
 				 <form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
 			</tr>
 		</table>
@@ -246,7 +289,7 @@
 				<td><form:input id="retailPrice" type="number" path="retailPrice"
 						placeholder="Retail Price" step="50" 
 						onchange="cloneRetailPrice(this.value)"/>
-					<form:errors path="prize" cssClass="validationErrorText" /></td>
+					<form:errors path="retailPrice" cssClass="validationErrorText" /></td>
 			</tr>
 
 		</table>
@@ -257,16 +300,16 @@
 		<legend>Auction Settings</legend> 
 		<table class="placeAdTable">
 			<tr>
-				<td><label for="currentBidding">Start Bidding</label></td>
+				<td><label for="currentBidding">Start Price</label></td>
 				<td><label for="endOfAuction">End Of Auction</label></td>
 			</tr>
 			<tr>
 				<td><form:input id="currentBidding" type="number" path="currentBidding"
-						placeholder="Start Bidding" step="50"/><span id="currentBidding_Error" class="validationErrorText" 
-						style="display:none">Should not be null</span></td>
+						placeholder="Start Bidding" step="50"/>
+						<form:errors path="currentBidding" cssClass="validationErrorText" /></td>
 				<td><form:input type="text" class="flatpickr" id="field-endOfAuction"
-						path="endOfAuction"/><span id="field-endOfAuction_Error" class="validationErrorText" 
-						style="display:none">Should not be null</span></td>
+						path="endOfAuction" placeholder="Choose a date"/>
+						<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
 			</tr>
 			<tr>
 				<td><label for="retailPrice">Buy Out Price</label></td>
@@ -274,8 +317,7 @@
 			<tr>
 				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
 						placeholder="Buy Out Price" step="50"  onchange="cloneRetailPrice(this.value)"/>
-						<span id="buyOutPrice_Error" class="validationErrorText" 
-						style="display:none">Must be bigger than start bidding</span></td>
+						<form:errors path="retailPrice" cssClass="validationErrorText" /></td>
 			</tr>
 
 		</table>
@@ -381,7 +423,7 @@
 
 		<table>
 			<tr>
-				<td><input type="text" id="field-visitDay" /> <select
+				<td><input type="text" id="field-visitDay" placeholder="Choose a date"/> <select
 					id="startHour">
 						<%
 							for (int i = 0; i < 24; i++) {
@@ -432,7 +474,7 @@
 
 	<br />
 	<div>
-		<button type="submit">Submit</button>
+		<button type="submit" onClick="setUpDefaultValues(this.form)">Submit</button>
 		<a href="/"><button type="button">Cancel</button></a>
 	</div>
 

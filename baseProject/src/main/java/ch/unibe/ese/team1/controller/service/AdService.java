@@ -83,17 +83,16 @@ public class AdService {
 		ad.setZipcode(Integer.parseInt(zip));
 		ad.setCity(placeAdForm.getCity().substring(7));
 		
-//		//add location to add
-//				//set -1 to lon and -1 to lat if no results exist
-//				searchedLocations = geoDataService.getLocationsByCity(adNeuchâtel.getCity());
-//				if (searchedLocations.size() > 0) {
-//					Location searchedLocation = geoDataService.getLocationsByCity(adNeuchâtel.getCity()).get(0);
-//					adNeuchâtel.setLatitude(searchedLocation.getLatitude());
-//					adNeuchâtel.setLongitude(searchedLocation.getLongitude());		
-//				} else {
-//					adNeuchâtel.setLatitude(-1);
-//					adNeuchâtel.setLongitude(-1);
-//				}
+		//add location to add
+		List<Location> searchedLocations = geoDataService.getLocationsByCity(ad.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(ad.getCity()).get(0);
+			ad.setLatitude(searchedLocation.getLatitude());
+			ad.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			ad.setLatitude(-1);
+			ad.setLongitude(-1);
+		}
 		
 		Calendar calendar = Calendar.getInstance();
 		// java.util.Calendar uses a month range of 0-11 instead of the
@@ -101,22 +100,22 @@ public class AdService {
 		try {
 			if (placeAdForm.getMoveInDate().length() >= 1) {
 				int dayMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
-						.substring(0, 2));
+						.substring(8, 10));
 				int monthMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
-						.substring(3, 5));
+						.substring(5, 7));
 				int yearMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
-						.substring(6, 10));
+						.substring(0, 4));
 				calendar.set(yearMoveIn, monthMoveIn - 1, dayMoveIn);
 				ad.setMoveInDate(calendar.getTime());
 			}
 
 			if (placeAdForm.getMoveOutDate().length() >= 1) {
 				int dayMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
-						.substring(0, 2));
+						.substring(8, 10));
 				int monthMoveOut = Integer.parseInt(placeAdForm
-						.getMoveOutDate().substring(3, 5));
+						.getMoveOutDate().substring(5, 7));
 				int yearMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
-						.substring(6, 10));
+						.substring(0, 4));
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
@@ -148,6 +147,8 @@ public class AdService {
 		ad.setGarden(placeAdForm.getGarden());
 		ad.setBalcony(placeAdForm.getBalcony());
 		ad.setCellar(placeAdForm.getCellar());
+		ad.setWashingMachine(placeAdForm.getWashingMachine());
+		ad.setDishwasher(placeAdForm.getDishwasher());;
 		ad.setFurnished(placeAdForm.isFurnished());
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
@@ -416,6 +417,26 @@ public class AdService {
 						}
 					}
 
+					// washingMachine
+					if (searchForm.getWashingMachine()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getWashingMachine())
+								iterator.remove();
+						}
+					}
+
+					// dishwasher
+					if (searchForm.getDishwasher()) {
+						Iterator<Ad> iterator = locatedResults.iterator();
+						while (iterator.hasNext()) {
+							Ad ad = iterator.next();
+							if (!ad.getDishwasher())
+								iterator.remove();
+						}
+					}
+
 					// furnished
 					if (searchForm.getFurnished()) {
 						Iterator<Ad> iterator = locatedResults.iterator();
@@ -504,7 +525,24 @@ public class AdService {
 
 			
 		//}
+		locatedResults = givePriorityToPremium(locatedResults);
 		return locatedResults;
+	}
+	
+	private List<Ad> givePriorityToPremium(List<Ad> ads) {
+		List<Ad> noPremiumAds = new ArrayList<Ad>();
+		Iterator<Ad> iterator = ads.iterator();
+		while(iterator.hasNext()) {
+			Ad ad = iterator.next();
+			User user = ad.getUser();
+			if (!user.getPremium()) {
+				noPremiumAds.add(ad);
+				iterator.remove();
+			}
+		}
+		ads.addAll(noPremiumAds);
+		
+		return ads;
 	}
 
 	private List<Ad> validateDate(List<Ad> ads, boolean inOrOut,

@@ -1,4 +1,4 @@
-var mymap;
+var mymap = null;
 var points = [];
 
 function openMap() {
@@ -6,7 +6,9 @@ function openMap() {
 	$("#resultMapContainer").show();
 	$("#mapSwitchResultsOpen").hide();
 	$("#mapSwitchResultsClose").show();
-	initializeMap();	
+	$("#modus").hide();
+	if (mymap == null)
+		initializeMap();	
 }
 
 function closeMap() {
@@ -14,6 +16,7 @@ function closeMap() {
 	$("#resultMapContainer").hide();
 	$("#mapSwitchResultsOpen").show();
 	$("#mapSwitchResultsClose").hide();
+	$("#modus").show(); 
 }
 
 function initializeMap() {

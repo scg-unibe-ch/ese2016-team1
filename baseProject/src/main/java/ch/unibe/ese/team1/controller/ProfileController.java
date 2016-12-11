@@ -6,8 +6,16 @@ import java.util.ArrayList;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.unibe.ese.team1.controller.pojos.forms.EditProfileForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
+import ch.unibe.ese.team1.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team1.controller.pojos.forms.SignupForm;
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.SignupService;
@@ -24,8 +33,11 @@ import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.controller.service.UserUpdateService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.UserPicture;
 import ch.unibe.ese.team1.model.Visit;
+import ch.unibe.ese.team1.model.dao.UserDao;
 
 /**
  * Handles all requests concerning user accounts and profiles.
@@ -47,6 +59,16 @@ public class ProfileController {
 
 	@Autowired
 	private AdService adService;
+	
+	@Autowired
+	private UserDao userDao;
+	
+	private SearchForm searchForm;
+
+	
+	@Autowired
+	@Qualifier("org.springframework.security.authenticationManager")
+	private AuthenticationManager authenticationManager;
 
 	/** Returns the login page. */
 	@RequestMapping(value = "/login")
@@ -78,6 +100,23 @@ public class ProfileController {
 		}
 		return model;
 	}
+	
+	/** Make new google auth account or if exists already, login **/
+	@RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
+	public ModelAndView signInWithGoogle(@RequestParam("lastName") String lastName, @RequestParam("firstName") String firstName, 
+			@RequestParam("imageUrl") String imageUrl, @RequestParam("email") String email) {
+		User user = userService.findUserByEmail(email);
+		if (user == null) {
+			signupService.saveFromGoogle(lastName, firstName, imageUrl, email);
+			user = userService.findUserByEmail(email);
+		}
+		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+		Authentication result = authenticationManager.authenticate(request);
+		SecurityContextHolder.getContext().setAuthentication(result);
+		ModelAndView model = new ModelAndView("index");
+		return model;
+	}
+	
 
 	/** Checks and returns whether a user with the given email already exists. */
 	@RequestMapping(value = "/signup/doesEmailExist", method = RequestMethod.POST)
@@ -133,7 +172,7 @@ public class ProfileController {
 			model = new ModelAndView("updatedProfile");
 			
 			model.addObject("message",
-					"Something went wrong, please contact the WebAdmin if the problem persists!" + editProfileForm.getSubmitType() );
+					"Something went wrong, please contact the WebAdmin if the problem persists!");
 			return model;
 		}
 	}
@@ -192,5 +231,13 @@ public class ProfileController {
 		Ad ad = visit.getAd();
 		model.addObject("ad", ad);
 		return model;
+	}
+	
+	@ModelAttribute
+	public SearchForm getSearchForm() {
+		if (searchForm == null) {
+			searchForm = new SearchForm();
+		}
+		return searchForm;
 	}
 }

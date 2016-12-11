@@ -41,6 +41,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.unibe.ese.team1.model.dao.AdDao;
 import ch.unibe.ese.team1.model.dao.MessageDao;
+import ch.unibe.ese.team1.model.dao.UserDao;
 
 
 /**
@@ -50,6 +51,9 @@ import ch.unibe.ese.team1.model.dao.MessageDao;
 public class MakeAuctionController {
 
 	private final static String IMAGE_DIRECTORY = PlaceAdController.IMAGE_DIRECTORY;
+	
+	@Autowired
+	private UserDao userDao;
 
 	@Autowired
 	private ServletContext servletContext;
@@ -156,10 +160,12 @@ public class MakeAuctionController {
 			
 			String loggedInUserEmail = (principal == null) ? "" : principal.getName();		
 			
+			User sender = userService.findUserByUsername("System");
+			
 			Message message;
 			message = new Message();
 			message.setSubject("Auction: " + ad.getTitle());
-			message.setSender(ad.getUser());
+			message.setSender(sender);
 			message.setRecipient(ad.getUser());
 			message.setState(MessageState.UNREAD);
 			
@@ -168,29 +174,34 @@ public class MakeAuctionController {
 			// XMLGregorianCalendar which uses 1-12
 			calendar.setTimeInMillis(System.currentTimeMillis());
 			message.setDateSent(calendar.getTime());
+			message.setDateShow(calendar.getTime());
 			
 			
 			if(ad.getCurrentBuyer()!=null){
 				Message message2;
 				message2 = new Message();
 				message2.setSubject("Auction " + ad.getTitle());
-				message2.setSender(userService.findUserByUsername(ad.getCurrentBuyer()));
+				message2.setSender(sender);
 				message2.setRecipient(userService.findUserByUsername(ad.getCurrentBuyer()));
 				message2.setState(MessageState.UNREAD);
 				message2.setDateSent(calendar.getTime());
+				message2.setDateShow(calendar.getTime());
 
 				
 
 				
 				System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 				MailService mail = new MailService();
+				User user = userDao.findByUsername(ad.getCurrentBuyer());
 				if (price >= ad.getRetailPrice()) {
-					mail.sendEmail(ad.getCurrentBuyer(),5,"http://localhost:8080/ad?id="+id);
+					if(user.getPremium())
+						mail.sendEmail(ad.getCurrentBuyer(),5,"http://localhost:8080/ad?id="+id);
 					message2.setText("We are sorry to anounce, someone just bought out the Auction you were leading: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
 
 				}
 				else{
-					mail.sendEmail(ad.getCurrentBuyer(),2,"http://localhost:8080/ad?id="+id);
+					if(user.getPremium())
+						mail.sendEmail(ad.getCurrentBuyer(),2,"http://localhost:8080/ad?id="+id);
 					message2.setText("Someone just replaced you as current highest Bidder on this Auction: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
 
 				}
@@ -205,14 +216,16 @@ public class MakeAuctionController {
 			MailService mail = new MailService();
 			if (price >= ad.getRetailPrice()) {
 				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
-				mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
+				if(ad.getUser().getPremium())
+					mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Congratulations, you just have bought out this auction!");
 				
 			}
 			else{
 				message.setText("Someone has bidded on your auction. It has now risen to " + ad.getCurrentBidding() + ": <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
-				mail.sendEmail(ad.getUser().getEmail(),3,"http://localhost:8080/ad?id="+id);
+				if(ad.getUser().getPremium())
+					mail.sendEmail(ad.getUser().getEmail(),3,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
 						"Your Bidding has been placed. You are now the current highest Bidder!");
 				

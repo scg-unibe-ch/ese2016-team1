@@ -1,11 +1,14 @@
 package ch.unibe.ese.team1.controller.service;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ch.unibe.ese.team1.controller.pojos.MailService;
 import ch.unibe.ese.team1.controller.pojos.forms.SignupForm;
+import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
 import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.UserPicture;
 import ch.unibe.ese.team1.model.UserRole;
 import ch.unibe.ese.team1.model.dao.UserDao;
 //
@@ -33,6 +38,9 @@ public class SignupService {
 	//
 	@Autowired
 	private MessageDao messageDao;
+	
+	@Autowired
+	private UserService userService;
 
 	/** Handles persisting a new user to the database. */
 	@Transactional
@@ -73,12 +81,30 @@ public class SignupService {
 		message.setDateSent(calendar.getTime());
 		message.setDateShow(calendar.getTime());
 
-		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		MailService mail = new MailService();
 		mail.sendEmail(signupForm.getEmail(),0,"");
 		
 		messageDao.save(message);
 		
+	}
+	
+	// save user from google profile
+	public void saveFromGoogle(String lastName, String firstName, String imageUrl, String email) {
+		SignupForm signupForm = new SignupForm();
+		signupForm.setEmail(email);
+		signupForm.setFirstName(firstName);
+		signupForm.setLastName(lastName);
+		signupForm.setGender(Gender.UNKNOWN);
+		SecureRandom random = new SecureRandom();		
+		signupForm.setPassword(new BigInteger(130, random).toString(32));
+		this.saveFrom(signupForm);
+		User user = userService.findUserByEmail(email);
+		// set picture for user
+		UserPicture picture = new UserPicture();
+		picture.setFilePath(imageUrl);
+		picture.setUser(user);
+		user.setPicture(picture);
+		userDao.save(user);	
 	}
 	
 	/**

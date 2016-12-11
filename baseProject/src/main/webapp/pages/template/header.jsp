@@ -13,8 +13,13 @@
 <link rel="stylesheet" type="text/css"
 	media="only screen and (max-device-width: 480px)"
 	href="/css/smartphone.css" />
+	
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
-<Title>FlatFindr</Title>
+<Title>SwissHomes</Title>
+
+<meta name="google-signin-client_id" content="644276133344-lihdlm9a03d6qssgdm24qmlqv1saj2d8.apps.googleusercontent.com">
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script
 	src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
@@ -42,7 +47,8 @@
 
 <header>
 	<div class="left">
-		<a href="/"><img src="/img/logo.png"></a>
+		<a href="/"><img src="/img/swisshomes_logo.png"></a>
+		<a href="/"><h1 class="title">SwissHomes</h1></a>
 	</div>
 	<div class="right">
 		<nav>
@@ -77,10 +83,10 @@
 							</ul></li>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/login">Login</a></li>
+						<li><a href="/login"><img src="/img/login.png" style="width:28px"><span>Login</span></a></li>
 					</c:otherwise>
 				</c:choose>
-				<li><a href="<c:url value='/searchAd' />">Search</a></li>
+				<li><a href="<c:url value='/searchAd' />"><img src="/img/search.png" style="width:23px"> <span>Search</span></a></li>
 			</ul>
 		</nav>
 	</div>

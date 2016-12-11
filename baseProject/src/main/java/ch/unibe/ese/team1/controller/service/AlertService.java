@@ -68,6 +68,8 @@ public class AlertService {
 		alert.setSmokers(alertForm.getSmokers());
 		alert.setGarden(alertForm.getGarden());
 		alert.setCellar(alertForm.getCellar());
+		alert.setWashingMachine(alertForm.getWashingMachine());
+		alert.setDishwasher(alertForm.getDishwasher());;
 		alert.setCable(alertForm.getCable());
 		alert.setInternet(alertForm.getInternet());
 		alert.setAnimals(alertForm.getAnimals());
@@ -117,7 +119,8 @@ public class AlertService {
 					 || animalsMismatchWith(ad, alert) || balconyMismatchWith(ad, alert)
 					 || furnishedMismatchWith(ad, alert) || garageMismatchWith(ad, alert)
 					 || moveInDateMismatchWith(ad, alert) || moveOutDateMismatchWith(ad, alert)
-					 || buyMismatchWith(ad, alert) || rentMismatchWith(ad, alert))
+					 || buyMismatchWith(ad, alert) || rentMismatchWith(ad, alert)
+					 || whashingMachineMismatchWith(ad, alert) || dishwasherMismatchWith(ad, alert))
 				alertIterator.remove();
 		}
 
@@ -239,6 +242,20 @@ public class AlertService {
 	private boolean gardenMismatchWith(Ad ad, Alert alert) {
 		boolean mismatch = false;
 		if(alert.getGarden() && !ad.getGarden())
+			mismatch = true;
+		return mismatch;
+	}
+	
+	private boolean whashingMachineMismatchWith(Ad ad, Alert alert) {
+		boolean mismatch = false;
+		if(alert.getWashingMachine() && !ad.getWashingMachine())
+			mismatch = true;
+		return mismatch;
+	}
+	
+	private boolean dishwasherMismatchWith(Ad ad, Alert alert) {
+		boolean mismatch = false;
+		if(alert.getDishwasher() && !ad.getDishwasher())
 			mismatch = true;
 		return mismatch;
 	}

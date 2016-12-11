@@ -94,10 +94,11 @@ public class MessageService {
 		// XMLGregorianCalendar which uses 1-12
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		message.setDateSent(calendar.getTime());
+		message.setDateShow(calendar.getTime());
 
-		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		MailService mail = new MailService();
-		mail.sendEmail(userDao.findByUsername(messageForm.getRecipient()).getEmail(),1,"");
+		if(userDao.findByUsername(messageForm.getRecipient()).getPremium())
+			mail.sendEmail(userDao.findByUsername(messageForm.getRecipient()).getEmail(),1,"");
 		
 		
 		messageDao.save(message);
@@ -116,6 +117,7 @@ public class MessageService {
 			String text) {
 		Message message = new Message();
 		message.setDateSent(new Date());
+		message.setDateShow(new Date());
 		message.setSender(sender);
 		message.setRecipient(recipient);
 		message.setSubject(subject);

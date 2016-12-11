@@ -25,15 +25,15 @@
 	</c:when>
 	<c:otherwise>
 	
-		<div id="resultsDiv" class="resultsDiv">
+		<div id="resultsDiv" class="resultsDiv card cardPadding">
 		<h1>My Advertisements</h1>
-		<hr />			
 			<c:forEach var="ad" items="${ownAdvertisements}">
 				<div class="resultAd" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
 							src="${ad.pictures[0].filePath}" /></a>
+						<div class="leftTextRoomDescription">
 						<h2>
 							<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
 						</h2>
@@ -42,6 +42,7 @@
 						<p>
 							<i>${ad.roomType}</i>
 						</p>
+						</div>
 					</div>
 					<div class="resultRight">
 						<c:choose>
@@ -74,15 +75,15 @@
 	</c:when>
 	<c:otherwise>
 		
-		<div id="resultsDiv" class="resultsDiv">
+		<div id="resultsDiv" class="resultsDiv card cardPadding">
 		<h1>My Bookmarks</h1>
-		<hr />			
 			<c:forEach var="ad" items="${bookmarkedAdvertisements}">
 				<div class="resultAd" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
 							src="${ad.pictures[0].filePath}" /></a>
+						<div class="leftTextRoomDescription">
 						<h2>
 							<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
 						</h2>
@@ -91,6 +92,7 @@
 						<p>
 							<i>${ad.roomType}</i>
 						</p>
+						</div>
 					</div>
 					<div class="resultRight">
 						<h2>CHF ${ad.prizePerMonth }</h2>

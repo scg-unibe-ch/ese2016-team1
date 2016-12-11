@@ -2,6 +2,7 @@ package ch.unibe.ese.team1.controller;
 
 import java.security.Principal;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -29,8 +30,10 @@ import ch.unibe.ese.team1.controller.service.AlertService;
 import ch.unibe.ese.team1.controller.service.EditAdService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.AdPicture;
 import ch.unibe.ese.team1.model.PictureMeta;
 import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.dao.AdPictureDao;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,11 +59,18 @@ public class EditAdController {
 	private UserService userService;
 
 	@Autowired
+	private AdPictureDao adPictureDao;
+	
+	@Autowired
 	private AlertService alertService;
 
 	private PictureUploader pictureUploader;
 
 	private ObjectMapper objectMapper;
+	
+	private List<User> roomies = new LinkedList<User>();
+	
+	private List<AdPicture> pics = new LinkedList<AdPicture>();
 
 	/**
 	 * Serves the page that allows the user to edit the ad with the given id.
@@ -71,6 +81,11 @@ public class EditAdController {
 		Ad ad = adService.getAdById(id);
 		
 		ad.setAltId(1);
+
+roomies = new LinkedList<User>();
+pics = new LinkedList<AdPicture>();		
+roomies = ad.getRegisteredRoommates();
+pics = ad.getPictures();
 		
 		model.addObject("ad", ad);
 
@@ -103,60 +118,98 @@ public class EditAdController {
 				String username = principal.getName();
 				User user = userService.findUserByUsername(username);
 
-				String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-				if (pictureUploader == null) {
-					pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
-				}
-				List<String> fileNames = pictureUploader.getFileNames();
 				
-				
-				
-				
-				
-				if ((!result.hasErrors()) && (placeAdForm.getCity().length() > 7) && (placeAdForm.getMoveInDate().length() == 10) && ((placeAdForm.getEndOfAuction().length() == 16) || (placeAdForm.getEndOfAuction().length() == 0)) && ((placeAdForm.getMoveOutDate().length() == 10) || (placeAdForm.getMoveOutDate().length() == 0))) {
+				if ((!result.hasErrors())     ){// && (placeAdForm.getCity().length() > 7) && (placeAdForm.getMoveInDate().length() == 10) && ((placeAdForm.getEndOfAuction().length() == 16) || (placeAdForm.getEndOfAuction().length() == 0)) && ((placeAdForm.getMoveOutDate().length() == 10) || (placeAdForm.getMoveOutDate().length() == 0))) {
 				try{
 				
-					Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId);
-
+					String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
+					if (pictureUploader == null) {
+						pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+					}
+					List<String> fileNames = pictureUploader.getFileNames();
+						
 					
-				// triggers all alerts that match the placed ad
-				alertService.triggerAlerts(ad);
-				
-				// reset the picture uploader
-				this.pictureUploader = null;
-							
-							
-							
-				
+					
+					Ad ad = editAdService.saveFrom(placeAdForm, fileNames, user, adId, roomies, pics);
 
-				model = new ModelAndView("redirect:/ad?id=" + ad.getId());
-				redirectAttributes.addFlashAttribute("confirmationMessage",
-						"Ad edited successfully. You can take a look at it below.");
-				}
-				catch(Error e){
-					model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
-					redirectAttributes.addFlashAttribute("errorMessage",
+	
+	roomies = new LinkedList<User>();
+	pics = new LinkedList<AdPicture>();
+					
+					// triggers all alerts that match the placed ad
+					alertService.triggerAlerts(ad);
+				
+					// reset the picture uploader
+					this.pictureUploader = null;
+
+					model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+					redirectAttributes.addFlashAttribute("confirmationMessage",
+							"Ad edited successfully. You can take a look at it below.");
+					}
+					catch(Error e){
+						model = new ModelAndView("redirect:/profile/editAd?id=" + adId);
+						redirectAttributes.addFlashAttribute("errorMessage",
 							"There was an error. Check if your inputs are correct and try again."  );
 					
-				}
-			} 
-			else {
+					}
+				} 
+				else {
 					model=new ModelAndView("editAd");
-					//Ad ad = adService.getAdById(adId);
-					Ad ad = editAdService.saveFakeFrom(placeAdForm, fileNames, user, adId);
 
-					//String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-					pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+					String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
+					if (pictureUploader == null) {
+						pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+					}
 					
-					//adId = (2^63-1);
+					
+					
+					List<String> fileNames = pictureUploader.getFileNames();
+					//List<AdPicture> pictures = new ArrayList<>();
+					for (String filePath : fileNames) {
+						AdPicture picture = new AdPicture();
+						picture.setFilePath(filePath);
+						//pics.add(picture);
+					}
+
+					
+
+					
+					//roomies = null;
+					
+					if(placeAdForm.getRegisteredRoommateEmails() != null){
+						for (String tempName : placeAdForm.getRegisteredRoommateEmails()) {
+							//UserDao userDao = null;
+							User tempUser = userService.findUserByUsername(tempName);
+							if(tempUser!=null){
+								roomies.add(tempUser);
+							}
+						}
+					}
+					
+					
+					
+					
+					
+					
+					
+					model = new ModelAndView("editAd");
+					Ad ad = adService.getAdById(adId);
+					
+					ad.setAltId(0);
 					
 					model.addObject("ad", ad);
+
+					model.addObject("placeAdForm", placeAdForm);
 					
-					//model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+					
+					
+					
+					model.addObject("pics", pics);
+					model.addObject("roomies", roomies);
+					
+					
 
 				}
-
-
 			return model;
 		}
 
@@ -168,7 +221,9 @@ public class EditAdController {
 	@RequestMapping(value = "/profile/editAd/deletePictureFromAd", method = RequestMethod.POST)
 	public @ResponseBody void deletePictureFromAd(@RequestParam long adId,
 			@RequestParam long pictureId) {
-		editAdService.deletePictureFromAd(adId, pictureId);
+		//editAdService.deletePictureFromAd(adId, pictureId);
+		AdPicture pic = adPictureDao.findOne(pictureId);
+		pics.remove(pic);
 	}
 
 	/**
@@ -241,6 +296,8 @@ public class EditAdController {
 	@RequestMapping(value = "/profile/editAd/deleteRoommate", method = RequestMethod.POST)
 	public @ResponseBody void deleteRoommate(@RequestParam long userId,
 			@RequestParam long adId) {
-		editAdService.deleteRoommate(userId, adId);
+		//editAdService.deleteRoommate(userId, adId);
+		User user = userService.findUserById(userId);
+		roomies.remove(user);
 	}
 }
