@@ -519,6 +519,13 @@ footer nav ul li {
 #loginPage {
 	padding: 15px;
 	width: 50%;
+	position: relative;
+}
+
+#login-form {
+	position: absolute;
+    right: 30px;
+    top: 81px;
 }
 
 /* about.jsp*/
