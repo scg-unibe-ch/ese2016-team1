@@ -366,6 +366,24 @@
 			<table>
 				<c:forEach items="${visits }" var="visit">
 					<tr>
+					
+					<c:set var="already" value="false"/>
+					<c:forEach items="${visits }" var="visit2">
+					
+						<c:if test="${visit.id < visit2.id}">
+						<c:if test="${visit.startTimestamp == visit2.startTimestamp }">
+						<c:if test="${visit.endTimestamp == visit2.endTimestamp }">
+					
+						<c:set var="already" value="true"/>
+	
+						</c:if>
+						</c:if>
+						</c:if>
+					
+					</c:forEach>
+					
+					<c:if test="${already == false}">
+					
 						<td>
 							<fmt:formatDate value="${visit.startTimestamp}" pattern="yyyy-MM-dd " />
 							&nbsp; from
@@ -385,6 +403,9 @@
 										data-id="${visit.id}">Login to send enquiries</button></a>
 								</c:otherwise>
 							</c:choose></td>
+							
+						</c:if>	
+														
 					</tr>
 				</c:forEach>
 			</table>
