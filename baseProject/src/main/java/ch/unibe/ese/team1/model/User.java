@@ -46,6 +46,9 @@ public class User {
 
 	@Column(nullable = false)
 	private boolean enabled;
+	
+	@Column
+	private boolean googleUser; 
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -177,6 +180,14 @@ public class User {
 	
 	public void setBookmarkedAds(List<Ad> bookmarkedAds) {
 		this.bookmarkedAds = bookmarkedAds;
+	}
+	
+	public boolean isGoogleUser() {
+		return googleUser;
+	}
+
+	public void setGoogleUser(boolean googleUser) {
+		this.googleUser = googleUser;
 	}
 
 	@Override

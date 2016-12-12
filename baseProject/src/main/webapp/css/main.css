@@ -167,6 +167,16 @@ button {
 	font-size: 1.1em;
 }
 
+.disabledButton {
+	background-color: #bbbbbb;
+	color: white;
+	border-color: white;
+	padding: 5px 10px;
+	border-radius: 5px;
+	border-style: solid;
+	font-size: 1.1em;
+}
+
 .smallPlusButton {
 	display: inline;
 	font-decoration: none;

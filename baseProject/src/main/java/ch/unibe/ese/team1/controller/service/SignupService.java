@@ -104,6 +104,7 @@ public class SignupService {
 		picture.setFilePath(imageUrl);
 		picture.setUser(user);
 		user.setPicture(picture);
+		user.setGoogleUser(true);
 		userDao.save(user);	
 	}
 	

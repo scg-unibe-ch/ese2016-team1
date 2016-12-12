@@ -78,8 +78,12 @@
 			<c:when test="${principalID != null}">
 				<button id="newMsg" type="button">Message</button>
 				<c:choose>
-					<c:when test="${principalID eq user.id}">
+					<c:when test="${principalID eq user.id && user.googleUser == false}">
 						<a class="button" href="/profile/editProfile">Edit Profile</a>
+					</c:when>
+					<c:when test="${principalID eq user.id && user.googleUser}">
+						<a class="disabledButton" href="/profile/editProfile">Edit Profile</a>
+						<p style="position: relative;left: 110px;">You are logged in with Google. Edit is not possible</p>
 					</c:when>
 					<c:otherwise></c:otherwise>
 				</c:choose>
