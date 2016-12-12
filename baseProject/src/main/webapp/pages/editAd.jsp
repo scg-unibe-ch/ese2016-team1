@@ -32,9 +32,14 @@
 			autoFocus : true
 		});
 		
-		flatpickr(".flatpickr", {
+		var timepickr = flatpickr("#field-endOfAuction", {
 		    enableTime: true
 		});
+		
+		//close flatpickr onmoveout
+		$(".flatpickr-calendar").on("mouseleave", function() {
+			timepickr.close();
+		})
 		
 		flatpickr("#field-moveInDate", {
 		    enableTime: false,
@@ -47,6 +52,7 @@
 		flatpickr("#field-visitDay", {
 		    enableTime: false
 		});
+		
 		
 		$("#addbutton").click(function() {
 			var text = $("#roomFriends").val();

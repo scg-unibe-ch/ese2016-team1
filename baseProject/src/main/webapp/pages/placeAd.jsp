@@ -36,9 +36,14 @@
 			autoFocus : true
 		});
 		
-		flatpickr(".flatpickr", {
+		var timepickr = flatpickr("#field-endOfAuction", {
 		    enableTime: true
 		});
+		
+		//close flatpickr onmoveout
+		$(".flatpickr-calendar").on("mouseleave", function() {
+			timepickr.close();
+		})
 		
 		flatpickr("#field-moveInDate", {
 		    enableTime: false,
