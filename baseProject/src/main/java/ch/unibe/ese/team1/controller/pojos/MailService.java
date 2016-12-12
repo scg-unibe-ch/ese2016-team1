@@ -77,6 +77,12 @@ public class MailService {
             if(textId==5){
             	message.setText("The Flatfindr-auction you were leading has been bought out, I'm sorry!\n " +link);
             }
+            if(textId==6){
+            	message.setText("Your Flatfindr-auction has ended!\n " +link);
+            }
+            if(textId==7){
+            	message.setText("You have won this Flatfindr-auction!\n " +link);
+            }
              
             System.out.print("Sending message...");
             // Send the message

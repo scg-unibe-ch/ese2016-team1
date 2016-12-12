@@ -33,6 +33,8 @@ public class Ad {
 	
 	private long altId;
 
+	private boolean auctionMessage = false;
+
 	@Column(nullable = false)
 	private String title;
 
@@ -149,6 +151,14 @@ public class Ad {
 	
 	////////////////////////////////////////////////////////////////////////////////////////////
 
+	public boolean getAuctionMessage(){
+		return auctionMessage;
+	}
+	
+	public void setAuctionMessage(){
+		auctionMessage = true;
+	}
+	
 	public Date getCreationDate() {
 		return creationDate;
 	}

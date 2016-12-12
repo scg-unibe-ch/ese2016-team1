@@ -216,6 +216,20 @@ public class MakeAuctionController {
 			MailService mail = new MailService();
 			if (price >= ad.getRetailPrice()) {
 				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
+				
+				Message message3;
+				message3 = new Message();
+				message3.setSubject("Auction " + ad.getTitle());
+				message3.setSender(sender);
+				message3.setRecipient(userService.findUserByUsername(loggedInUserEmail));
+				message3.setState(MessageState.UNREAD);
+				message3.setDateSent(calendar.getTime());
+				message3.setDateShow(calendar.getTime());
+				message3.setText("You bought out this Auction. Congratulations on your newes purchase! <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
+				messageDao.save(message3);
+				mail.sendEmail(loggedInUserEmail,7,"http://localhost:8080/ad?id="+id);
+				
+				
 				if(ad.getUser().getPremium())
 					mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
