@@ -222,7 +222,8 @@
 
 <form:form method="post" modelAttribute="placeAdForm"
 	action="/profile/editAd" id="placeAdForm" autocomplete="off"
-	enctype="multipart/form-data">
+	enctype="multipart/form-data"
+	novalidate="novalidate">
 
 <input type="hidden" name="adId" value="${ad.id }" />
 
