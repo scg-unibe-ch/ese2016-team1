@@ -451,14 +451,6 @@ public class Ad {
 		return city;
 	}
 	
-	/* public double[] getLonLatFromCityName() {
-		GeoDataService geoDataService = new GeoDataService();
-		Location searchedLocation = geoDataService.getLocationsByCity(city)
-				.get(0);
-		double[] lonLat = {searchedLocation.getLongitude(), searchedLocation.getLatitude()};
-		return lonLat;
-	} */
-	
 	public double getLongitude() {
 		return this.longitude;
 	}
