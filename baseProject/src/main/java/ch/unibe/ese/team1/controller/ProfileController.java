@@ -1,7 +1,17 @@
 package ch.unibe.ese.team1.controller;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -31,6 +41,11 @@ import ch.unibe.ese.team1.controller.service.UserUpdateService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.User;
+<<<<<<< HEAD
+=======
+import ch.unibe.ese.team1.model.UserPicture;
+import ch.unibe.ese.team1.model.UserRole;
+>>>>>>> google
 import ch.unibe.ese.team1.model.Visit;
 
 /**
@@ -55,6 +70,9 @@ public class ProfileController {
 	private AdService adService;
 	
 	private SearchForm searchForm;
+	
+	private final static String CLIENT = "644276133344-lihdlm9a03d6qssgdm24qmlqv1saj2d8.apps.googleusercontent.com";
+	private final static String DEFAULT_ROLE = "user";
 
 	
 	@Autowired
@@ -96,20 +114,39 @@ public class ProfileController {
 	}
 	
 	/** Make new google auth account or if exists already, login **/
-	@RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
-	public ModelAndView signInWithGoogle(@RequestParam("lastName") String lastName, @RequestParam("firstName") String firstName, 
-			@RequestParam("imageUrl") String imageUrl, @RequestParam("email") String email) {
-		User user = userService.findUserByEmail(email);
-		if (user == null) {
-			signupService.saveFromGoogle(lastName, firstName, imageUrl, email);
-			user = userService.findUserByEmail(email);
-		}
-		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
-		Authentication result = authenticationManager.authenticate(request);
-		SecurityContextHolder.getContext().setAuthentication(result);
-		ModelAndView model = new ModelAndView("index");
-		return model;
-	}
+    @RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
+    public @ResponseBody
+    ModelAndView googleLogin(@RequestParam("token") String token) throws GeneralSecurityException, IOException {
+        
+        JacksonFactory jacksonFactory = new JacksonFactory();
+        NetHttpTransport transport = new NetHttpTransport();
+
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jacksonFactory)
+            .setAudience(Arrays.asList(CLIENT))
+            .setIssuer("accounts.google.com")
+            .build();
+
+        GoogleIdToken idToken = verifier.verify(token);
+        if (idToken != null) {
+            Payload payload = idToken.getPayload();
+            String lastName = (String) payload.get("family_name");
+            String firstName = (String) payload.get("given_name");
+            String email = payload.getEmail();
+            String imageUrl = (String) payload.get("picture");
+
+            User user = userService.findUserByEmail(email);
+    		if (user == null) {
+    			signupService.saveFromGoogle(lastName, firstName, imageUrl, email);
+    			user = userService.findUserByEmail(email);
+    		}
+    		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
+    		Authentication result = authenticationManager.authenticate(request);
+    		SecurityContextHolder.getContext().setAuthentication(result);
+    		ModelAndView model = new ModelAndView("index");
+    		return model;
+	    }
+        return new ModelAndView("index");
+    }
 	
 
 	/** Checks and returns whether a user with the given email already exists. */
