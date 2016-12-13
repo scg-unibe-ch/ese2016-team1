@@ -119,6 +119,8 @@ public class AdTestDataSaver {
 		adBern.setBalcony(true);
 		adBern.setCellar(true);
 		adBern.setFurnished(true);
+		adBern.setWashingMachine(false);
+		adBern.setDishwasher(true);
 		adBern.setCable(true);
 		adBern.setGarage(true);
 		adBern.setInternet(true);
@@ -177,6 +179,8 @@ public class AdTestDataSaver {
 		adBern2.setBalcony(false);
 		adBern2.setCellar(false);
 		adBern2.setFurnished(false);
+		adBern2.setWashingMachine(false);
+		adBern2.setDishwasher(false);
 		adBern2.setCable(false);
 		adBern2.setGarage(false);
 		adBern2.setInternet(true);
@@ -233,6 +237,8 @@ public class AdTestDataSaver {
 		adBasel.setGarden(false);
 		adBasel.setBalcony(false);
 		adBasel.setCellar(false);
+		adBasel.setWashingMachine(true);
+		adBasel.setDishwasher(true);
 		adBasel.setFurnished(false);
 		adBasel.setCable(false);
 		adBasel.setGarage(false);
@@ -259,7 +265,7 @@ public class AdTestDataSaver {
 		adOlten.setCreationDate(creationDate4);
 		adOlten.setSaleType("Buy");
 		adOlten.setPrizePerMonth(430);
-		adOlten.setRetailPrice(4300);
+		adOlten.setRetailPrice(43000);
 		adOlten.setSquareFootage(60);
 		adOlten.setRoomType("Room");
 		adOlten.setSmokers(true);
@@ -286,6 +292,8 @@ public class AdTestDataSaver {
 		adOlten.setBalcony(true);
 		adOlten.setCellar(true);
 		adOlten.setFurnished(true);
+		adOlten.setWashingMachine(true);
+		adOlten.setDishwasher(false);
 		adOlten.setCable(true);
 		adOlten.setGarage(false);
 		adOlten.setInternet(false);
@@ -310,7 +318,7 @@ public class AdTestDataSaver {
 		adNeuchâtel.setCreationDate(creationDate5);
 		adNeuchâtel.setSaleType("Buy");
 		adNeuchâtel.setPrizePerMonth(410);
-		adNeuchâtel.setRetailPrice(4100);
+		adNeuchâtel.setRetailPrice(41000);
 		adNeuchâtel.setSquareFootage(40);
 		adNeuchâtel.setRoomType("Studio");
 		adNeuchâtel.setSmokers(true);
@@ -338,6 +346,8 @@ public class AdTestDataSaver {
 		adNeuchâtel.setCellar(true);
 		adNeuchâtel.setFurnished(true);
 		adNeuchâtel.setCable(false);
+		adNeuchâtel.setWashingMachine(true);
+		adNeuchâtel.setDishwasher(true);
 		adNeuchâtel.setGarage(false);
 		adNeuchâtel.setInternet(true);
 		pictures = new ArrayList<>();
@@ -360,7 +370,7 @@ public class AdTestDataSaver {
 		adBiel.setSaleType("Auction");
 		adBiel.setEndOfAuction(auctionEndDate1);
 		adBiel.setPrizePerMonth(480);
-		adBiel.setRetailPrice(4800);
+		adBiel.setRetailPrice(48000);
 		adBiel.setSquareFootage(10);
 		adBiel.setRoomType("Studio");
 		adBiel.setSmokers(true);
@@ -388,6 +398,8 @@ public class AdTestDataSaver {
 		adBiel.setCellar(false);
 		adBiel.setFurnished(false);
 		adBiel.setCable(false);
+		adBiel.setWashingMachine(true);
+		adBiel.setDishwasher(true);
 		adBiel.setGarage(false);
 		adBiel.setInternet(false);
 		pictures = new ArrayList<>();
@@ -443,6 +455,8 @@ public class AdTestDataSaver {
 		adZurich.setBalcony(true);
 		adZurich.setCellar(false);
 		adZurich.setFurnished(true);
+		adZurich.setWashingMachine(true);
+		adZurich.setDishwasher(true);
 		adZurich.setCable(true);
 		adZurich.setGarage(true);
 		adZurich.setInternet(true);
@@ -474,7 +488,7 @@ public class AdTestDataSaver {
 		adLuzern.setCreationDate(creationDate2);
 		adLuzern.setSaleType("Buy");
 		adLuzern.setPrizePerMonth(700);
-		adLuzern.setRetailPrice(7000);
+		adLuzern.setRetailPrice(70000);
 		adLuzern.setSquareFootage(60);
 		adLuzern.setRoomType("Studio");
 		adLuzern.setSmokers(false);
@@ -501,6 +515,8 @@ public class AdTestDataSaver {
 		adLuzern.setBalcony(false);
 		adLuzern.setCellar(false);
 		adLuzern.setFurnished(false);
+		adLuzern.setWashingMachine(true);
+		adLuzern.setDishwasher(true);
 		adLuzern.setCable(false);
 		adLuzern.setGarage(false);
 		adLuzern.setInternet(true);
@@ -531,7 +547,7 @@ public class AdTestDataSaver {
 		adAarau.setSaleType("Auction");
 		adAarau.setEndOfAuction(auctionEndDate2);
 		adAarau.setPrizePerMonth(800);
-		adAarau.setRetailPrice(8000);
+		adAarau.setRetailPrice(80000);
 		adAarau.setSquareFootage(26);
 		adAarau.setRoomType("Studio");
 		adAarau.setSmokers(true);
@@ -558,6 +574,8 @@ public class AdTestDataSaver {
 		adAarau.setBalcony(true);
 		adAarau.setCellar(false);
 		adAarau.setFurnished(true);
+		adAarau.setWashingMachine(true);
+		adAarau.setDishwasher(true);
 		adAarau.setCable(false);
 		adAarau.setGarage(false);
 		adAarau.setInternet(false);
@@ -613,6 +631,8 @@ public class AdTestDataSaver {
 		adDavos.setBalcony(true);
 		adDavos.setCellar(true);
 		adDavos.setFurnished(true);
+		adDavos.setWashingMachine(true);
+		adDavos.setDishwasher(true);
 		adDavos.setCable(true);
 		adDavos.setGarage(false);
 		adDavos.setInternet(false);
@@ -637,7 +657,7 @@ public class AdTestDataSaver {
 		adLausanne.setCreationDate(creationDate5);
 		adLausanne.setSaleType("Buy");
 		adLausanne.setPrizePerMonth(360);
-		adLausanne.setRetailPrice(3600);
+		adLausanne.setRetailPrice(36000);
 		adLausanne.setSquareFootage(8);
 		adLausanne.setRoomType("Room");
 		adLausanne.setSmokers(true);
@@ -664,6 +684,8 @@ public class AdTestDataSaver {
 		adLausanne.setBalcony(false);
 		adLausanne.setCellar(true);
 		adLausanne.setFurnished(true);
+		adLausanne.setWashingMachine(true);
+		adLausanne.setDishwasher(true);
 		adLausanne.setCable(false);
 		adLausanne.setGarage(false);
 		adLausanne.setInternet(false);
@@ -715,6 +737,8 @@ public class AdTestDataSaver {
 		adLocarno.setBalcony(false);
 		adLocarno.setCellar(false);
 		adLocarno.setFurnished(false);
+		adLocarno.setWashingMachine(true);
+		adLocarno.setDishwasher(true);
 		adLocarno.setCable(false);
 		adLocarno.setGarage(false);
 		adLocarno.setInternet(false);
@@ -724,6 +748,61 @@ public class AdTestDataSaver {
 		pictures.add(createPicture(adLocarno, "/img/test/ad6_1.png"));
 		adLocarno.setPictures(pictures);
 		adDao.save(adLocarno);
+
+		String studioDescription13 = "Villa Miragalli is a house of 240 square meters (2583 sq.ft) that sits on a property of 10,000 square meters (108,000 sq.ft)."
+				+ "It has several balconies and terraces; and is suitable for a maximum of ten people (8+2)."
+				+ "The Villa has two floors, with four bedrooms (2 master suites and 2 guest rooms) and four bathrooms, as well as a 4000 square meter (43,000 sq. ft) garden. Exotic Ipé hardwood flooring is laid throughout the house."
+				+ "The Villa is set behind an automatic wide gate with plenty of covered parking spaces.  From the parking area, the house can be easily accessed (just one step) for all types of guests."
+				+ "Villa Miragalli is fully furnished with personalized A/C and heating throughout the entire house and bedrooms, as well as a hot tub (which can be enjoyed all year), an infinity swimming pool, outdoor kitchen, gazebo, barbecue, hammock, Sky TV, Playstation 3, home theatre system, iPod station, alarm, free fast Wi-Fi (bring your laptop or smartphone), and all the comforts you need to make this your home away from home.";
+		String roomPreferences13 = "Shut up and buy it.";
+		
+		Ad adLyss = new Ad();
+		adLyss.setZipcode(3250);
+		adLyss.setMoveInDate(moveInDate6);
+		adLyss.setMoveOutDate(moveOutDate5);
+		adLyss.setCreationDate(creationDate6);
+		adLyss.setSaleType("Auction");
+		adLyss.setEndOfAuction(auctionEndDate2);
+		adLyss.setPrizePerMonth(960);
+		adLyss.setCurrentBidding(1000000);
+		adLyss.setRetailPrice(1600000);
+		adLyss.setSquareFootage(42);
+		adLyss.setRoomType("House");
+		adLyss.setSmokers(true);
+		adLyss.setAnimals(true);
+		adLyss.setRoomDescription(studioDescription13);
+		adLyss.setPreferences(roomPreferences13);
+		adLyss.setRoommates("None");
+		adLyss.setUser(jane);
+		adLyss.setTitle("Villa Miragalli");
+		adLyss.setStreet("Tulpenweg 23");
+		adLyss.setCity("Lyss");
+		//add location to add
+		//set -1 to lon and -1 to lat if no results exist
+		searchedLocations = geoDataService.getLocationsByCity(adLyss.getCity());
+		if (searchedLocations.size() > 0) {
+			Location searchedLocation = geoDataService.getLocationsByCity(adLyss.getCity()).get(0);
+			adLyss.setLatitude(searchedLocation.getLatitude());
+			adLyss.setLongitude(searchedLocation.getLongitude());		
+		} else {
+			adLyss.setLatitude(-1);
+			adLyss.setLongitude(-1);
+		}
+		adLyss.setGarden(true);
+		adLyss.setBalcony(true);
+		adLyss.setCellar(true);
+		adLyss.setFurnished(true);
+		adLyss.setWashingMachine(true);
+		adLyss.setDishwasher(true);
+		adLyss.setCable(true);
+		adLyss.setGarage(true);
+		adLyss.setInternet(true);
+		pictures = new ArrayList<>();
+		pictures.add(createPicture(adLyss, "/img/test/ad13_3.jpg"));
+		pictures.add(createPicture(adLyss, "/img/test/ad13_2.jpg"));
+		pictures.add(createPicture(adLyss, "/img/test/ad13_1.jpg"));
+		adLyss.setPictures(pictures);
+		adDao.save(adLyss);
 
 	}
 
