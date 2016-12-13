@@ -80,6 +80,9 @@ public class ProfileController {
 	/** Returns the signup page. */
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public ModelAndView signupPage() {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("signup");
 		model.addObject("signupForm", new SignupForm());
 		return model;
@@ -127,6 +130,9 @@ public class ProfileController {
 	/** Shows the edit profile page. */
 	@RequestMapping(value = "/profile/editProfile", method = RequestMethod.GET)
 	public ModelAndView editProfilePage(Principal principal) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("editProfile");
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
@@ -180,6 +186,9 @@ public class ProfileController {
 	/** Displays the public profile of the user with the given id. */
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ModelAndView user(@RequestParam("id") long id, Principal principal) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("user");
 		User user = userService.findUserById(id);
 		if (principal != null) {
@@ -196,6 +205,9 @@ public class ProfileController {
 	/** Displays the schedule page of the currently logged in user. */
 	@RequestMapping(value = "/profile/schedule", method = RequestMethod.GET)
 	public ModelAndView schedule(Principal principal) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("schedule");
 		User user = userService.findUserByUsername(principal.getName());
 
@@ -222,6 +234,9 @@ public class ProfileController {
 	/** Returns the visitors page for the visit with the given id. */
 	@RequestMapping(value = "/profile/visitors", method = RequestMethod.GET)
 	public ModelAndView visitors(@RequestParam("visit") long id) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("visitors");
 		Visit visit = visitService.getVisitById(id);
 		Iterable<User> visitors = visit.getSearchers();

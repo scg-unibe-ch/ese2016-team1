@@ -33,6 +33,9 @@ public class SearchController {
 	/** Shows the search ad page. */
 	@RequestMapping(value = "/searchAd", method = RequestMethod.GET)
 	public ModelAndView searchAd() {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("searchAd");
 		return model;
 	}

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ch.unibe.ese.team1.controller.pojos.MailService;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
+import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.model.Message;
@@ -29,6 +30,9 @@ public class MessageController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AdService adService;
 
 	/**
 	 * Shows the messages page for the currently logged in user. The inbox of
@@ -36,6 +40,9 @@ public class MessageController {
 	 */
 	@RequestMapping(value = "/profile/messages", method = RequestMethod.GET)
 	public ModelAndView messages(Principal principal) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("messages");
 		User user = userService.findUserByUsername(principal.getName());
 		model.addObject("messageForm", new MessageForm());

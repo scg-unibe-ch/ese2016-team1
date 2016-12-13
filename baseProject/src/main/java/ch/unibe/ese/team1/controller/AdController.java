@@ -54,6 +54,9 @@ public class AdController {
 	/** Gets the ad description page for the ad with the given id. */
 	@RequestMapping(value = "/ad", method = RequestMethod.GET)
 	public ModelAndView ad(@RequestParam("id") long id, Principal principal) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("adDescription");
 		Ad ad = adService.getAdById(id);
 		

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.EnquiryService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.controller.service.VisitService;
@@ -31,6 +32,9 @@ public class EnquiryController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AdService adService;
 
 	@Autowired
 	private VisitService visitService;
@@ -38,6 +42,9 @@ public class EnquiryController {
 	/** Serves the page that displays the enquiries for the logged in user. */
 	@RequestMapping(value = "/profile/enquiries")
 	public ModelAndView enquiriesPage(Principal principal) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("enquiries");
 		User user = userService.findUserByUsername(principal.getName());
 		Iterable<VisitEnquiry> usersEnquiries = enquiryService

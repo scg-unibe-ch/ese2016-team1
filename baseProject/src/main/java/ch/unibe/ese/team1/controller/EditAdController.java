@@ -79,6 +79,9 @@ public class EditAdController {
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.GET)
 	public ModelAndView editAdPage(@RequestParam long id, Principal principal) {
+
+		adService.endMessages();
+
 		ModelAndView model = new ModelAndView("editAd");
 		Ad ad = adService.getAdById(id);
 		

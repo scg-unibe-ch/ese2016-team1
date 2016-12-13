@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ch.unibe.ese.team1.controller.pojos.forms.AlertForm;
+import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.AlertService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.model.Alert;
@@ -30,10 +31,17 @@ public class AlertController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AdService adService;
+
 
 	/** Serves the page that allows the user to view their alerts. */
 	@RequestMapping(value = "/profile/alerts", method = RequestMethod.GET)
 	public ModelAndView alerts(Principal principal) {
+
+		adService.endMessages();
+		
 		return prepareAlertPage(principal, false, new AlertForm());
 	}
 

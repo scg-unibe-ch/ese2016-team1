@@ -88,6 +88,9 @@ public class PlaceAdController {
 	/** Shows the place ad form. */
 	@RequestMapping(value = "/profile/placeAd", method = RequestMethod.GET)
 	public ModelAndView placeAd() throws IOException {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("placeAd");
 
 		String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);

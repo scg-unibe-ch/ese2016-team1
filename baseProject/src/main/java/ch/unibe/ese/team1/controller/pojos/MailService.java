@@ -60,28 +60,28 @@ public class MailService {
             message.setSubject("Flatfindr news");
             // Set message text
             if(textId==0){
-            	message.setText("Welcome on Flatfindr. We want to thank you for creating a new Flatfindr-account.\n " +link);
+            	message.setText("Hello " + address +"\nWelcome on Flatfindr. We want to thank you for creating a new Flatfindr-account.\n " +link);
             }
             if(textId==1){
-            	message.setText("You have recieved a new message on your Flatfindr account.\n " +link);
+            	message.setText("Hello " + address +"\nYou have recieved a new message on your Flatfindr account.\n " +link);
             }
             if(textId==2){
-            	message.setText("You have been outbidden on Flatfindr.\n " +link);
+            	message.setText("Hello " + address +"\nYou have been outbidden on Flatfindr.\n " +link);
             }
             if(textId==3){
-            	message.setText("Your Flatfindr-auction has a new highest Bidder, Congratulations!\n " +link);
+            	message.setText("Hello " + address +"\nYour Flatfindr-auction has a new highest Bidder, Congratulations!\n " +link);
             }
             if(textId==4){
-            	message.setText("Your Flatfindr-auction been bought out, Congratulations!\n " +link);
+            	message.setText("Hello " + address +"\nYour Flatfindr-auction been bought out, Congratulations!\n " +link);
             }
             if(textId==5){
-            	message.setText("The Flatfindr-auction you were leading has been bought out, I'm sorry!\n " +link);
+            	message.setText("Hello " + address +"\nThe Flatfindr-auction you were leading has been bought out, I'm sorry!\n " +link);
             }
             if(textId==6){
-            	message.setText("Your Flatfindr-auction has ended!\n " +link);
+            	message.setText("Hello " + address +"\nYour Flatfindr-auction has ended!\n " +link);
             }
             if(textId==7){
-            	message.setText("You have won this Flatfindr-auction!\n " +link);
+            	message.setText("Hello " + address +"\nConratulations\nYou have won this Flatfindr-auction!\n " +link);
             }
              
             System.out.print("Sending message...");

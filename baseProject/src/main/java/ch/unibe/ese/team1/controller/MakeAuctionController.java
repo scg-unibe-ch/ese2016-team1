@@ -82,6 +82,9 @@ public class MakeAuctionController {
 	 */
 	@RequestMapping(value = "/makeAuction", method = RequestMethod.GET)
 	public ModelAndView editAdPage(@RequestParam long id, Principal principal) {
+
+		adService.endMessages();
+		
 		ModelAndView model = new ModelAndView("makeAuction");
 		Ad ad = adService.getAdById(id);
 		model.addObject("ad", ad);
@@ -100,40 +103,10 @@ public class MakeAuctionController {
 	}
 
 	/**
-	 * Processes the edit ad form and displays the result page to the user.
+	 * Processes the bids and buy-outs and sends messages.
 	 * 
 	 * Principal principal
 	 */
-//	@RequestMapping(value = "/makeAuction", method = RequestMethod.POST)
-//	public ModelAndView editAdPageWithForm(@Valid PlaceAdForm placeAdForm,
-//			BindingResult result, Principal principal,
-//			RedirectAttributes redirectAttributes, @RequestParam long adId) {
-//		ModelAndView model = new ModelAndView("placeAd");
-//		if (!result.hasErrors()) {
-//			//String username = principal.getName();
-//			//User user = userService.findUserByUsername(username);
-//
-//			String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-//			if (pictureUploader == null) {
-//				pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
-//			}
-//			List<String> fileNames = pictureUploader.getFileNames();
-//			Ad ad = editAdService.saveFrom(placeAdForm, fileNames, null, adId);
-//
-//			// triggers all alerts that match the placed ad
-//			alertService.triggerAlerts(ad);
-//
-//			// reset the picture uploader
-//			this.pictureUploader = null;
-//
-//			model = new ModelAndView("redirect:/");
-//			redirectAttributes.addFlashAttribute("confirmationMessage",
-//					"You have placed your Auction sucessfully.");
-//		}
-//
-//		return model;
-//	}
-	
 	@RequestMapping(value = "/makeAuction", method = RequestMethod.POST)
 	public String bid(@RequestParam Map<String,String> requestParams, Principal principal, RedirectAttributes redirectAttributes) {
 		String strid=requestParams.get("id");
@@ -193,7 +166,7 @@ public class MakeAuctionController {
 				System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 				MailService mail = new MailService();
 				User user = userDao.findByUsername(ad.getCurrentBuyer());
-				if (price >= ad.getRetailPrice()) {
+				if ((price >= ad.getRetailPrice()) && (ad.getRetailPrice() > 0)) {
 					if(user.getPremium())
 						mail.sendEmail(ad.getCurrentBuyer(),5,"http://localhost:8080/ad?id="+id);
 					message2.setText("We are sorry to anounce, someone just bought out the Auction you were leading: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
@@ -206,7 +179,9 @@ public class MakeAuctionController {
 
 				}
 
+				if(!(ad.getCurrentBuyer().equals(loggedInUserEmail))){
 				messageDao.save(message2);
+				}
 				
 			}
 			
@@ -214,7 +189,7 @@ public class MakeAuctionController {
 			
 			System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 			MailService mail = new MailService();
-			if (price >= ad.getRetailPrice()) {
+			if ((price >= ad.getRetailPrice()) && (ad.getRetailPrice() > 0)) {
 				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
 				
 				Message message3;
@@ -228,7 +203,7 @@ public class MakeAuctionController {
 				message3.setText("You bought out this Auction. Congratulations on your newes purchase! <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
 				messageDao.save(message3);
 				mail.sendEmail(loggedInUserEmail,7,"http://localhost:8080/ad?id="+id);
-				
+				ad.setAuctionMessage();
 				
 				if(ad.getUser().getPremium())
 					mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
