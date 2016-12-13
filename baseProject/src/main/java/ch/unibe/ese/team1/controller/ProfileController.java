@@ -10,8 +10,6 @@ import java.security.GeneralSecurityException;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -41,11 +39,6 @@ import ch.unibe.ese.team1.controller.service.UserUpdateService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.User;
-<<<<<<< HEAD
-=======
-import ch.unibe.ese.team1.model.UserPicture;
-import ch.unibe.ese.team1.model.UserRole;
->>>>>>> google
 import ch.unibe.ese.team1.model.Visit;
 
 /**
