@@ -14,18 +14,13 @@
 </script>
 
 <pre><a href="/">Home</a>   &gt;   My Rooms</pre>
-
-<c:choose>
-	<c:when test="${empty ownAdvertisements}">
-		<h1>My Advertisements</h1>
-		<hr />
-		<p>You have not advertised anything yet.</p>
-		<br /><br />
-	</c:when>
-	<c:otherwise>
-	
 		<div id="resultsDiv" class="resultsDiv card cardPadding">
 		<h1>My Advertisements</h1>
+			<c:choose>
+			<c:when test="${empty ownAdvertisements}">
+				<p>You have not advertised anything yet.</p>
+			</c:when>
+			<c:otherwise>
 			<c:forEach var="ad" items="${ownAdvertisements}">
 				<div class="resultAd" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
@@ -60,22 +55,18 @@
 					</div>
 				</div>
 			</c:forEach>
+		</c:otherwise>
+		</c:choose>
 			<br /> <br />
 		</div>		
-	</c:otherwise>
-</c:choose>
-
-
-<c:choose>
-	<c:when test="${empty bookmarkedAdvertisements}">
-		<h1>My Bookmarks</h1>
-		<hr />
-		<p>You have not bookmarked anything yet.</p><br /><br />
-	</c:when>
-	<c:otherwise>
 		
 		<div id="resultsDiv" class="resultsDiv card cardPadding">
 		<h1>My Bookmarks</h1>
+		<c:choose>
+			<c:when test="${empty bookmarkedAdvertisements}">
+				<p>You have not bookmarked anything yet.</p><br /><br />
+			</c:when>
+			<c:otherwise>
 			<c:forEach var="ad" items="${bookmarkedAdvertisements}">
 				<div class="resultAd" data-price="${ad.prizePerMonth}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
@@ -100,9 +91,9 @@
 					</div>
 				</div>
 			</c:forEach>
+			</c:otherwise>
+		</c:choose>
+			
 		</div>		
-	</c:otherwise>
-</c:choose>
-
 
 <c:import url="template/footer.jsp" />

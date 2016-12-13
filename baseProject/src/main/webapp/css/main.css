@@ -201,6 +201,7 @@ button {
 	border-style: solid; 
 	color: grey;
 	font-size: 0.9em;
+	cursor: pointer;
 }
 
 #bookmarkedButton {
