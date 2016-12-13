@@ -1,7 +1,17 @@
 package ch.unibe.ese.team1.controller;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -36,6 +46,7 @@ import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.UserPicture;
+import ch.unibe.ese.team1.model.UserRole;
 import ch.unibe.ese.team1.model.Visit;
 import ch.unibe.ese.team1.model.dao.UserDao;
 
@@ -64,6 +75,9 @@ public class ProfileController {
 	private UserDao userDao;
 	
 	private SearchForm searchForm;
+	
+	private final static String CLIENT = "68304295039-fvgg84j5itsnfupqsfsbeb8ogu2d0vlg.apps.googleusercontent.com";
+	private final static String DEFAULT_ROLE = "user";
 
 	
 	@Autowired
@@ -119,6 +133,60 @@ public class ProfileController {
 		ModelAndView model = new ModelAndView("index");
 		return model;
 	}
+	
+	/**
+     * Process token from Google
+     */
+    @RequestMapping(value = "/tokensignin", method = RequestMethod.POST)
+    public @ResponseBody
+    String googleLogin(@RequestParam("token") String token) throws GeneralSecurityException, IOException {
+        
+        JacksonFactory jacksonFactory = new JacksonFactory();
+        NetHttpTransport transport = new NetHttpTransport();
+
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jacksonFactory)
+            .setAudience(Arrays.asList(CLIENT))
+            .setIssuer("accounts.google.com")
+            .build();
+
+        GoogleIdToken idToken = verifier.verify(token);
+        if (idToken != null) {
+            Payload payload = idToken.getPayload();
+            String lastName = (String) payload.get("family_name");
+            String firstName = (String) payload.get("given_name");
+            String email = payload.getEmail();
+
+            // See if user exists
+            User user = userService.findUserByUsername(email);
+
+            // If not, create entry
+            if (user == null) {
+                String password = "1234";
+
+                user = new User();
+                user.setEmail(email);
+                user.setUsername(email);
+                user.setFirstName(firstName);
+                user.setLastName(lastName);
+                user.setPassword(password);
+                user.setEnabled(true);
+                user.setGender(Gender.UNKNOWN);
+
+                Set<UserRole> userRoles = new HashSet<>();
+                UserRole role = new UserRole();
+                role.setRole(DEFAULT_ROLE);
+                role.setUser(user);
+                userRoles.add(role);
+                user.setUserRoles(userRoles);
+
+                userDao.save(user);
+            }
+            return "{'status':'success', 'email':'" + user.getUsername() + "', 'password':'" + user.getPassword() + "'}";
+
+        } else {
+            return "{'status':'error', message:'Invalid Token'";
+        }
+    }
 	
 
 	/** Checks and returns whether a user with the given email already exists. */
