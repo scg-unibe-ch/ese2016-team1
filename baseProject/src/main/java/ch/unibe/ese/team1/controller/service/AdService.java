@@ -28,9 +28,7 @@ import ch.unibe.ese.team1.model.MessageState;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.Visit;
 import ch.unibe.ese.team1.model.dao.AdDao;
-import ch.unibe.ese.team1.model.dao.AlertDao;
 import ch.unibe.ese.team1.model.dao.MessageDao;
-import ch.unibe.ese.team1.model.dao.UserDao;
 
 /** Handles all persistence operations concerning ad placement and retrieval. */
 @Service
@@ -38,12 +36,6 @@ public class AdService {
 
 	@Autowired
 	private AdDao adDao;
-
-	@Autowired
-	private UserDao userDao;
-
-	@Autowired
-	private AlertDao alertDao;
 
 	@Autowired
 	private MessageDao messageDao;

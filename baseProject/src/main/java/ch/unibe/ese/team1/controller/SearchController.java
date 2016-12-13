@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ch.unibe.ese.team1.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team1.controller.service.AdService;
-import ch.unibe.ese.team1.controller.service.UserService;
 
 /** Handles all requests concerning the search for ads. */
 @Controller
@@ -20,9 +19,6 @@ public class SearchController {
 
 	@Autowired
 	private AdService adService;
-
-	@Autowired
-	private UserService userService;
 
 	/**
 	 * The search form that is used for searching. It is saved between request

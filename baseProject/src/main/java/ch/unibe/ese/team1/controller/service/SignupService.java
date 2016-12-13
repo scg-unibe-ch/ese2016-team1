@@ -2,13 +2,9 @@ package ch.unibe.ese.team1.controller.service;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

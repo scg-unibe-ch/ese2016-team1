@@ -2,44 +2,29 @@ package ch.unibe.ese.team1.controller;
 
 import java.security.Principal;
 import java.util.Calendar;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.unibe.ese.team1.controller.pojos.MailService;
 import ch.unibe.ese.team1.controller.pojos.PictureUploader;
-import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.controller.service.AdService;
-import ch.unibe.ese.team1.controller.service.AlertService;
 import ch.unibe.ese.team1.controller.service.EditAdService;
-import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
-import ch.unibe.ese.team1.model.PictureMeta;
 import ch.unibe.ese.team1.model.User;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import ch.unibe.ese.team1.model.dao.AdDao;
 import ch.unibe.ese.team1.model.dao.MessageDao;
 import ch.unibe.ese.team1.model.dao.UserDao;
 
@@ -67,12 +52,7 @@ public class MakeAuctionController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private AlertService alertService;
-
 	private PictureUploader pictureUploader;
-
-	private ObjectMapper objectMapper;
 	
 	@Autowired
 	private MessageDao messageDao;

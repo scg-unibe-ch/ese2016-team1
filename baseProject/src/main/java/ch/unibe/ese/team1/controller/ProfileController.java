@@ -7,11 +7,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.unibe.ese.team1.controller.pojos.forms.EditProfileForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
@@ -33,11 +30,8 @@ import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.controller.service.UserUpdateService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
-import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.User;
-import ch.unibe.ese.team1.model.UserPicture;
 import ch.unibe.ese.team1.model.Visit;
-import ch.unibe.ese.team1.model.dao.UserDao;
 
 /**
  * Handles all requests concerning user accounts and profiles.
@@ -59,9 +53,6 @@ public class ProfileController {
 
 	@Autowired
 	private AdService adService;
-	
-	@Autowired
-	private UserDao userDao;
 	
 	private SearchForm searchForm;
 
@@ -148,7 +139,6 @@ public class ProfileController {
 			BindingResult bindingResult, Principal principal) {
 		ModelAndView model;
 		String username = principal.getName();
-		User user = userService.findUserByUsername(username);
 		if (!bindingResult.hasErrors() && editProfileForm.getSubmitType().equals("update")) {
 			userUpdateService.updateFrom(username, editProfileForm);
 			model = new ModelAndView("updatedProfile");
