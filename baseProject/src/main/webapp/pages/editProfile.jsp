@@ -102,7 +102,7 @@ function setSubmitTypeUpgrade(form)
 <c:choose>
 	<c:when test = "${currentUser.premium == false}">
 		<h2>Upgrade to Premium</h2>Your Advantages with FlatFinder-Premium:<br />
-		<li>Instant alerts messages.
+		<li>Instant alerts messages. (Waiting time for normal user: 1 minute (for testing)).
 		<li>Get all informations from your ads on your e-mail address.
 		<li>Get priority in the search algorithm for your advertisements.
 			<table class="editProfileTable">
@@ -115,7 +115,7 @@ function setSubmitTypeUpgrade(form)
 	</c:when>
 	<c:otherwise>
 	<h2>You are using FlatFinder-Premium, congratulation!</h2>Your Advantages:<br />
-		<li>Instant alert messages.
+		<li>Instant alert messages. (Waiting time for normal user: 1 minute (for testing)).
 		<li>You get all informations from your ads on your e-mail address.
 		<li>Your advertisements get priority in the search algorithm.
 	<form:input style="display:none" type="text" id="field-creditCard" path="creditCard" />
