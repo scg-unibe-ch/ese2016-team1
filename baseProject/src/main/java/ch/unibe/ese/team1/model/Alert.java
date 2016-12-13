@@ -233,10 +233,6 @@ public class Alert {
 		private boolean cable;
 		private boolean garage;
 		private boolean internet;
-		
-		public void defaultFilter() {
-			//earliestMoveInDate = "-";
-		}
 
 		public boolean getSmokers() {
 			return smokers;

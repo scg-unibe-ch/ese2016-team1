@@ -51,12 +51,10 @@ public class Ad {
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 
-	//@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date moveInDate;
 
 	@Temporal(TemporalType.DATE)
-	//@Column(nullable = true)
 	private Date moveOutDate;
 	
 	@Column(nullable = false)
@@ -450,14 +448,6 @@ public class Ad {
 	public String getCity() {
 		return city;
 	}
-	
-	/* public double[] getLonLatFromCityName() {
-		GeoDataService geoDataService = new GeoDataService();
-		Location searchedLocation = geoDataService.getLocationsByCity(city)
-				.get(0);
-		double[] lonLat = {searchedLocation.getLongitude(), searchedLocation.getLatitude()};
-		return lonLat;
-	} */
 	
 	public double getLongitude() {
 		return this.longitude;
