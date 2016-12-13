@@ -51,6 +51,7 @@
 			<li>Email: <i>jane@doe.com</i>, password: <i>password</i></li>
 			<li>Email: <i>user@bern.com</i>, password: <i>password</i></li>
 			<li>Email: <i>oprah@winfrey.com</i>, password: <i>password</i></li>
+			<li>Email: <i>premiumKing@premium.ch</i>, password: <i>premium</i></li>
 		</ul>
 		<br />
 

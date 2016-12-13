@@ -45,6 +45,9 @@ public class AlertTestDataSaver {
 		alert.setCity("Zürich");
 		alert.setZipcode(8000);
 		alert.setPrice(1000);
+		alert.setWashingMachine(true);
+		alert.setDishwasher(true);
+		alert.setAnimals(true);
 		alert.setRadius(25);
 		alertDao.save(alert);
 		
@@ -55,6 +58,9 @@ public class AlertTestDataSaver {
 		alert.setRoom(false);
 		alert.setStudio(true);
 		alert.setCity("Luzern");
+		alert.setWashingMachine(true);
+		alert.setDishwasher(true);
+		alert.setSmokers(true);
 		alert.setZipcode(6003);
 		alert.setPrice(900);
 		alert.setRadius(22);

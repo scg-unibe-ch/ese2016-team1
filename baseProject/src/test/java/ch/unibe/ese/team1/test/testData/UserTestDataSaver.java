@@ -70,11 +70,17 @@ public class UserTestDataSaver {
 				"at Kramgasse 22 and I am very very happy there.");
 		userDao.save(hans);
 		
-		User mathilda = createUser("mathilda@unibe.ch", "password", "Mathilda",
+		User mathilda = createUser("mathilda@unibe.ch", "password", "Mathilda", 
 				"DummyTwo", Gender.FEMALE);
 		mathilda.setAboutMe("Hello, I am the dummy user Mathilda for the AdBern. I am living" +
 				"at Kramgasse 22 and I am very very happy there.");
 		userDao.save(mathilda);
+		
+		// Premium User
+		User premium = createUser("premiumKing@premium.ch", "premium", "King", "Premium", "/img/test/system.jpg", Gender.MALE);
+		premium.setAboutMe("Premium 4 ever. Use premium or die1!11");
+		premium.setPremium(true);
+		userDao.save(premium);
 	}
 
 	public User createUser(String email, String password, String firstName,
