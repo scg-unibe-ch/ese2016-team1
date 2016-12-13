@@ -79,48 +79,49 @@ public class EditAdController {
 	 */
 	@RequestMapping(value = "/profile/editAd", method = RequestMethod.GET)
 	public ModelAndView editAdPage(@RequestParam long id, Principal principal) {
-
-		adService.endMessages();
-
 		ModelAndView model = new ModelAndView("editAd");
 		Ad ad = adService.getAdById(id);
 		
-		ad.setAltId(1);
+		// user can only modify an ad if he is the creator of the ad. Otherwise, return permissionDenied page
+		if (ad.getUser().getUsername().equals(principal.getName())) {
 
-visis = new LinkedList<String>();
-roomies = new LinkedList<User>();  
-pics = new LinkedList<AdPicture>();	
-if(ad.getRegisteredRoommates()!=null){
-roomies = ad.getRegisteredRoommates();
-}
-if(ad.getPictures()!=null){
-pics = ad.getPictures();
-}
-if(ad.getVisits()!=null){
-//visis = ad.getVisitsAsStrings();
-for (String tempName : ad.getVisitsAsStrings()) {
-	if(!(visis.contains(tempName))){
-		visis.add(tempName);
-	}
-}
-}
-model.addObject("visis", visis);
+			ad.setAltId(1);
 
-		model.addObject("ad", ad);
-		
+			visis = new LinkedList<String>();
+			roomies = new LinkedList<User>();
+			pics = new LinkedList<AdPicture>();
+			if (ad.getRegisteredRoommates() != null) {
+				roomies = ad.getRegisteredRoommates();
+			}
+			if (ad.getPictures() != null) {
+				pics = ad.getPictures();
+			}
+			if (ad.getVisits() != null) {
+				// visis = ad.getVisitsAsStrings();
+				for (String tempName : ad.getVisitsAsStrings()) {
+					if (!(visis.contains(tempName))) {
+						visis.add(tempName);
+					}
+				}
+			}
+			model.addObject("visis", visis);
 
-		PlaceAdForm form = editAdService.fillForm(ad);
+			model.addObject("ad", ad);
 
-		model.addObject("placeAdForm", form);
+			PlaceAdForm form = editAdService.fillForm(ad);
 
-		String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
-		if (pictureUploader == null) {
-			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+			model.addObject("placeAdForm", form);
+
+			String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
+			if (pictureUploader == null) {
+				pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
+			}
+
+			return model;
+		} else {
+			return new ModelAndView("permissionDenied");
 		}
-
-		return model;
 	}
-
 
 	
 	/**
