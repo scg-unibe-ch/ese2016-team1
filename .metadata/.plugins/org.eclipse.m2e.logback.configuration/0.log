@@ -1,0 +1,25 @@
+2016-12-13 17:54:04,642 [Worker-5] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: ch.unibe.ese.team1:team1-room-platform:0.0.1-SNAPSHOT @ C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\pom.xml.
+2016-12-13 17:54:06,215 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 17:54:06,215 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-12-13 17:54:06,217 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 17:54:06,217 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-12-13 17:54:30,762 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 17:54:30,763 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-12-13 17:54:30,764 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 17:54:30,764 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-12-13 17:55:54,733 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 17:55:54,734 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-12-13 17:55:54,734 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 17:55:54,734 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-12-13 17:56:04,794 [Worker-1] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache file is not out-of-date. No remote download required.
+2016-12-13 17:56:09,854 [main] INFO  o.e.m2e.actions.ExecutePomAction - Creating new launch configuration
+2016-12-13 17:56:16,325 [Worker-11] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject
+2016-12-13 17:56:16,326 [Worker-11] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B jetty:stop jetty:run
+2016-12-13 18:48:28,847 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 18:48:28,847 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-12-13 18:48:28,848 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 18:48:28,848 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
+2016-12-13 19:01:52,437 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 19:01:52,437 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\main\resources
+2016-12-13 19:01:52,437 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2016-12-13 19:01:52,438 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Marcel\Documents\GitHub\ese2016-team1\ese2016-team1-master\baseProject\src\test\resources
