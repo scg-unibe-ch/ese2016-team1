@@ -119,25 +119,7 @@ public class ProfileController {
 	}
 	
 	/** Make new google auth account or if exists already, login **/
-	@RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
-	public ModelAndView signInWithGoogle(@RequestParam("lastName") String lastName, @RequestParam("firstName") String firstName, 
-			@RequestParam("imageUrl") String imageUrl, @RequestParam("email") String email) {
-		User user = userService.findUserByEmail(email);
-		if (user == null) {
-			signupService.saveFromGoogle(lastName, firstName, imageUrl, email);
-			user = userService.findUserByEmail(email);
-		}
-		Authentication request = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
-		Authentication result = authenticationManager.authenticate(request);
-		SecurityContextHolder.getContext().setAuthentication(result);
-		ModelAndView model = new ModelAndView("index");
-		return model;
-	}
-	
-	/**
-     * Process token from Google
-     */
-    @RequestMapping(value = "/tokensignin", method = RequestMethod.POST)
+    @RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
     public @ResponseBody
     ModelAndView googleLogin(@RequestParam("token") String token) throws GeneralSecurityException, IOException {
         
@@ -155,7 +137,7 @@ public class ProfileController {
             String lastName = (String) payload.get("family_name");
             String firstName = (String) payload.get("given_name");
             String email = payload.getEmail();
-            String imageUrl = "";
+            String imageUrl = (String) payload.get("picture");
 
             User user = userService.findUserByEmail(email);
     		if (user == null) {
@@ -169,9 +151,6 @@ public class ProfileController {
     		return model;
 	    }
         return new ModelAndView("index");
-//        } else {
-//            return "{'status':'error', message:'Invalid Token'";
-//        }
     }
 	
 
