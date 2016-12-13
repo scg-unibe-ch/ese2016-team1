@@ -35,7 +35,6 @@ public class SignupService {
 	@Autowired
 	private UserDao userDao;
 	
-	//
 	@Autowired
 	private MessageDao messageDao;
 	
@@ -65,8 +64,7 @@ public class SignupService {
 		
 		userDao.save(user);
 		
-		//
-		//DateFormat dateFormat = new SimpleDateFormat("HH:mm dd.MM.yyyy");
+
 		Message message;
 		message = new Message();
 		message.setSubject("Welcome " + signupForm.getFirstName() + " " + signupForm.getLastName());

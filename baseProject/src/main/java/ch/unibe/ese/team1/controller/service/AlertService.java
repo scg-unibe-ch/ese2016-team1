@@ -56,7 +56,6 @@ public class AlertService {
 		String zip = alertForm.getCity().substring(0, 4);
 		alert.setZipcode(Integer.parseInt(zip));
 		alert.setCity(alertForm.getCity().substring(7));
-
 		alert.setBuy(alertForm.getBuy());
 		alert.setRent(alertForm.getRent());
 		alert.setPrice(alertForm.getPrice());
@@ -214,8 +213,6 @@ public class AlertService {
 		return mismatch;
 	}
 	
-	
-
 	/** Checks if an ad is conforming to the criteria in an alert. */
 	private boolean typeMismatchWith(Ad ad, Alert alert) {
 		boolean mismatch = false;

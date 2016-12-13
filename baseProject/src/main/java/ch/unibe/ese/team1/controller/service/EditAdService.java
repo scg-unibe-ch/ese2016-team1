@@ -55,20 +55,11 @@ public class EditAdService {
 	@Transactional
 	public Ad saveFrom(PlaceAdForm placeAdForm, List<String> filePaths,
 			User user, long adId, List<User> roomies, List<AdPicture> pics, List<String> visis) throws ParseException {
-
-
-
 		Ad ad = adService.getAdById(adId);
-		
-		
-
 		Date now = new Date();
 		ad.setCreationDate(now);
-
 		ad.setTitle(placeAdForm.getTitle());
-
 		ad.setStreet(placeAdForm.getStreet());
-
 		ad.setRoomType(placeAdForm.getRoomType());
 
 		// take the zipcode - first four digits
@@ -176,9 +167,6 @@ public class EditAdService {
 			}
 		}
 		// add existing roommates
-		for (User roommates : ad.getRegisteredRoommates()) {
-			//registeredUserRommates.add(roommates);
-		}
 		for (User roommates : roomies) {
 			registeredUserRommates.add(roommates);
 		}
@@ -192,10 +180,8 @@ public class EditAdService {
 		}
 		if(visis != null){
 			for (String tempName : visis) {
-				//UserDao userDao = null;
 				if(tempName!= null){
 					visitStrings.add(tempName);
-					//ad.setTitle(ad.getTitle() + tempName);
 				}
 			}
 		}
@@ -215,19 +201,12 @@ public class EditAdService {
 				} catch (ParseException ex) {
 					ex.printStackTrace();
 				}
-
 				visit.setStartTimestamp(startDate);
 				visit.setEndTimestamp(endDate);
-				visit.setAd(ad);
-				
-				
-				visits.add(visit);
-				
+				visit.setAd(ad);				
+				visits.add(visit);				
 			}
-
-			ad.setVisits(visits);
-			
-	
+			ad.setVisits(visits);	
 		}
 
 		if(user!=null){
@@ -238,7 +217,6 @@ public class EditAdService {
 		}
 
 		adDao.save(ad);
-
 		return ad;
 	}
 

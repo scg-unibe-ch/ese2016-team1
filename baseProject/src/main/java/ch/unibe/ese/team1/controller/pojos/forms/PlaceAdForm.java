@@ -17,14 +17,9 @@ import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.dao.UserDao;
 
 /** This form is used when a user wants to place a new ad. */
-public class PlaceAdForm {
-	
-	
+public class PlaceAdForm {	
 	@Autowired
-	private UserDao userDao;
-	
-	
-	
+	private UserDao userDao;	
 	
 	@NotBlank(message = "Required")
 	private String title;
