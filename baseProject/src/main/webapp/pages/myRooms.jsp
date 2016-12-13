@@ -13,7 +13,6 @@
 
 </script>
 
-
 <pre><a href="/">Home</a>   &gt;   My Rooms</pre>
 
 <c:choose>

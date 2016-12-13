@@ -487,10 +487,8 @@ public class AdService {
 						if (ad.getSaleType().equals("Auction") && ad.getAuctionEnded())
 							iterator.remove();
 					}
-		
-		
-		// filter for additional criteria
-		//if (searchForm.getFiltered()) {
+				
+			// filter for additional criteria
 			// prepare date filtering - by far the most difficult filter
 			Date earliestInDate = null;
 			Date latestInDate = null;
@@ -525,9 +523,7 @@ public class AdService {
 					latestInDate);
 			locatedResults = validateDate(locatedResults, false,
 					earliestOutDate, latestOutDate);
-
 			
-		//}
 		locatedResults = givePriorityToPremium(locatedResults);
 		return locatedResults;
 	}
@@ -543,8 +539,7 @@ public class AdService {
 				iterator.remove();
 			}
 		}
-		ads.addAll(noPremiumAds);
-		
+		ads.addAll(noPremiumAds);		
 		return ads;
 	}
 

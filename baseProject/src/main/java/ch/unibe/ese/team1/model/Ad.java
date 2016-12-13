@@ -51,12 +51,10 @@ public class Ad {
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 
-	//@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date moveInDate;
 
 	@Temporal(TemporalType.DATE)
-	//@Column(nullable = true)
 	private Date moveOutDate;
 	
 	@Column(nullable = false)

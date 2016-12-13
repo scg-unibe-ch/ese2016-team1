@@ -5,17 +5,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <c:import url="template/header.jsp" />
-
 <script src="/js/jquery.ui.widget.js"></script>
 <script src="/js/jquery.iframe-transport.js"></script>
 <script src="/js/jquery.fileupload.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
 <script src="https://unpkg.com/flatpickr"></script>
-
-
-
 <script src="/js/pictureUpload.js"></script>
-
 
 <script>
 	$(document).ready(function() {
@@ -330,9 +325,8 @@
 
 		</table>
 	</fieldset>
-
-
 	<br />
+	
 	<fieldset>
 		<legend>Room Description</legend>
 
@@ -371,9 +365,9 @@
 				<td><form:checkbox id="field-internet" path="internet"
 						value="1" /><label>WiFi available</label></td>
 			</tr>
-
 		</table>
 		<br />
+		
 		<form:textarea path="roomDescription" rows="10" cols="100"
 			placeholder="Room Description" />
 		<form:errors path="roomDescription" cssClass="validationErrorText" />
@@ -400,7 +394,7 @@
 						roommates:</p></td>
 			</tr>
 		</table>
-
+		
 		<br />
 		<p>If the roommates do not have accounts or you wish to give
 			further information, you can add a text in which you describe the
@@ -472,21 +466,14 @@
 						%>
 				</select>
 
-
-
 					<div id="addVisitButton" class="smallPlusButton">+</div>
-
 					<div id="addedVisits"></div></td>
-
 			</tr>
-
 		</table>
-		<br>
+		<br />
 	</fieldset>
-
-
-
 	<br />
+	
 	<div>
 		<button type="submit" onClick="setUpDefaultValues(this.form)">Submit</button>
 		<a href="/"><button type="button">Cancel</button></a>

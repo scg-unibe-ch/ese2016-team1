@@ -99,8 +99,7 @@
 			$("#msgDiv").css("display", "none");
 			$("#msgDiv").css("opacity", "0");
 			$("#content").children().animate({opacity: 1}, 300);
-		});
-		
+		});		
 
 		$("#messageSend").click(function (){
 			if($("#msgSubject").val() != "" && $("#msgTextarea").val() != ""){
@@ -144,7 +143,6 @@
 		</c:when>
 	</c:choose>
 </h1>
-
 
 <hr />
 
@@ -584,21 +582,17 @@
 		<p>No Coordinates can be found with city = "${shownAd.city}"<p>
 	</div>
 	
-	<script>
-	
+	<script>	
 	    var title = "${shownAd.title}";
 	    var lon = "${shownAd.longitude}";
 	    var lat = "${shownAd.latitude}";
-		drawMap(title, [parseFloat(lat),parseFloat(lon)]);
-	
+		drawMap(title, [parseFloat(lat),parseFloat(lon)]);	
 	</script>
-	
 	
 </section>
 
 <div class="clearBoth"></div>
 <br>
-
 
 <div id="msgDiv">
 <form class="msgForm">
@@ -623,6 +617,5 @@
 	<button type="button" id="confirmationDialogCancel">Cancel</button>
 	</form>
 </div>
-
 
 <c:import url="template/footer.jsp" />

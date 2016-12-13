@@ -34,8 +34,7 @@
 		$("#city").autocomplete("option", {
 			enabled : true,
 			autoFocus : true
-		});
-		
+		});		
 		
 		$("#field-earliestMoveInDate").datepicker({
 			dateFormat : 'dd-mm-yy'
@@ -49,8 +48,7 @@
 		$("#field-latestMoveOutDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		
-		
+				
 		var price = document.getElementById('prizeInput');
 		var radius = document.getElementById('radiusInput');
 		
@@ -60,7 +58,6 @@
 			radius.value = "5";
 	});
 </script>
-
 
 <script>
 function validateType(form)
@@ -94,7 +91,6 @@ function validateType(form)
 	$("#content").css("padding", "0")
 	$("#content").css("padding-top", "10px")
 </script>
-
 
 <%-- Clone whole searchAd form. This way we have only duplicates in jsp files --%>
 <form:form method="post" modelAttribute="searchForm" action="/results"

@@ -6,20 +6,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:import url="template/header.jsp" />
-
 <script src="/js/jquery.ui.widget.js"></script>
 <script src="/js/jquery.iframe-transport.js"></script>
 <script src="/js/jquery.fileupload.js"></script>
-
 <script src="/js/pictureUploadEditAd.js"></script>
-
 <script src="/js/editAd.js"></script>
 
-
 <script>
-	$(document).ready(function() {	
-		
-		
+	$(document).ready(function() {				
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -129,7 +123,6 @@
 	
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Make Auction</pre>
 
-
 <h1>Make Auction</h1>
 <hr />
 
@@ -153,29 +146,18 @@
 						placeholder="Current Bidding" step="50" value="${ad.currentBidding }"/> <form:errors
 						path="currentBidding" cssClass="validationErrorText"/>
 				</td>
-			</tr>	
-			
-			<tr>	
-			
-			
-			
+			</tr>				
+			<tr>				
 				<td><h2>Retail Price</h2></td>
 				<c:choose>	
 					<c:when test="${ad.retailPrice == 0}">
 						<td>No Buy Out Possible	</td>
 					</c:when>
 					<c:otherwise>
-						<td>${ad.retailPrice}&#32;CHF 
-							
-						</td>
-						
+						<td>${ad.retailPrice}&#32;CHF</td>						
 					</c:otherwise>
-				</c:choose>
-				
-				
-				
+				</c:choose>					
 			</tr>
-
 			<tr>
 				<td>
 				<c:choose>
@@ -184,8 +166,7 @@
 				<form:input id="field-buyer" path="currentBuyer"
 						value="${loggedInUserEmail}"/>
 				</c:when>	
-				</c:choose>
-				
+				</c:choose>				
 				<form:input type="hidden" id="field-retailPrice" path="retailPrice" 
 						value="${ad.retailPrice}" />	
 				<form:input type="hidden" id="field-title" path="title" 
@@ -206,8 +187,7 @@
 				<form:input type="hidden" id="field-SquareFootage" 
 						path="squareFootage" placeholder="Prize per month" step="5" 
 						value="${ad.squareFootage }"/> <form:errors
-						path="squareFootage" cssClass="validationErrorText" />		
-				
+						path="squareFootage" cssClass="validationErrorText" />					
 				<form:input type="hidden" id="field-smokers"
 							path="smokers" value="${ad.smokers }"/>
 				<form:input type="hidden" id="field-animals"
@@ -225,8 +205,7 @@
 				<form:input type="hidden" id="field-garage"
 							path="garage" value="${ad.garage }"/>
 				<form:input type="hidden" id="field-internet"
-							path="internet" value="${ad.internet }"/>			
-						
+							path="internet" value="${ad.internet }"/>							
 				<form:input type="hidden"  id="field-description" 
 							path="roomDescription" value="${ad.roomDescription}" />
 				<form:errors path="roomDescription" cssClass="validationErrorText" />	
@@ -235,8 +214,7 @@
 				<form:errors path="preferences" cssClass="validationErrorText" />
 				<form:input type="hidden"  id="field-roommates" 
 							path="roommates" value="${ad.roommates}" />
-				<form:errors path="roommates" cssClass="validationErrorText" />	
-					
+				<form:errors path="roommates" cssClass="validationErrorText" />		
 						
 				<c:forEach var="user" items="${ad.registeredRoommates}">
 					
@@ -244,24 +222,10 @@
 				<c:forEach items="${ad.pictures }" var="picture">
 				<div class="pictureThumbnail">
 					</div>
-				</c:forEach>		
-						
-						
-						
-					
-
-						
-						
-			
+				</c:forEach>	
 		</table>
 	</fieldset>
-
-
-	
-	
 	<br />
-
-
 
 	<div>
 		<button type="submit" onClick="${ad.currentBidding = ad.retailPrice}">Buy Out</button>
@@ -272,6 +236,5 @@
 	</div>
 
 </form:form>
-
 
 <c:import url="template/footer.jsp" />
