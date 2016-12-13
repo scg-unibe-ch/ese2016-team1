@@ -72,6 +72,9 @@ function setSubmitTypeUpgrade(form)
 	enctype="multipart/form-data">
 
 <table class="editProfileTable">
+	
+	<c:if test="${currentUser.googleUser == false}">
+	
 	<tr>
 		<td class="spacingTable"><label for="user-name">Username:</label><a>&emsp;</a>
 		<form:input id="user-name" path="username" value="${currentUser.username}" /></td>
@@ -89,6 +92,8 @@ function setSubmitTypeUpgrade(form)
 		<td class="spacingTable"><label for="password">Password:</label><a>&emsp;&thinsp;</a>
 		<form:input type="password" id="password" path="password" value="${currentUser.password}" /></td>
 	</tr>
+	
+	</c:if>
 
 	<tr>
 		<td class="spacingTable"><label for="about-me">About me:</label><a>&emsp;&thinsp;</a><br>
