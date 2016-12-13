@@ -315,45 +315,49 @@
 		</div>
 		<br />
 
-		<div class="adDescDiv card">
-			<h2>Roommates</h2>
-			<p>${shownAd.roommates}</p>
-			<c:forEach var="mate" items="${shownAd.registeredRoommates}">
-				<div class="roommate">
-				<table id="mate">
-					<tr>
-						<td>
-						<a href="/user?id=${mate.id}">
-						<c:choose>
-							<c:when test="${mate.picture.filePath != null}">
-								<img src="${mate.picture.filePath}">
-							</c:when>
-							<c:otherwise>
-								<img src="/img/avatar.png">
-							</c:otherwise>
-						</c:choose>
-						</a>
-						</td>
-						<td>${mate.firstName} ${mate.lastName}</td>
-						<td>${mate.username}</td>
-						<td>
-						<c:choose>
-							<c:when test="${mate.gender == 'MALE'}">
-								male
-							</c:when>
-							<c:when test="${mate.gender == 'FEMALE'}">
-								female
-							</c:when>
-							<c:otherwise>
-								unknown
-							</c:otherwise>
-						</c:choose></td>
-					</tr>
-				</table>
-			</div>
-			</c:forEach>
-		</div>
-		<br />
+		<c:choose>
+			<c:when test = "${shownAd.saleType == 'Rent'}">
+				<div class="adDescDiv card">
+					<h2>Roommates</h2>
+					<p>${shownAd.roommates}</p>
+					<c:forEach var="mate" items="${shownAd.registeredRoommates}">
+						<div class="roommate">
+						<table id="mate">
+							<tr>
+								<td>
+								<a href="/user?id=${mate.id}">
+								<c:choose>
+									<c:when test="${mate.picture.filePath != null}">
+										<img src="${mate.picture.filePath}">
+									</c:when>
+									<c:otherwise>
+										<img src="/img/avatar.png">
+									</c:otherwise>
+								</c:choose>
+								</a>
+								</td>
+								<td>${mate.firstName} ${mate.lastName}</td>
+								<td>${mate.username}</td>
+								<td>
+								<c:choose>
+									<c:when test="${mate.gender == 'MALE'}">
+										male
+									</c:when>
+									<c:when test="${mate.gender == 'FEMALE'}">
+										female
+									</c:when>
+									<c:otherwise>
+										unknown
+									</c:otherwise>
+								</c:choose></td>
+							</tr>
+						</table>
+					</div>
+					</c:forEach>
+				</div>
+					<br />
+			</c:when>
+		</c:choose>
 
 		<div class="adDescDiv card">
 			<h2>Preferences</h2>
