@@ -155,13 +155,7 @@ public class ProfileController {
 			
 			if(!(editProfileForm.getUsername().equals(username))){
 				model = new ModelAndView("redirect:/logout");
-				model.addObject("message", "Your Profile has been updated! Log in with your new name.");
-				
-				//RedirectAttributes redirectAttributes = null;
-				//redirectAttributes.addFlashAttribute("confirmationMessage",
-				//		"Your Profile has been updated! Log in with your new name.");
-			
-				
+				model.addObject("message", "Your Profile has been updated! Log in with your new name.");				
 				return model;
 			}
 			

@@ -96,8 +96,7 @@ public class MakeAuctionController {
 		String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
 		if (pictureUploader == null) {
 			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
-		}
-		
+		}		
 
 		return model;
 	}
@@ -117,14 +116,12 @@ public class MakeAuctionController {
 		try{
 			price = Integer.parseInt(strprice);
 		}
-		catch (Exception name) {		
-			System.out.println("QQQQQQ");
+		catch (Exception name) {	
 			redirectAttributes.addFlashAttribute("confirmationMessage",
 					"There was an error! Pleas make sure you place a valid bid!");
 			return "redirect:/ad?id="+id;
 		}
 		
-		//int price = Integer.parseInt(strprice);
 		Ad ad = adService.getAdById(id);
 		ad.addFifteenMinutesToAuctionEndedIfNecessary();
 		
@@ -147,8 +144,7 @@ public class MakeAuctionController {
 			// XMLGregorianCalendar which uses 1-12
 			calendar.setTimeInMillis(System.currentTimeMillis());
 			message.setDateSent(calendar.getTime());
-			message.setDateShow(calendar.getTime());
-			
+			message.setDateShow(calendar.getTime());			
 			
 			if(ad.getCurrentBuyer()!=null){
 				Message message2;
@@ -160,34 +156,24 @@ public class MakeAuctionController {
 				message2.setDateSent(calendar.getTime());
 				message2.setDateShow(calendar.getTime());
 
-				
-
-				
-				System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 				MailService mail = new MailService();
 				User user = userDao.findByUsername(ad.getCurrentBuyer());
 				if ((price >= ad.getRetailPrice()) && (ad.getRetailPrice() > 0)) {
 					if(user.getPremium())
 						mail.sendEmail(ad.getCurrentBuyer(),5,"http://localhost:8080/ad?id="+id);
 					message2.setText("We are sorry to anounce, someone just bought out the Auction you were leading: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
-
 				}
 				else{
 					if(user.getPremium())
 						mail.sendEmail(ad.getCurrentBuyer(),2,"http://localhost:8080/ad?id="+id);
 					message2.setText("Someone just replaced you as current highest Bidder on this Auction: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + ".</a> ");
-
 				}
-
 				if(!(ad.getCurrentBuyer().equals(loggedInUserEmail))){
 				messageDao.save(message2);
-				}
-				
+				}			
 			}
 			
 			ad.setCurrentBuyer(loggedInUserEmail);
-			
-			System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 			MailService mail = new MailService();
 			if ((price >= ad.getRetailPrice()) && (ad.getRetailPrice() > 0)) {
 				message.setText("We are happy to anounce, someone just bought out your Auction, Congratulations: <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
@@ -208,26 +194,19 @@ public class MakeAuctionController {
 				if(ad.getUser().getPremium())
 					mail.sendEmail(ad.getUser().getEmail(),4,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
-						"Congratulations, you just have bought out this auction!");
-				
+						"Congratulations, you just have bought out this auction!");				
 			}
 			else{
 				message.setText("Someone has bidded on your auction. It has now risen to " + ad.getCurrentBidding() + ": <a href=\"http://localhost:8080/ad?id="+id + "\">"+ ad.getTitle() + "!</a> ");
 				if(ad.getUser().getPremium())
 					mail.sendEmail(ad.getUser().getEmail(),3,"http://localhost:8080/ad?id="+id);
 				redirectAttributes.addFlashAttribute("confirmationMessage",
-						"Your Bidding has been placed. You are now the current highest Bidder!");
-				
+						"Your Bidding has been placed. You are now the current highest Bidder!");	
 			}
 			
-			messageDao.save(message);
-			
-			adService.saveAd(ad);
-			
-		}
-		
+			messageDao.save(message);			
+			adService.saveAd(ad);			
+		}		
 		return "redirect:/ad?id="+id;
-	}	
-
-	
+	}		
 }
