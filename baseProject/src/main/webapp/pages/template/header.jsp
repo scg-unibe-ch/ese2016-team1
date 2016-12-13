@@ -48,7 +48,7 @@
 <header>
 	<div class="left">
 		<a href="/"><img src="/img/swisshomes_logo.png"></a>
-		<a href="/"><h1 class="title">SwissHomes</h1></a>
+		<h1 class="title"><a href="/">SwissHomes</a></h1>
 	</div>
 	<div class="right">
 		<nav>

@@ -4,15 +4,11 @@ import static org.junit.Assert.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Test;
 
 import ch.unibe.ese.team1.model.Ad;
-import ch.unibe.ese.team1.model.AdPicture;
-import ch.unibe.ese.team1.model.Visit;
 
 public class AdTest {
 	

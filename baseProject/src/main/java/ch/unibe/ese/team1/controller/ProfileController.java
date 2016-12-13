@@ -65,7 +65,6 @@ public class ProfileController {
 	private SearchForm searchForm;
 	
 	private final static String CLIENT = "644276133344-lihdlm9a03d6qssgdm24qmlqv1saj2d8.apps.googleusercontent.com";
-	private final static String DEFAULT_ROLE = "user";
 
 	
 	@Autowired

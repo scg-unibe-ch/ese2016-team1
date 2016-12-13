@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.AssertFalse;
 
 /**
  * Describes an alert. An alert can be created by a user. If ads matching the

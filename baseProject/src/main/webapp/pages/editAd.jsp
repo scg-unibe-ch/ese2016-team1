@@ -675,7 +675,7 @@
 			</tr>
 			
 			<tr>
-				<td><p id="addedRoommates" path="addedRoommates">Newly added roommates: </p></td>
+				<td><p id="addedRoommates">Newly added roommates: </p></td>
 			</tr>
 		</table>
 
@@ -774,8 +774,8 @@
 			</tr>			
 		</table>	
 		
+		<h3>My Visits</h3>
 		<table>
-			<h3>My Visits</h3>
 			<c:forEach var="tempVisit" items="${visis}">
 				<tr>
 					<td>${tempVisit}</td>

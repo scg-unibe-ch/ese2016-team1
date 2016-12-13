@@ -19,9 +19,6 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import ch.unibe.ese.team1.controller.service.GeoDataService;
 
 /** Describes an advertisement that users can place and search for. */
 @Entity
@@ -350,8 +347,6 @@ public class Ad {
 	}
 	
 	public boolean getAuctionEnded() {
-		boolean a = this.getAuctionEndTimeBeforeToday();
-		boolean b = this.getAuctionEndedCurrentBiddingHigherThanRetailPrice();
 		this.auctionEnded = this.getAuctionEndTimeBeforeToday() 
 				|| this.getAuctionEndedCurrentBiddingHigherThanRetailPrice();
 		return this.auctionEnded;

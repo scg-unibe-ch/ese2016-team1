@@ -197,12 +197,12 @@
 														<td><h2>Your Bid</h2></td>
 														<td><input type="number" name="price" placeholder="Your Bid" 
 														step="5" min="${shownAd.nextPossibleBid }" value="${shownAd.nextPossibleBid }"/></td>
-																	<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">
-																		<td>
-																			<button type="submit" class="thinInactiveButton">Bid</button>
-																			<input type="hidden" name="id" value="${shownAd.id}" />
-																		</td> 
-																	</a>
+														<td>
+															<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">															
+																<button type="submit" class="thinInactiveButton">Bid</button>
+																<input type="hidden" name="id" value="${shownAd.id}" />															
+															</a>
+														</td> 
 												</form:form>
 											</tr>
 										</c:if>
@@ -219,13 +219,14 @@
 												<c:choose>
 													<c:when test="${loggedIn}">
 														<c:if test="${loggedInUserEmail != shownAd.user.username }">
-															<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">
-																<td>
+															<td>
+																<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">
+																
 																	<button type="submit" class="thinInactiveButton">Buy Out</button>
 																	<input type="hidden" name="id" value="${shownAd.id }" />
 																	<input type="hidden" name="price" value="${shownAd.retailPrice}" />
-																</td> 
-															</a>
+																</a>
+															</td> 
 														</c:if>
 													</c:when>
 												</c:choose>
