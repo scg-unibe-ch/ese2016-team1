@@ -37,6 +37,7 @@ public class AdTestDataSaver {
 		User jane = userDao.findByUsername("jane@doe.com");
 		User hans = userDao.findByUsername("hans@unibe.ch");
 		User mathilda = userDao.findByUsername("mathilda@unibe.ch");
+		User premium = userDao.findByUsername("premiumKing@premium.ch");
 		
 		List<User> regRoommatesAdBern = new LinkedList<User>();
 		regRoommatesAdBern.add(hans);
@@ -61,6 +62,7 @@ public class AdTestDataSaver {
 		Date moveInDate6 = formatter.parse("01.03.2015");
 		Date moveInDate7 = formatter.parse("15.03.2015");
 		Date moveInDate8 = formatter.parse("16.02.2015");
+		Date moveInDate9 = formatter.parse("01.01.2017");
 		
 		Date moveOutDate1 = formatter.parse("31.03.2015");
 		Date moveOutDate2 = formatter.parse("30.04.2015");
@@ -758,15 +760,14 @@ public class AdTestDataSaver {
 		
 		Ad adLyss = new Ad();
 		adLyss.setZipcode(3250);
-		adLyss.setMoveInDate(moveInDate6);
-		adLyss.setMoveOutDate(moveOutDate5);
+		adLyss.setMoveInDate(moveInDate9);
 		adLyss.setCreationDate(creationDate6);
 		adLyss.setSaleType("Auction");
 		adLyss.setEndOfAuction(auctionEndDate2);
 		adLyss.setPrizePerMonth(960);
 		adLyss.setCurrentBidding(1000000);
 		adLyss.setRetailPrice(1600000);
-		adLyss.setSquareFootage(42);
+		adLyss.setSquareFootage(240);
 		adLyss.setRoomType("House");
 		adLyss.setSmokers(true);
 		adLyss.setAnimals(true);
@@ -797,6 +798,7 @@ public class AdTestDataSaver {
 		adLyss.setCable(true);
 		adLyss.setGarage(true);
 		adLyss.setInternet(true);
+		adLyss.setUser(premium);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLyss, "/img/test/ad13_3.jpg"));
 		pictures.add(createPicture(adLyss, "/img/test/ad13_2.jpg"));
