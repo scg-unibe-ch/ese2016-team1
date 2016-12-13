@@ -5,7 +5,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-
 <div id="msgDiv">
 <form:form id="messageForm" method="post" modelAttribute="messageForm" class="msgForm" 
 		action="#">

@@ -17,8 +17,6 @@
 
 <script src="/js/editAd.js"></script>
 
-
-
 <script>
 	$(document).ready(function() {		
 		$("#field-city").autocomplete({
@@ -51,8 +49,7 @@
 		
 		flatpickr("#field-visitDay", {
 		    enableTime: false
-		});
-		
+		});		
 		
 		$("#addbutton").click(function() {
 			var text = $("#roomFriends").val();
@@ -205,17 +202,14 @@
 	type="date" pattern="yyyy-MM-dd" />
 <fmt:formatDate value="${ad.endOfAuction}" var="formattedEndOfAuctionDate"
 	type="date" pattern="yyyy-MM-dd HH:mm" />	
-
 <fmt:formatDate value="${placeFormAd.moveInDate}" var="formattedMoveInDate2"
 	type="date" pattern="yyyy-MM-dd" />
 <fmt:formatDate value="${placeFormAd.moveOutDate}" var="formattedMoveOutDate2"
 	type="date" pattern="yyyy-MM-dd" />
 <fmt:formatDate value="${placeFormAd.endOfAuction}" var="formattedEndOfAuctionDate2"
 	type="date" pattern="yyyy-MM-dd HH:mm" />	
-
 	
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
-
 
 <h1>Edit Ad</h1>
 <hr />
@@ -234,18 +228,12 @@
 				<td><label for="field-title">Ad Title</label></td>
 				<td><label for="type-room">Type:</label></td>
 			</tr>
-
-			<tr>
-			
+			<tr>			
 			<c:choose>
-				<c:when test="${ad.altId != 0}">
-				
+				<c:when test="${ad.altId != 0}">				
 				<td><form:input id="field-title" path="title" value="${ad.title}" />				
 					<form:errors path="title" cssClass="validationErrorText" /></td>
-				<td>
-				
-
-				
+				<td>				
 					<c:choose>
 						<c:when test="${ad.roomType == 'Room'}">
 							<form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room 
@@ -271,17 +259,12 @@
 							<form:radiobutton id="type-studio" path="roomType" value="Flat" />Flat 
 							<form:radiobutton id="type-studio" path="roomType" value="House" checked="checked" />House
 						</c:otherwise>
-					</c:choose>
-					
-					
-					
+					</c:choose>				
 				</c:when>
 				<c:otherwise>
-				
 				<td><form:input id="field-title" path="title" value="${placeAdForm.title}" />				
 					<form:errors path="title" cssClass="validationErrorText" /></td>
 				<td>
-				
 					<c:choose>
 						<c:when test="${placeAdForm.roomType == 'Room'}">
 							<form:radiobutton id="type-room" path="roomType" value="Room" checked="checked" />Room 
@@ -308,32 +291,22 @@
 							<form:radiobutton id="type-studio" path="roomType" value="House" checked="checked" />House
 						</c:otherwise>
 					</c:choose>
-				</c:otherwise>	
-				
-				</c:choose>
-					
-					
-					
+				</c:otherwise>					
+			</c:choose>			
 			</tr>
-
 			<tr>
 				<td><label for="field-street">Street</label></td>
 				<td><label for="field-city">City / Zip code</label></td>
 			</tr>
-
 			<tr>
-			
-			
 		<c:choose>
-		<c:when test="${ad.altId != 0}">
-			
+		<c:when test="${ad.altId != 0}">			
 				<td><form:input id="field-street" path="street"	value="${ad.street}" />
 					<form:errors path="street" cssClass="validationErrorText" /></td>
 				<td>
 					<form:input id="field-city" path="city" value="${ad.zipcode} - ${ad.city}" />
 					<form:errors path="city" cssClass="validationErrorText" />
-				</td>
-		
+				</td>		
 		</c:when>
 		<c:otherwise>
 				<td><form:input id="field-street" path="street"
@@ -344,20 +317,15 @@
 					<form:errors path="city" cssClass="validationErrorText" />
 				</td>
 		</c:otherwise>		
-		</c:choose>		
-				
-				
+		</c:choose>	
 			</tr>
-
 			<tr>
 				<td><label for="moveInDate">Move-in date</label></td>
 				<td><label for="moveOutDate">Move-out date (optional)</label></td>
 			</tr>
-			<tr>
-			
+			<tr>			
 			<c:choose>
-				<c:when test="${ad.altId != 0}">
-			
+				<c:when test="${ad.altId != 0}">			
 				<td>
 					<form:input type="text" id="field-moveInDate"
 						path="moveInDate" value="${formattedMoveInDate }" placeholder="Choose a date"/>
@@ -366,159 +334,124 @@
 				<td>
 					<form:input type="text" id="field-moveOutDate"
 						path="moveOutDate" value="${formattedMoveOutDate }" placeholder="Choose a date"/>
-				</td>
-				
+				</td>				
 				</c:when>
 				<c:otherwise>
-				
-				<td>
-					<form:input type="text" id="field-moveInDate"
-						path="moveInDate" value="${formattedMoveInDate2 }" placeholder="Choose a date"/>
-					<form:errors path="moveInDate" cssClass="validationErrorText" />
-				</td>
-				<td>
-					<form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" value="${formattedMoveOutDate2 }" placeholder="Choose a date"/>
-				</td>
-				
+					<td>
+						<form:input type="text" id="field-moveInDate"
+							path="moveInDate" value="${formattedMoveInDate2 }" placeholder="Choose a date"/>
+						<form:errors path="moveInDate" cssClass="validationErrorText" />
+					</td>
+					<td>
+						<form:input type="text" id="field-moveOutDate"
+							path="moveOutDate" value="${formattedMoveOutDate2 }" placeholder="Choose a date"/>
+					</td>				
 				</c:otherwise>
-			</c:choose>	
-				
-				
+			</c:choose>			
 			</tr>
 			<tr>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 				<td><label for="field-SaleType">Sale Type</label>
 			</tr>
 			<tr>
-			
 			<c:choose>
-				<c:when test="${ad.altId != 0}">
-			
-			
-				<td><form:input id="field-SquareFootage" type="number"
+				<c:when test="${ad.altId != 0}">			
+					<td><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" value="${ad.squareFootage}" placeholder="Prize per month" step="5" /> <form:errors
-						path="squareFootage" cssClass="validationErrorText" /></td>
-						
-				<c:choose>
-					<c:when test="${ad.saleType == 'Rent'}">
-						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
-				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
-					</c:when>
-					<c:when test="${ad.saleType == 'Buy'}">
-						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Sell
-				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
-					</c:when>
-					<c:when test="${ad.saleType == 'Auction'}">
-						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
-				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
-					</c:when>
-				</c:choose>
-				
-				
+						path="squareFootage" cssClass="validationErrorText" /></td>						
+					<c:choose>
+						<c:when test="${ad.saleType == 'Rent'}">
+							<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
+					 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
+					 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+						</c:when>
+						<c:when test="${ad.saleType == 'Buy'}">
+							<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+					 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Sell
+					 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+						</c:when>
+						<c:when test="${ad.saleType == 'Auction'}">
+							<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+					 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
+					 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
+						</c:when>
+					</c:choose>				
 				</c:when>
 				<c:otherwise>
-				
-				
 				<td><form:input id="field-SquareFootage" type="number"
 						path="squareFootage" value="${placeAdForm.squareFootage}" placeholder="Prize per month" step="5" /> <form:errors
 						path="squareFootage" cssClass="validationErrorText" /></td>
-						
-				<c:choose>
-					<c:when test="${placeAdForm.saleType == 'Rent'}">
-						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
-				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
-					</c:when>
-					<c:when test="${placeAdForm.saleType == 'Buy'}">
-						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Sell
-				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
-					</c:when>
-					<c:when test="${placeAdForm.saleType == 'Auction'}">
-						<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
-				 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
-				 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
-					</c:when>
-				</c:choose>
-				
+					<c:choose>
+						<c:when test="${placeAdForm.saleType == 'Rent'}">
+							<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" checked="checked" onclick="showSettings(this.value)"/>Rent
+					 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
+					 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+						</c:when>
+						<c:when test="${placeAdForm.saleType == 'Buy'}">
+							<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+					 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" checked="checked" onclick="showSettings(this.value)"/>Sell
+					 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" onclick="showSettings(this.value)"/>Auction
+						</c:when>
+						<c:when test="${placeAdForm.saleType == 'Auction'}">
+							<td><form:radiobutton id="saleType-Rent" path="saleType" value="Rent" onclick="showSettings(this.value)"/>Rent
+					 		<form:radiobutton id="saleType-Buy"	path="saleType" value="Buy" onclick="showSettings(this.value)"/>Sell
+					 		<form:radiobutton id="saleType-Auction"	path="saleType" value="Auction" checked="checked" onclick="showSettings(this.value)"/>Auction
+						</c:when>
+					</c:choose>
 				</c:otherwise>
-			</c:choose>	
-				
+			</c:choose>				
 			</tr>
 		</table>
 	</fieldset>
 
-<fieldset id="rentalPriceSettings">
-		
+<fieldset id="rentalPriceSettings">		
 		<legend>Rental Price</legend> 
 		<table class="placeAdTable">
 			<tr>
 				<td><label for="field-Prize">Prize per month</label></td>
 			</tr>
 			<tr>
-				<td>
-				
+				<td>				
 				<c:choose>
-				<c:when test="${ad.altId != 0}">
-				
-				
+				<c:when test="${ad.altId != 0}">				
 					<form:input id="field-Prize" type="number" path="prize" value="${ad.prizePerMonth}"
 						placeholder="Prize per month" step="50"/>
-						<form:errors path="prize" cssClass="validationErrorText" />
-				
+						<form:errors path="prize" cssClass="validationErrorText" />				
 				</c:when>
 				<c:otherwise>
 				<form:input id="field-Prize" type="number" path="prize" value="${placeAdForm.prize}"
 						placeholder="Prize per month" step="50"/>
-						<form:errors path="prize" cssClass="validationErrorText" />
-				
+						<form:errors path="prize" cssClass="validationErrorText" />				
 				</c:otherwise>
-			</c:choose>	
-				
-				
+			</c:choose>				
 				</td>
 			</tr>
-
 		</table>
 	</fieldset>
 	
 	<fieldset id="retailPriceSettings" style="display:none">
-		
 		<legend>Retail Price</legend> 
 		<table class="placeAdTable">
 			<tr>
 				<td><label for="retailPrice">Retail Price</label></td>
 			</tr>
 			<tr>
-			
 			<c:choose>
 				<c:when test="${ad.altId != 0}">
-				
-				
 				<td><form:input id="retailPrice" type="number" path="retailPrice" value="${ad.retailPrice}"
 						placeholder="Retail Price" step="50" onchange="cloneRetailPrice(this.value)"/> <form:errors
-						path="retailPrice" cssClass="validationErrorText" /></td>
-			
-				</c:when>
+						path="retailPrice" cssClass="validationErrorText" /></td>				</c:when>
 				<c:otherwise>
 				<td><form:input id="retailPrice" type="number" path="retailPrice" value="${placeAdForm.retailPrice}"
 						placeholder="Retail Price" step="50" onchange="cloneRetailPrice(this.value)"/> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
 				</c:otherwise>
-			</c:choose>	
-			
-			
+			</c:choose>
 			</tr>
-
 		</table>
 	</fieldset>
 	
-	<fieldset id="auctionSettings" style="display:none">
-		
+	<fieldset id="auctionSettings" style="display:none">		
 		<legend>Auction Settings</legend> 
 		<table class="placeAdTable">
 			<tr>
@@ -526,73 +459,50 @@
 				<td><label for="endOfAuction">End Of Auction</label></td>
 			</tr>
 			<tr>
-			
-			
-			<c:choose>
-				<c:when test="${ad.altId != 0}">
-				
-			
-				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${ad.currentBidding}"
-						placeholder="Start Bidding" step="50" /> <form:errors
-						path="currentBidding" cssClass="validationErrorText" /></td>
-				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate}"
-						path="endOfAuction" />
-						<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
-			
-			
-				</c:when>
-				<c:otherwise>
-			
-				<td><form:input id="currentBidding" type="number" path="currentBidding" value="${placeAdForm.currentBidding}"
-						placeholder="Start Bidding" step="50" /> <form:errors
-						path="currentBidding" cssClass="validationErrorText" /></td>
-				<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate2}"
-						path="endOfAuction" />
-						<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
-			
-				</c:otherwise>
-			</c:choose>	
-			
-			
-			
-			
-			
+				<c:choose>
+					<c:when test="${ad.altId != 0}">			
+						<td><form:input id="currentBidding" type="number" path="currentBidding" value="${ad.currentBidding}"
+								placeholder="Start Bidding" step="50" /> <form:errors
+								path="currentBidding" cssClass="validationErrorText" /></td>
+						<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate}"
+								path="endOfAuction" />
+								<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>
+					</c:when>
+					<c:otherwise>			
+						<td><form:input id="currentBidding" type="number" path="currentBidding" value="${placeAdForm.currentBidding}"
+								placeholder="Start Bidding" step="50" /> <form:errors
+								path="currentBidding" cssClass="validationErrorText" /></td>
+						<td><form:input type="text" class="flatpickr" id="field-endOfAuction" placeholder="Choose a date" value="${formattedEndOfAuctionDate2}"
+								path="endOfAuction" />
+								<form:errors path="endOfAuction" cssClass="validationErrorText" /></td>			
+					</c:otherwise>
+				</c:choose>	
 			</tr>
 			<tr>
 				<td><label for="buyOutPrice">Buy Out Price</label></td>
 			</tr>
-			<tr>
-			
+			<tr>			
 			<c:choose>
 				<c:when test="${ad.altId != 0}">
-				
-			
 				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
 						placeholder="Buy Out Price" step="50" value="${ad.retailPrice }"
 						onchange="cloneRetailPrice(this.value)"/> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
-			
 				</c:when>
 				<c:otherwise>
-			
-			
 				<td><form:input id="buyOutPrice" type="number" path="retailPrice"
 						placeholder="Buy Out Price" step="50" value="${ad.retailPrice }"
 						onchange="cloneRetailPrice(this.value)"/> <form:errors
 						path="retailPrice" cssClass="validationErrorText" /></td>
-			
 				</c:otherwise>
 			</c:choose>	
 			</tr>
-
 		</table>
 	</fieldset>
-
-
+	
 	<br />
 	<fieldset>
 		<legend>Change Room Description</legend>
-
 		<table class="placeAdTable">
 			<tr>
 				<td>
@@ -607,7 +517,6 @@
 						</c:otherwise>
 					</c:choose>
 				</td>
-				
 				<td>
 					<c:choose>
 						<c:when test="${ad.animals}">
@@ -621,6 +530,7 @@
 					</c:choose>
 				</td>
 			</tr>
+			
 			<tr>
 				<td>
 					<c:choose>
@@ -633,8 +543,8 @@
 							(co-use)</label>
 						</c:otherwise>
 					</c:choose>
-				</td>
-				
+				</td>	
+							
 				<td>
 					<c:choose>
 						<c:when test="${ad.balcony}">
@@ -747,8 +657,7 @@
 
 	<br />
 	<fieldset id = "roommates">
-		<legend>Change roommates</legend>
-		
+		<legend>Change roommates</legend>		
 		<h3>Add new roommates</h3>
 		<br />
 		<p>If your roommates have an account, simply add them by email.</p>
@@ -770,7 +679,6 @@
 			</tr>
 		</table>
 
-
 		<p>Edit the description of the roommates:</p>
 		<br />
 		<form:textarea path="roommates" rows="10" cols="100"
@@ -783,41 +691,27 @@
 					<tr>
 						<th>Username</th>
 						<th>Delete</th>
-					</tr>
-					
+					</tr>					
 					<c:choose>
-					<c:when test="${ad.altId != 0}">
-				
-			
-					
-					
-					<c:forEach var="user" items="${ad.registeredRoommates}">
-							<tr>
-								<td>${user.username}</td>
-								<td><button type="button" data-user-id="${user.id}" data-ad-id="${ad.id}" class="deleteRoommateButton">Delete</button></td>
-							</tr>
-							<tr>
-					</c:forEach>
-					
-					
-					
-					</c:when>
-					<c:otherwise>
-					
-						<c:forEach var="user" items="${roomies}">
+					<c:when test="${ad.altId != 0}">		
+						<c:forEach var="user" items="${ad.registeredRoommates}">
 								<tr>
 									<td>${user.username}</td>
 									<td><button type="button" data-user-id="${user.id}" data-ad-id="${ad.id}" class="deleteRoommateButton">Delete</button></td>
 								</tr>
 								<tr>
 						</c:forEach>
-					
+					</c:when>
+					<c:otherwise>					
+						<c:forEach var="user" items="${roomies}">
+								<tr>
+									<td>${user.username}</td>
+									<td><button type="button" data-user-id="${user.id}" data-ad-id="${ad.id}" class="deleteRoommateButton">Delete</button></td>
+								</tr>
+								<tr>
+						</c:forEach>					
 					</c:otherwise>
 					</c:choose>
-					
-					
-					
-					
 		</table>
 	</fieldset>
 
@@ -827,11 +721,9 @@
 		<form:textarea path="preferences" rows="5" cols="100"
 			value="${ad.preferences}" ></form:textarea>
 	</fieldset>
-
 	
 	<fieldset>
-		<legend>Add visiting times</legend>
-		
+		<legend>Add visiting times</legend>		
 		<table>
 			<tr>
 				<td>
@@ -873,78 +765,53 @@
 							out.print("<option value=\"" + minute + "\">" + minute + "</option>");
  						}
  					%>
-					</select>
-			
+					</select>			
 
 					<div id="addVisitButton" class="smallPlusButton">+</div>
 					
 					<div id="addedVisits"></div>
-				</td>
-				
-			</tr>
-			
-		</table>
-		
-		
+				</td>				
+			</tr>			
+		</table>	
 		
 		<table>
-		<h3>My Visits</h3>
-		
-
-		<c:forEach var="tempVisit" items="${visis}">
-			<tr>
-				<td>${tempVisit}</td>
-			</tr>
-		</c:forEach>
-		
-
-		
+			<h3>My Visits</h3>
+			<c:forEach var="tempVisit" items="${visis}">
+				<tr>
+					<td>${tempVisit}</td>
+				</tr>
+			</c:forEach>
 		</table>
-		
-		
-		
 		<br>
 	</fieldset>
-
-
 	<br />
-
 	<fieldset>
 		<legend>Change pictures</legend>
 		<h3>Delete existing pictures</h3>
 		<br />
 		<div>
-		
-		
 			<c:choose>
-			<c:when test="${ad.altId != 0}">
-		
-		
-			<c:forEach items="${ad.pictures }" var="picture">
-				<div class="pictureThumbnail">
-					<div>
-					<img src="${picture.filePath}" />
-					</div>
-					<button type="button" data-ad-id="${ad.id }" data-picture-id="${picture.id }">Delete</button>
-				</div>
-			</c:forEach>
-			
-			</c:when>
-			<c:otherwise>
-			
-		
-			<c:forEach items="${pics }" var="picture">
-				<div class="pictureThumbnail">
-					<div>
-					<img src="${picture.filePath}" />
-					</div>
-					<button type="button" data-ad-id="${ad.id }" data-picture-id="${picture.id }">Delete</button>
-				</div>
-			</c:forEach>
-			
-			</c:otherwise>
-			</c:choose>
-			
+				<c:when test="${ad.altId != 0}">		
+					<c:forEach items="${ad.pictures }" var="picture">
+						<div class="pictureThumbnail">
+							<div>
+							<img src="${picture.filePath}" />
+							</div>
+							<button type="button" data-ad-id="${ad.id }" data-picture-id="${picture.id }">Delete</button>
+						</div>
+					</c:forEach>			
+				</c:when>
+				<c:otherwise>					
+					<c:forEach items="${pics }" var="picture">
+						<div class="pictureThumbnail">
+							<div>
+							<img src="${picture.filePath}" />
+							</div>
+							<button type="button" data-ad-id="${ad.id }" data-picture-id="${picture.id }">Delete</button>
+						</div>
+					</c:forEach>			
+				</c:otherwise>
+			</c:choose>			
 			
 		</div>
 		<p class="clearBoth"></p>

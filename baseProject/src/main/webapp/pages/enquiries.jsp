@@ -77,7 +77,6 @@
 						}
 
 						attachHandlers();
-
 					});
 </script>
 

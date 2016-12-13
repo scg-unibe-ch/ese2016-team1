@@ -31,5 +31,4 @@
 	} else {
 		filePath = picture.getFilePath();
 	}
-
 %>

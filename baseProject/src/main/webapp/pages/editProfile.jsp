@@ -32,8 +32,7 @@ function setSubmitTypeUpgrade(form)
 	var userName = document.getElementById('user-name');
 	var firstName = document.getElementById('first-name');
 	var lastName = document.getElementById('last-name');
-	var password = document.getElementById('password');
-	
+	var password = document.getElementById('password');	
 	
 	submitType.value = "upgrade";
 	userName.style.color = "white";
@@ -55,7 +54,6 @@ function setSubmitTypeUpgrade(form)
 <!-- check if user is logged in -->
 <security:authorize var="loggedIn" url="/profile" />
 
-
 <c:choose>
 	<c:when test="${loggedIn}">
 		<a id="profile_picture_editPage"> <c:import
@@ -74,8 +72,7 @@ function setSubmitTypeUpgrade(form)
 <table class="editProfileTable">
 	<tr>
 		<td class="spacingTable"><label for="user-name">Username:</label><a>&emsp;</a>
-		<form:input id="user-name" path="username" value="${currentUser.username}" /></td>
-		
+		<form:input id="user-name" path="username" value="${currentUser.username}" /></td>		
 	</tr>
 	<tr>
 		<td class="spacingTable"><label for="first-name">First name:</label><a>&emsp;</a>
