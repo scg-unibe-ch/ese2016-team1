@@ -31,11 +31,11 @@
 						<h2>
 							<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
 						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
+						<h4>${ad.street}, ${ad.zipcode} ${ad.city}</h4>
 						<br />
-						<p>
+						<h4>
 							<i>${ad.roomType}</i>
-						</p>
+						</h4>
 						</div>
 					</div>
 					<div class="resultRight">
@@ -51,7 +51,7 @@
 							</c:when>
 						</c:choose>	
 						<br /> <br />
-						<p>Move-in date: ${ad.moveInDate }</p>
+						<h4>Move-in date: ${ad.moveInDate }</h4>
 					</div>
 				</div>
 			</c:forEach>
@@ -77,17 +77,17 @@
 						<h2>
 							<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
 						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
+						<h4>${ad.street}, ${ad.zipcode} ${ad.city}</h4>
 						<br />
-						<p>
+						<h4>
 							<i>${ad.roomType}</i>
-						</p>
+						</h4>
 						</div>
 					</div>
 					<div class="resultRight">
 						<h2>CHF ${ad.prizePerMonth }</h2>
 						<br /> <br />
-						<p>Move-in date: ${ad.moveInDate }</p>
+						<h4>Move-in date: ${ad.moveInDate }</h4>
 					</div>
 				</div>
 			</c:forEach>

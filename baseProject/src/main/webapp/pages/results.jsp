@@ -157,13 +157,14 @@ function sort_div_attribute() {
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
 							src="${ad.pictures[0].filePath}" /></a>
 						<div class="leftTextRoomDescription">
-						<h2>
-							<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
-						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
-						<br />
-						<p>
-							<i>${ad.roomType}</i></p>
+							<h2>
+								<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
+							</h2>
+							<h4>${ad.street}, ${ad.zipcode} ${ad.city}</h4>
+							<br />
+							<h4>
+								<i>${ad.roomType}</i>
+							</h4>
 						</div>
 					</div>
 					<div class="resultRight">
@@ -183,7 +184,7 @@ function sort_div_attribute() {
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
 							type="date" pattern="dd.MM.yyyy" />
 
-						<p>Move-in date: ${formattedMoveInDate }</p>
+						<h4>Move-in date: ${formattedMoveInDate }</h4>
 					</div>
 				</div>
 			</c:forEach>
