@@ -330,8 +330,8 @@ header .left img {
 	width: 240px;
 }
 
-header .title {
-	font-size: 4.2em;
+#titleName a {
+	font-size: 1.6em;
 	left: 230px;
 	top: 8px;
 	font-style: italic;
@@ -724,6 +724,12 @@ footer nav ul li {
 	width: 20%;
 	text-align: right;
 	padding-right: 5px;
+	position: absolute;
+	right: 41%;
+}
+
+#resultsDiv .resultRight h4{
+	margin-top: 15px;
 }
 
 #resultMap {
