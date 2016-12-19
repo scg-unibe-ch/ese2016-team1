@@ -108,7 +108,7 @@ public class ProfileController {
 	/** Make new google auth account or if exists already, login **/
     @RequestMapping(value = "/signInWithGoogle", method = RequestMethod.POST)
     public @ResponseBody
-    ModelAndView googleLogin(@RequestParam("token") String token) throws GeneralSecurityException, IOException {
+    ModelAndView googleLogin(@RequestParam("token") String token, @RequestParam("imageUrl") String imageUrl) throws GeneralSecurityException, IOException {
         
         JacksonFactory jacksonFactory = new JacksonFactory();
         NetHttpTransport transport = new NetHttpTransport();
@@ -124,7 +124,6 @@ public class ProfileController {
             String lastName = (String) payload.get("family_name");
             String firstName = (String) payload.get("given_name");
             String email = payload.getEmail();
-            String imageUrl = (String) payload.get("picture");
 
             User user = userService.findUserByEmail(email);
     		if (user == null) {

@@ -57,31 +57,31 @@ public class MailService {
             // Set the recipients
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(address));
             // Set message subject
-            message.setSubject("Flatfindr news");
+            message.setSubject("SwissHomes news");
             // Set message text
             if(textId==0){
-            	message.setText("Hello " + address +"\nWelcome on Flatfindr. We want to thank you for creating a new Flatfindr-account.\n " +link);
+            	message.setText("Hello " + address +"\nWelcome on SwissHomes. We want to thank you for creating a new SwissHomes-account.\n " +link);
             }
             if(textId==1){
-            	message.setText("Hello " + address +"\nYou have recieved a new message on your Flatfindr account.\n " +link);
+            	message.setText("Hello " + address +"\nYou have recieved a new message on your SwissHomes account.\n " +link);
             }
             if(textId==2){
-            	message.setText("Hello " + address +"\nYou have been outbidden on Flatfindr.\n " +link);
+            	message.setText("Hello " + address +"\nYou have been outbidden on SwissHomes.\n " +link);
             }
             if(textId==3){
-            	message.setText("Hello " + address +"\nYour Flatfindr-auction has a new highest Bidder, Congratulations!\n " +link);
+            	message.setText("Hello " + address +"\nYour SwissHomes-auction has a new highest Bidder, Congratulations!\n " +link);
             }
             if(textId==4){
-            	message.setText("Hello " + address +"\nYour Flatfindr-auction been bought out, Congratulations!\n " +link);
+            	message.setText("Hello " + address +"\nYour SwissHomes-auction been bought out, Congratulations!\n " +link);
             }
             if(textId==5){
-            	message.setText("Hello " + address +"\nThe Flatfindr-auction you were leading has been bought out, I'm sorry!\n " +link);
+            	message.setText("Hello " + address +"\nThe SwissHomes-auction you were leading has been bought out, I'm sorry!\n " +link);
             }
             if(textId==6){
-            	message.setText("Hello " + address +"\nYour Flatfindr-auction has ended!\n " +link);
+            	message.setText("Hello " + address +"\nYour SwissHomes-auction has ended!\n " +link);
             }
             if(textId==7){
-            	message.setText("Hello " + address +"\nConratulations\nYou have won this Flatfindr-auction!\n " +link);
+            	message.setText("Hello " + address +"\nConratulations\nYou have won this SwissHomes-auction!\n " +link);
             }
              
             System.out.print("Sending message...");
