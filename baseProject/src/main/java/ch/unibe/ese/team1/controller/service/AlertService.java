@@ -164,7 +164,7 @@ public class AlertService {
 				+ ad.getTitle()
 				+ "</a><br><br>"
 				+ "Good luck and enjoy,<br>"
-				+ "Your FlatFindr crew";
+				+ "Your SwissHomes crew";
 	}
 	
 	private boolean moveInDateMismatchWith(Ad ad, Alert alert) {

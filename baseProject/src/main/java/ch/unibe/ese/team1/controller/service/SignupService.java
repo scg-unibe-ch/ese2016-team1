@@ -99,6 +99,7 @@ public class SignupService {
 		picture.setUser(user);
 		user.setPicture(picture);
 		user.setGoogleUser(true);
+		user.setPremium(false);
 		userDao.save(user);	
 	}
 	
