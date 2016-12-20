@@ -545,6 +545,12 @@ footer nav ul li {
     top: 81px;
 }
 
+#loginError {
+	position: absolute;
+	right: 50px;
+	top: 50px;
+}
+
 /* about.jsp*/
 #about {
   position: fixed;

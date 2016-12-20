@@ -27,20 +27,22 @@
 			<p>You are already logged in!</p>
 		</c:when>
 		<c:otherwise>
-			<c:if test="${!empty param.error}">
-				<p>Incorrect email or password. Please retry using correct email
-					and password.</p>
-				<br />
-			</c:if>
 			<div>
 				<div class="g-signin2" data-onsuccess="onSignIn"></div>
 			</div>
+			<div>
+			<c:if test="${!empty param.error}">
+				<p id="loginError">Incorrect email or password. Please retry using correct email
+					and password.</p>
+				<br />
+			</c:if>
 			<form id="login-form" method="post" action="/j_spring_security_check">
 				<label for="field-email">Email:</label> <input name="j_username"
 					id="field-email" /> <label for="field-password">Password:</label> <input
 					name="j_password" id="field-password" type="password" />
 				<button type="submit">Login</button>
 			</form>
+			</div>
 			<br />
 			<h2>Test users</h2>
 	
